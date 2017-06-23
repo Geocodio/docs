@@ -378,7 +378,7 @@ var addresses = [
   '17015 Walnut Grove Drive, Morgan Hill CA'
 ];
 
-geocodio.geocode(addresses, function(err, locations) {
+geocodio.post('geocode', addresses, function(err, locations) {
     if (err) throw err;
 
     console.log(locations);
