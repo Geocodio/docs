@@ -119,7 +119,7 @@ client = GeocodioClient(YOUR_API_KEY)
 
 ```php
 <?php
-require_once 'vendor/autoload.php'
+require('vendor/autoload.php');
 use Stanley\Geocodio\Client;
 
 // Create the new Client object by passing in your api key
@@ -202,13 +202,13 @@ location = client.geocode("1109 N Highland St, Arlington VA")
 
 ```php
 <?php
-require_once 'vendor/autoload.php'
+require('vendor/autoload.php');
 use Stanley\Geocodio\Client;
 
 // Create the new Client object by passing in your api key
 $client = new Client('YOUR_API_KEY');
 
-$location = $client->get('1109 N Highland St, Arlington VA');
+$location = $client->geocode('1109 N Highland St, Arlington VA');
 ```
 
 ```javascript
@@ -345,20 +345,20 @@ locations = client.geocode([
 
 ```php
 <?php
-require_once 'vendor/autoload.php'
+require('vendor/autoload.php');
 use Stanley\Geocodio\Client;
 
 // Create the new Client object by passing in your api key
 $client = new Client('YOUR_API_KEY');
 
-$data = array(
+$data = [
   '1109 N Highland St, Arlington VA',
   '525 University Ave, Toronto, ON, Canada',
   '4410 S Highway 17 92, Casselberry FL',
   '15000 NE 24th Street, Redmond WA',
   '17015 Walnut Grove Drive, Morgan Hill CA'
-);
-$locations = $client->post($data);
+];
+$locations = $client->geocode($data);
 ```
 
 ```javascript
@@ -551,7 +551,7 @@ addresses = client.reverse((38.9002898, -76.9990361))
 
 ```php
 <?php
-require_once 'vendor/autoload.php'
+require('vendor/autoload.php');
 use Stanley\Geocodio\Client;
 
 // Create the new Client object by passing in your api key
@@ -706,13 +706,13 @@ address_sets = client.reverse([
 
 ```php
 <?php
-require_once 'vendor/autoload.php'
+require('vendor/autoload.php');
 use Stanley\Geocodio\Client;
 
 // Create the new Client object by passing in your api key
 $client = new Client('YOUR_API_KEY');
 
-$address_sets = $client->reverse(array('35.9746000,-77.9658000', '32.8793700,-96.6303900', '33.8337100,-117.8362320', '35.4171240,-80.6784760'));
+$address_sets = $client->reverse(['35.9746000,-77.9658000', '32.8793700,-96.6303900', '33.8337100,-117.8362320', '35.4171240,-80.6784760']);
 ```
 
 ```javascript
@@ -943,13 +943,13 @@ location = client.geocode("1109 N Highland St, Arlington VA", fields=["cd", "sta
 
 ```php
 <?php
-require_once 'vendor/autoload.php'
+require('vendor/autoload.php');
 use Stanley\Geocodio\Client;
 
 // Create the new Client object by passing in your api key
 $client = new Client('YOUR_API_KEY');
 
-$location = $client->get('1109 N Highland St, Arlington VA', ['cd', 'stateleg']);
+$location = $client->geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg']);
 ```
 
 ```javascript
@@ -1260,7 +1260,7 @@ address = client.parse('1109 N Highland St, Arlington VA')
 
 ```php
 <?php
-require_once 'vendor/autoload.php'
+require('vendor/autoload.php');
 use Stanley\Geocodio\Client;
 
 // Create the new Client object by passing in your api key
