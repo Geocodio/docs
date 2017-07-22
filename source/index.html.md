@@ -919,7 +919,7 @@ api_key | Your Geocodio API key
 
 # Fields
 
-> To get the congressional district and stage legislative districts for an address:
+> To get the congressional district and state legislative districts for an address:
 
 ```shell
 curl "https://api.geocod.io/v1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
