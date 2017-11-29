@@ -1117,7 +1117,7 @@ You can retrieve the state legislative districts for an address or coordinate us
 The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district numbe for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington DC or Nebraska), only the `senate` key is returned.
 
 <aside class="success">
-State Legislative District boundary data were last updated on: <em>Februrary 28th, 2016</em>
+State Legislative District boundary data were last updated on: <em>January 15th, 2017</em>
 </aside>
 
 ## School Districts
