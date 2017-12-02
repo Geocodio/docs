@@ -596,7 +596,7 @@ geocodio.reverse('38.9002898,-76.9990361', function(err, addresses) {
   "results": [
     {
       "address_components": {
-        "number": "500",
+        "number": "508",
         "street": "H",
         "suffix": "St",
         "postdirectional": "NE",
@@ -607,40 +607,18 @@ geocodio.reverse('38.9002898,-76.9990361', function(err, addresses) {
         "zip": "20002",
         "country": "US"
       },
-      "formatted_address": "500 H St NE, Washington, DC 20002",
+      "formatted_address": "508 H St NE, Washington, DC 20002",
       "location": {
-        "lat": 38.900203,
-        "lng": -76.999507
+        "lat": 38.900432,
+        "lng": -76.999031
       },
       "accuracy": 1,
-      "accuracy_type": "nearest_street",
-      "source": "TIGER/Line® dataset from the US Census Bureau"
+      "accuracy_type": "rooftop",
+      "source": "City of Washington"
     },
     {
       "address_components": {
-        "number": "800",
-        "street": "5th",
-        "suffix": "St",
-        "postdirectional": "NE",
-        "formatted_street": "5th St NE",
-        "city": "Washington",
-        "county": "District of Columbia",
-        "state": "DC",
-        "zip": "20002",
-        "country": "US"
-      },
-      "formatted_address": "800 5th St NE, Washington, DC 20002",
-      "location": {
-        "lat": 38.900203,
-        "lng": -76.999507
-      },
-      "accuracy": 0.18,
-      "accuracy_type": "nearest_street",
-      "source": "TIGER/Line® dataset from the US Census Bureau"
-    },
-    {
-      "address_components": {
-        "number": "474",
+        "number": "510",
         "street": "H",
         "suffix": "St",
         "postdirectional": "NE",
@@ -651,15 +629,16 @@ geocodio.reverse('38.9002898,-76.9990361', function(err, addresses) {
         "zip": "20002",
         "country": "US"
       },
-      "formatted_address": "474 H St NE, Washington, DC 20002",
+      "formatted_address": "510 H St NE, Washington, DC 20002",
       "location": {
-        "lat": 38.900205,
-        "lng": -76.99994
+        "lat": 38.900429,
+        "lng": -76.998965
       },
-      "accuracy": 0.18,
-      "accuracy_type": "nearest_street",
-      "source": "TIGER/Line® dataset from the US Census Bureau"
-    }
+      "accuracy": 0.9,
+      "accuracy_type": "rooftop",
+      "source": "City of Washington"
+    },
+    ...
   ]
 }
 ```
@@ -750,7 +729,7 @@ geocodio.reverse(coordinates, function(err, address_sets){
 (batch-reverse ["35.9746000,-77.9658000" "32.8793700,-96.6303900" "33.8337100,-117.8362320" "35.4171240,-80.6784760"] :api-key "YOUR_API_KEY")
 ```
 
-> Example response:
+> Example response (shortened for brevity):
 
 ```json
 {
@@ -762,67 +741,48 @@ geocodio.reverse(coordinates, function(err, address_sets){
           {
             "address_components": {
               "number": "101",
-              "street": "State Hwy 58",
-              "formatted_street": "State Hwy 58",
+              "predirectional": "W",
+              "street": "Washington",
+              "suffix": "St",
+              "formatted_street": "W Washington St",
               "city": "Nashville",
               "county": "Nash County",
               "state": "NC",
               "zip": "27856",
               "country": "US"
             },
-            "formatted_address": "101 State Hwy 58, Nashville, NC 27856",
+            "formatted_address": "101 W Washington St, Nashville, NC 27856",
             "location": {
-              "lat": 35.974536,
-              "lng": -77.965716
+              "lat": 35.974357,
+              "lng": -77.966064
             },
             "accuracy": 1,
-            "accuracy_type": "nearest_street",
-            "source": "TIGER/Line® dataset from the US Census Bureau"
+            "accuracy_type": "rooftop",
+            "source": "NC Geographic Information Coordinating Council"
           },
           {
             "address_components": {
               "number": "100",
-              "predirectional": "N",
-              "street": "Alston",
+              "predirectional": "E",
+              "street": "Washington",
               "suffix": "St",
-              "formatted_street": "N Alston St",
+              "formatted_street": "E Washington St",
               "city": "Nashville",
               "county": "Nash County",
               "state": "NC",
               "zip": "27856",
               "country": "US"
             },
-            "formatted_address": "100 N Alston St, Nashville, NC 27856",
+            "formatted_address": "100 E Washington St, Nashville, NC 27856",
             "location": {
-              "lat": 35.974536,
-              "lng": -77.965716
+              "lat": 35.974786,
+              "lng": -77.965387
             },
-            "accuracy": 0.37,
-            "accuracy_type": "nearest_street",
-            "source": "TIGER/Line® dataset from the US Census Bureau"
+            "accuracy": 0.9,
+            "accuracy_type": "rooftop",
+            "source": "NC Geographic Information Coordinating Council"
           },
-          {
-            "address_components": {
-              "number": "125",
-              "predirectional": "S",
-              "street": "Alston",
-              "suffix": "St",
-              "formatted_street": "S Alston St",
-              "city": "Nashville",
-              "county": "Nash County",
-              "state": "NC",
-              "zip": "27856",
-              "country": "US"
-            },
-            "formatted_address": "125 S Alston St, Nashville, NC 27856",
-            "location": {
-              "lat": 35.974263,
-              "lng": -77.965823
-            },
-            "accuracy": 0.36,
-            "accuracy_type": "nearest_street",
-            "source": "TIGER/Line® dataset from the US Census Bureau"
-          }
+          ...
         ]
       }
     },
@@ -832,70 +792,27 @@ geocodio.reverse(coordinates, function(err, address_sets){
         "results": [
           {
             "address_components": {
-              "number": "100",
-              "predirectional": "E",
-              "street": "Kingsley",
-              "suffix": "Rd",
-              "formatted_street": "E Kingsley Rd",
+              "number": "3034",
+              "predirectional": "S",
+              "street": "1st",
+              "suffix": "St",
+              "formatted_street": "S 1st St",
               "city": "Garland",
               "county": "Dallas County",
               "state": "TX",
               "zip": "75041",
               "country": "US"
             },
-            "formatted_address": "100 E Kingsley Rd, Garland, TX 75041",
+            "formatted_address": "3034 S 1st St, Garland, TX 75041",
             "location": {
-              "lat": 32.878693,
-              "lng": -96.630918
+              "lat": 32.879386,
+              "lng": -96.630471
             },
             "accuracy": 1,
-            "accuracy_type": "nearest_street",
-            "source": "TIGER/Line® dataset from the US Census Bureau"
+            "accuracy_type": "rooftop",
+            "source": "City of Garland"
           },
-          {
-            "address_components": {
-              "number": "2961",
-              "predirectional": "S",
-              "street": "1st",
-              "suffix": "St",
-              "formatted_street": "S 1st St",
-              "city": "Garland",
-              "county": "Dallas County",
-              "state": "TX",
-              "zip": "75041",
-              "country": "US"
-            },
-            "formatted_address": "2961 S 1st St, Garland, TX 75041",
-            "location": {
-              "lat": 32.881541,
-              "lng": -96.630962
-            },
-            "accuracy": 0.92,
-            "accuracy_type": "nearest_street",
-            "source": "TIGER/Line® dataset from the US Census Bureau"
-          },
-          {
-            "address_components": {
-              "number": "3084",
-              "predirectional": "S",
-              "street": "1st",
-              "suffix": "St",
-              "formatted_street": "S 1st St",
-              "city": "Garland",
-              "county": "Dallas County",
-              "state": "TX",
-              "zip": "75041",
-              "country": "US"
-            },
-            "formatted_address": "3084 S 1st St, Garland, TX 75041",
-            "location": {
-              "lat": 32.878897,
-              "lng": -96.630992
-            },
-            "accuracy": 0.87,
-            "accuracy_type": "nearest_street",
-            "source": "TIGER/Line® dataset from the US Census Bureau"
-          }
+          ...
         ]
       }
     },
@@ -1356,6 +1273,7 @@ state               | The point is a state
 
 Value               | Description
 ------------------- | -----------
+rooftop             | We found the exact point with rooftop level accuracy
 nearest_street      | Nearest match for a specific street with estimated street number
 nearest_place       | Closest city/town/place
 
