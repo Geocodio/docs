@@ -299,7 +299,7 @@ api_key | Your Geocodio API key
 
 **Alternative URL Parameters**
 
-Instead of using the *q* parameter, you can use a combination of `street`, `city`, `state` `postal_code`, and/or `country`. This might be useful if the address is already stored as separate fields in your end.
+Instead of using the *q* parameter, you can use a combination of `street`, `city`, `state` `postal_code`, and/or `country`. This can be useful if the address is already stored as separate fields on your end.
 
 Parameter | Description
 --------- | -----------
@@ -311,7 +311,7 @@ country | E.g. Canada (Default to USA)
 api_key | Your Geocodio API key
 
 <aside>
-<strong>Note:</strong> Even if the fields are supplied separately, Geocodio might in rare circumstances try to parse e.g. the street as part of the city if more relevant results can be found.
+<strong>Note:</strong> Even if the fields are supplied separately, Geocodio might in rare circumstances try to parse the street, for example, as part of the city if more relevant results can be found.
 </aside>
 
 ## Batch geocoding
@@ -471,11 +471,11 @@ Parameter | Description
 api_key | Your Geocodio API key
 
 ### JSON array/object
-When making a batch geocoding request, you can `POST` queries as either a JSON array or a JSON object. If a JSON object is posted, you can specify a custom key for each element of your choice, this can be useful to match queries up with your existing data, after the request is complete.
+When making a batch geocoding request, you can `POST` queries as either a JSON array or a JSON object. If a JSON object is posted, you can specify a custom key for each element of your choice. This can be useful to match queries up with your existing data after the request is complete.
 
 If using a JSON array, results are **guaranteed** to be returned in the same order as they are requested.
 
-You can also use the alternative parameters with batch geocoding, just pass an associative array instead of a string for each address.
+You can also use the alternative parameters with batch geocoding; just pass an associative array instead of a string for each address.
 
 Here's a couple of examples of what the `POST` body can look like:
 
@@ -518,16 +518,16 @@ Here's a couple of examples of what the `POST` body can look like:
 
 # Reverse Geocoding
 
-Reverse geocoding is the process of turning geographic coordinates (i.e. latitude and longitude) into a human-readable address.
+Reverse geocoding is the process of converting latitude and longitude into a street address.
 
 Geocodio will find matching street(s) and determine the correct house number based on the location. Note that Geocodio does not guarantee to return a valid house number; it is our closest approximation.
 
-As with forward geocoding, you can either geocode a single set of coordinates at the time or collect multiple coordinates in batches and reverse geocode up to 10,000 coordinates at the time.
+As with forward geocoding, you can either geocode a single set of coordinates at the time or collect multiple coordinates in batches. You can batch reverse geocode up to 10,000 coordinates at a time.
 
 This endpoint can return up to 5 possible matches ranked and ordered by an [accuracy score](#accuracy-score).
 
 <aside class="success">
-A geographic coordinate consists of latitude followed by longitude separated by a comma, e.g. `38.9002898,-76.9990361`
+A geographic coordinate consists of latitude followed by longitude separated by a comma, for example `38.9002898,-76.9990361`
 </aside>
 
 ## Reverse geocoding single coordinate
@@ -826,7 +826,7 @@ If you have several coordinates that you need to reverse geocode, batch reverse 
 Batch reverse geocoding requests are performed by making a `POST` request to the *reverse* endpoint, suppliying a `JSON` array in the body.
 
 <aside class="warning">
-You can batch reverse geocode up to 10,000 coordinates at the time.
+You can batch reverse geocode up to 10,000 coordinates at a time.
 </aside>
 
 ### HTTP Request
@@ -841,7 +841,7 @@ api_key | Your Geocodio API key
 
 # Fields
 
-> To get the congressional district and state legislative districts for an address:
+> To get the Congressional and state legislative districts for an address:
 
 ```shell
 curl "https://api.geocod.io/v1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
@@ -875,7 +875,7 @@ $location = $client->geocode('1109 N Highland St, Arlington VA', ['cd', 'statele
 ```
 
 ```javascript
-// There is no Node.js support for fields yet. Feel free to contribute
+// There is no Node.js support for fields yet. We invite you to contribute
 // by creating a pull request on GitHub
 
 /*
@@ -966,16 +966,16 @@ geocodio.geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg'], functio
 ```
 
 <aside class="warning">
-<strong>Note:</strong> Fields count as an additional lookup each. Please consult the <a href="/pricing">pricing page</a>.
+<strong>Note:</strong> Fields count as an additional lookup each. Please consult our <a href="/pricing">pricing calculator</a>.
 </aside>
 
-Geocodio allows you to request additional information with forward and reverse geocoding requests, we call these *fields*.
+Geocodio allows you to request additional information with forward and reverse geocoding requests. We call this additional data *fields*.
 
-Requesting fields are easy, just add a `fields` parameter to your query string and set the value according to the table below. If you want multiple fields, just separate them with a comma. If the `fields` parameter has been specified, a new `fields` key is exposed with each geocoding result containing all necessary data for each field.
+Requesting additional data fields is easy. Just add a `fields` parameter to your query string and set the value according to the table below. You can request multiple data fields at the same time by separating them with a comma. If the `fields` parameter has been specified, a new `fields` key is exposed with each geocoding result containing all necessary data for each field.
 
 Go ahead, <a href="https://api.geocod.io/v1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
-Some fields are specific to the US and can not be queried for other countries.
+Some fields are specific to the US and cannot be queried for other countries.
 
 Parameter name                | Description                                       | Coverage                    |
 ----------------------------- | ------------------------------------------------- | --------------------------- |
@@ -988,7 +988,7 @@ timezone                      | Timezone                                        
 
 
 <aside class="notice">
-Fields works with both single and batch geocoding.
+Additional data fields are available with both single and batch geocoding.
 </aside>
 
 ## Congressional Districts
@@ -1004,12 +1004,12 @@ Fields works with both single and batch geocoding.
 }
 ...
 ```
-You can retrieve the congressional district for an address or coordinate using `cd`, `cd113`, `cd114`, or `cd115` in the `fields` query parameter. `cd` will always return the congressional district for the current progress while e.g. `cd113` will continue to show the congressional district for the 113th congress.
+You can retrieve the Congressional district for an address or coordinate using `cd`, `cd113`, `cd114`, or `cd115` in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
 
-The field returns the full name of the congressional district, the district number the congress number and the range of years the congress are covering.
+The field returns the full name of the Congressional district, the district number, the Congress number, and the year range.
 
 <aside class="warning">
-It might be tempting to look congressional districts up by zip code, but this is discouraged &mdash; primarily because zip codes are postal routes and not areas which can cause imprecise results. Also note that some zip codes span over multiple congressional districts and Geocodio will only return one district per result.
+It is discouraged to look up Congressional districts up by postal code. Postal codes are postal routes, rather than geographic areas, which can cause imprecise results. Also note: some postal codes span over multiple Congressional districts and Geocodio will only return one district per result.
 </aside>
 
 ## State Legislative Districts
@@ -1031,10 +1031,10 @@ It might be tempting to look congressional districts up by zip code, but this is
 ```
 You can retrieve the state legislative districts for an address or coordinate using `stateleg` in the `fields` query parameter.
 
-The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district numbe for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington DC or Nebraska), only the `senate` key is returned.
+The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district number for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington, DC or Nebraska), only the `senate` key is returned.
 
 <aside class="success">
-State Legislative District boundary data were last updated on: <em>January 15th, 2017</em>
+State Legislative District boundary data was last updated on: <em>January 15th, 2017</em>
 </aside>
 
 ## School Districts
@@ -1078,9 +1078,9 @@ State Legislative District boundary data were last updated on: <em>January 15th,
 }
 ...
 ```
-You can retrieve the school districts for an address or coordinate using `school` in the `fields` query parameter.
+You can retrieve the school district for an address or coordinate using `school` in the `fields` query parameter.
 
-The field will return either a *unified* school district or separate *elementary* and *secondary* fields depending on the area. Each school district is returned with its full name, the LEA (Local Education Agency) code as well as the grades supported. Kindergarden is abbreviated as *KG* and Pre-kindergarten is abbreviated as *PK*.
+The field will return either a *unified* school district or separate *elementary* and *secondary* fields depending on the area. Each school district is returned with its full name, the LEA (Local Education Agency) code, as well as the grades supported. Kindergarden is abbreviated as *KG* and pre-kindergarten is abbreviated as *PK*.
 
 ## Census Block/Tract & FIPS codes
 ```json
@@ -1098,7 +1098,7 @@ The field will return either a *unified* school district or separate *elementary
 }
 ...
 ```
-This will append various census-designated codes to your address. Here is a description of each field.
+This will append various Census-designated codes to your address:
 
 Field        | Description
 ------------ | -----------------------------------------------------------
@@ -1112,7 +1112,7 @@ block_group  | The single-digit group number for the block
 
 The U.S. Census Bureau also provides a more [detailed guide](https://www.census.gov/geo/reference/gtc/gtc_ct.html) for the above terms.
 
-Using census tracts and blocks, you will be able to match locations up with statistical data from the U.S. Census Bureau. You can for example utilize the [American Community Survey (ACS) data](https://www.census.gov/programs-surveys/acs/data.html).
+Using Census tracts and blocks, you can match addresses and latitude/longitude pairs with statistical data from the U.S. Census Bureau. For example, appending Census tracts and blocks to addresses enables you to utilize the [American Community Survey (ACS) data](https://www.census.gov/programs-surveys/acs/data.html).
 
 ## Timezone
 ```json
@@ -1128,7 +1128,7 @@ Using census tracts and blocks, you will be able to match locations up with stat
 ```
 You can retrieve the timezone for an address or coordinate using `timezone` in the `fields` query parameter.
 
-The field will return the name of the timezone as a three letter abbreviation (see table below), the UTC/GMT offset and whether the location observes daylight savings time (DST). Lookups in countries outside the US will return the timezone name following the ["tz database" format](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). E.g. `America/Toronto`
+The field will return the name of the timezone as a three letter abbreviation (see table below), the UTC/GMT offset, and whether the location observes Daylight Saving Time (DST). Lookups in countries outside the US will return the timezone name following the ["tz database" format](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). E.g. `America/Toronto`
 
 Abbreviation | Description
 ------------ | -----------------------------------------------------------
@@ -1147,15 +1147,7 @@ SST          | Samoa Standard Time
 <aside class="warning">
 <strong>DEPRECATED</strong>
 
-As of June 2015 the parse endpoint has been deprecated in favor of the regular geocode endpoint that is greatly improved and also provides address parsing. The parse endpoint is unsupported and will be completely removed in the future.
-</aside>
-
-If you just need to an address into individual components, Geocodio can help you too. The parse endpoint is however very simple and does not provide intelligent address correction and address completion.
-
-If you need these features we recommend that you use the regular geocoding endpoint and retrieve the parsed components from there.
-
-<aside class="notice">
-<strong>Note:</strong> Address parsing is free of charge and does not count towards your API usage. (You still need an API key, though.)
+As of June 2015, address parsing and correction is included by default with all Geocodio results. The parse endpoint has been deprecated in favor of the regular geocode endpoint that is greatly improved and also provides address parsing. The parse endpoint is unsupported and will be completely removed in the future.
 </aside>
 
 > To parse an address:
@@ -1244,15 +1236,15 @@ q | The query (i.e. address) to parse
 api_key | Your Geocodio API key
 
 <aside class="notice">
-Make sure to check the <a href="#address-formats">address formats</a> section for more information on the different address formats supported.
+Make sure to check the <a href="#address-formats">address formats</a> section for more information on the different address formats that are supported.
 </aside>
 
 # Accuracy score
-Each geocoded result is returned with an accuracy score, which is a decimal number ranging from 0.00 to 1.00. This score is generated by the internal Geocodio engine based on how accurate the result is believed to be. The higher the score the better the result. Results are always returned ordered by accuracy score.
+Each geocoded result is returned with an accuracy score, which is a decimal number ranging from 0.00 to 1.00. This score is generated by the internal Geocodio engine based on how accurate the result is believed to be. The higher the score, the better the result. Results are always returned ordered by accuracy score.
 
-For example, if against all odds an address simply can't be found — instead of returning no results, Geocodio will return a geocoded point based on the zip code or city but with a much lower accuracy score and accuracy type set to "place".
+For example, if against all odds an address simply can't be found, instead of returning no results, Geocodio will return a geocoded point based on the postal code or city but with a much lower accuracy score and accuracy type set to "place".
 
-Generally, accuracy scores that are larger than or equal to `0.8` are usually helpful, whereas results with lower accuracy scores might be very rough matches.
+Generally, accuracy scores that are larger than or equal to `0.8` are the most accurate, whereas results with lower accuracy scores might be very rough matches.
 
 An accuracy type is also returned with all results. The accuracy types are different for forward and reverse geocoding results.
 
@@ -1286,9 +1278,9 @@ Geocodio supports geocoding the following entities:
 * Zip codes
 * States
 
-If a city is provided without a state, Geocodio will automatically guess and add the state based on what it most likely might be. Geocodio also understands shorthands for both streets and cities, e.g. *NYC*, *SF*, etc. are acceptable city names.
+If a city is provided without a state, Geocodio will automatically guess and add the state based on what it is most likely to be. Geocodio also understands shorthands for both streets and cities, for example *NYC*, *SF*, etc., are acceptable city names.
 
-Geocoding queries can be formatted in various ways. Here are some examples of valid queries:
+Geocoding queries can be formatted in various ways:
 
 * <a href="https://api.geocod.io/v1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
 * <a href="https://api.geocod.io/v1/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
@@ -1300,7 +1292,7 @@ Geocoding queries can be formatted in various ways. Here are some examples of va
 * <a href="https://api.geocod.io/v1/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
 * <a href="https://api.geocod.io/v1/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
 
-If a country is not specified in the query, the Geocoding engine will implicitly assume the country to be USA.
+If a country is not specified in the query, the Geocodio engine will assume the country to be USA.
 
 Examples of Canadian lookups:
 
@@ -1309,7 +1301,7 @@ Examples of Canadian lookups:
 
 ## Intersections
 
-You can also geocode intersections, just specify the two streets that you want to geocode in your query. We support various formats, here's a few examples:
+You can also geocode intersections. Just specify the two streets that you want to geocode in your query. We support various formats:
 
 * <a href="https://api.geocod.io/v1/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
 * <a href="https://api.geocod.io/v1/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
@@ -1318,7 +1310,7 @@ You can also geocode intersections, just specify the two streets that you want t
 * <a href="https://api.geocod.io/v1/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
 * <a href="https://api.geocod.io/v1/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
 
-An extra `address_components_secondary` property will be exposed for intersection results, but otherwise the schema format is the same.
+An extra `address_components_secondary` property will be exposed for intersection results, but otherwise, the schema format is the same.
 
 <pre class="inline">
 {
@@ -1366,16 +1358,16 @@ An extra `address_components_secondary` property will be exposed for intersectio
 }
 ```
 
-The Geocodio API employs semantic HTTP status codes. This is some of the status codes you can expect to see:
+The Geocodio API employs semantic HTTP status codes:
 
 Error Code | Meaning
 ---------- | -------
-200 OK | Hopefully you will see this most of the time. Note that this status code will also be returned even though no geocoding results were available
-403 Forbidden | Invalid API key or other reason why access is forbidden
+200 OK | Hopefully you will see this most of the time. Note that this status code will also be returned even though no geocoding results were available.
+403 Forbidden | Invalid API key, or other reason why access is forbidden.
 422 Unprocessable Entity | A client error prevented the request from executing succesfully (e.g. invalid address provided). A JSON object will be returned with an error key containing a full error message
 500 Server Error | Hopefully you will never see this...it means that something went wrong in our end. Whoops.
 
-Please check [status.geocod.io](http://status.geocod.io) for latest platform status updates, if encounter see any unexpected errors.
+If you encounter any unexpected errors, please check [status.geocod.io](http://status.geocod.io) for the latest platform status updates.
 
 # Client-side access
 > To Geocode an address using a jQuery AJAX call.
@@ -1393,7 +1385,7 @@ $.get('https://api.geocod.io/v1/geocode?q='+ encodeURIComponent(address) +'&api_
 
 The Geocodio API supports `CORS` using the `Access-Control-Allow-Origin` *HTTP* header. This means that you will be able to make requests directly to the API using JavaScript.
 
-See an example to the right.
+(See an example to the right.)
 
 <aside class="notice">
 <strong>Note:</strong> This will expose your API Key publicly, make sure that you understand and accept the implications of this approach.
