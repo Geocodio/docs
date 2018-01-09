@@ -22,9 +22,9 @@ Geocodio's RESTful API allows you to perform forward and reverse geocoding looku
 
 You can also optionally ask for data appends such as timezone, congressional districts or similar things of that nature.
 
-The base API url is `https://api.geocod.io/v1/`.
+The base API url is `https://api.geocod.io/v1.1/`.
 
-You can also use Geocodio over plain HTTP, but it's not recommended.
+You can also use Geocodio over plain HTTP, but it is not recommended.
 
 All HTTP responses (including errors) are returned with [JSON-formatted](http://www.json.org) output.
 
@@ -33,6 +33,24 @@ We may add additional properties to the output in the future, but existing prope
 <aside class="notice">
 Note the versioning prefix in the base url, which is required for all requests.
 </aside>
+
+# Changelog
+
+The Geocodio API is continously improved. Most updates require no changes for API users, but in some cases we might have to introduce breaking changes.
+
+Breaking changes are introduced with new API versions, allowing you to "upgrade" to the newest version at your own pace. Older API versions are guaranteed to be available for at least 12 months after they have been replaced by a newer version, but may be supported for longer.
+
+<aside class="notice">
+Breaking changes are defined as changes that remove or rename properties in the JSON output of any API endpoint. Your API client should be able to gracefully support addition of new JSON properties, as this is not considered a breaking change.
+</aside>
+
+## v1.1 *(Released on January 8th, 2018)*
+
+**`cd` (congressional district) appends:**
+
+* **Breaking:** `congressional_district` property has been renamed to `congressional_districts`
+* **Breaking:** Postal code lookups will now return multiple congressional districts if the zip code area spans more than one district
+* Current legislator information is now returned with congressional districts
 
 # Libraries
 
@@ -107,7 +125,7 @@ Basic examples for various languages are provided here. Please make sure to chec
 
 ```shell
 # With curl, you can just pass the query parameter with each request
-curl "https://api.geocod.io/v1/api_endpoint_here?api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.1/api_endpoint_here?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -177,16 +195,16 @@ Whenever possible, batch requests are recommended since they are significantly f
 
 ## Single address
 
-A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api.geocod.io/v1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api.geocod.io/v1.1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 > To geocode a single address:
 
 ```shell
 # Using q parameter
-curl "https://api.geocod.io/v1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
 
 # Using individual address components
-curl "https://api.geocod.io/v1/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.1/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -286,7 +304,7 @@ geocodio.geocode('1109 N Highland St, Arlington VA', function(err, location) {
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1/geocode`
+`GET https://api.geocod.io/v1.1/geocode`
 
 ### URL Parameters
 
@@ -322,7 +340,7 @@ api_key | Your Geocodio API key
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["1109 N Highland St, Arlington VA", "525 University Ave, Toronto, ON, Canada", "4410 S Highway 17 92, Casselberry FL", "15000 NE 24th Street, Redmond WA", "17015 Walnut Grove Drive, Morgan Hill CA"]' \
-  https://api.geocod.io/v1/geocode?api_key=YOUR_API_KEY
+  https://api.geocod.io/v1.1/geocode?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -462,7 +480,7 @@ You can batch geocode up to 10,000 addresses at the time. Geocoding 10,000 addre
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1/geocode`
+`POST https://api.geocod.io/v1.1/geocode`
 
 ### URL Parameters
 
@@ -535,7 +553,7 @@ A geographic coordinate consists of latitude followed by longitude separated by 
 > To reverse geocode a single coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.1/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -643,11 +661,11 @@ geocodio.reverse('38.9002898,-76.9990361', function(err, addresses) {
 }
 ```
 
-A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api.geocod.io/v1/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api.geocod.io/v1.1/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1/reverse`
+`GET https://api.geocod.io/v1.1/reverse`
 
 ### URL Parameters
 
@@ -664,7 +682,7 @@ api_key | Your Geocodio API key
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["35.9746000,-77.9658000","32.8793700,-96.6303900","33.8337100,-117.8362320","35.4171240,-80.6784760"]' \
-  https://api.geocod.io/v1/reverse?api_key=YOUR_API_KEY
+  https://api.geocod.io/v1.1/reverse?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -831,7 +849,7 @@ You can batch reverse geocode up to 10,000 coordinates at a time.
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1/reverse`
+`POST https://api.geocod.io/v1.1/reverse`
 
 ### URL Parameters
 
@@ -844,7 +862,7 @@ api_key | Your Geocodio API key
 > To get the Congressional and state legislative districts for an address:
 
 ```shell
-curl "https://api.geocod.io/v1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -943,12 +961,51 @@ geocodio.geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg'], functio
       "accuracy_type": "rooftop",
       "source": "Virginia GIS Clearinghouse",
       "fields": {
-        "congressional_district": {
-          "name": "Congressional District 8",
-          "district_number": 8,
-          "congress_number": "114th",
-          "congress_years": "2015-2017"
-        },
+        "congressional_districts": [
+          {
+            "congress_number": "115th",
+            "congress_years": "2017-2019",
+            "current_legislator": {
+              "bio": {
+                "birthday": "1950-06-20",
+                "first_name": "Donald",
+                "gender": "M",
+                "last_name": "Beyer",
+                "party": "Democrat"
+              },
+              "contact": {
+                "address": "1119 Longworth HOB; Washington DC 20515-4608",
+                "contact_form": null,
+                "phone": "202-225-4376",
+                "url": "https://beyer.house.gov"
+              },
+              "references": {
+                "ballotpedia_id": null,
+                "bioguide_id": "B001292",
+                "cspan_id": "21141",
+                "govtrack_id": "412657",
+                "icpsr_id": "21554",
+                "lis_id": null,
+                "opensecrets_id": "N00036018",
+                "thomas_id": "02272",
+                "votesmart_id": "1707",
+                "washington_post_id": null,
+                "wikipedia_id": "Don Beyer"
+              },
+              "social": {
+                "facebook": "repdonbeyer",
+                "rss_url": null,
+                "twitter": "repdonbeyer",
+                "youtube": null,
+                "youtube_id": "UCPJGVbOVcAVGiBwq8qr_T9w"
+              },
+              "source": "Legislator data is originally collected and aggregated by https://github.com/unitedstates/"
+            },
+            "district_number": 8,
+            "name": "Congressional District 8",
+            "proportion": 1
+          }
+        ],
         "state_legislative_districts": {
           "senate": {
             "name": "State Senate District 31",
@@ -973,7 +1030,7 @@ Geocodio allows you to request additional information with forward and reverse g
 
 Requesting additional data fields is easy. Just add a `fields` parameter to your query string and set the value according to the table below. You can request multiple data fields at the same time by separating them with a comma. If the `fields` parameter has been specified, a new `fields` key is exposed with each geocoding result containing all necessary data for each field.
 
-Go ahead, <a href="https://api.geocod.io/v1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+Go ahead, <a href="https://api.geocod.io/v1.1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 Some fields are specific to the US and cannot be queried for other countries.
 
@@ -995,22 +1052,67 @@ Additional data fields are available with both single and batch geocoding.
 ```json
 ...
 "fields": {
-  "congressional_district": {
-    "name": "Congressional District 36",
-    "district_number": 36,
-    "congress_number": "115th",
-    "congress_years": "2017-2019"
-  }
+  "congressional_districts": [
+    {
+      "congress_number": "115th",
+      "congress_years": "2017-2019",
+      "current_legislator": {
+        "bio": {
+          "birthday": "1950-06-20",
+          "first_name": "Donald",
+          "gender": "M",
+          "last_name": "Beyer",
+          "party": "Democrat"
+        },
+        "contact": {
+          "address": "1119 Longworth HOB; Washington DC 20515-4608",
+          "contact_form": null,
+          "phone": "202-225-4376",
+          "url": "https://beyer.house.gov"
+        },
+        "references": {
+          "ballotpedia_id": null,
+          "bioguide_id": "B001292",
+          "cspan_id": "21141",
+          "govtrack_id": "412657",
+          "icpsr_id": "21554",
+          "lis_id": null,
+          "opensecrets_id": "N00036018",
+          "thomas_id": "02272",
+          "votesmart_id": "1707",
+          "washington_post_id": null,
+          "wikipedia_id": "Don Beyer"
+        },
+        "social": {
+          "facebook": "repdonbeyer",
+          "rss_url": null,
+          "twitter": "repdonbeyer",
+          "youtube": null,
+          "youtube_id": "UCPJGVbOVcAVGiBwq8qr_T9w"
+        },
+        "source": "Legislator data is originally collected and aggregated by https://github.com/unitedstates/"
+      },
+      "district_number": 8,
+      "name": "Congressional District 8",
+      "proportion": 1
+    }
+  ]
 }
 ...
 ```
 You can retrieve the Congressional district for an address or coordinate using `cd`, `cd113`, `cd114`, or `cd115` in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
 
-The field returns the full name of the Congressional district, the district number, the Congress number, and the year range.
+The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd115`) is specified, we will also return detailed information about the current legislator.
 
-<aside class="warning">
-It is discouraged to look up Congressional districts up by postal code. Postal codes are postal routes, rather than geographic areas, which can cause imprecise results. Also note: some postal codes span over multiple Congressional districts and Geocodio will only return one district per result.
-</aside>
+### Appending congressional districts for postal codes
+
+It can be tricky to look up Congressional districts by postal code. Postal codes are postal routes, rather than geographic areas, which can cause imprecise results.
+
+In some cases there may also be multiple possible congressional district for a postal code, in that case we will return multiple congressional districts, and rank them each using a `proportion` key.
+
+This key is a decimal percentage representation of how much of the district boundary that intersect with the zip code boundary (i.e. bigger number = more likely to be the correct district for citizens in that zip code).
+
+Districts are always sorted by the `proportion` in descending order (largest first).
 
 ## State Legislative Districts
 ```json
@@ -1153,7 +1255,7 @@ As of June 2015, address parsing and correction is included by default with all 
 > To parse an address:
 
 ```shell
-curl "https://api.geocod.io/v1/parse?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.1/parse?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1226,7 +1328,7 @@ geocodio.parse('1109 N Highland St, Arlington VA', function(err, address) {
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1/parse`
+`GET https://api.geocod.io/v1.1/parse`
 
 ### URL Parameters
 
@@ -1282,33 +1384,33 @@ If a city is provided without a state, Geocodio will automatically guess and add
 
 Geocoding queries can be formatted in various ways:
 
-* <a href="https://api.geocod.io/v1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api.geocod.io/v1/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
-* <a href="https://api.geocod.io/v1/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
-* <a href="https://api.geocod.io/v1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api.geocod.io/v1/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
-* <a href="https://api.geocod.io/v1/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
-* <a href="https://api.geocod.io/v1/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
-* <a href="https://api.geocod.io/v1/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
-* <a href="https://api.geocod.io/v1/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
 
 If a country is not specified in the query, the Geocodio engine will assume the country to be USA.
 
 Examples of Canadian lookups:
 
-* <a href="https://api.geocod.io/v1/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
-* <a href="https://api.geocod.io/v1/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
 
 ## Intersections
 
 You can also geocode intersections. Just specify the two streets that you want to geocode in your query. We support various formats:
 
-* <a href="https://api.geocod.io/v1/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
-* <a href="https://api.geocod.io/v1/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
-* <a href="https://api.geocod.io/v1/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
-* <a href="https://api.geocod.io/v1/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
-* <a href="https://api.geocod.io/v1/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
-* <a href="https://api.geocod.io/v1/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
+* <a href="https://api.geocod.io/v1.1/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
 
 An extra `address_components_secondary` property will be exposed for intersection results, but otherwise, the schema format is the same.
 
@@ -1377,7 +1479,7 @@ If you encounter any unexpected errors, please check [status.geocod.io](http://s
 var address = '1109 N Highland St, Arlington VA',
     apiKey = 'YOUR_API_KEY';
 
-$.get('https://api.geocod.io/v1/geocode?q='+ encodeURIComponent(address) +'&api_key=' + encodeURIComponent(apiKey), function (response) {
+$.get('https://api.geocod.io/v1.1/geocode?q='+ encodeURIComponent(address) +'&api_key=' + encodeURIComponent(apiKey), function (response) {
   console.log(response.results);
 });
 </script>
