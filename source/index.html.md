@@ -92,11 +92,6 @@ Basic examples for various languages are provided here. Please make sure to chec
     <td><i class="fa fa-check"></i></td>
   </tr>
   <tr>
-    <td><strong>Python</strong></td>
-    <td><a href="https://github.com/davidstanley01/Geocodio.py" target="_blank">davidstanley01/Geocodio.py</a> by <a href="https://twitter.com/davidstanley01" target="_blank">@davidstanley01</a></td>
-    <td><i class="fa fa-minus"></i></td>
-  </tr>
-  <tr>
     <td><strong>Node.js</strong></td>
     <td><a href="https://github.com/desmondmorris/node-geocodio" target="_blank">desmondmorris/node-geocodio</a> by <a href="https://twitter.com/desmondmorris" target="_blank">@desmondmorris</a></td>
     <td><i class="fa fa-check"></i></td>
