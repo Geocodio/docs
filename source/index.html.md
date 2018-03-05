@@ -117,6 +117,11 @@ Basic examples for various languages are provided here. Please make sure to chec
     <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
+    <td><strong>C#</strong></td>
+    <td><a href="https://github.com/snake-plissken/cSharpGeocodio" target="_blank">snake-plissken/cSharpGeocodio</a> by <a href="https://github.com/snake-plissken" target="_blank">Frank Deasey</a></td>
+    <td><i class="fa fa-minus"></i></td>
+  </tr>
+  <tr>
     <td colspan="3">Are you the author of an awesome library that you would like to get featured here? Just <a href="mailto:hello@geocod.io">let us know</a> or <a href="https://github.com/geocodio/docs" target="_blank">create a pull request</a>.</td>
   </tr>
 </tbody></table>
