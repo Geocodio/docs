@@ -44,6 +44,13 @@ Breaking changes are introduced with new API versions, allowing you to "upgrade"
 Breaking changes are defined as changes that remove or rename properties in the JSON output of any API endpoint. Your API client should be able to gracefully support addition of new JSON properties, as this is not considered a breaking change.
 </aside>
 
+## v1.3 *(Released on March 12th, 2018)*
+
+**`timezone` appends:**
+
+* **Breaking:** `name` property has been renamed to `abbreviation`
+* `name` is now the full timezone name in a [tzdb](https://www.iana.org/time-zones)-compatible format. [Read more](#timezone)
+
 ## v1.2 *(Released on January 20th, 2018)*
 
 **`cd` (Congressional district) appends:**
@@ -1382,16 +1389,20 @@ Using Census tracts and blocks, you can match addresses and latitude/longitude p
 ...
 "fields": {
   "timezone": {
-    "name": "EST",
+    "name": "America/New_York",
     "utc_offset": -5,
-    "observes_dst": true
+    "observes_dst": true,
+    "abbreviation": "EST",
+    "source": "© OpenStreetMap contributors"
   }
 }
 ...
 ```
 You can retrieve the timezone for an address or coordinate using `timezone` in the `fields` query parameter.
 
-The field will return the name of the timezone as a three letter abbreviation (see table below), the UTC/GMT offset, and whether the location observes Daylight Saving Time (DST). Lookups in countries outside the US will return the timezone name following the ["tz database" format](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). E.g. `America/Toronto`
+The field will return the standardized name of the timezone as well as an abbreviation (see table below for examples), the UTC/GMT offset, and whether the location observes Daylight Saving Time (DST).
+
+The standardized name follows the [tzdb](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) format. E.g. `America/New_York`.
 
 Abbreviation | Description
 ------------ | -----------------------------------------------------------
