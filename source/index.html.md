@@ -1127,10 +1127,10 @@ Some fields are specific to the US and cannot be queried for other countries.
 
 Parameter name                | Description                                       | Coverage                    |
 ----------------------------- | ------------------------------------------------- | --------------------------- |
-cd, cd113, cd114, *or* cd115  | Congressional District                            | US-only                     |
+cd, cd113, cd114, *or* cd115  | Congressional District & Legislator information   | US-only                     |
 stateleg                      | State Legislative District (House & Senate)       | US-only                     |
 school                        | School District (elementary/secondary or unified) | US-only                     |
-census                        | Census Block/Tract & FIPS codes                   | US-only                     |
+census                        | Census Block/Tract, FIPS codes & MSA/CSA codes    | US-only                     |
 timezone                      | Timezone                                          | <i class="fa fa-globe"></i> |
 
 
@@ -1352,7 +1352,7 @@ You can retrieve the school district for an address or coordinate using `school`
 
 The field will return either a *unified* school district or separate *elementary* and *secondary* fields depending on the area. Each school district is returned with its full name, the LEA (Local Education Agency) code, as well as the grades supported. Kindergarden is abbreviated as *KG* and pre-kindergarten is abbreviated as *PK*.
 
-## Census Block/Tract & FIPS codes
+## Census Block/Tract, FIPS codes & MSA/CSA codes
 ```json
 ...
 "fields": {
@@ -1363,7 +1363,16 @@ The field will return either a *unified* school district or separate *elementary
     "tract_code": "007000",
     "block_group": "2",
     "block_code": "2014",
-    "census_year": 2015
+    "census_year": 2015,
+    "metro_micro_statistical_area": {
+      "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
+      "area_code": "47900",
+      "type": "metropolitan"
+    },
+    "combined_statistical_area": {
+      "name": "Washington-Baltimore-Arlington, DC-MD-VA-WV-PA",
+      "area_code": "548"
+    }
   }
 }
 ...
@@ -1383,6 +1392,29 @@ block_group  | The single-digit group number for the block
 The U.S. Census Bureau also provides a more [detailed guide](https://www.census.gov/geo/reference/gtc/gtc_ct.html) for the above terms.
 
 Using Census tracts and blocks, you can match addresses and latitude/longitude pairs with statistical data from the U.S. Census Bureau. For example, appending Census tracts and blocks to addresses enables you to utilize the [American Community Survey (ACS) data](https://www.census.gov/programs-surveys/acs/data.html).
+
+### Metropolitan/Micropolitan Statistical Area (MSA)
+
+This field is return for locations that are within an MSA area. If no MSA area is associated with the location, the API will return `null` instead of the individual fields.
+
+You can read more about [Metropolitan](https://en.wikipedia.org/wiki/Metropolitan_statistical_area) and [Micropolitan](https://en.wikipedia.org/wiki/Micropolitan_statistical_area) areas on Wikipedia.
+
+Field        | Description
+------------ | -----------------------------------------------------------
+name         | The official Census-designated name for the area
+area_code    | Unique code for the area, also known as the CBSA code
+type         | Can either be "metropolitan" or "micropolitan"
+
+### Combined Statistical Area (CSA)
+
+This field is return for locations that are within an CSA area. If no CSA area is associated with the location, the API will return `null` instead of the individual fields.
+
+You can read more about [Combined Statisical Areas on Wikipedia](https://en.wikipedia.org/wiki/Combined_statistical_area).
+
+Field        | Description
+------------ | -----------------------------------------------------------
+name         | The official Census-designated name for the area
+area_code    | Unique census-defined code for the area
 
 ## Timezone
 ```json
