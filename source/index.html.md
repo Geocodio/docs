@@ -22,7 +22,7 @@ Geocodio's RESTful API allows you to perform forward and reverse geocoding looku
 
 You can also optionally ask for data appends such as timezone, Congressional districts or similar things of that nature.
 
-The base API url is `https://api.geocod.io/v1.2/`.
+The base API url is `https://api.geocod.io/v1.3/`.
 
 You can also use Geocodio over plain HTTP, but it is not recommended.
 
@@ -139,7 +139,7 @@ Basic examples for various languages are provided here. Please make sure to chec
 
 ```shell
 # With curl, you can just pass the query parameter with each request
-curl "https://api.geocod.io/v1.2/api_endpoint_here?api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.3/api_endpoint_here?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -209,16 +209,16 @@ Whenever possible, batch requests are recommended since they are significantly f
 
 ## Single address
 
-A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api.geocod.io/v1.2/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 > To geocode a single address:
 
 ```shell
 # Using q parameter
-curl "https://api.geocod.io/v1.2/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
 
 # Using individual address components
-curl "https://api.geocod.io/v1.2/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.3/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -318,7 +318,7 @@ geocodio.geocode('1109 N Highland St, Arlington VA', function(err, location) {
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.2/geocode`
+`GET https://api.geocod.io/v1.3/geocode`
 
 ### URL Parameters
 
@@ -354,7 +354,7 @@ api_key | Your Geocodio API key
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["1109 N Highland St, Arlington VA", "525 University Ave, Toronto, ON, Canada", "4410 S Highway 17 92, Casselberry FL", "15000 NE 24th Street, Redmond WA", "17015 Walnut Grove Drive, Morgan Hill CA"]' \
-  https://api.geocod.io/v1.2/geocode?api_key=YOUR_API_KEY
+  https://api.geocod.io/v1.3/geocode?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -494,7 +494,7 @@ You can batch geocode up to 10,000 addresses at the time. Geocoding 10,000 addre
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.2/geocode`
+`POST https://api.geocod.io/v1.3/geocode`
 
 ### URL Parameters
 
@@ -567,7 +567,7 @@ A geographic coordinate consists of latitude followed by longitude separated by 
 > To reverse geocode a single coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.2/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.3/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -675,11 +675,11 @@ geocodio.reverse('38.9002898,-76.9990361', function(err, addresses) {
 }
 ```
 
-A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api.geocod.io/v1.2/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api.geocod.io/v1.3/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.2/reverse`
+`GET https://api.geocod.io/v1.3/reverse`
 
 ### URL Parameters
 
@@ -696,7 +696,7 @@ api_key | Your Geocodio API key
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["35.9746000,-77.9658000","32.8793700,-96.6303900","33.8337100,-117.8362320","35.4171240,-80.6784760"]' \
-  https://api.geocod.io/v1.2/reverse?api_key=YOUR_API_KEY
+  https://api.geocod.io/v1.3/reverse?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -863,7 +863,7 @@ You can batch reverse geocode up to 10,000 coordinates at a time.
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.2/reverse`
+`POST https://api.geocod.io/v1.3/reverse`
 
 ### URL Parameters
 
@@ -876,7 +876,7 @@ api_key | Your Geocodio API key
 > To get the Congressional and state legislative districts for an address:
 
 ```shell
-curl "https://api.geocod.io/v1.2/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1121,7 +1121,7 @@ Geocodio allows you to request additional information with forward and reverse g
 
 Requesting additional data fields is easy. Just add a `fields` parameter to your query string and set the value according to the table below. You can request multiple data fields at the same time by separating them with a comma. If the `fields` parameter has been specified, a new `fields` key is exposed with each geocoding result containing all necessary data for each field.
 
-Go ahead, <a href="https://api.geocod.io/v1.2/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+Go ahead, <a href="https://api.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 Some fields are specific to the US and cannot be queried for other countries.
 
@@ -1427,7 +1427,7 @@ As of June 2015, address parsing and correction is included by default with all 
 > To parse an address:
 
 ```shell
-curl "https://api.geocod.io/v1.2/parse?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.3/parse?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1500,7 +1500,7 @@ geocodio.parse('1109 N Highland St, Arlington VA', function(err, address) {
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.2/parse`
+`GET https://api.geocod.io/v1.3/parse`
 
 ### URL Parameters
 
@@ -1556,33 +1556,33 @@ If a city is provided without a state, Geocodio will automatically guess and add
 
 Geocoding queries can be formatted in various ways:
 
-* <a href="https://api.geocod.io/v1.2/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.2/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.2/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.2/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.2/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
-* <a href="https://api.geocod.io/v1.2/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
-* <a href="https://api.geocod.io/v1.2/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
-* <a href="https://api.geocod.io/v1.2/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
-* <a href="https://api.geocod.io/v1.2/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
 
 If a country is not specified in the query, the Geocodio engine will assume the country to be USA.
 
 Examples of Canadian lookups:
 
-* <a href="https://api.geocod.io/v1.2/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
-* <a href="https://api.geocod.io/v1.2/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
 
 ## Intersections
 
 You can also geocode intersections. Just specify the two streets that you want to geocode in your query. We support various formats:
 
-* <a href="https://api.geocod.io/v1.2/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
-* <a href="https://api.geocod.io/v1.2/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
-* <a href="https://api.geocod.io/v1.2/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
-* <a href="https://api.geocod.io/v1.2/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
-* <a href="https://api.geocod.io/v1.2/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
-* <a href="https://api.geocod.io/v1.2/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
+* <a href="https://api.geocod.io/v1.3/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
 
 An extra `address_components_secondary` property will be exposed for intersection results, but otherwise, the schema format is the same.
 
@@ -1651,7 +1651,7 @@ If you encounter any unexpected errors, please check [status.geocod.io](http://s
 var address = '1109 N Highland St, Arlington VA',
     apiKey = 'YOUR_API_KEY';
 
-$.get('https://api.geocod.io/v1.2/geocode?q='+ encodeURIComponent(address) +'&api_key=' + encodeURIComponent(apiKey), function (response) {
+$.get('https://api.geocod.io/v1.3/geocode?q='+ encodeURIComponent(address) +'&api_key=' + encodeURIComponent(apiKey), function (response) {
   console.log(response.results);
 });
 </script>
