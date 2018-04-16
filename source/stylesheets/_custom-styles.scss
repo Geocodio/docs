@@ -1,20 +1,7 @@
-.tocify-wrapper {
-  font-size: 15px;
-
-  .tocify-focus, .tocify-hover {
-    background: none !important;
-    color: $aside-warning-bg;
-  }
-
-  .tocify-item {
-    box-shadow: none;
-  }
-
-  .tocify-subheader {
-    .tocify-item > a {
-      font-size: 15px;
-    }
-  }
+.toc-wrapper > svg {
+  display: block;
+  max-width: 100%;
+  margin: 5px auto;
 }
 
 .content blockquote > p {
