@@ -36,7 +36,7 @@ Note the versioning prefix in the base url, which is required for all requests.
 
 # Changelog
 
-The Geocodio API is continously improved. Most updates require no changes for API users, but in some cases we might have to introduce breaking changes.
+The Geocodio API is continuously improved. Most updates require no changes for API users, but in some cases we might have to introduce breaking changes.
 
 Breaking changes are introduced with new API versions, allowing you to "upgrade" to the newest version at your own pace. Older API versions are guaranteed to be available for at least 12 months after they have been replaced by a newer version, but may be supported for longer.
 
@@ -168,7 +168,7 @@ var Geocodio = require('geocodio');
 
 var config = {
     api_key: 'YOUR_API_KEY'
-}
+};
 
 var geocodio = new Geocodio(config);
 ```
@@ -253,7 +253,7 @@ var Geocodio = require('geocodio');
 
 var config = {
     api_key: 'YOUR_API_KEY'
-}
+};
 
 var geocodio = new Geocodio(config);
 
@@ -403,7 +403,7 @@ var Geocodio = require('geocodio');
 
 var config = {
     api_key: 'YOUR_API_KEY'
-}
+};
 
 var geocodio = new Geocodio(config);
 
@@ -602,7 +602,7 @@ var Geocodio = require('geocodio');
 
 var config = {
     api_key: 'YOUR_API_KEY'
-}
+};
 
 var geocodio = new Geocodio(config);
 
@@ -736,7 +736,7 @@ var Geocodio = require('geocodio');
 
 var config = {
     api_key: 'YOUR_API_KEY'
-}
+};
 
 var geocodio = new Geocodio(config);
 
@@ -1494,7 +1494,7 @@ var Geocodio = require('geocodio');
 
 var config = {
     api_key: 'YOUR_API_KEY'
-}
+};
 
 var geocodio = new Geocodio(config);
 
@@ -1670,7 +1670,7 @@ Error Code | Meaning
 ---------- | -------
 200 OK | Hopefully you will see this most of the time. Note that this status code will also be returned even though no geocoding results were available.
 403 Forbidden | Invalid API key, or other reason why access is forbidden.
-422 Unprocessable Entity | A client error prevented the request from executing succesfully (e.g. invalid address provided). A JSON object will be returned with an error key containing a full error message
+422 Unprocessable Entity | A client error prevented the request from executing successfully (e.g. invalid address provided). A JSON object will be returned with an error key containing a full error message
 500 Server Error | Hopefully you will never see this...it means that something went wrong in our end. Whoops.
 
 If you encounter any unexpected errors, please check [status.geocod.io](http://status.geocod.io) for the latest platform status updates.
