@@ -13,7 +13,6 @@ test/version_tmp
 tmp
 *.DS_STORE
 build/
-output_dev
 .cache
 .vagrant
 .sass-cache
