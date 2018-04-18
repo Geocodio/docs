@@ -257,10 +257,10 @@ var config = {
 
 var geocodio = new Geocodio(config);
 
-geocodio.geocode('1109 N Highland St, Arlington VA', function(err, location) {
+geocodio.get('geocode', {q: '1109 N Highland St, Arlington VA'}, function (err, response){
     if (err) throw err;
 
-    console.log(location);
+    console.log(response);
 });
 ```
 
@@ -606,10 +606,10 @@ var config = {
 
 var geocodio = new Geocodio(config);
 
-geocodio.reverse('38.9002898,-76.9990361', function(err, addresses) {
+geocodio.get('reverse', {q: '38.9002898,-76.9990361'}, function(err, response){
     if (err) throw err;
 
-    console.log(addresses);
+    console.log(response);
 });
 
 ```
@@ -747,10 +747,10 @@ var coordinates = [
   '35.4171240,-80.6784760'
 ];
 
-geocodio.reverse(coordinates, function(err, address_sets){
+geocodio.post('reverse', coordinates, function(err, response){
     if (err) throw err;
 
-    console.log(address_sets);
+    console.log(response);
 });
 ```
 
@@ -909,22 +909,6 @@ $location = $client->geocode('1109 N Highland St, Arlington VA', ['cd', 'statele
 ```javascript
 // There is no Node.js support for fields yet. We invite you to contribute
 // by creating a pull request on GitHub
-
-/*
-var Geocodio = require('geocodio');
-
-var config = {
-    api_key: 'YOUR_API_KEY'
-}
-
-var geocodio = new Geocodio(config);
-
-geocodio.geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg'], function(err, location) {
-    if (err) throw err;
-
-    console.log(location);
-});
-*/
 ```
 
 ```clojure
@@ -1498,10 +1482,10 @@ var config = {
 
 var geocodio = new Geocodio(config);
 
-geocodio.parse('1109 N Highland St, Arlington VA', function(err, address) {
+geocodio.get('1109 N Highland St, Arlington VA', {q: address}, function(err, response){
     if (err) throw err;
 
-    console.log(address);
+    console.log(response);
 });
 ```
 
