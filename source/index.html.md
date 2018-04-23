@@ -1363,15 +1363,17 @@ The field will return either a *unified* school district or separate *elementary
 ```
 This will append various Census-designated codes to your address:
 
-Field        | Description
------------- | -----------------------------------------------------------
-census_year  | The full year that the Census data belongs to (The U.S. Census Bureau might make slight boundary changes from year to year)
-state_fips   | The two-digit state FIPS code. A full list is available on [Wikipedia](https://en.wikipedia.org/wiki/Federal_Information_Processing_Standard_state_code)
-county_fips  | The five-digit county FIPS code. The two first digits represents the state. A full list of US counties is available on [Wikipedia](https://en.wikipedia.org/wiki/List_of_United_States_counties_and_county_equivalents)
-place_fips   | The 7-digit place FIPS code. A place is defined as a city or other census designated area. A full list of ANSI codes is available from the [U.S. Census Bureau](https://www.census.gov/geo/reference/codes/place.html)
-tract_code   | The 6-digit census tract code. This is a subdivision of a county, used for statistical purposes.
-block_code   | The full 4-digit block code that the location belongs to. This is the smallest geographical unit that the U.S. Census Bureau provides statistical data for.
-block_group  | The single-digit group number for the block
+Field                        | Description
+---------------------------- | -----------------------------------------------------------
+census_year                  | The full year that the Census data belongs to (The U.S. Census Bureau might make slight boundary changes from year to year)
+state_fips                   | The two-digit state FIPS code. A full list is available on [Wikipedia](https://en.wikipedia.org/wiki/Federal_Information_Processing_Standard_state_code)
+county_fips                  | The five-digit county FIPS code. The two first digits represents the state. A full list of US counties is available on [Wikipedia](https://en.wikipedia.org/wiki/List_of_United_States_counties_and_county_equivalents)
+place_fips                   | The 7-digit place FIPS code. A place is defined as a city or other census designated area. A full list of ANSI codes is available from the [U.S. Census Bureau](https://www.census.gov/geo/reference/codes/place.html)
+tract_code                   | The 6-digit census tract code. This is a subdivision of a county, used for statistical purposes.
+block_code                   | The full 4-digit block code that the location belongs to. This is the smallest geographical unit that the U.S. Census Bureau provides statistical data for.
+block_group                  | The single-digit group number for the block
+metro_micro_statistical_area | The Metropolitan or Micropolitan Statistical Area (if available). Also known as the MSA code. A `name` and `area_code` is returned, as well as a `type` that is set to either "metropolitan" or "micropolitan".
+combined_statistical_area    | The Combined Statistical Area (if available). Also known as the CSA code. A `name` and `area_code` is returned.
 
 The U.S. Census Bureau also provides a more [detailed guide](https://www.census.gov/geo/reference/gtc/gtc_ct.html) for the above terms.
 
