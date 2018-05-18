@@ -1101,9 +1101,9 @@ $location = $client->geocode('1109 N Highland St, Arlington VA', ['cd', 'statele
 <strong>Note:</strong> Fields count as an additional lookup each. Please consult our <a href="/pricing">pricing calculator</a>.
 </aside>
 
-Geocodio allows you to request additional information with forward and reverse geocoding requests. We call this additional data *fields*.
+Geocodio allows you to request additional data with forward and reverse geocoding requests. We call this additional data *fields*.
 
-Requesting additional data fields is easy. Just add a `fields` parameter to your query string and set the value according to the table below. You can request multiple data fields at the same time by separating them with a comma. If the `fields` parameter has been specified, a new `fields` key is exposed with each geocoding result containing all necessary data for each field.
+To request additional data, just add a `fields` parameter to your query string and set the value according to the table below. You can request multiple data fields at the same time by separating them with a comma. If the `fields` parameter has been specified, a new `fields` key is exposed with each geocoding result containing all necessary data for each field.
 
 Go ahead, <a href="https://api.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
@@ -1111,7 +1111,7 @@ Some fields are specific to the US and cannot be queried for other countries.
 
 Parameter name                | Description                                       | Coverage                    |
 ----------------------------- | ------------------------------------------------- | --------------------------- |
-cd, cd113, cd114, *or* cd115  | Congressional District & Legislator information   | US-only                     |
+cd, cd113, cd114, cd115, *or* cd116  | Congressional District & Legislator information   | US-only                     |
 stateleg                      | State Legislative District (House & Senate)       | US-only                     |
 school                        | School District (elementary/secondary or unified) | US-only                     |
 census                        | Census Block/Tract, FIPS codes & MSA/CSA codes    | US-only                     |
@@ -1252,23 +1252,27 @@ Additional data fields are available with both single and batch geocoding.
 },
 ...
 ```
-You can retrieve the Congressional district for an address or coordinate using `cd`, `cd113`, `cd114`, or `cd115` in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
+You can retrieve the Congressional district for an address or coordinate pair using `cd`, `cd113`, `cd114`, `cd115` or `cd116` in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
 
 The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd115`) is specified, we will also return detailed information about the current legislators.
 
 <aside class="success">
-The list of legislators is always ordered as house representative, followed by senators.
+The list of legislators is always ordered with Representative first then Senators.
 </aside>
 
-### Appending Congressional districts for postal codes
+<aside class="notice">
+To return data with Pennsylvania's new districts for 2018, you must use `cd116`. Note this field will not return legislator information.
+</aside>
 
-It can be tricky to look up Congressional districts by postal code. Postal codes are postal routes, rather than geographic areas, which can cause imprecise results.
+### Appending Congressional districts for ZIP codes
 
-In some cases there may also be multiple possible Congressional district for a postal code, in that case we will return multiple Congressional districts, and rank them each using a `proportion` key.
-
-This key is a decimal percentage representation of how much of the district boundary that intersect with the zip code boundary (i.e. bigger number = more likely to be the correct district for citizens in that zip code).
+Geocodio can return the most likely Congressional districts given a ZIP code. In cases where there may be multiple possible Congressional districts for a postal code, we will return multiple Congressional districts, and rank them each using a `proportion` key. This key is a decimal percentage representation of how much of the district boundary that intersect with the zip code boundary (i.e. bigger number = more likely to be the correct district for citizens in that zip code).
 
 Districts are always sorted by the `proportion` in descending order (largest first).
+
+<aside class="notice">
+  Where possible, we recommend looking up Congressional districts with full addresses rather than ZIP codes. This will result in more accurate results, as ZIP codes are postal routes rather than geographic areas.
+  </aside>
 
 ## State Legislative Districts
 ```json
