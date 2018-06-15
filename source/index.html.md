@@ -1272,9 +1272,10 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 
 <aside class="notice">
   Where possible, we recommend looking up Congressional districts with full addresses rather than ZIP codes. This will result in more accurate results, as ZIP codes are postal routes rather than geographic areas.
-  </aside>
+</aside>
 
 ## State Legislative Districts
+
 ```json
 ...
 "fields": {
