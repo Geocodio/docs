@@ -164,7 +164,7 @@ require('vendor/autoload.php');
 use Stanley\Geocodio\Client;
 
 // Create the new Client object by passing in your api key
-$client = new Client('YOUR_API_KEY');
+$client = new Client('YOUR_API_KEY', 'api-hipaa.geocod.io');
 ```
 
 ```javascript
@@ -247,7 +247,7 @@ require('vendor/autoload.php');
 use Stanley\Geocodio\Client;
 
 // Create the new Client object by passing in your api key
-$client = new Client('YOUR_API_KEY');
+$client = new Client('YOUR_API_KEY', 'api-hipaa.geocod.io');
 
 $location = $client->geocode('1109 N Highland St, Arlington VA');
 ```
@@ -390,7 +390,7 @@ require('vendor/autoload.php');
 use Stanley\Geocodio\Client;
 
 // Create the new Client object by passing in your api key
-$client = new Client('YOUR_API_KEY');
+$client = new Client('YOUR_API_KEY', 'api-hipaa.geocod.io');
 
 $data = [
   '1109 N Highland St, Arlington VA',
@@ -596,7 +596,7 @@ require('vendor/autoload.php');
 use Stanley\Geocodio\Client;
 
 // Create the new Client object by passing in your api key
-$client = new Client('YOUR_API_KEY');
+$client = new Client('YOUR_API_KEY', 'api-hipaa.geocod.io');
 
 $addresses = $client->reverse('38.9002898,-76.9990361');
 ```
@@ -730,7 +730,7 @@ require('vendor/autoload.php');
 use Stanley\Geocodio\Client;
 
 // Create the new Client object by passing in your api key
-$client = new Client('YOUR_API_KEY');
+$client = new Client('YOUR_API_KEY', 'api-hipaa.geocod.io');
 
 $address_sets = $client->reverse(['35.9746000,-77.9658000', '32.8793700,-96.6303900', '33.8337100,-117.8362320', '35.4171240,-80.6784760']);
 ```
@@ -905,7 +905,7 @@ require('vendor/autoload.php');
 use Stanley\Geocodio\Client;
 
 // Create the new Client object by passing in your api key
-$client = new Client('YOUR_API_KEY');
+$client = new Client('YOUR_API_KEY', 'api-hipaa.geocod.io');
 
 $location = $client->geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg']);
 ```
@@ -1477,7 +1477,7 @@ require('vendor/autoload.php');
 use Stanley\Geocodio\Client;
 
 // Create the new Client object by passing in your api key
-$client = new Client('YOUR_API_KEY');
+$client = new Client('YOUR_API_KEY', 'api-hipaa.geocod.io');
 
 $address = $client->parse('1109 N Highland St, Arlington VA');
 ```
