@@ -9,8 +9,8 @@
 }
 
 pre.inline {
-  float: none;
-  clear: none;
+  float: none !important;
+  clear: none !important;
 }
 
 .content aside.warning {
