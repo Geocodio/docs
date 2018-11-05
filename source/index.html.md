@@ -1653,6 +1653,14 @@ An extra `address_components_secondary` property will be exposed for intersectio
 }
 ```
 
+> This error message is returned with a 403 HTTP status code when you exceed the free tier with no payment method on file:
+
+```json
+{
+  "error": "You can't make this request as it is above your daily maximum. You can configure billing at https://dash.geocod.io"
+}
+```
+
 The Geocodio API employs semantic HTTP status codes:
 
 Error Code | Meaning
