@@ -33,12 +33,12 @@ pre.inline {
   clear: none !important;
 }
 
+.content aside a {
+  color: inherit;
+}
+
 .content aside.warning {
   color: #FFF;
-
-    a {
-    color: #fff;
-  }
 }
 
 .page-wrapper .lang-selector a {
