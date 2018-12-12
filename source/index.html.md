@@ -1266,7 +1266,7 @@ The list of legislators is always ordered with Representative first then Senator
 </aside>
 
 <aside class="notice">
-To return data with Pennsylvania's new districts for 2018, you must use `cd116`. Note this field will not return legislator information.
+To return data with Pennsylvania's new districts for 2018, you must use <code>cd116</code>. Please note that this field will not return legislator information.
 </aside>
 
 ### Appending Congressional districts for ZIP codes
@@ -1416,7 +1416,7 @@ Geocodio can return results from the American Community Survey, for any given ad
 
 Please note that a single census block can cover hundreds of households. As such, the returned data is not specific to the given location only.
 
-We have divided ACS results into 5 categories: Demographics, Economics (Income Data), Families, Housing and Social (Education & Veteran Status). 
+We have divided ACS results into 5 categories: Demographics, Economics (Income Data), Families, Housing and Social (Education & Veteran Status).
 
 ### Pricing
 
@@ -1882,7 +1882,7 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
 
 We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
 
-The data returned includes the following data points. For each data point, the data returned includes the value, margin of error, and percentage. 
+The data returned includes the following data points. For each data point, the data returned includes the value, margin of error, and percentage.
 
 * Total (Table #B01002)
   * total, male, female
@@ -2028,7 +2028,7 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
 
 We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
 
-The data returned includes the following data points. For each data point, the data returned includes the value, margin of error, and percentage. 
+The data returned includes the following data points. For each data point, the data returned includes the value, margin of error, and percentage.
 
 * Median household income (Table #B19013)
 * Household income (Table #B19001)
@@ -2233,7 +2233,7 @@ The data returned includes the following data points. For each data point, the d
 
 We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
 
-The data returned includes the following data points. For each data point, the data returned includes the value, margin of error, and percentage. 
+The data returned includes the following data points. For each data point, the data returned includes the value, margin of error, and percentage.
 
 * Family households (Table #B11001)
   * total; married-couple family; other family; other family: male householder, no wife present; other family: female householder, no husband present; non-family households; non-family households -- householder living alone; non-family households -- householder not living alone
@@ -2513,11 +2513,11 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
 
 We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
 
-For each data point, we return the value, margin of error, and percentage. 
+For each data point, we return the value, margin of error, and percentage.
 
 Data points returned are:
 
-* Occupancy status (Table #B25002) 
+* Occupancy status (Table #B25002)
   * occupied
   * vacant
 * Ownership of occupied units (Table #B25003)
@@ -2867,7 +2867,7 @@ Data points returned are:
 
 We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
 
-The data returned includes the following data points. For each data point, the data returned includes the value, margin of error, and percentage. 
+The data returned includes the following data points. For each data point, the data returned includes the value, margin of error, and percentage.
 
 * Population by minimum level of education (Table #B15002)
   * No schooling, nursery to 4th grade, 5th and 6th grade, 7th and 8th grade, 9th grade, 10th grade, 11th grade, 12th grade - no diploma, high school graduate or equivalent, some college (1+ years, no degree), Associate's Degree, Bachelor's Degree, Master's Degree, professional school degree, Doctorate
