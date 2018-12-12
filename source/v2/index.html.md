@@ -20,8 +20,6 @@ toc_footers:
 
 # Introduction
 
-> <i class="fa fa-chevron-circle-up"></i> Pick your favorite programming language
-
 Geocodio's RESTful API allows you to perform forward and reverse geocoding lookups. We support both batch requests as well as individual lookups.
 
 You can also optionally ask for data appends such as timezone, Congressional districts or similar things of that nature.

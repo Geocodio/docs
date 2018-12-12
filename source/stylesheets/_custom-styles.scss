@@ -1,11 +1,31 @@
-.toc-wrapper > svg {
-  display: block;
-  max-width: 100%;
-  margin: 5px auto;
+.toc-link {
+  font-size: 18px;
+  line-height: 40px;
+  padding: 0 30px !important;
+  font-weight: 400;
 }
 
-.content blockquote > p {
-  border: none;
+.toc-wrapper {
+  border-right: 1px solid #ccc;
+
+  > svg {
+    display: block;
+    max-width: 100%;
+    margin: 15px 15px 30px 15px;
+  }
+}
+
+.toc-wrapper .toc-h2 {
+  font-size: 15px !important;
+  padding-left: 40px !important;
+
+  em {
+    display: none;
+  }
+}
+
+.content blockquote > p, .toc-footer {
+  border: none !important;
 }
 
 pre.inline {
@@ -15,4 +35,13 @@ pre.inline {
 
 .content aside.warning {
   color: #FFF;
+
+    a {
+    color: #fff;
+  }
+}
+
+.page-wrapper .lang-selector a {
+  padding: 0 30px;
+  line-height: 70px;
 }

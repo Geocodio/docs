@@ -23,18 +23,18 @@ under the License.
 
 // BACKGROUND COLORS
 ////////////////////
-$nav-bg: #545454;
-$examples-bg: #545454;
-$code-bg: #111;
+$nav-bg: #fff;
+$examples-bg: #22292F;
+$code-bg: #212429;
 $code-annotation-bg: #1c1c1c;
-$nav-subitem-bg: #262626;
+$nav-subitem-bg: #fff;
 $nav-active-bg: #f75353;
 $nav-active-parent-bg: #1E2224 !default; // parent links of the current section
-$lang-select-border: #000;
-$lang-select-bg: #222;
+$lang-select-border: #08090a;
+$lang-select-bg: #08090a;
 $lang-select-active-bg: $examples-bg; // feel free to change this to blue or something
 $lang-select-pressed-bg: #111; // color of language tab bg when mouse is pressed
-$main-bg: #f2f2f2;
+$main-bg: #fff;
 $aside-notice-bg: #edf753;
 $aside-warning-bg: #f75353;
 $aside-success-bg: #53f762;
@@ -43,7 +43,7 @@ $search-notice-bg: #c97a7e;
 // TEXT COLORS
 ////////////////////
 $main-text: #333; // main content text color
-$nav-text: #fff;
+$nav-text: #646464;
 $nav-active-text: #fff !default;
 $nav-active-parent-text: #fff !default;
 $lang-select-text: #fff; // color of unselected language tab text
@@ -79,7 +79,7 @@ $phone-width: $tablet-width - $nav-width; // min width before reverting to mobil
 }
 
 %code-font {
-  font-family: Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
+  font-family: "Roboto Mono", Consolas, Menlo, Monaco, "Lucida Console", "Liberation Mono", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Courier New", monospace, serif;
   font-size: 12px;
   line-height: 1.5;
 }
