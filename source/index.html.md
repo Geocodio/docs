@@ -2,12 +2,12 @@
 title: Geocodio API Reference
 
 language_tabs:
-  - shell
-  - ruby
-  - python
-  - php
-  - javascript: Node.js
-  - clojure
+  - shell: Shell
+  - ruby: Ruby
+  - python: Python
+  - php: PHP
+  - javascript: Node
+  - clojure: Clojure
 
 toc_footers:
  - <a href="https://dash.geocod.io">Sign Up for an API Key</a>
@@ -15,8 +15,6 @@ toc_footers:
 ---
 
 # Introduction
-
-> <i class="fa fa-chevron-circle-up"></i> Pick your favorite programming language
 
 Geocodio's RESTful API allows you to perform forward and reverse geocoding lookups. We support both batch requests as well as individual lookups.
 
@@ -1110,18 +1108,25 @@ Go ahead, <a href="https://api.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Ar
 Some fields are specific to the US and cannot be queried for other countries.
 
 Parameter name                | Description                                       | Coverage                    |
------------------------------ | ------------------------------------------------- | --------------------------- |
+----------------------------- | ------------------------------------------------- | --------------------------- |-----------------------------
 cd, cd113, cd114, cd115, *or* cd116  | Congressional District & Legislator information   | US-only                     |
 stateleg                      | State Legislative District (House & Senate)       | US-only                     |
 school                        | School District (elementary/secondary or unified) | US-only                     |
 census                        | Census Block/Tract, FIPS codes & MSA/CSA codes    | US-only                     |
+acs-demographics | Demographics (Census) | US-only |
+acs-economics | Economics: Income Data (Census) | US-only |
+acs-families | Families (Census) | US-only |
+acs-housing | Housing (Census) | US-only |
+acs-social | Social: Education & Veteran Status (Census) | US-only |
 timezone                      | Timezone                                          | <i class="fa fa-globe"></i> |
+ |  |  |
 
 
 
 <aside class="notice">
-Additional data fields are available with both single and batch geocoding.
+This feature is available for both single and batch geocoding requests.
 </aside>
+
 
 ## Congressional Districts
 ```json
@@ -1404,6 +1409,1487 @@ Field        | Description
 ------------ | -----------------------------------------------------------
 name         | The official Census-designated name for the area
 area_code    | Unique census-defined code for the area
+
+## Census ACS (American Community Survey)
+
+Geocodio can return results from the American Community Survey, for any given address in the US. This is performed by looking up 5-year estimates for the *census block* associated with the address.
+
+Please note that a single census block can cover hundreds of households. As such, the returned data is not specific to the given location only.
+
+We have divided ACS results into 5 categories: Demographics, Economics (Income Data), Families, Housing and Social (Education & Veteran Status). 
+
+### Pricing
+
+For billing purposes, each category counts as an additional lookup. Do however note that the `census` field is always included with any `acs-` field lookups *at no additional cost*.
+
+
+### Address formats
+
+ACS field results are only returned for the following [accuracy types](#accuracy-score):
+
+* `rooftop`
+* `range_interpolation`
+* `nearest_street`
+* `point`
+* `street_center`
+
+As such, it is not possible to get ACS results for city or zip code results. Lookups are not counted towards account usage when ACS field appends are requested for these less accurate results.
+
+### Metadata
+
+> ACS overall metadata:
+
+```json
+...
+"fields": {
+  "acs": {
+    "meta": {
+      "source": "American Community Survey from the US Census Bureau",
+      "survey_years": "2012-2016",
+      "survey_duration_years": "5"
+    }
+    ...
+  }
+}
+```
+
+> Individual ACS result metadata:
+
+```json
+...
+"Median age": {
+  "meta": {
+    "table_id": "B01002",
+    "universe": "Total population"
+   },
+   ...
+}
+```
+
+A `meta` field with high level data information is returned for all `acs` results in general as well as individual ACS values.
+
+This contains information about the exact ACS results we are using, including the years they are covering. We always use 5-year estimates, and always use the most recent data that is available.
+
+When our ACS results are updated to a newer version, it is not considering a breaking change. This is done as soon as newer Census data is fully available and verified.
+
+For each individual result, we return the [official ACS table id](https://www.census.gov/programs-surveys/acs/technical-documentation/summary-file-documentation.2016.html) as well as the "universe" that the values covers.
+
+The universe can be values such as `Households`, `Population 15 Years and Older`, `Total population`, etc.
+
+## Demographics (Census)
+
+> `acs-demographics` field append:
+
+```json
+...
+"fields": {
+  "census": {...},
+  "acs": {
+    "meta": {
+      "source": "American Community Survey from the US Census Bureau",
+      "survey_years": "2012-2016",
+      "survey_duration_years": "5"
+    },
+    "demographics": {
+      "Median age": {
+        "meta": {
+          "table_id": "B01002",
+          "universe": "Total population"
+        },
+        "Total": {
+          "value": 32.2,
+          "margin_of_error": 0.7
+        },
+        "Male": {
+          "value": 33.7,
+          "margin_of_error": 1.6
+        },
+        "Female": {
+          "value": 31.2,
+          "margin_of_error": 0.8
+        }
+      },
+      "Population by age range": {
+        "meta": {
+          "table_id": "B01001",
+          "universe": "Total population"
+        },
+        "Total": {
+          "value": 3133,
+          "margin_of_error": 370
+        },
+        "Male": {
+          "value": 1470,
+          "margin_of_error": 210,
+          "percentage": 0.469
+        },
+        "Male: Under 5 years": {
+          "value": 105,
+          "margin_of_error": 71,
+          "percentage": 0.071
+        },
+        "Male: 5 to 9 years": {
+          "value": 32,
+          "margin_of_error": 22,
+          "percentage": 0.022
+        },
+        "Male: 10 to 14 years": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Male: 15 to 17 years": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Male: 18 and 19 years": {
+          "value": 8,
+          "margin_of_error": 13,
+          "percentage": 0.005
+        },
+        "Male: 20 years": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Male: 21 years": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Male: 22 to 24 years": {
+          "value": 17,
+          "margin_of_error": 19,
+          "percentage": 0.012
+        },
+        "Male: 25 to 29 years": {
+          "value": 241,
+          "margin_of_error": 87,
+          "percentage": 0.164
+        },
+        "Male: 30 to 34 years": {
+          "value": 390,
+          "margin_of_error": 102,
+          "percentage": 0.265
+        },
+        "Male: 35 to 39 years": {
+          "value": 258,
+          "margin_of_error": 103,
+          "percentage": 0.176
+        },
+        "Male: 40 to 44 years": {
+          "value": 174,
+          "margin_of_error": 66,
+          "percentage": 0.118
+        },
+        "Male: 45 to 49 years": {
+          "value": 38,
+          "margin_of_error": 24,
+          "percentage": 0.026
+        },
+        "Male: 50 to 54 years": {
+          "value": 107,
+          "margin_of_error": 57,
+          "percentage": 0.073
+        },
+        "Male: 55 to 59 years": {
+          "value": 37,
+          "margin_of_error": 26,
+          "percentage": 0.025
+        },
+        "Male: 60 and 61 years": {
+          "value": 5,
+          "margin_of_error": 9,
+          "percentage": 0.003
+        },
+        "Male: 62 to 64 years": {
+          "value": 20,
+          "margin_of_error": 18,
+          "percentage": 0.014
+        },
+        "Male: 65 and 66 years": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Male: 67 to 69 years": {
+          "value": 21,
+          "margin_of_error": 22,
+          "percentage": 0.014
+        },
+        "Male: 70 to 74 years": {
+          "value": 7,
+          "margin_of_error": 12,
+          "percentage": 0.005
+        },
+        "Male: 75 to 79 years": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Male: 80 to 84 years": {
+          "value": 10,
+          "margin_of_error": 15,
+          "percentage": 0.007
+        },
+        "Male: 85 years and over": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Female": {
+          "value": 1663,
+          "margin_of_error": 256,
+          "percentage": 0.531
+        },
+        "Female: Under 5 years": {
+          "value": 180,
+          "margin_of_error": 86,
+          "percentage": 0.108
+        },
+        "Female: 5 to 9 years": {
+          "value": 68,
+          "margin_of_error": 69,
+          "percentage": 0.041
+        },
+        "Female: 10 to 14 years": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Female: 15 to 17 years": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Female: 18 and 19 years": {
+          "value": 9,
+          "margin_of_error": 15,
+          "percentage": 0.005
+        },
+        "Female: 20 years": {
+          "value": 34,
+          "margin_of_error": 44,
+          "percentage": 0.02
+        },
+        "Female: 21 years": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Female: 22 to 24 years": {
+          "value": 28,
+          "margin_of_error": 20,
+          "percentage": 0.017
+        },
+        "Female: 25 to 29 years": {
+          "value": 351,
+          "margin_of_error": 112,
+          "percentage": 0.211
+        },
+        "Female: 30 to 34 years": {
+          "value": 502,
+          "margin_of_error": 148,
+          "percentage": 0.302
+        },
+        "Female: 35 to 39 years": {
+          "value": 170,
+          "margin_of_error": 60,
+          "percentage": 0.102
+        },
+        "Female: 40 to 44 years": {
+          "value": 112,
+          "margin_of_error": 51,
+          "percentage": 0.067
+        },
+        "Female: 45 to 49 years": {
+          "value": 49,
+          "margin_of_error": 40,
+          "percentage": 0.029
+        },
+        "Female: 50 to 54 years": {
+          "value": 29,
+          "margin_of_error": 23,
+          "percentage": 0.017
+        },
+        "Female: 55 to 59 years": {
+          "value": 22,
+          "margin_of_error": 24,
+          "percentage": 0.013
+        },
+        "Female: 60 and 61 years": {
+          "value": 32,
+          "margin_of_error": 27,
+          "percentage": 0.019
+        },
+        "Female: 62 to 64 years": {
+          "value": 39,
+          "margin_of_error": 30,
+          "percentage": 0.023
+        },
+        "Female: 65 and 66 years": {
+          "value": 18,
+          "margin_of_error": 18,
+          "percentage": 0.011
+        },
+        "Female: 67 to 69 years": {
+          "value": 2,
+          "margin_of_error": 9,
+          "percentage": 0.001
+        },
+        "Female: 70 to 74 years": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Female: 75 to 79 years": {
+          "value": 18,
+          "margin_of_error": 24,
+          "percentage": 0.011
+        },
+        "Female: 80 to 84 years": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Female: 85 years and over": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        }
+      },
+      "Sex": {
+        "meta": {
+          "table_id": "B01001",
+          "universe": "Total population"
+        },
+        "Total": {
+          "value": 3133,
+          "margin_of_error": 370
+        },
+        "Male": {
+          "value": 1470,
+          "margin_of_error": 210,
+          "percentage": 0.469
+        },
+        "Female": {
+          "value": 1663,
+          "margin_of_error": 256,
+          "percentage": 0.531
+        }
+      },
+      "Race and ethnicity": {
+        "meta": {
+          "table_id": "B03002",
+          "universe": "Total population"
+        },
+        "Total": {
+          "value": 3133,
+          "margin_of_error": 370
+        },
+        "Not Hispanic or Latino": {
+          "value": 2948,
+          "margin_of_error": 344,
+          "percentage": 0.941
+        },
+        "Not Hispanic or Latino: White alone": {
+          "value": 2356,
+          "margin_of_error": 318,
+          "percentage": 0.799
+        },
+        "Not Hispanic or Latino: Black or African American alone": {
+          "value": 37,
+          "margin_of_error": 48,
+          "percentage": 0.013
+        },
+        "Not Hispanic or Latino: American Indian and Alaska Native alone": {
+          "value": 21,
+          "margin_of_error": 41,
+          "percentage": 0.007
+        },
+        "Not Hispanic or Latino: Asian alone": {
+          "value": 402,
+          "margin_of_error": 140,
+          "percentage": 0.136
+        },
+        "Not Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Not Hispanic or Latino: Some other race alone": {
+          "value": 30,
+          "margin_of_error": 36,
+          "percentage": 0.01
+        },
+        "Two or more races": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Two or more races: Two races including Some other race": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Two or more races: Two races excluding Some other race, and three or more races": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Hispanic or Latino": {
+          "value": 185,
+          "margin_of_error": 95,
+          "percentage": 0.059
+        },
+        "Hispanic or Latino: White alone": {
+          "value": 185,
+          "margin_of_error": 95,
+          "percentage": 1
+        },
+        "Hispanic or Latino: Black or African American alone": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Hispanic or Latino: American Indian and Alaska Native alone": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Hispanic or Latino: Asian alone": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Hispanic or Latino: Some other race alone": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        }
+      }
+    }
+  }
+}
+...
+```
+
+We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
+
+The data returned includes the following data points. For each data point, the data returned includes the value, margin of error, and percentage. 
+
+* Total (Table #B01002)
+  * total, male, female
+* Population by age range (Table #B01001)
+  * Broken out by male and female
+  * under 5 years, 5-9 years, 10-14 years, 15-17 years, 18-19 years, 20 years, 21 years, 22-24 years, 25-29 years, 30-34 years, 35-39 years, 40-44 years, 45-49 years, 50-54 years, 55-59 years, 60-64 years, 65-69 years, 70-74 years, 75-79 years, 80-84 years, 85 years and over
+* Sex (Table $B01001)
+  * total, male, female
+* Race and ethnicity (Table #B03002)
+  * Broken out by not-Hispanic or Latino and Hispanic or Latino
+  * Not Hispanic or Latino, white alone, black or African American alone, American Indian and Alaska Native alone, Asian alone, Native Hawaiian and Other Pacific Islander alone; some other race alone; two or more races; two or more races: two races including some other race; two or more races: two races excluding some other race, and three or more races
+
+<aside class="notice">
+We recognize that age, sex, gender, race and ethnicity are sensitive subjects. Accordingly, we return the categories exactly as the Census Bureau provides. We recognize that the categories listed may not be all-inclusive or use preferred terminology.
+</aside>
+
+## Economics: Income Data (Census)
+
+> `acs-economics` field append:
+
+```json
+...
+"fields": {
+  "census": {...},
+  "acs": {
+    "meta": {
+      "source": "American Community Survey from the US Census Bureau",
+      "survey_years": "2012-2016",
+      "survey_duration_years": "5"
+    },
+    "economics": {
+      "Number of households": {
+        "meta": {
+          "table_id": "B19001",
+          "universe": "Households"
+        },
+        "Total": {
+          "value": 1777,
+          "margin_of_error": 147
+        }
+      },
+      "Median household income": {
+        "meta": {
+          "table_id": "B19013",
+          "universe": "Households"
+        },
+        "Total": {
+          "value": 147846,
+          "margin_of_error": 12288
+        }
+      },
+      "Household income": {
+        "meta": {
+          "table_id": "B19001",
+          "universe": "Households"
+        },
+        "Less than $10,000": {
+          "value": 21,
+          "margin_of_error": 22,
+          "percentage": 0.012
+        },
+        "$10,000 to $14,999": {
+          "value": 20,
+          "margin_of_error": 22,
+          "percentage": 0.011
+        },
+        "$15,000 to $19,999": {
+          "value": 11,
+          "margin_of_error": 17,
+          "percentage": 0.006
+        },
+        "$20,000 to $24,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$25,000 to $29,999": {
+          "value": 7,
+          "margin_of_error": 11,
+          "percentage": 0.004
+        },
+        "$30,000 to $34,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$35,000 to $39,999": {
+          "value": 15,
+          "margin_of_error": 18,
+          "percentage": 0.008
+        },
+        "$40,000 to $44,999": {
+          "value": 56,
+          "margin_of_error": 52,
+          "percentage": 0.032
+        },
+        "$45,000 to $49,999": {
+          "value": 4,
+          "margin_of_error": 7,
+          "percentage": 0.002
+        },
+        "$50,000 to $59,999": {
+          "value": 42,
+          "margin_of_error": 53,
+          "percentage": 0.024
+        },
+        "$60,000 to $74,999": {
+          "value": 56,
+          "margin_of_error": 33,
+          "percentage": 0.032
+        },
+        "$75,000 to $99,999": {
+          "value": 222,
+          "margin_of_error": 82,
+          "percentage": 0.125
+        },
+        "$100,000 to $124,999": {
+          "value": 208,
+          "margin_of_error": 87,
+          "percentage": 0.117
+        },
+        "$125,000 to $149,999": {
+          "value": 267,
+          "margin_of_error": 101,
+          "percentage": 0.15
+        },
+        "$150,000 to $199,999": {
+          "value": 297,
+          "margin_of_error": 83,
+          "percentage": 0.167
+        },
+        "$200,000 or more": {
+          "value": 551,
+          "margin_of_error": 104,
+          "percentage": 0.31
+        }
+      }
+    }
+  }
+}
+...
+```
+
+We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
+
+The data returned includes the following data points. For each data point, the data returned includes the value, margin of error, and percentage. 
+
+* Median household income (Table #B19013)
+* Household income (Table #B19001)
+  * less than $10,000; $10,000-$14,999; $15,000-$19,999; $20,000-$24,999; $25,000-$29,999; $30,000-$34,999; $40,000-$44,999; $45,000-$49,999; $50,000-$59,000; $60,000-$74,999; $75,000-$99,999; $100,000-$124,999; $125,000-$149,000; $150,000-$199,999; $200,000 or more
+
+## Families (Census)
+
+> `acs-families` field append:
+
+```json
+...
+"fields": {
+  "census": {...},
+  "acs": {
+    "meta": {
+      "source": "American Community Survey from the US Census Bureau",
+      "survey_years": "2012-2016",
+      "survey_duration_years": "5"
+    },
+    "families": {
+      "Household type by household": {
+        "meta": {
+          "table_id": "B11001",
+          "universe": "Households"
+        },
+        "Total": {
+          "value": 1777,
+          "margin_of_error": 147
+        },
+        "Family households": {
+          "value": 525,
+          "margin_of_error": 121,
+          "percentage": 0.295
+        },
+        "Family households: Married-couple family": {
+          "value": 488,
+          "margin_of_error": 119,
+          "percentage": 0.93
+        },
+        "Other family": {
+          "value": 37,
+          "margin_of_error": 27,
+          "percentage": 0.021
+        },
+        "Other family: Male householder, no wife present": {
+          "value": 11,
+          "margin_of_error": 14,
+          "percentage": 0.297
+        },
+        "Other family: Female householder, no husband present": {
+          "value": 26,
+          "margin_of_error": 24,
+          "percentage": 0.703
+        },
+        "Nonfamily households": {
+          "value": 1252,
+          "margin_of_error": 143,
+          "percentage": 0.705
+        },
+        "Nonfamily households: Householder living alone": {
+          "value": 981,
+          "margin_of_error": 137,
+          "percentage": 0.784
+        },
+        "Nonfamily households: Householder not living alone": {
+          "value": 271,
+          "margin_of_error": 82,
+          "percentage": 0.216
+        }
+      },
+      "Household type by population": {
+        "meta": {
+          "table_id": "B11002",
+          "universe": "Population in Households"
+        },
+        "Total": {
+          "value": 3133,
+          "margin_of_error": 370
+        },
+        "In family households": {
+          "value": 1493,
+          "margin_of_error": 381,
+          "percentage": 0.477
+        },
+        "In married-couple family": {
+          "value": 1397,
+          "margin_of_error": 379,
+          "percentage": 0.446
+        },
+        "In married-couple family: Relatives": {
+          "value": 1363,
+          "margin_of_error": 368,
+          "percentage": 0.976
+        },
+        "In married-couple family: Nonrelatives": {
+          "value": 34,
+          "margin_of_error": 44,
+          "percentage": 0.024
+        },
+        "In male householder, no wife present, family": {
+          "value": 24,
+          "margin_of_error": 30,
+          "percentage": 0.008
+        },
+        "In male householder, no wife present, family: Relatives": {
+          "value": 24,
+          "margin_of_error": 30,
+          "percentage": 1
+        },
+        "In male householder, no wife present, family: Nonrelatives": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "In female householder, no husband present, family": {
+          "value": 72,
+          "margin_of_error": 66,
+          "percentage": 0.023
+        },
+        "In female householder, no husband present, family: Relatives": {
+          "value": 64,
+          "margin_of_error": 60,
+          "percentage": 0.889
+        },
+        "In female householder, no husband present, family: Nonrelatives": {
+          "value": 8,
+          "margin_of_error": 12,
+          "percentage": 0.111
+        },
+        "In female householder, no husband present, family: In nonfamily households": {
+          "value": 1640,
+          "margin_of_error": 216,
+          "percentage": 22.778
+        }
+      },
+      "Marital status": {
+        "meta": {
+          "table_id": "B12001",
+          "universe": "Population 15 Years And Older"
+        },
+        "Male": {
+          "value": 1333,
+          "margin_of_error": 193,
+          "percentage": 0.485
+        },
+        "Male: Never married": {
+          "value": 705,
+          "margin_of_error": 159,
+          "percentage": 0.529
+        },
+        "Now married": {
+          "value": 473,
+          "margin_of_error": 123,
+          "percentage": 0.172
+        },
+        "Now married: Married, spouse present": {
+          "value": 460,
+          "margin_of_error": 116,
+          "percentage": 0.973
+        },
+        "Married, spouse absent": {
+          "value": 13,
+          "margin_of_error": 18,
+          "percentage": 0.005
+        },
+        "Married, spouse absent: Separated": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Married, spouse absent: Other": {
+          "value": 13,
+          "margin_of_error": 18,
+          "percentage": 1
+        },
+        "Married, spouse absent: Widowed": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Married, spouse absent: Divorced": {
+          "value": 102,
+          "margin_of_error": 47,
+          "percentage": 7.846
+        },
+        "Female": {
+          "value": 1415,
+          "margin_of_error": 192,
+          "percentage": 0.515
+        },
+        "Female: Never married": {
+          "value": 840,
+          "margin_of_error": 177,
+          "percentage": 0.594
+        }
+      }
+    }
+  }
+}
+...
+```
+
+We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
+
+The data returned includes the following data points. For each data point, the data returned includes the value, margin of error, and percentage. 
+
+* Family households (Table #B11001)
+  * total; married-couple family; other family; other family: male householder, no wife present; other family: female householder, no husband present; non-family households; non-family households -- householder living alone; non-family households -- householder not living alone
+* Household type by population (Table #B11002)
+  * total; in family households; in married-couple family; in married-couple family: relatives; in married-couple family: non-relatives; in male householder, no wife present, family; in male householder, no wife present, family: relatives; in male householder, no wife present, family: nonrelatives; in female householder, no husband present, family; in female householder, no husband present, family: relatives; in female householder, no husband present, family: in nonfamily households
+* Marital status (Table #B12001)
+  * never married; now married; now married: married, spouse present; married, spouse absent; married, spouse absent: separated; married, spouse absent: other; married, spouse absent, widowed; married, spouse absent, divorced; male never married; female never married
+
+<aside class="notice">
+We recognize that household composition is a sensitive subject. Accordingly, we report the categories exactly as the Census Bureau provides. We recognize that the categories listed may not be all-inclusive or use preferred terminology.
+</aside>
+
+## Housing (Census)
+
+> `acs-housing` field append:
+
+```json
+...
+"fields": {
+  "census": {...},
+  "acs": {
+    "meta": {
+      "source": "American Community Survey from the US Census Bureau",
+      "survey_years": "2012-2016",
+      "survey_duration_years": "5"
+    },
+    "housing": {
+      "Number of housing units": {
+        "meta": {
+          "table_id": "B25002",
+          "universe": "Housing Units"
+        },
+        "Total": {
+          "value": 2034,
+          "margin_of_error": 59
+        }
+      },
+      "Occupancy status": {
+        "meta": {
+          "table_id": "B25002",
+          "universe": "Housing Units"
+        },
+        "Occupied": {
+          "value": 1777,
+          "margin_of_error": 147,
+          "percentage": 0.874
+        },
+        "Vacant": {
+          "value": 257,
+          "margin_of_error": 144,
+          "percentage": 0.126
+        }
+      },
+      "Ownership of occupied units": {
+        "meta": {
+          "table_id": "B25003",
+          "universe": "Occupied Housing Units"
+        },
+        "Owner occupied": {
+          "value": 550,
+          "margin_of_error": 114,
+          "percentage": 0.31
+        },
+        "Renter occupied": {
+          "value": 1227,
+          "margin_of_error": 123,
+          "percentage": 0.69
+        }
+      },
+      "Units in structure": {
+        "meta": {
+          "table_id": "B25024",
+          "universe": "Housing Units"
+        },
+        "1, detached unit": {
+          "value": 108,
+          "margin_of_error": 48,
+          "percentage": 0.053
+        },
+        "1, attached unit": {
+          "value": 132,
+          "margin_of_error": 56,
+          "percentage": 0.065
+        },
+        "2 units": {
+          "value": 24,
+          "margin_of_error": 37,
+          "percentage": 0.012
+        },
+        "3 or 4 units": {
+          "value": 37,
+          "margin_of_error": 48,
+          "percentage": 0.018
+        },
+        "5 to 9 units": {
+          "value": 17,
+          "margin_of_error": 20,
+          "percentage": 0.008
+        },
+        "10 to 19 unit": {
+          "value": 21,
+          "margin_of_error": 41,
+          "percentage": 0.01
+        },
+        "20 to 49 units": {
+          "value": 10,
+          "margin_of_error": 15,
+          "percentage": 0.005
+        },
+        "50 or more units": {
+          "value": 1685,
+          "margin_of_error": 119,
+          "percentage": 0.828
+        },
+        "Mobile home units": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Boat, RV, van, etc. units": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        }
+      },
+      "Median value of owner-occupied housing units": {
+        "meta": {
+          "table_id": "B25077",
+          "universe": "Owner-Occupied Housing Units"
+        },
+        "Total": {
+          "value": 598900,
+          "margin_of_error": 77718
+        }
+      },
+      "Value of owner-occupied housing units": {
+        "meta": {
+          "table_id": "B25075",
+          "universe": "Owner-Occupied Housing Units"
+        },
+        "Less than $10,000": {
+          "value": 17,
+          "margin_of_error": 20,
+          "percentage": 0.031
+        },
+        "$10,000 to $14,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$15,000 to $19,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$20,000 to $24,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$25,000 to $29,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$30,000 to $34,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$35,000 to $39,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$40,000 to $49,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$50,000 to $59,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$60,000 to $69,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$70,000 to $79,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$80,000 to $89,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$90,000 to $99,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$100,000 to $124,999": {
+          "value": 15,
+          "margin_of_error": 13,
+          "percentage": 0.027
+        },
+        "$125,000 to $149,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$150,000 to $174,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$175,000 to $199,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$200,000 to $249,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$250,000 to $299,999": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "$300,000 to $399,999": {
+          "value": 10,
+          "margin_of_error": 16,
+          "percentage": 0.018
+        },
+        "$400,000 to $499,999": {
+          "value": 163,
+          "margin_of_error": 86,
+          "percentage": 0.296
+        },
+        "$500,000 to $749,999": {
+          "value": 177,
+          "margin_of_error": 56,
+          "percentage": 0.322
+        },
+        "$750,000 to $999,999": {
+          "value": 107,
+          "margin_of_error": 57,
+          "percentage": 0.195
+        },
+        "$1,000,000 to $1,499,999": {
+          "value": 31,
+          "margin_of_error": 27,
+          "percentage": 0.056
+        },
+        "$1,500,000 to $1,999,999": {
+          "value": 30,
+          "margin_of_error": 24,
+          "percentage": 0.055
+        },
+        "$2,000,000 or more": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        }
+      }
+    }
+  }
+}
+...
+```
+
+We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
+
+For each data point, we return the value, margin of error, and percentage. 
+
+Data points returned are:
+
+* Occupancy status (Table #B25002) 
+  * occupied
+  * vacant
+* Ownership of occupied units (Table #B25003)
+  * owner-occupied
+  * renter-occupied
+* Units in structure (Table #B25024)
+  * 1, detached unit; 1, attached unit; 2 units; 3 or 4 units; 5 to 9 units; 10 to 19 units; 20 to 49 units; 50 or more units; mobile home units; boat, RV, van, etc. units
+* Median value of owner-occupied housing units (Table #B25077)
+* Value of owner-occupied housing units (Table # B25075)
+  * less than $10,000; $10,000-$14,999; $15,000-$19,999; $20,000-$29,000; $30,000-$34,999; $40,000-$49,999; $50,000-$59,000; $60,000-$69,999; $70,000-$79,000; $80,000-$89,999; $90,000-$99,999; $100,000-$124,999; $125,000-$149,000; $150,000-$174,999; $175,000-$199,999; $200,000-$249,000; $250,000-$299,000; $300,000-$399,999; $400,000-$499,000; $500,000-$749,000; $750,000-$999,999; $1,000,000-$1,499,999; $1,500,000-$1,999,999; $2,000,000 or more
+
+## Social: Education & Veteran Status (Census)
+
+> `acs-social` field append:
+
+```json
+...
+"fields": {
+  "census": {...},
+  "acs": {
+    "meta": {
+      "source": "American Community Survey from the US Census Bureau",
+      "survey_years": "2012-2016",
+      "survey_duration_years": "5"
+    },
+    "social": {
+      "Population by minimum level of education": {
+        "meta": {
+          "table_id": "B15002",
+          "universe": "Population 25 Years And Over"
+        },
+        "Total": {
+          "value": 2652,
+          "margin_of_error": 273
+        },
+        "Male": {
+          "value": 1308,
+          "margin_of_error": 189,
+          "percentage": 0.493
+        },
+        "Male: No schooling completed": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Male: Nursery to 4th grade": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Male: 5th and 6th grade": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Male: 7th and 8th grade": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Male: 9th grade": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Male: 10th grade": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Male: 11th grade": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Male: 12th grade, no diploma": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Male: High school graduate (includes equivalency)": {
+          "value": 7,
+          "margin_of_error": 15,
+          "percentage": 0.005
+        },
+        "Male: Some college, less than 1 year": {
+          "value": 4,
+          "margin_of_error": 7,
+          "percentage": 0.003
+        },
+        "Male: Some college, 1 or more years, no degree": {
+          "value": 19,
+          "margin_of_error": 21,
+          "percentage": 0.015
+        },
+        "Male: Associate's degree": {
+          "value": 23,
+          "margin_of_error": 25,
+          "percentage": 0.018
+        },
+        "Male: Bachelor's degree": {
+          "value": 574,
+          "margin_of_error": 145,
+          "percentage": 0.439
+        },
+        "Male: Master's degree": {
+          "value": 346,
+          "margin_of_error": 101,
+          "percentage": 0.265
+        },
+        "Male: Professional school degree": {
+          "value": 251,
+          "margin_of_error": 76,
+          "percentage": 0.192
+        },
+        "Male: Doctorate degree": {
+          "value": 84,
+          "margin_of_error": 46,
+          "percentage": 0.064
+        },
+        "Female": {
+          "value": 1344,
+          "margin_of_error": 177,
+          "percentage": 0.507
+        },
+        "Female: No schooling completed": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Female: Nursery to 4th grade": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Female: 5th and 6th grade": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Female: 7th and 8th grade": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Female: 9th grade": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Female: 10th grade": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Female: 11th grade": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Female: 12th grade, no diploma": {
+          "value": 5,
+          "margin_of_error": 10,
+          "percentage": 0.004
+        },
+        "Female: High school graduate (includes equivalency)": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Female: Some college, less than 1 year": {
+          "value": 11,
+          "margin_of_error": 17,
+          "percentage": 0.008
+        },
+        "Female: Some college, 1 or more years, no degree": {
+          "value": 17,
+          "margin_of_error": 18,
+          "percentage": 0.013
+        },
+        "Female: Associate's degree": {
+          "value": 38,
+          "margin_of_error": 49,
+          "percentage": 0.028
+        },
+        "Female: Bachelor's degree": {
+          "value": 622,
+          "margin_of_error": 156,
+          "percentage": 0.463
+        },
+        "Female: Master's degree": {
+          "value": 394,
+          "margin_of_error": 97,
+          "percentage": 0.293
+        },
+        "Female: Professional school degree": {
+          "value": 143,
+          "margin_of_error": 62,
+          "percentage": 0.106
+        },
+        "Female: Doctorate degree": {
+          "value": 114,
+          "margin_of_error": 48,
+          "percentage": 0.085
+        }
+      },
+      "Population with veteran status": {
+        "meta": {
+          "table_id": "B21001",
+          "universe": "Civilian Population 18 Years And Over"
+        },
+        "Total": {
+          "value": 2702,
+          "margin_of_error": 289
+        },
+        "Veteran": {
+          "value": 163,
+          "margin_of_error": 74,
+          "percentage": 0.06
+        },
+        "Nonveteran": {
+          "value": 2539,
+          "margin_of_error": 280,
+          "percentage": 0.94
+        },
+        "Male": {
+          "value": 1295,
+          "margin_of_error": 191,
+          "percentage": 0.479
+        },
+        "Male: Veteran": {
+          "value": 123,
+          "margin_of_error": 62,
+          "percentage": 0.095
+        },
+        "Male: Nonveteran": {
+          "value": 1172,
+          "margin_of_error": 181,
+          "percentage": 0.905
+        },
+        "Female": {
+          "value": 1407,
+          "margin_of_error": 191,
+          "percentage": 0.521
+        },
+        "Female: Veteran": {
+          "value": 40,
+          "margin_of_error": 31,
+          "percentage": 0.028
+        },
+        "Female: Nonveteran": {
+          "value": 1367,
+          "margin_of_error": 186,
+          "percentage": 0.972
+        }
+      },
+      "Period of military service for veterans": {
+        "meta": {
+          "table_id": "B21002",
+          "universe": "Civilian Veterans 18 Years And Over"
+        },
+        "Total": {
+          "value": 163,
+          "margin_of_error": 74
+        },
+        "Gulf War (9/2001 or later), no Gulf War (8/1990 to 8/2001), no Vietnam Era": {
+          "value": 64,
+          "margin_of_error": 52,
+          "percentage": 0.393
+        },
+        "Gulf War (9/2001 or later) and Gulf War (8/1990 to 8/2001), no Vietnam Era": {
+          "value": 17,
+          "margin_of_error": 19,
+          "percentage": 0.104
+        },
+        "Gulf War (9/2001 or later), and Gulf War (8/1990 to 8/2001), and Vietnam Era": {
+          "value": 5,
+          "margin_of_error": 7,
+          "percentage": 0.031
+        },
+        "Gulf War (8/1990 to 8/2001), no Vietnam Era": {
+          "value": 7,
+          "margin_of_error": 10,
+          "percentage": 0.043
+        },
+        "Gulf War (8/1990 to 8/2001) and Vietnam Era": {
+          "value": 10,
+          "margin_of_error": 14,
+          "percentage": 0.061
+        },
+        "Vietnam Era, no Korean War, no World War II": {
+          "value": 10,
+          "margin_of_error": 15,
+          "percentage": 0.061
+        },
+        "Vietnam Era and Korean War, no World War II": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Vietnam Era and Korean War and World War II": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Korean War, no Vietnam Era, no World War II": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Korean War and World War II, no Vietnam Era": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "World War II, no Korean War, no Vietnam Era": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Between Gulf War and Vietnam Era only": {
+          "value": 45,
+          "margin_of_error": 45,
+          "percentage": 0.276
+        },
+        "Between Vietnam Era and Korean War only": {
+          "value": 5,
+          "margin_of_error": 9,
+          "percentage": 0.031
+        },
+        "Between Korean War and World War II only": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        },
+        "Pre-World War II only": {
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
+        }
+      }
+    }
+  }
+}
+...
+```
+
+We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
+
+The data returned includes the following data points. For each data point, the data returned includes the value, margin of error, and percentage. 
+
+* Population by minimum level of education (Table #B15002)
+  * No schooling, nursery to 4th grade, 5th and 6th grade, 7th and 8th grade, 9th grade, 10th grade, 11th grade, 12th grade - no diploma, high school graduate or equivalent, some college (1+ years, no degree), Associate's Degree, Bachelor's Degree, Master's Degree, professional school degree, Doctorate
+  * Results broken out by all genders, female, and male
+* Veteran status (Table #B21001)
+  * Veteran, non-Veteran
+  * Results broken out by all genders, female, and male
+* Period of military service for veterans (Table #B21002)
+  * Wars
+    * Gulf War (9/2001 or later), no Gulf War (8/1990 to 8/2001), no Vietnam Era
+    * Gulf War (9/2001 or later), Gulf War (8/1990 to 8/2001), no Vietnam Era
+    * Gulf War (8/1990 to 8/2001), no Vietnam Era
+    * Gulf War (8/1990 to 8/2001) and Vietnam Era
+    * Vietnam Era, no Korean War, no World War II
+    * Vietnam Era and Korean War, no World War II
+    * Vietnam Era and Korean War and World War II
+    * Korean War, no Vietnam Era, no World War II
+    * Korean War and World War II, no Vietnam Era
+    * World War II, no Korean War, no Vietnam Era
+    * Between Gulf War and Vietnam Era only
+    * Between Korean War and World War II only
+    * Pre-World War II only
 
 ## Timezone
 ```json
