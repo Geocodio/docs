@@ -3158,6 +3158,48 @@ Error Code | Meaning
 
 If you encounter any unexpected errors, please check [status.geocod.io](http://status.geocod.io) for the latest platform status updates.
 
+# Warnings
+
+The Geocodio API implements the concept of "warnings". This is meant to assist and guide developers when implementing our API.
+
+Warnings are represented with a `_warnings` key, and it can be applied to either an individual geocoding result or an overall geocoding query.
+
+If no warnings have been triggered, the `_warnings` key will not be part of the JSON output at all.
+
+> Here's an example where the query parameter `postalcode` accidentally was used instead of `postal_code`
+
+```json
+{
+  "input": {
+    ...
+  },
+  "results": [
+    ...
+  ],
+  "_warnings": [
+    "Ignoring parameter \"postalcode\" as it was not expected. Did you mean \"postal_code\"? See full list of valid parameters here: https://www.geocod.io/docs/"
+  ]
+}
+```
+
+> Warnings can also be triggered for individual results, such as when an ACS field append was specified for a city-level query:
+
+```json
+{
+  "input": {
+    ...
+  },
+  "results": [
+    {
+      ...
+      "_warnings": [
+        "acs-demographics was skipped since result is not street-level"
+      ]
+    }
+  ]
+}
+```
+
 # Client-side access
 > To Geocode an address using a jQuery AJAX call.
 
