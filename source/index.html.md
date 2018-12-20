@@ -1351,13 +1351,14 @@ The field will return either a *unified* school district or separate *elementary
 ...
 "fields": {
   "census": {
-    "state_fips": "11",
-    "county_fips": "11001",
-    "place_fips": "1150000",
-    "tract_code": "007000",
-    "block_group": "2",
-    "block_code": "2014",
     "census_year": 2015,
+    "state_fips": "51",
+    "county_fips": "51013",
+    "place_fips": "5103000",
+    "tract_code": "101801",
+    "block_code": "1004",
+    "block_group": "1",
+    "full_fips": "510131018011004",
     "metro_micro_statistical_area": {
       "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
       "area_code": "47900",
@@ -1382,6 +1383,7 @@ place_fips   | The 7-digit place FIPS code. A place is defined as a city or othe
 tract_code   | The 6-digit census tract code. This is a subdivision of a county, used for statistical purposes.
 block_code   | The full 4-digit block code that the location belongs to. This is the smallest geographical unit that the U.S. Census Bureau provides statistical data for.
 block_group  | The single-digit group number for the block
+full_fips  | The full 15-digit fips code, consisting of the county fips, tract code and block code
 
 The U.S. Census Bureau also provides a more [detailed guide](https://www.census.gov/geo/reference/gtc/gtc_ct.html) for the above terms.
 
