@@ -1259,14 +1259,14 @@ This feature is available for both single and batch geocoding requests.
 ```
 You can retrieve the Congressional district for an address or coordinate pair using `cd`, `cd113`, `cd114`, `cd115` or `cd116` in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
 
-The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd115`) is specified, we will also return detailed information about the current legislators.
+The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd116`) is specified, we will also return detailed information about the current legislators.
+
+<aside class="warning">
+Legislator data is not yet available for the 116th congress, it will be published before January 5th, 2018
+</aside>
 
 <aside class="success">
 The list of legislators is always ordered with Representative first then Senators.
-</aside>
-
-<aside class="notice">
-To return data with Pennsylvania's new districts for 2018, you must use <code>cd116</code>. Please note that this field will not return legislator information.
 </aside>
 
 ### Appending Congressional districts for ZIP codes
