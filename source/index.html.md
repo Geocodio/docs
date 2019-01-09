@@ -929,10 +929,9 @@ $location = $client->geocode('1109 N Highland St, Arlington VA', ['cd', 'statele
       "formatted_street": "N Highland St",
       "city": "Arlington",
       "state": "VA",
-      "zip": "22201",
       "country": "US"
     },
-    "formatted_address": "1109 N Highland St, Arlington, VA 22201"
+    "formatted_address": "1109 N Highland St, Arlington, VA"
   },
   "results": [
     {
@@ -961,8 +960,8 @@ $location = $client->geocode('1109 N Highland St, Arlington VA', ['cd', 'statele
           {
             "name": "Congressional District 8",
             "district_number": 8,
-            "congress_number": "115th",
-            "congress_years": "2017-2019",
+            "congress_number": "116th",
+            "congress_years": "2019-2021",
             "proportion": 1,
             "current_legislators": [
               {
@@ -976,14 +975,14 @@ $location = $client->geocode('1109 N Highland St, Arlington VA', ['cd', 'statele
                 },
                 "contact": {
                   "url": "https://beyer.house.gov",
-                  "address": "1119 Longworth HOB; Washington DC 20515-4608",
-                  "phone": "202-225-4376",
+                  "address": "1119 Longworth House Office Building Washington DC 20515-4608",
+                  "phone": "(202) 225-4376",
                   "contact_form": null
                 },
                 "social": {
                   "rss_url": null,
-                  "twitter": "repdonbeyer",
-                  "facebook": "repdonbeyer",
+                  "twitter": "RepDonBeyer",
+                  "facebook": "RepDonBeyer",
                   "youtube": null,
                   "youtube_id": "UCPJGVbOVcAVGiBwq8qr_T9w"
                 },
@@ -1050,13 +1049,13 @@ $location = $client->geocode('1109 N Highland St, Arlington VA', ['cd', 'statele
                 },
                 "contact": {
                   "url": "https://www.kaine.senate.gov",
-                  "address": "231 Russell Senate Office Building Washington DC 20510",
-                  "phone": "202-224-4024",
-                  "contact_form": "https://www.kaine.senate.gov/contact"
+                  "address": null,
+                  "phone": null,
+                  "contact_form": null
                 },
                 "social": {
                   "rss_url": "http://www.kaine.senate.gov/rss/feeds/?type=all",
-                  "twitter": "SenKaineOffice",
+                  "twitter": null,
                   "facebook": "SenatorKaine",
                   "youtube": "SenatorTimKaine",
                   "youtube_id": "UC27LgTZlUnBQoNEQFZdn9LA"
@@ -1080,13 +1079,13 @@ $location = $client->geocode('1109 N Highland St, Arlington VA', ['cd', 'statele
           }
         ],
         "state_legislative_districts": {
-          "senate": {
-            "name": "State Senate District 31",
-            "district_number": "31"
-          },
           "house": {
             "name": "State House District 47",
             "district_number": "47"
+          },
+          "senate": {
+            "name": "State Senate District 31",
+            "district_number": "31"
           }
         }
       }
@@ -1136,8 +1135,8 @@ This feature is available for both single and batch geocoding requests.
     {
       "name": "Congressional District 8",
       "district_number": 8,
-      "congress_number": "115th",
-      "congress_years": "2017-2019",
+      "congress_number": "116th",
+      "congress_years": "2019-2021",
       "proportion": 1,
       "current_legislators": [
         {
@@ -1151,14 +1150,14 @@ This feature is available for both single and batch geocoding requests.
           },
           "contact": {
             "url": "https://beyer.house.gov",
-            "address": "1119 Longworth HOB; Washington DC 20515-4608",
-            "phone": "202-225-4376",
+            "address": "1119 Longworth House Office Building Washington DC 20515-4608",
+            "phone": "(202) 225-4376",
             "contact_form": null
           },
           "social": {
             "rss_url": null,
-            "twitter": "repdonbeyer",
-            "facebook": "repdonbeyer",
+            "twitter": "RepDonBeyer",
+            "facebook": "RepDonBeyer",
             "youtube": null,
             "youtube_id": "UCPJGVbOVcAVGiBwq8qr_T9w"
           },
@@ -1225,13 +1224,13 @@ This feature is available for both single and batch geocoding requests.
           },
           "contact": {
             "url": "https://www.kaine.senate.gov",
-            "address": "231 Russell Senate Office Building Washington DC 20510",
-            "phone": "202-224-4024",
-            "contact_form": "https://www.kaine.senate.gov/contact"
+            "address": null,
+            "phone": null,
+            "contact_form": null
           },
           "social": {
             "rss_url": "http://www.kaine.senate.gov/rss/feeds/?type=all",
-            "twitter": "SenKaineOffice",
+            "twitter": null,
             "facebook": "SenatorKaine",
             "youtube": "SenatorTimKaine",
             "youtube_id": "UC27LgTZlUnBQoNEQFZdn9LA"
@@ -1260,10 +1259,6 @@ This feature is available for both single and batch geocoding requests.
 You can retrieve the Congressional district for an address or coordinate pair using `cd`, `cd113`, `cd114`, `cd115` or `cd116` in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
 
 The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd116`) is specified, we will also return detailed information about the current legislators.
-
-<aside class="warning">
-Legislator data is not yet available for the 116th congress, it will be published before January 5th, 2018
-</aside>
 
 <aside class="success">
 The list of legislators is always ordered with Representative first then Senators.
