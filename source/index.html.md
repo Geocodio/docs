@@ -3041,6 +3041,9 @@ street_center         | The result is a geocoded street centroid
 place                 | The point is a city/town/place
 state                 | The point is a state
 
+![Visual guide to the most common accuracy types](https://www.geocod.io/docs/images/accuracy-types.png)
+*Visual guide to the most common accuracy types*
+
 ### Reverse geocoding
 
 Value               | Description
