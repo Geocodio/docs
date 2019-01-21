@@ -1428,6 +1428,7 @@ ACS field results are only returned for the following [accuracy types](#accuracy
 * `range_interpolation`
 * `nearest_street`
 * `point`
+* `nearest_rooftop_match`
 * `street_center`
 
 As such, it is not possible to get ACS results for city or zip code results. Lookups are not counted towards account usage when ACS field appends are requested for these less accurate results.
@@ -3030,14 +3031,15 @@ We recommend using a combination of the accuracy score and accuracy type to eval
 
 ### Forward geocoding
 
-Value               | Description
-------------------- | -----------
-rooftop             | We found the exact point with rooftop level accuracy
-point               | We found the exact point from address range interpolation where the range contained a single point
-range_interpolation | We found the exact point by performing [address range interpolation](http://en.wikipedia.org/wiki/Geocoding#Address_interpolation)
-street_center       | The result is a geocoded street centroid
-place               | The point is a city/town/place
-state               | The point is a state
+Value                 | Description
+--------------------- | -----------
+rooftop               | The exact point was found with rooftop level accuracy
+point                 | The exact point was found from address range interpolation where the range contained a single point
+range_interpolation   | The point was found by performing [address range interpolation](http://en.wikipedia.org/wiki/Geocoding#Address_interpolation)
+nearest_rooftop_match | The exact house number was not found, so a close, neighboring house number was used instead
+street_center         | The result is a geocoded street centroid
+place                 | The point is a city/town/place
+state                 | The point is a state
 
 ### Reverse geocoding
 
