@@ -214,6 +214,10 @@ Whenever possible, batch requests are recommended since they are significantly f
 
 A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
+<aside class="success">
+The `results` are always ordered with the most accurate locations first. It is therefore always safe to pick the first result in the list.
+</aside>
+
 > To geocode a single address:
 
 ```shell
