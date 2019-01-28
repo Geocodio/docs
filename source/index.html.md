@@ -496,7 +496,7 @@ If you have several addresses that you need to geocode, batch geocoding is a muc
 Batch geocoding requests are performed by making a `POST` request to the *geocode* endpoint, suppliying a `JSON` array or `JSON` object in the body with any key of your choosing.
 
 <aside class="warning">
-You can batch geocode up to 10,000 addresses at the time. Geocoding 10,000 addresses takes about 300 seconds, so please make sure to adjust your timeout value accordingly.
+You can batch geocode up to 10,000 addresses at the time. Geocoding 10,000 addresses takes about 600 seconds, so please make sure to adjust your timeout value accordingly.
 </aside>
 
 ### HTTP Request
