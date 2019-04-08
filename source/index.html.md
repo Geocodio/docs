@@ -1424,7 +1424,7 @@ area_code    | Unique census-defined code for the area
 
 This field is returned for locations that are within a Metropolitan Division. If no area is associated with the location, the API will return `null` instead of the individual fields.
 
-Metropolitan Divisions was introduced by the U.S. Census Bureau in 2003 to further split arger MSA's (Metropolitan Statistical Areas) into smaller groups.
+Metropolitan Divisions was introduced by the U.S. Census Bureau in 2003 to further split larger MSA's (Metropolitan Statistical Areas) into smaller groups.
 
 You can read more about [Metropolitan divisions on Wikipedia](https://simple.wikipedia.org/wiki/United_States_metropolitan_area).
 
