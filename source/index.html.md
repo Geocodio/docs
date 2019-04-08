@@ -1371,6 +1371,10 @@ The field will return either a *unified* school district or separate *elementary
     "combined_statistical_area": {
       "name": "Washington-Baltimore-Arlington, DC-MD-VA-WV-PA",
       "area_code": "548"
+    },
+    "metropolitan_division": {
+      "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
+      "area_code": "47894"
     }
   }
 }
@@ -1395,7 +1399,7 @@ Using Census tracts and blocks, you can match addresses and latitude/longitude p
 
 ### Metropolitan/Micropolitan Statistical Area (MSA)
 
-This field is return for locations that are within an MSA area. If no MSA area is associated with the location, the API will return `null` instead of the individual fields.
+This field is returned for locations that are within an MSA area. If no MSA area is associated with the location, the API will return `null` instead of the individual fields.
 
 You can read more about [Metropolitan](https://en.wikipedia.org/wiki/Metropolitan_statistical_area) and [Micropolitan](https://en.wikipedia.org/wiki/Micropolitan_statistical_area) areas on Wikipedia.
 
@@ -1407,9 +1411,22 @@ type         | Can either be "metropolitan" or "micropolitan"
 
 ### Combined Statistical Area (CSA)
 
-This field is return for locations that are within an CSA area. If no CSA area is associated with the location, the API will return `null` instead of the individual fields.
+This field is returned for locations that are within an CSA area. If no CSA area is associated with the location, the API will return `null` instead of the individual fields.
 
 You can read more about [Combined Statisical Areas on Wikipedia](https://en.wikipedia.org/wiki/Combined_statistical_area).
+
+Field        | Description
+------------ | -----------------------------------------------------------
+name         | The official Census-designated name for the area
+area_code    | Unique census-defined code for the area
+
+### Metropolitan Divisions (METDIV)
+
+This field is returned for locations that are within a Metropolitan Division. If no area is associated with the location, the API will return `null` instead of the individual fields.
+
+Metropolitan Divisions was introduced by the U.S. Census Bureau in 2003 to further split arger MSA's (Metropolitan Statistical Areas) into smaller groups.
+
+You can read more about [Metropolitan divisions on Wikipedia](https://simple.wikipedia.org/wiki/United_States_metropolitan_area).
 
 Field        | Description
 ------------ | -----------------------------------------------------------
