@@ -1105,7 +1105,7 @@ $location = $client->geocode('1109 N Highland St, Arlington VA', ['cd', 'statele
 ```
 
 <aside class="warning">
-<strong>Note:</strong> Fields count as an additional lookup each. Please consult our <a href="/pricing">pricing calculator</a>.
+<strong>Note:</strong> Fields count as an additional lookup each. Please consult our <a href="/pricing/">pricing calculator</a>.
 </aside>
 
 Geocodio allows you to request additional data with forward and reverse geocoding requests. We call this additional data *fields*.
