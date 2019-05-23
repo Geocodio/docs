@@ -32,6 +32,11 @@ under the License.
     <title><%= current_page.data.title || "API Documentation" %></title>
     <meta name="description" content="Use our simple API to convert street addresses into latitude/longitude or coordinates to street addresses. Add Congressional districts, census data, timezones, and more."/>
     <meta property="og:description" content="Use our simple API to convert street addresses into latitude/longitude or coordinates to street addresses. Add Congressional districts, census data, timezones, and more."/>
+    <meta property="og:image" content="https://www.geocod.io/img/social-share.png" />
+    <meta property="og:url" content="https://www.geocod.io" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="<%= current_page.data.title || "API Documentation" %>" />
+    <meta property="og:title" content="<%= current_page.data.title || "API Documentation" %>" />
 
     <style>
       <%= Rouge::Themes::MonokaiSublime.render(:scope => '.highlight') %>
