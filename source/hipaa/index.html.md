@@ -41,21 +41,24 @@ Breaking changes are introduced with new API versions, allowing you to "upgrade"
 Breaking changes are defined as changes that remove or rename properties in the JSON output of any API endpoint. Your API client should be able to gracefully support addition of new JSON properties, as this is not considered a breaking change.
 </aside>
 
-## v1.3 *(Released on March 12th, 2018)*
+## v1.3
+*Released on March 12th, 2018*
 
 **`timezone` appends:**
 
 * **Breaking:** `name` property has been renamed to `abbreviation`
 * `name` is now the full timezone name in a [tzdb](https://www.iana.org/time-zones)-compatible format. [Read more](#timezone)
 
-## v1.2 *(Released on January 20th, 2018)*
+## v1.2
+*Released on January 20th, 2018*
 
 **`cd` (Congressional district) appends:**
 
 * **Breaking:** `current_legislator` property has been renamed to `current_legislators` and is now an array instead of an object
 * Both house and senate legislators are now returned
 
-## v1.1 *(Released on January 8th, 2018)*
+## v1.1
+*Released on January 8th, 2018*
 
 **`cd` (Congressional district) appends:**
 

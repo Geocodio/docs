@@ -43,21 +43,24 @@ Breaking changes are introduced with new API versions, allowing you to "upgrade"
 Breaking changes are defined as changes that remove or rename properties in the JSON output of any API endpoint. Your API client should be able to gracefully support addition of new JSON properties, as this is not considered a breaking change.
 </aside>
 
-## v1.3 *(Released on March 12th, 2018)*
+## v1.3
+*Released on March 12th, 2018*
 
 **`timezone` appends:**
 
 * **Breaking:** `name` property has been renamed to `abbreviation`
 * `name` is now the full timezone name in a [tzdb](https://www.iana.org/time-zones)-compatible format. [Read more](#timezone)
 
-## v1.2 *(Released on January 20th, 2018)*
+## v1.2
+*Released on January 20th, 2018*
 
 **`cd` (Congressional district) appends:**
 
 * **Breaking:** `current_legislator` property has been renamed to `current_legislators` and is now an array instead of an object
 * Both house and senate legislators are now returned
 
-## v1.1 *(Released on January 8th, 2018)*
+## v1.1
+*Released on January 8th, 2018*
 
 **`cd` (Congressional district) appends:**
 
@@ -332,8 +335,9 @@ geocodio.get('geocode', {q: '1109 N Highland St, Arlington VA'}, function (err, 
 
 Parameter | Description
 --------- | -----------
-q | The query (i.e. address) to geocode
-api_key | Your Geocodio API key
+`q`       | The query (i.e. address) to geocode
+`api_key` | Your Geocodio API key
+`limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
 
 ***
 
@@ -341,14 +345,15 @@ api_key | Your Geocodio API key
 
 Instead of using the *q* parameter, you can use a combination of `street`, `city`, `state` `postal_code`, and/or `country`. This can be useful if the address is already stored as separate fields on your end.
 
-Parameter | Description
---------- | -----------
-street | E.g. 1600 Pennsylvania Ave NW
-city | E.g. Washington
-state | E.g. DC
-postal_code | E.g. 20500
-country | E.g. Canada (Default to USA)
-api_key | Your Geocodio API key
+Parameter     | Description
+------------- | -----------
+`street`      | E.g. 1600 Pennsylvania Ave NW
+`city`        | E.g. Washington
+`state`       | E.g. DC
+`postal_code` | E.g. 20500
+`country`     | E.g. Canada (Default to USA)
+`api_key`     | Your Geocodio API key
+`limit`       | Optional parameter. The maximum number of results to return. The default is no limit.
 
 <aside>
 <strong>Note:</strong> Even if the fields are supplied separately, Geocodio might in rare circumstances try to parse the street, for example, as part of the city if more relevant results can be found.
@@ -508,7 +513,8 @@ You can batch geocode up to 10,000 addresses at the time. Geocoding 10,000 addre
 
 Parameter | Description
 --------- | -----------
-api_key | Your Geocodio API key
+`api_key` | Your Geocodio API key
+`limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
 
 ### JSON array/object
 When making a batch geocoding request, you can `POST` queries as either a JSON array or a JSON object. If a JSON object is posted, you can specify a custom key for each element of your choice. This can be useful to match queries up with your existing data after the request is complete.
@@ -567,7 +573,7 @@ As with forward geocoding, you can either geocode a single set of coordinates at
 This endpoint can return up to 5 possible matches ranked and ordered by an [accuracy score](#accuracy-score).
 
 <aside class="success">
-A geographic coordinate consists of latitude followed by longitude separated by a comma, for example `38.9002898,-76.9990361`
+A geographic coordinate consists of latitude followed by longitude separated by a comma, for example <code>38.9002898,-76.9990361</code>
 </aside>
 
 ## Reverse geocoding single coordinate
@@ -693,8 +699,9 @@ A single coordinate can be reverse geocoded by making a simple `GET` request to 
 
 Parameter | Description
 --------- | -----------
-q | The query (i.e. latitude/longitude pair) to geocode
-api_key | Your Geocodio API key
+`q`       | The query (i.e. latitude/longitude pair) to geocode. The coordinate pair should be comma-separated
+`api_key` | Your Geocodio API key
+`limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
 
 ## Batch reverse geocoding
 
@@ -877,7 +884,8 @@ You can batch reverse geocode up to 10,000 coordinates at a time.
 
 Parameter | Description
 --------- | -----------
-api_key | Your Geocodio API key
+`api_key` | Your Geocodio API key
+`limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
 
 # Fields
 
@@ -3038,12 +3046,35 @@ geocodio.get('1109 N Highland St, Arlington VA', {q: address}, function(err, res
 
 Parameter | Description
 --------- | -----------
-q | The query (i.e. address) to parse
-api_key | Your Geocodio API key
+`q`       | The query (i.e. address) to parse
+`api_key` | Your Geocodio API key
 
 <aside class="notice">
 Make sure to check the <a href="#address-formats">address formats</a> section for more information on the different address formats that are supported.
 </aside>
+
+# Address components
+
+All results come with an `address_components` dictionary. This is an overview of all of the possible keys that you may find.
+
+The key will not be present if there is no valid value for it. E.g. if the address does not have a `predirectional`, this key will not be present.
+
+Name               | Notes
+------------------ | ---------------------------
+number             | House number, e.g. "2100" or "250 1/2"
+predirectional     | Directional that comes before the street name, 1-2 characters, e.g. N or NE
+prefix             | Abbreviated street prefix, particularily common in the case of French addresse e.g. Rue, Boulevard, Impasse
+street             | Name of the street without number, prefix or suffix, e.g. "Main"
+suffix             | Abbreviated street suffix, e.g. St., Ave. Rd.
+postdirectional    | Directional that comes after the street name, 1-2 characters, e.g. N or NE
+secondaryunit      | Name of the secondary unit, e.g. "Apt" or "Unit". For "input" address components only
+secondarynumber    | Secondary unit number. For "input" address components only
+city               |
+county             |
+state              |
+zip                | 5-digit zip code. Not returned for Canadian results.
+country            |
+formatted_street   | Fully formatted street, including all directionals, suffix/prefix but not house number
 
 # Accuracy score
 Each geocoded result is returned with an accuracy score, which is a decimal number ranging from 0.00 to 1.00. This score is generated by the internal Geocodio engine based on how accurate the result is believed to be. The higher the score, the better the result. Results are always returned ordered by accuracy score.
