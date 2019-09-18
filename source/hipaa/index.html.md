@@ -21,7 +21,7 @@ Geocodio's RESTful API allows you to perform forward and reverse geocoding looku
 
 You can also optionally ask for data appends such as timezone, Congressional districts or similar things of that nature.
 
-The base API url is `https://api-hipaa.geocod.io/v1.3/`.
+The base API url is `https://api-hipaa.geocod.io/v1.4/`.
 
 All HTTP responses (including errors) are returned with [JSON-formatted](http://www.json.org) output.
 
@@ -40,6 +40,13 @@ Breaking changes are introduced with new API versions, allowing you to "upgrade"
 <aside class="notice">
 Breaking changes are defined as changes that remove or rename properties in the JSON output of any API endpoint. Your API client should be able to gracefully support addition of new JSON properties, as this is not considered a breaking change.
 </aside>
+
+## v1.4
+*Released on September 17th, 2019*
+
+**`census` appends:**
+
+* **Breaking:** The `census` append now supports vintage years, data is keyed by year instead of just returning a single year
 
 ## v1.3
 *Released on March 12th, 2018*
@@ -148,7 +155,7 @@ Please consult the individual library documentation to ensure that you are using
 
 ```shell
 # With curl, you can just pass the query parameter with each request
-curl "https://api-hipaa.geocod.io/v1.3/api_endpoint_here?api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.4/api_endpoint_here?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -218,7 +225,7 @@ Whenever possible, batch requests are recommended since they are significantly f
 
 ## Single address
 
-A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 <aside class="success">
 The `results` are always ordered with the most accurate locations first. It is therefore always safe to pick the first result in the list.
@@ -228,10 +235,10 @@ The `results` are always ordered with the most accurate locations first. It is t
 
 ```shell
 # Using q parameter
-curl "https://api-hipaa.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
 
 # Using individual address components
-curl "https://api-hipaa.geocod.io/v1.3/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.4/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -331,7 +338,7 @@ geocodio.get('geocode', {q: '1109 N Highland St, Arlington VA'}, function (err, 
 
 ### HTTP Request
 
-`GET https://api-hipaa.geocod.io/v1.3/geocode`
+`GET https://api-hipaa.geocod.io/v1.4/geocode`
 
 ### URL Parameters
 
@@ -367,7 +374,7 @@ api_key | Your Geocodio API key
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["1109 N Highland St, Arlington VA", "525 University Ave, Toronto, ON, Canada", "4410 S Highway 17 92, Casselberry FL", "15000 NE 24th Street, Redmond WA", "17015 Walnut Grove Drive, Morgan Hill CA"]' \
-  https://api-hipaa.geocod.io/v1.3/geocode?api_key=YOUR_API_KEY
+  https://api-hipaa.geocod.io/v1.4/geocode?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -461,12 +468,33 @@ geocodio.post('geocode', addresses, function(err, locations) {
             "formatted_street": "N Highland St",
             "city": "Arlington",
             "state": "VA",
-            "zip": "22201",
             "country": "US"
           },
-          "formatted_address": "1109 N Highland St, Arlington, VA 22201"
+          "formatted_address": "1109 N Highland St, Arlington, VA"
         },
         "results": [
+          {
+            "address_components": {
+              "number": "1109",
+              "predirectional": "N",
+              "street": "Highland",
+              "suffix": "St",
+              "formatted_street": "N Highland St",
+              "city": "Arlington",
+              "county": "Arlington County",
+              "state": "VA",
+              "zip": "22201",
+              "country": "US"
+            },
+            "formatted_address": "1109 N Highland St, Arlington, VA 22201",
+            "location": {
+              "lat": 38.886672,
+              "lng": -77.094735
+            },
+            "accuracy": 1,
+            "accuracy_type": "rooftop",
+            "source": "Arlington"
+          },
           {
             "address_components": {
               "number": "1109",
@@ -487,7 +515,45 @@ geocodio.post('geocode', addresses, function(err, locations) {
             },
             "accuracy": 1,
             "accuracy_type": "rooftop",
-            "source": "Virginia GIS Clearinghouse"
+            "source": "Virginia Geographic Information Network (VGIN)"
+          }
+        ]
+      }
+    },
+    {
+      "query": "525 University Ave, Toronto, ON, Canada",
+      "response": {
+        "input": {
+          "address_components": {
+            "number": "525",
+            "street": "University",
+            "suffix": "Ave",
+            "formatted_street": "University Ave",
+            "city": "Toronto",
+            "state": "ON",
+            "country": "CA"
+          },
+          "formatted_address": "525 University Ave, Toronto, ON"
+        },
+        "results": [
+          {
+            "address_components": {
+              "number": "525",
+              "street": "University",
+              "suffix": "Ave",
+              "formatted_street": "University Ave",
+              "city": "Toronto",
+              "state": "ON",
+              "country": "CA"
+            },
+            "formatted_address": "525 University Ave, Toronto, ON",
+            "location": {
+              "lat": 43.656258,
+              "lng": -79.388223
+            },
+            "accuracy": 1,
+            "accuracy_type": "rooftop",
+            "source": "City of Toronto Open Data"
           }
         ]
       }
@@ -507,7 +573,7 @@ You can batch geocode up to 10,000 addresses at the time. Geocoding 10,000 addre
 
 ### HTTP Request
 
-`POST https://api-hipaa.geocod.io/v1.3/geocode`
+`POST https://api-hipaa.geocod.io/v1.4/geocode`
 
 ### URL Parameters
 
@@ -580,7 +646,7 @@ A geographic coordinate consists of latitude followed by longitude separated by 
 > To reverse geocode a single coordinate:
 
 ```shell
-curl "https://api-hipaa.geocod.io/v1.3/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.4/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -688,11 +754,11 @@ geocodio.get('reverse', {q: '38.9002898,-76.9990361'}, function(err, response){
 }
 ```
 
-A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api-hipaa.geocod.io/v1.3/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api-hipaa.geocod.io/v1.4/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 ### HTTP Request
 
-`GET https://api-hipaa.geocod.io/v1.3/reverse`
+`GET https://api-hipaa.geocod.io/v1.4/reverse`
 
 ### URL Parameters
 
@@ -709,7 +775,7 @@ api_key | Your Geocodio API key
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["35.9746000,-77.9658000","32.8793700,-96.6303900","33.8337100,-117.8362320","35.4171240,-80.6784760"]' \
-  https://api-hipaa.geocod.io/v1.3/reverse?api_key=YOUR_API_KEY
+  https://api-hipaa.geocod.io/v1.4/reverse?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -876,7 +942,7 @@ You can batch reverse geocode up to 10,000 coordinates at a time.
 
 ### HTTP Request
 
-`POST https://api-hipaa.geocod.io/v1.3/reverse`
+`POST https://api-hipaa.geocod.io/v1.4/reverse`
 
 ### URL Parameters
 
@@ -889,7 +955,7 @@ api_key | Your Geocodio API key
 > To get the Congressional and state legislative districts for an address:
 
 ```shell
-curl "https://api-hipaa.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1117,27 +1183,24 @@ Geocodio allows you to request additional data with forward and reverse geocodin
 
 To request additional data, just add a `fields` parameter to your query string and set the value according to the table below. You can request multiple data fields at the same time by separating them with a comma. If the `fields` parameter has been specified, a new `fields` key is exposed with each geocoding result containing all necessary data for each field.
 
-Go ahead, <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+Go ahead, <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 Some fields are specific to the US and cannot be queried for other countries.
 
-Parameter name                | Description                                       | Coverage                    |
------------------------------ | ------------------------------------------------- | --------------------------- |-----------------------------
-cd, cd113, cd114, cd115, *or* cd116  | Congressional District & Legislator information   | US-only                     |
-stateleg                      | State Legislative District (House & Senate)       | US-only                     |
-school                        | School District (elementary/secondary or unified) | US-only                     |
-census                        | Census Block/Tract, FIPS codes & MSA/CSA codes    | US-only                     |
-acs-demographics | Demographics (Census) | US-only |
-acs-economics | Economics: Income Data (Census) | US-only |
-acs-families | Families (Census) | US-only |
-acs-housing | Housing (Census) | US-only |
-acs-social | Social: Education & Veteran Status (Census) | US-only |
-timezone                      | Timezone                                          | <i class="fa fa-globe"></i> |
- |  |  |
+Parameter name                                                                                                                 | Description                                       | Coverage                    |
+-------------------------------------------------------------------------------------------------------------------------------| ------------------------------------------------- | --------------------------- |-----------------------------
+cd, cd113, cd114, cd115, *or* cd116                                                                                            | Congressional District & Legislator information   | US-only                     |
+stateleg                                                                                                                       | State Legislative District (House & Senate)       | US-only                     |
+school                                                                                                                         | School District (elementary/secondary or unified) | US-only                     |
+census, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019 | Census Block/Tract, FIPS codes & MSA/CSA codes    | US-only                     |
+acs-demographics                                                                                                               | Demographics (Census)                             | US-only                     |
+acs-economics                                                                                                                  | Economics: Income Data (Census)                   | US-only                     |
+acs-families                                                                                                                   | Families (Census)                                 | US-only                     |
+acs-housing                                                                                                                    | Housing (Census)                                  | US-only                     |
+acs-social                                                                                                                     | Social: Education & Veteran Status (Census)       | US-only                     |
+timezone                                                                                                                       | Timezone                                          | <i class="fa fa-globe"></i> |
 
-
-
-<aside class="notice">
+<aside class="success">
 This feature is available for both single and batch geocoding requests.
 </aside>
 
@@ -1361,39 +1424,77 @@ The field will return either a *unified* school district or separate *elementary
 ...
 "fields": {
   "census": {
-    "census_year": 2015,
-    "state_fips": "51",
-    "county_fips": "51013",
-    "place_fips": "5103000",
-    "tract_code": "101801",
-    "block_code": "1004",
-    "block_group": "1",
-    "full_fips": "510131018011004",
-    "metro_micro_statistical_area": {
-      "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
-      "area_code": "47900",
-      "type": "metropolitan"
+    "2010": {
+      "census_year": 2010,
+      "state_fips": "51",
+      "county_fips": "51013",
+      "tract_code": "101801",
+      "block_code": "1004",
+      "block_group": "1",
+      "full_fips": "510131018011004",
+      "place": {
+        "name": "Arlington",
+        "fips": "5103000"
+      },
+      "metro_micro_statistical_area": {
+        "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
+        "area_code": "47900",
+        "type": "metropolitan"
+      },
+      "combined_statistical_area": {
+        "name": "Washington-Baltimore-Northern Virginia, DC-MD-VA-WV",
+        "area_code": "51548"
+      },
+      "metropolitan_division": {
+        "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
+        "area_code": "47894"
+      },
+      "source": "US Census Bureau"
     },
-    "combined_statistical_area": {
-      "name": "Washington-Baltimore-Arlington, DC-MD-VA-WV-PA",
-      "area_code": "548"
-    },
-    "metropolitan_division": {
-      "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
-      "area_code": "47894"
+    "2019": {
+      "census_year": 2019,
+      "state_fips": "51",
+      "county_fips": "51013",
+      "tract_code": "101801",
+      "block_code": "1004",
+      "block_group": "1",
+      "full_fips": "510131018011004",
+      "place": {
+        "name": "Arlington",
+        "fips": "5103000"
+      },
+      "metro_micro_statistical_area": {
+        "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
+        "area_code": "47900",
+        "type": "metropolitan"
+      },
+      "combined_statistical_area": {
+        "name": "Washington-Baltimore-Arlington, DC-MD-VA-WV-PA",
+        "area_code": "548"
+      },
+      "metropolitan_division": {
+        "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
+        "area_code": "47894"
+      },
+      "source": "US Census Bureau"
     }
   }
-}
+},
 ...
 ```
-This will append various Census-designated codes to your address:
+This will append various Census-designated codes to your address.
+
+You can request vintage data for every year back to the 2010 Census. This is done by specifying the year together with the field name, e.g. `census2015` for 2015 data. It is also possible to request multiple years at the same time, e.g. `census2010,census2019` (as shown in the example response).
+
+<aside class="warning">
+If no year is specified, the API will default to the most recent census. I.e. currently, 2019 data is returned when appending the census field.
+</aside>
 
 Field        | Description
 ------------ | -----------------------------------------------------------
 census_year  | The full year that the Census data belongs to (The U.S. Census Bureau might make slight boundary changes from year to year)
 state_fips   | The two-digit state FIPS code. A full list is available on [Wikipedia](https://en.wikipedia.org/wiki/Federal_Information_Processing_Standard_state_code)
 county_fips  | The five-digit county FIPS code. The two first digits represents the state. A full list of US counties is available on [Wikipedia](https://en.wikipedia.org/wiki/List_of_United_States_counties_and_county_equivalents)
-place_fips   | The 7-digit place FIPS code. A place is defined as a city or other census designated area. A full list of ANSI codes is available from the [U.S. Census Bureau](https://www.census.gov/geo/reference/codes/place.html)
 tract_code   | The 6-digit census tract code. This is a subdivision of a county, used for statistical purposes.
 block_code   | The full 4-digit block code that the location belongs to. This is the smallest geographical unit that the U.S. Census Bureau provides statistical data for.
 block_group  | The single-digit group number for the block
@@ -1402,6 +1503,17 @@ full_fips  | The full 15-digit fips code, consisting of the county fips, tract c
 The U.S. Census Bureau also provides a more [detailed guide](https://www.census.gov/geo/reference/gtc/gtc_ct.html) for the above terms.
 
 Using Census tracts and blocks, you can match addresses and latitude/longitude pairs with statistical data from the U.S. Census Bureau. For example, appending Census tracts and blocks to addresses enables you to utilize the [American Community Survey (ACS) data](https://www.census.gov/programs-surveys/acs/data.html).
+
+### Place
+
+This field is returned for locations that are within a census designated place. If the location is not in a census designated place, the API will return `null` instead of the individual fields.
+
+You can read more about [Census-designated places on Wikipedia](https://en.wikipedia.org/wiki/Census-designated_place).
+
+Field        | Description
+------------ | -----------------------------------------------------------
+name         | The official Census-designated name for the place
+fips         | The 7-digit place FIPS code. A place is defined as a city or other census designated area. A full list of ANSI codes is available from the [U.S. Census Bureau](https://www.census.gov/geo/reference/codes/place.html)
 
 ### Metropolitan/Micropolitan Statistical Area (MSA)
 
@@ -2964,7 +3076,7 @@ As of June 2015, address parsing and correction is included by default with all 
 > To parse an address:
 
 ```shell
-curl "https://api-hipaa.geocod.io/v1.3/parse?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.4/parse?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -3037,7 +3149,7 @@ geocodio.get('1109 N Highland St, Arlington VA', {q: address}, function(err, res
 
 ### HTTP Request
 
-`GET https://api-hipaa.geocod.io/v1.3/parse`
+`GET https://api-hipaa.geocod.io/v1.4/parse`
 
 ### URL Parameters
 
@@ -3099,33 +3211,33 @@ If a city is provided without a state, Geocodio will automatically guess and add
 
 Geocoding queries can be formatted in various ways:
 
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
 
 If a country is not specified in the query, the Geocodio engine will assume the country to be USA.
 
 Examples of Canadian lookups:
 
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
 
 ## Intersections
 
 You can also geocode intersections. Just specify the two streets that you want to geocode in your query. We support various formats:
 
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
-* <a href="https://api-hipaa.geocod.io/v1.3/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
+* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
 
 An extra `address_components_secondary` property will be exposed for intersection results, but otherwise, the schema format is the same.
 
@@ -3244,7 +3356,7 @@ If no warnings have been triggered, the `_warnings` key will not be part of the 
 var address = '1109 N Highland St, Arlington VA',
     apiKey = 'YOUR_API_KEY';
 
-$.get('https://api-hipaa.geocod.io/v1.3/geocode?q='+ encodeURIComponent(address) +'&api_key=' + encodeURIComponent(apiKey), function (response) {
+$.get('https://api-hipaa.geocod.io/v1.4/geocode?q='+ encodeURIComponent(address) +'&api_key=' + encodeURIComponent(apiKey), function (response) {
   console.log(response.results);
 });
 </script>
