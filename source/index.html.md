@@ -44,7 +44,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.4
-*Released on September 17th, 2019*
+*Released on September 18th, 2019*
 
 **`census` appends:**
 
