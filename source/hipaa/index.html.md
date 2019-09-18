@@ -75,73 +75,136 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 # Libraries
 
+> Installing the library:
+
+```shell
+# Make sure to have `curl` installed to test the API in your terminal
+```
+
+```ruby
+# Add thge following to your Gemfile:
+gem 'geocodio'
+
+# And then run:
+bundle install
+```
+
+```python
+pip install pygeocodio
+```
+
+```php
+# Install via Composer
+composer require geocodio/geocodio-library-php
+
+<?php
+require('vendor/autoload.php');
+
+# Don't fancy Composer? Not a problem!
+# Check out our sample code here: https://github.com/Geocodio/php-samples
+```
+
+```javascript
+# Install via NPM
+npm install geocodio
+```
+
+```clojure
+# Leiningen
+[rodeo "2.0.1"]
+
+# Maven
+<dependency>
+  <groupId>rodeo</groupId>
+  <artifactId>rodeo</artifactId>
+  <version>2.0.1</version>
+</dependency>
+
+# Gradle
+compile "rodeo:rodeo:2.0.1"
+```
+
 Thanks to the wonderful open-source community, we have language bindings for several languages and platforms.
 
 Basic examples for various languages are provided here. Please make sure to check out the full documentation for the individual libraries (linked below).
 
-<aside class="warning">
-Please consult the individual library documentation to ensure that you are using the <strong>api-hipaa.geocod.io</strong> hostname instead of the regular <strong>api.geocod.io</strong> hostname.
-</aside>
+
+  <aside class="warning">
+    Please consult the individual library documentation to ensure that you are using the <strong>api-hipaa.geocod.io</strong> hostname instead of the regular <strong>api-hipaa.geocod.io</strong> hostname.
+  </aside>
+
 
 <table class="table">
   <tbody><tr>
     <th>Platform</th>
     <th>Library</th>
     <th>Featured in documentation</th>
+    <th>Official library</th>
   </tr>
   <tr>
     <td><strong>PHP</strong></td>
-    <td><a href="https://github.com/Geocodio/geocodio-php" target="_blank">Geocodio/geocodio-php</a> originally by <a href="https://twitter.com/davidstanley01" target="_blank">@davidstanley01</a></td>
+    <td><a href="https://github.com/Geocodio/geocodio-library-php" target="_blank">Geocodio/geocodio-php</a></td>
+    <td><i class="fa fa-check"></i></td>
     <td><i class="fa fa-check"></i></td>
   </tr>
   <tr>
     <td><strong>Ruby</strong></td>
     <td><a href="https://github.com/alexreisner/geocoder" target="_blank">alexreisner/geocoder</a> supports Geocodio thanks to PR by <a href="https://twitter.com/dblockdotorg" target="_blank">@dblockdotorg</a></td>
     <td><i class="fa fa-minus"></i></td>
+    <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
     <td><strong>Ruby</strong></td>
     <td><a href="https://github.com/davidcelis/geocodio" target="_blank">davidcelis/geocodio</a> by <a href="https://twitter.com/davidcelis" target="_blank">@davidcelis</a></td>
     <td><i class="fa fa-check"></i></td>
+    <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
     <td><strong>Python</strong></td>
     <td><a href="https://github.com/bennylope/pygeocodio" target="_blank">bennylope/pygeocodio</a> by <a href="https://twitter.com/bennylope" target="_blank">@bennylope</a></td>
     <td><i class="fa fa-check"></i></td>
+    <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
     <td><strong>Node.js</strong></td>
     <td><a href="https://github.com/desmondmorris/node-geocodio" target="_blank">desmondmorris/node-geocodio</a> by <a href="https://twitter.com/desmondmorris" target="_blank">@desmondmorris</a></td>
     <td><i class="fa fa-check"></i></td>
+    <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
     <td><strong>Clojure</strong></td>
     <td><a href="https://github.com/jboverfelt/rodeo" target="_blank">jboverfelt/rodeo</a> by <a href="https://twitter.com/jboverfelt" target="_blank">@jboverfelt</a></td>
     <td><i class="fa fa-check"></i></td>
+    <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
     <td><strong>Perl</strong></td>
     <td><a href="https://github.com/mrallen1/WebService-Geocodio" target="_blank">mrallen1/WebService-Geocodio</a> by <a href="https://twitter.com/bytemeorg" target="_blank">@bytemeorg</a></td>
+    <td><i class="fa fa-minus"></i></td>
     <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
     <td><strong>Go</strong></td>
     <td><a href="https://github.com/stevepartridge/geocodio" target="_blank">stevepartridge/geocodio</a> by <a href="https://github.com/stevepartridge" target="_blank">stevepartridge</a></td>
     <td><i class="fa fa-minus"></i></td>
+    <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
     <td><strong>R</strong></td>
     <td><a href="https://github.com/hrbrmstr/rgeocodio" target="_blank">hrbrmstr/rgeocodio</a> by <a href="https://github.com/hrbrmstr" target="_blank">hrbrmstr</a></td>
+    <td><i class="fa fa-minus"></i></td>
     <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
     <td><strong>C#</strong></td>
     <td><a href="https://github.com/snake-plissken/cSharpGeocodio" target="_blank">snake-plissken/cSharpGeocodio</a> by <a href="https://github.com/snake-plissken" target="_blank">Frank Deasey</a></td>
     <td><i class="fa fa-minus"></i></td>
+    <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
     <td><strong>C#</strong></td>
     <td><a href="https://github.com/arex388/Arex388.Geocodio" target="_blank">arex388/Arex388.Geocodio</a> by <a href="https://github.com/arex388" target="_blank">arex388</a></td>
+    <td><i class="fa fa-minus"></i></td>
     <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
@@ -170,23 +233,31 @@ from geocodio import GeocodioClient
 client = GeocodioClient(YOUR_API_KEY)
 ```
 
+
 ```php
 <?php
-require('vendor/autoload.php');
-use Stanley\Geocodio\Client;
-
-// Create the new Client object by passing in your api key
-$client = new Client('YOUR_API_KEY', 'api-hipaa.geocod.io');
+$geocoder = new Geocodio\Geocodio();
+$geocoder->setApiKey('YOUR_API_KEY');
+$geocoder->setHostname('api-hipaa.geocod.io');
 ```
 
-```javascript
-var Geocodio = require('geocodio');
 
-var config = {
+<!--DEFAULT
+```php
+<?php
+$geocoder = new Geocodio\Geocodio();
+$geocoder->setApiKey('YOUR_API_KEY');
+```
+DEFAULT-->
+
+```javascript
+const Geocodio = require('geocodio');
+
+const config = {
     api_key: 'YOUR_API_KEY'
 };
 
-var geocodio = new Geocodio(config);
+const geocodio = new Geocodio(config);
 ```
 
 ```clojure
@@ -259,23 +330,17 @@ location = client.geocode("1109 N Highland St, Arlington VA")
 
 ```php
 <?php
-require('vendor/autoload.php');
-use Stanley\Geocodio\Client;
-
-// Create the new Client object by passing in your api key
-$client = new Client('YOUR_API_KEY', 'api-hipaa.geocod.io');
-
-$location = $client->geocode('1109 N Highland St, Arlington VA');
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA');
 ```
 
 ```javascript
-var Geocodio = require('geocodio');
+const Geocodio = require('geocodio');
 
-var config = {
+const config = {
     api_key: 'YOUR_API_KEY'
 };
 
-var geocodio = new Geocodio(config);
+const geocodio = new Geocodio(config);
 
 geocodio.get('geocode', {q: '1109 N Highland St, Arlington VA'}, function (err, response){
     if (err) throw err;
@@ -344,8 +409,9 @@ geocodio.get('geocode', {q: '1109 N Highland St, Arlington VA'}, function (err, 
 
 Parameter | Description
 --------- | -----------
-q | The query (i.e. address) to geocode
-api_key | Your Geocodio API key
+`q`       | The query (i.e. address) to geocode
+`api_key` | Your Geocodio API key
+`limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
 
 ***
 
@@ -353,14 +419,15 @@ api_key | Your Geocodio API key
 
 Instead of using the *q* parameter, you can use a combination of `street`, `city`, `state` `postal_code`, and/or `country`. This can be useful if the address is already stored as separate fields on your end.
 
-Parameter | Description
---------- | -----------
-street | E.g. 1600 Pennsylvania Ave NW
-city | E.g. Washington
-state | E.g. DC
-postal_code | E.g. 20500
-country | E.g. Canada (Default to USA)
-api_key | Your Geocodio API key
+Parameter     | Description
+------------- | -----------
+`street`      | E.g. 1600 Pennsylvania Ave NW
+`city`        | E.g. Washington
+`state`       | E.g. DC
+`postal_code` | E.g. 20500
+`country`     | E.g. Canada (Default to USA)
+`api_key`     | Your Geocodio API key
+`limit`       | Optional parameter. The maximum number of results to return. The default is no limit.
 
 <aside>
 <strong>Note:</strong> Even if the fields are supplied separately, Geocodio might in rare circumstances try to parse the street, for example, as part of the city if more relevant results can be found.
@@ -402,32 +469,26 @@ locations = client.geocode([
 
 ```php
 <?php
-require('vendor/autoload.php');
-use Stanley\Geocodio\Client;
-
-// Create the new Client object by passing in your api key
-$client = new Client('YOUR_API_KEY', 'api-hipaa.geocod.io');
-
-$data = [
+$addresses = [
   '1109 N Highland St, Arlington VA',
   '525 University Ave, Toronto, ON, Canada',
   '4410 S Highway 17 92, Casselberry FL',
   '15000 NE 24th Street, Redmond WA',
   '17015 Walnut Grove Drive, Morgan Hill CA'
 ];
-$locations = $client->geocode($data);
+$response = $geocoder->geocode($addresses);
 ```
 
 ```javascript
-var Geocodio = require('geocodio');
+const Geocodio = require('geocodio');
 
-var config = {
+const config = {
     api_key: 'YOUR_API_KEY'
 };
 
-var geocodio = new Geocodio(config);
+const geocodio = new Geocodio(config);
 
-var addresses = [
+const addresses = [
   '1109 N Highland St, Arlington VA',
   '525 University Ave, Toronto, ON, Canada',
   '4410 S Highway 17 92, Casselberry FL',
@@ -579,7 +640,8 @@ You can batch geocode up to 10,000 addresses at the time. Geocoding 10,000 addre
 
 Parameter | Description
 --------- | -----------
-api_key | Your Geocodio API key
+`api_key` | Your Geocodio API key
+`limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
 
 ### JSON array/object
 When making a batch geocoding request, you can `POST` queries as either a JSON array or a JSON object. If a JSON object is posted, you can specify a custom key for each element of your choice. This can be useful to match queries up with your existing data after the request is complete.
@@ -638,7 +700,7 @@ As with forward geocoding, you can either geocode a single set of coordinates at
 This endpoint can return up to 5 possible matches ranked and ordered by an [accuracy score](#accuracy-score).
 
 <aside class="success">
-A geographic coordinate consists of latitude followed by longitude separated by a comma, for example `38.9002898,-76.9990361`
+A geographic coordinate consists of latitude followed by longitude separated by a comma, for example <code>38.9002898,-76.9990361</code>
 </aside>
 
 ## Reverse geocoding single coordinate
@@ -667,23 +729,17 @@ addresses = client.reverse((38.9002898, -76.9990361))
 
 ```php
 <?php
-require('vendor/autoload.php');
-use Stanley\Geocodio\Client;
-
-// Create the new Client object by passing in your api key
-$client = new Client('YOUR_API_KEY', 'api-hipaa.geocod.io');
-
-$addresses = $client->reverse('38.9002898,-76.9990361');
+$response = $geocoder->reverse('38.9002898,-76.9990361');
 ```
 
 ```javascript
-var Geocodio = require('geocodio');
+const Geocodio = require('geocodio');
 
-var config = {
+const config = {
     api_key: 'YOUR_API_KEY'
 };
 
-var geocodio = new Geocodio(config);
+const geocodio = new Geocodio(config);
 
 geocodio.get('reverse', {q: '38.9002898,-76.9990361'}, function(err, response){
     if (err) throw err;
@@ -764,8 +820,9 @@ A single coordinate can be reverse geocoded by making a simple `GET` request to 
 
 Parameter | Description
 --------- | -----------
-q | The query (i.e. latitude/longitude pair) to geocode
-api_key | Your Geocodio API key
+`q`       | The query (i.e. latitude/longitude pair) to geocode. The coordinate pair should be comma-separated
+`api_key` | Your Geocodio API key
+`limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
 
 ## Batch reverse geocoding
 
@@ -801,25 +858,25 @@ address_sets = client.reverse([
 
 ```php
 <?php
-require('vendor/autoload.php');
-use Stanley\Geocodio\Client;
-
-// Create the new Client object by passing in your api key
-$client = new Client('YOUR_API_KEY', 'api-hipaa.geocod.io');
-
-$address_sets = $client->reverse(['35.9746000,-77.9658000', '32.8793700,-96.6303900', '33.8337100,-117.8362320', '35.4171240,-80.6784760']);
+$coordinates = [
+  '35.9746000,-77.9658000',
+  '32.8793700,-96.6303900',
+  '33.8337100,-117.8362320',
+  '35.4171240,-80.6784760'
+];
+$results = $geocoder->reverse($coordinates);
 ```
 
 ```javascript
-var Geocodio = require('geocodio');
+const Geocodio = require('geocodio');
 
-var config = {
+const config = {
     api_key: 'YOUR_API_KEY'
 };
 
-var geocodio = new Geocodio(config);
+const geocodio = new Geocodio(config);
 
-var coordinates = [
+const coordinates = [
   '35.9746000,-77.9658000',
   '32.8793700,96.6303900',
   '33.8337100,117.8362320',
@@ -948,7 +1005,8 @@ You can batch reverse geocode up to 10,000 coordinates at a time.
 
 Parameter | Description
 --------- | -----------
-api_key | Your Geocodio API key
+`api_key` | Your Geocodio API key
+`limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
 
 # Fields
 
@@ -976,13 +1034,7 @@ location = client.geocode("1109 N Highland St, Arlington VA", fields=["cd", "sta
 
 ```php
 <?php
-require('vendor/autoload.php');
-use Stanley\Geocodio\Client;
-
-// Create the new Client object by passing in your api key
-$client = new Client('YOUR_API_KEY', 'api-hipaa.geocod.io');
-
-$location = $client->geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg']);
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg']);
 ```
 
 ```javascript
@@ -1203,7 +1255,6 @@ timezone                                                                        
 <aside class="success">
 This feature is available for both single and batch geocoding requests.
 </aside>
-
 
 ## Congressional Districts
 ```json
@@ -3097,23 +3148,17 @@ address = client.parse('1109 N Highland St, Arlington VA')
 
 ```php
 <?php
-require('vendor/autoload.php');
-use Stanley\Geocodio\Client;
-
-// Create the new Client object by passing in your api key
-$client = new Client('YOUR_API_KEY', 'api-hipaa.geocod.io');
-
-$address = $client->parse('1109 N Highland St, Arlington VA');
+// Not available with PHP library
 ```
 
 ```javascript
-var Geocodio = require('geocodio');
+const Geocodio = require('geocodio');
 
-var config = {
+const config = {
     api_key: 'YOUR_API_KEY'
 };
 
-var geocodio = new Geocodio(config);
+const geocodio = new Geocodio(config);
 
 geocodio.get('1109 N Highland St, Arlington VA', {q: address}, function(err, response){
     if (err) throw err;
@@ -3155,12 +3200,35 @@ geocodio.get('1109 N Highland St, Arlington VA', {q: address}, function(err, res
 
 Parameter | Description
 --------- | -----------
-q | The query (i.e. address) to parse
-api_key | Your Geocodio API key
+`q`       | The query (i.e. address) to parse
+`api_key` | Your Geocodio API key
 
 <aside class="notice">
 Make sure to check the <a href="#address-formats">address formats</a> section for more information on the different address formats that are supported.
 </aside>
+
+# Address components
+
+All results come with an `address_components` dictionary. This is an overview of all of the possible keys that you may find.
+
+The key will not be present if there is no valid value for it. E.g. if the address does not have a `predirectional`, this key will not be present.
+
+Name               | Notes
+------------------ | ---------------------------
+number             | House number, e.g. "2100" or "250 1/2"
+predirectional     | Directional that comes before the street name, 1-2 characters, e.g. N or NE
+prefix             | Abbreviated street prefix, particularily common in the case of French addresse e.g. Rue, Boulevard, Impasse
+street             | Name of the street without number, prefix or suffix, e.g. "Main"
+suffix             | Abbreviated street suffix, e.g. St., Ave. Rd.
+postdirectional    | Directional that comes after the street name, 1-2 characters, e.g. N or NE
+secondaryunit      | Name of the secondary unit, e.g. "Apt" or "Unit". For "input" address components only
+secondarynumber    | Secondary unit number. For "input" address components only
+city               |
+county             |
+state              |
+zip                | 5-digit zip code. Not returned for Canadian results.
+country            |
+formatted_street   | Fully formatted street, including all directionals, suffix/prefix but not house number
 
 # Accuracy score
 Each geocoded result is returned with an accuracy score, which is a decimal number ranging from 0.00 to 1.00. This score is generated by the internal Geocodio engine based on how accurate the result is believed to be. The higher the score, the better the result. Results are always returned ordered by accuracy score.

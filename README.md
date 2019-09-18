@@ -2,6 +2,27 @@
 
 Built on [Slate](https://github.com/lord/slate).
 
+Contributing
+------------
+
+Please edit `source.html.md` for any changes.
+
+The `compile.sh` script takes changes from `source.html.md` and compiles it into `source/index.html.md` and `source/hipaa/index.html.md`.
+
+Encapsulat sections like so:
+
+```
+<!--HIPAA
+This content will only be displayed in the Geocodio+HIPAA documentation
+HIPAA-->
+```
+
+```
+<!--DEFAULT
+This content will only be displayed in the non Geocodio+HIPAA documentation
+DEFAULT-->
+```
+
 ---
 
 <p align="center">

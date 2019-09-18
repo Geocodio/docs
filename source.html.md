@@ -242,13 +242,13 @@ $geocoder->setHostname('api-hipaa.geocod.io');
 ```
 HIPAA-->
 
-
+<!--DEFAULT
 ```php
 <?php
 $geocoder = new Geocodio\Geocodio();
 $geocoder->setApiKey('YOUR_API_KEY');
 ```
-
+DEFAULT-->
 
 ```javascript
 const Geocodio = require('geocodio');
