@@ -75,6 +75,97 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 # Libraries
 
+## Official libraries
+
+These libraries are officially written and maintained by Geocodio. Have an issue? We will in most cases be able to help via online chat or email.
+
+GitHub pull requests and issues are also more than welcome!
+
+<table class="table">
+  <tbody><tr>
+    <th>Platform</th>
+    <th>Library</th>
+  </tr>
+  <tr>
+    <td><strong>PHP</strong></td>
+    <td><a href="https://github.com/Geocodio/geocodio-library-php" target="_blank">Geocodio/geocodio-library-php</a></td>
+  </tr>
+  <tr>
+    <td><strong>Node.js</strong></td>
+    <td><a href="https://github.com/Geocodio/geocodio-library-node" target="_blank">Geocodio/geocodio-library-node</a></td>
+  </tr>
+</tbody></table>
+
+## Third-party libraries
+
+Thanks to the wonderful open-source community, we have language bindings for several additional languages and platforms.
+
+We will do our best to assist in online chat or email, but may not be able to help in all cases with these libraries.
+
+Some of the libraries are featured here with basic examples, but please make sure to check out the full documentation for the individual libraries (linked below).
+
+<!--HIPAA
+  <aside class="warning">
+    Please consult the individual library documentation to ensure that you are using the <strong>api-hipaa.geocod.io</strong> hostname instead of the regular <strong>api.geocod.io</strong> hostname.
+  </aside>
+HIPAA-->
+
+<table class="table">
+  <tbody><tr>
+    <th>Platform</th>
+    <th>Library</th>
+    <th>Featured in documentation</th>
+  </tr>
+  <tr>
+    <td><strong>Ruby</strong></td>
+    <td><a href="https://github.com/alexreisner/geocoder" target="_blank">alexreisner/geocoder</a> supports Geocodio thanks to PR by <a href="https://twitter.com/dblockdotorg" target="_blank">@dblockdotorg</a></td>
+    <td><i class="fa fa-minus"></i></td>
+  </tr>
+  <tr>
+    <td><strong>Ruby</strong></td>
+    <td><a href="https://github.com/davidcelis/geocodio" target="_blank">davidcelis/geocodio</a> by <a href="https://twitter.com/davidcelis" target="_blank">@davidcelis</a></td>
+    <td><i class="fa fa-check"></i></td>
+  </tr>
+  <tr>
+    <td><strong>Python</strong></td>
+    <td><a href="https://github.com/bennylope/pygeocodio" target="_blank">bennylope/pygeocodio</a> by <a href="https://twitter.com/bennylope" target="_blank">@bennylope</a></td>
+    <td><i class="fa fa-check"></i></td>
+  </tr>
+  <tr>
+    <td><strong>Clojure</strong></td>
+    <td><a href="https://github.com/jboverfelt/rodeo" target="_blank">jboverfelt/rodeo</a> by <a href="https://twitter.com/jboverfelt" target="_blank">@jboverfelt</a></td>
+    <td><i class="fa fa-check"></i></td>
+  </tr>
+  <tr>
+    <td><strong>Perl</strong></td>
+    <td><a href="https://github.com/mrallen1/WebService-Geocodio" target="_blank">mrallen1/WebService-Geocodio</a> by <a href="https://twitter.com/bytemeorg" target="_blank">@bytemeorg</a></td>
+    <td><i class="fa fa-minus"></i></td>
+  </tr>
+  <tr>
+    <td><strong>Go</strong></td>
+    <td><a href="https://github.com/stevepartridge/geocodio" target="_blank">stevepartridge/geocodio</a> by <a href="https://github.com/stevepartridge" target="_blank">stevepartridge</a></td>
+    <td><i class="fa fa-minus"></i></td>
+  </tr>
+  <tr>
+    <td><strong>R</strong></td>
+    <td><a href="https://github.com/hrbrmstr/rgeocodio" target="_blank">hrbrmstr/rgeocodio</a> by <a href="https://github.com/hrbrmstr" target="_blank">hrbrmstr</a></td>
+    <td><i class="fa fa-minus"></i></td>
+  </tr>
+  <tr>
+    <td><strong>C#</strong></td>
+    <td><a href="https://github.com/snake-plissken/cSharpGeocodio" target="_blank">snake-plissken/cSharpGeocodio</a> by <a href="https://github.com/snake-plissken" target="_blank">Frank Deasey</a></td>
+    <td><i class="fa fa-minus"></i></td>
+  </tr>
+  <tr>
+    <td><strong>C#</strong></td>
+    <td><a href="https://github.com/arex388/Arex388.Geocodio" target="_blank">arex388/Arex388.Geocodio</a> by <a href="https://github.com/arex388" target="_blank">arex388</a></td>
+    <td><i class="fa fa-minus"></i></td>
+  </tr>
+  <tr>
+    <td colspan="3">Are you the author of an awesome library that you would like to get featured here? Just <a href="mailto:hello@geocod.io">let us know</a> or <a href="https://github.com/geocodio/docs" target="_blank">create a pull request</a>.</td>
+  </tr>
+</tbody></table>
+
 > Installing the library:
 
 ```shell
@@ -105,8 +196,11 @@ require('vendor/autoload.php');
 ```
 
 ```javascript
-# Install via NPM
-npm install geocodio
+# Install via npm
+$ npm install --save geocodio-library-node
+
+# Install via Yarn
+$ yarn add geocodio-library-node
 ```
 
 ```clojure
@@ -123,94 +217,6 @@ npm install geocodio
 # Gradle
 compile "rodeo:rodeo:2.0.1"
 ```
-
-Thanks to the wonderful open-source community, we have language bindings for several languages and platforms.
-
-Basic examples for various languages are provided here. Please make sure to check out the full documentation for the individual libraries (linked below).
-
-<!--HIPAA
-  <aside class="warning">
-    Please consult the individual library documentation to ensure that you are using the <strong>api-hipaa.geocod.io</strong> hostname instead of the regular <strong>api.geocod.io</strong> hostname.
-  </aside>
-HIPAA-->
-
-<table class="table">
-  <tbody><tr>
-    <th>Platform</th>
-    <th>Library</th>
-    <th>Featured in documentation</th>
-    <th>Official library</th>
-  </tr>
-  <tr>
-    <td><strong>PHP</strong></td>
-    <td><a href="https://github.com/Geocodio/geocodio-library-php" target="_blank">Geocodio/geocodio-php</a></td>
-    <td><i class="fa fa-check"></i></td>
-    <td><i class="fa fa-check"></i></td>
-  </tr>
-  <tr>
-    <td><strong>Ruby</strong></td>
-    <td><a href="https://github.com/alexreisner/geocoder" target="_blank">alexreisner/geocoder</a> supports Geocodio thanks to PR by <a href="https://twitter.com/dblockdotorg" target="_blank">@dblockdotorg</a></td>
-    <td><i class="fa fa-minus"></i></td>
-    <td><i class="fa fa-minus"></i></td>
-  </tr>
-  <tr>
-    <td><strong>Ruby</strong></td>
-    <td><a href="https://github.com/davidcelis/geocodio" target="_blank">davidcelis/geocodio</a> by <a href="https://twitter.com/davidcelis" target="_blank">@davidcelis</a></td>
-    <td><i class="fa fa-check"></i></td>
-    <td><i class="fa fa-minus"></i></td>
-  </tr>
-  <tr>
-    <td><strong>Python</strong></td>
-    <td><a href="https://github.com/bennylope/pygeocodio" target="_blank">bennylope/pygeocodio</a> by <a href="https://twitter.com/bennylope" target="_blank">@bennylope</a></td>
-    <td><i class="fa fa-check"></i></td>
-    <td><i class="fa fa-minus"></i></td>
-  </tr>
-  <tr>
-    <td><strong>Node.js</strong></td>
-    <td><a href="https://github.com/desmondmorris/node-geocodio" target="_blank">desmondmorris/node-geocodio</a> by <a href="https://twitter.com/desmondmorris" target="_blank">@desmondmorris</a></td>
-    <td><i class="fa fa-check"></i></td>
-    <td><i class="fa fa-minus"></i></td>
-  </tr>
-  <tr>
-    <td><strong>Clojure</strong></td>
-    <td><a href="https://github.com/jboverfelt/rodeo" target="_blank">jboverfelt/rodeo</a> by <a href="https://twitter.com/jboverfelt" target="_blank">@jboverfelt</a></td>
-    <td><i class="fa fa-check"></i></td>
-    <td><i class="fa fa-minus"></i></td>
-  </tr>
-  <tr>
-    <td><strong>Perl</strong></td>
-    <td><a href="https://github.com/mrallen1/WebService-Geocodio" target="_blank">mrallen1/WebService-Geocodio</a> by <a href="https://twitter.com/bytemeorg" target="_blank">@bytemeorg</a></td>
-    <td><i class="fa fa-minus"></i></td>
-    <td><i class="fa fa-minus"></i></td>
-  </tr>
-  <tr>
-    <td><strong>Go</strong></td>
-    <td><a href="https://github.com/stevepartridge/geocodio" target="_blank">stevepartridge/geocodio</a> by <a href="https://github.com/stevepartridge" target="_blank">stevepartridge</a></td>
-    <td><i class="fa fa-minus"></i></td>
-    <td><i class="fa fa-minus"></i></td>
-  </tr>
-  <tr>
-    <td><strong>R</strong></td>
-    <td><a href="https://github.com/hrbrmstr/rgeocodio" target="_blank">hrbrmstr/rgeocodio</a> by <a href="https://github.com/hrbrmstr" target="_blank">hrbrmstr</a></td>
-    <td><i class="fa fa-minus"></i></td>
-    <td><i class="fa fa-minus"></i></td>
-  </tr>
-  <tr>
-    <td><strong>C#</strong></td>
-    <td><a href="https://github.com/snake-plissken/cSharpGeocodio" target="_blank">snake-plissken/cSharpGeocodio</a> by <a href="https://github.com/snake-plissken" target="_blank">Frank Deasey</a></td>
-    <td><i class="fa fa-minus"></i></td>
-    <td><i class="fa fa-minus"></i></td>
-  </tr>
-  <tr>
-    <td><strong>C#</strong></td>
-    <td><a href="https://github.com/arex388/Arex388.Geocodio" target="_blank">arex388/Arex388.Geocodio</a> by <a href="https://github.com/arex388" target="_blank">arex388</a></td>
-    <td><i class="fa fa-minus"></i></td>
-    <td><i class="fa fa-minus"></i></td>
-  </tr>
-  <tr>
-    <td colspan="3">Are you the author of an awesome library that you would like to get featured here? Just <a href="mailto:hello@geocod.io">let us know</a> or <a href="https://github.com/geocodio/docs" target="_blank">create a pull request</a>.</td>
-  </tr>
-</tbody></table>
 
 # Authentication
 
@@ -250,15 +256,25 @@ $geocoder->setApiKey('YOUR_API_KEY');
 ```
 
 
+
 ```javascript
-const Geocodio = require('geocodio');
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
 
-const config = {
-    api_key: 'YOUR_API_KEY'
-};
-
-const geocodio = new Geocodio(config);
+// You can also leave out the parameter and define the "GEOCODIO_API_KEY" environment variable instead
 ```
+
+
+<!--HIPAA
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY', 'api-hipaa.geocod.io');
+
+// You can also leave out the parameters and define the following environment variables instead:
+// GEOCODIO_API_KEY=YOUR_API_KEY
+// GEOCODIO_HOSTNAME=api-hipaa.geocod.io
+```
+HIPAA-->
 
 ```clojure
 (ns my.ns
@@ -334,19 +350,17 @@ $response = $geocoder->geocode('1109 N Highland St, Arlington VA');
 ```
 
 ```javascript
-const Geocodio = require('geocodio');
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
 
-const config = {
-    api_key: 'YOUR_API_KEY'
-};
-
-const geocodio = new Geocodio(config);
-
-geocodio.get('geocode', {q: '1109 N Highland St, Arlington VA'}, function (err, response){
-    if (err) throw err;
-
+geocoder.geocode('1109 N Highland St, Arlington VA')
+  .then(response => {
     console.log(response);
-});
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
 ```
 
 ```clojure
@@ -480,13 +494,8 @@ $response = $geocoder->geocode($addresses);
 ```
 
 ```javascript
-const Geocodio = require('geocodio');
-
-const config = {
-    api_key: 'YOUR_API_KEY'
-};
-
-const geocodio = new Geocodio(config);
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
 
 const addresses = [
   '1109 N Highland St, Arlington VA',
@@ -496,11 +505,14 @@ const addresses = [
   '17015 Walnut Grove Drive, Morgan Hill CA'
 ];
 
-geocodio.post('geocode', addresses, function(err, locations) {
-    if (err) throw err;
-
-    console.log(locations);
-});
+geocoder.geocode(addresses)
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
 ```
 
 ```clojure
@@ -733,20 +745,17 @@ $response = $geocoder->reverse('38.9002898,-76.9990361');
 ```
 
 ```javascript
-const Geocodio = require('geocodio');
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
 
-const config = {
-    api_key: 'YOUR_API_KEY'
-};
-
-const geocodio = new Geocodio(config);
-
-geocodio.get('reverse', {q: '38.9002898,-76.9990361'}, function(err, response){
-    if (err) throw err;
-
+geocoder.reverse('38.9002898,-76.9990361')
+  .then(response => {
     console.log(response);
-});
-
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
 ```
 
 ```clojure
@@ -868,13 +877,8 @@ $results = $geocoder->reverse($coordinates);
 ```
 
 ```javascript
-const Geocodio = require('geocodio');
-
-const config = {
-    api_key: 'YOUR_API_KEY'
-};
-
-const geocodio = new Geocodio(config);
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
 
 const coordinates = [
   '35.9746000,-77.9658000',
@@ -883,11 +887,14 @@ const coordinates = [
   '35.4171240,-80.6784760'
 ];
 
-geocodio.post('reverse', coordinates, function(err, response){
-    if (err) throw err;
-
+geocoder.reverse(coordinates)
+  .then(response => {
     console.log(response);
-});
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
 ```
 
 ```clojure
@@ -1038,8 +1045,17 @@ $response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['cd', 'state
 ```
 
 ```javascript
-// There is no Node.js support for fields yet. We invite you to contribute
-// by creating a pull request on GitHub
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
 ```
 
 ```clojure
@@ -3148,23 +3164,11 @@ address = client.parse('1109 N Highland St, Arlington VA')
 
 ```php
 <?php
-// Not available with PHP library
+// Not available in the PHP library
 ```
 
 ```javascript
-const Geocodio = require('geocodio');
-
-const config = {
-    api_key: 'YOUR_API_KEY'
-};
-
-const geocodio = new Geocodio(config);
-
-geocodio.get('1109 N Highland St, Arlington VA', {q: address}, function(err, response){
-    if (err) throw err;
-
-    console.log(response);
-});
+// Not available in the Node library
 ```
 
 ```clojure
