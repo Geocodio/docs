@@ -1017,7 +1017,7 @@ Parameter | Description
 
 # Fields
 
-> To get the Congressional and state legislative districts for an address:
+> To get e.g. the Congressional and state legislative districts for an address:
 
 ```shell
 curl "https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
@@ -1255,24 +1255,27 @@ Go ahead, <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St
 
 Some fields are specific to the US and cannot be queried for other countries.
 
-Parameter name                                                                                                                 | Description                                       | Coverage                    |
--------------------------------------------------------------------------------------------------------------------------------| ------------------------------------------------- | --------------------------- |-----------------------------
-cd, cd113, cd114, cd115, *or* cd116                                                                                            | Congressional District & Legislator information   | US-only                     |
-stateleg                                                                                                                       | State Legislative District (House & Senate)       | US-only                     |
-school                                                                                                                         | School District (elementary/secondary or unified) | US-only                     |
-census, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019 | Census Block/Tract, FIPS codes & MSA/CSA codes    | US-only                     |
-acs-demographics                                                                                                               | Demographics (Census)                             | US-only                     |
-acs-economics                                                                                                                  | Economics: Income Data (Census)                   | US-only                     |
-acs-families                                                                                                                   | Families (Census)                                 | US-only                     |
-acs-housing                                                                                                                    | Housing (Census)                                  | US-only                     |
-acs-social                                                                                                                     | Social: Education & Veteran Status (Census)       | US-only                     |
-timezone                                                                                                                       | Timezone                                          | <i class="fa fa-globe"></i> |
+Parameter name                                                                                                                 | Description                                            | Coverage                    |
+-------------------------------------------------------------------------------------------------------------------------------| ------------------------------------------------------ | --------------------------- |
+[cd, cd113, cd114, cd115, *or* cd116](#congressional-districts)                                                                                            | Congressional District & Legislator information        | US-only                     |
+[stateleg](#state-legislative-districts)                                                                                                                       | State Legislative District (House & Senate)            | US-only                     |
+[school](#school-districts)                                                                                                                         | School District (elementary/secondary or unified)      | US-only                     |
+[census, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019](#census-block-tract-fips-codes-amp-msa-csa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes         | US-only                     |
+[acs-demographics](#demographics-census)                                                                                                               | Demographics (Census)                                  | US-only                     |
+[acs-economics](#economics-income-data-census)                                                                                                                  | Economics: Income Data (Census)                        | US-only                     |
+[acs-families](#families-census)                                                                                                                   | Families (Census)                                      | US-only                     |
+[acs-housing](#housing-census)                                                                                                                    | Housing (Census)                                       | US-only                     |
+[acs-social](#social-education-amp-veteran-status-census)                                                                                                                     | Social: Education & Veteran Status (Census)            | US-only                     |
+[riding](#riding-canadian-federal-electoral-district)                                                                                                                         | Riding: Canadian Federal Electoral District            | Canada-only                 |
+[statcan](#canadian-statistical-boundaries-from-statistics-canada)                                                                                                                        | Canadian statistical boundaries from Statistics Canada | Canada-only                 |
+[timezone](#timezone)                                                                                                                       | Timezone                                               | <i class="fa fa-globe"></i> |
 
 <aside class="success">
 This feature is available for both single and batch geocoding requests.
 </aside>
 
 ## Congressional Districts
+### Field name: `cd`, `cd113`, `cd114`, `cd115`, *or* `cd116`
 ```json
 ...
 "fields": {
@@ -1401,7 +1404,7 @@ This feature is available for both single and batch geocoding requests.
 },
 ...
 ```
-You can retrieve the Congressional district for an address or coordinate pair using `cd`, `cd113`, `cd114`, `cd115` or `cd116` in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
+You can retrieve the Congressional district for an address or coordinate pair using any one of the valid parameter names in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
 
 The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd116`) is specified, we will also return detailed information about the current legislators.
 
@@ -1420,7 +1423,7 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 </aside>
 
 ## State Legislative Districts
-
+### Field name: `stateleg`
 ```json
 ...
 "fields": {
@@ -1442,6 +1445,7 @@ You can retrieve the state legislative districts for an address or coordinate us
 The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district number for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington, DC or Nebraska), only the `senate` key is returned.
 
 ## School Districts
+### Field name: `school`
 > Unified school district example
 
 ```json
@@ -1487,6 +1491,7 @@ You can retrieve the school district for an address or coordinate using `school`
 The field will return either a *unified* school district or separate *elementary* and *secondary* fields depending on the area. Each school district is returned with its full name, the LEA (Local Education Agency) code, as well as the grades supported. Kindergarden is abbreviated as *KG* and pre-kindergarten is abbreviated as *PK*.
 
 ## Census Block/Tract, FIPS codes & MSA/CSA codes
+### Field name: `census`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`
 ```json
 ...
 "fields": {
@@ -1686,8 +1691,7 @@ For each individual result, we return the [official ACS table id](https://www.ce
 The universe can be values such as `Households`, `Population 15 Years and Older`, `Total population`, etc.
 
 ## Demographics (Census)
-
-> `acs-demographics` field append:
+## Field name: `acs-demographics`
 
 ```json
 ...
@@ -2109,8 +2113,7 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
 </aside>
 
 ## Economics: Income Data (Census)
-
-> `acs-economics` field append:
+## Field name: `acs-economics`
 
 ```json
 ...
@@ -2244,8 +2247,7 @@ The data returned includes the following data points. For each data point, the d
   * less than $10,000; $10,000-$14,999; $15,000-$19,999; $20,000-$24,999; $25,000-$29,999; $30,000-$34,999; $40,000-$44,999; $45,000-$49,999; $50,000-$59,000; $60,000-$74,999; $75,000-$99,999; $100,000-$124,999; $125,000-$149,000; $150,000-$199,999; $200,000 or more
 
 ## Families (Census)
-
-> `acs-families` field append:
+## Field name: `acs-families`
 
 ```json
 ...
@@ -2456,8 +2458,7 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
 </aside>
 
 ## Housing (Census)
-
-> `acs-housing` field append:
+## Field name: `acs-housing`
 
 ```json
 ...
@@ -2739,8 +2740,7 @@ Data points returned are:
   * less than $10,000; $10,000-$14,999; $15,000-$19,999; $20,000-$29,000; $30,000-$34,999; $40,000-$49,999; $50,000-$59,000; $60,000-$69,999; $70,000-$79,000; $80,000-$89,999; $90,000-$99,999; $100,000-$124,999; $125,000-$149,000; $150,000-$174,999; $175,000-$199,999; $200,000-$249,000; $250,000-$299,000; $300,000-$399,999; $400,000-$499,000; $500,000-$749,000; $750,000-$999,999; $1,000,000-$1,499,999; $1,500,000-$1,999,999; $2,000,000 or more
 
 ## Social: Education & Veteran Status (Census)
-
-> `acs-social` field append:
+## Field name: `acs-social`
 
 ```json
 ...
@@ -3100,7 +3100,105 @@ The data returned includes the following data points. For each data point, the d
     * Between Korean War and World War II only
     * Pre-World War II only
 
+## Riding: Canadian Federal Electoral District
+### Field name: `riding`
+> Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
+
+```json
+...
+"fields": {
+  "riding": {
+    "code": "24068",
+    "name_french": "Saint-Laurent",
+    "name_english": "Saint-Laurent"
+   },
+}
+...
+```
+Look up the [riding](https://en.wikipedia.org/wiki/List_of_Canadian_federal_electoral_districts) for the specified address in Canada. The riding code is returned along with the French and English name for the riding.
+
+In some cases the French and English names will be the same.
+
+## Canadian statistical boundaries from Statistics Canada
+### Field name: `statcan`
+
+> Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
+
+```json
+...
+"fields": {
+  "statcan": {
+    "division": {
+      "id": "2466",
+      "name": "Montréal",
+      "type": "TÉ",
+      "type_description": "Territoire équivalent"
+    },
+    "consolidated_subdivision": {
+      "id": "2466023",
+      "name": "Montréal"
+    },
+    "subdivision": {
+      "id": "2466023",
+      "name": "Montréal",
+      "type": "V",
+      "type_description": "Ville"
+    },
+    "economic_region": "Montréal",
+    "statistical_area": {
+      "code": "462",
+      "code_description": "CMA or CA",
+      "type": "1",
+      "type_description": "Census subdivision within census metropolitan area"
+    },
+    "cma_ca": {
+      "id": "462",
+      "name": "Montréal",
+      "type": "B",
+      "type_description": "Census metropolitan area (CMA)"
+    },
+    "tract": "4620415.04",
+    "census_year": 2016
+  }
+}
+...
+```
+Retrieve the [Statistics Canada boundaries](https://en.wikipedia.org/wiki/Census_geographic_units_of_Canada) that the given query is within.
+These boundaries can be matched with data from [Statistics Canada](https://www.statcan.gc.ca) to get demographic information about the area the query is within.
+
+The following geographies are returned:
+
+### `division`: Census division
+One of the largest Census designated geographies. The `id`, `name` and `type` code for the query is returned. The `type_description` contains values such as "District", "County", "Region", among others.
+
+### `consolidated_subdivision`: Census Consolidated Subdivision
+A geographic unit that is in-between divisions and subdivisions in size. It is a combination of adjacent census subdivisions.
+
+The `id` and `name` are returned for consolidated subdivisions
+
+### `subdivison`: Census Subdivision
+This generally corresponds to a municipality.
+
+The subdivision `id` is returned along with it's `name` and `type` code. The `type_description` is an explanation of the `type code` and can contain values such as "Town", "Village", "Municipality" or "City" among many others.
+
+### `economic_region`: Economic region name
+Economic regions are mostly groupings of complete census divisions, created to allow for analysis of regional economic activity.
+
+### `statistical_area`: Statistical Area
+Statistical areas group census subdivisions based on what type of CMA/CA are they are part of.
+
+### `cma_ca`: Census Metropolitan Area or Census Agglomeration
+
+The Census Metropolitan Area or Census Agglomeration that the query is part of. `type_description` can be either of the following: "Census metropolitan area (CMA)", "Census agglomeration (CA) that is not tracted", "Census agglomeration (CA) that is tracted".
+
+### `tract`: Census Tract Code
+
+The full Canadian census tract code that this query is part of.
+
+> You can read more about the various code names from the [Statistics Canada technical specifications page](https://www150.statcan.gc.ca/n1/pub/92-151-g/2011001/tech-eng.htm).
+
 ## Timezone
+### Field name: `timezone`
 ```json
 ...
 "fields": {
