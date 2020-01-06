@@ -3166,7 +3166,46 @@ In some cases the French and English names will be the same.
 Retrieve the [Statistics Canada boundaries](https://en.wikipedia.org/wiki/Census_geographic_units_of_Canada) that the given query is within.
 These boundaries can be matched with data from [Statistics Canada](https://www.statcan.gc.ca) to get demographic information about the area the query is within.
 
-The following geographies are returned:
+If a given geography does not apply to the query, `null` will be returned instead.
+
+> Example for "26 Johnson Avenue, Teslin, YT Y0A 1B0, Canada"
+
+```json
+...
+"fields": {
+  "statcan": {
+    "division": {
+      "id": "6001",
+      "name": "Yukon",
+      "type": "TER",
+      "type_description": "Territory / Territoire"
+    },
+    "consolidated_subdivision": {
+      "id": "6001045",
+      "name": "Yukon, Unorganized"
+    },
+    "subdivision": {
+      "id": "6001006",
+      "name": "Teslin",
+      "type": "VL",
+      "type_description": "Village"
+    },
+    "economic_region": "Yukon",
+    "statistical_area": {
+      "code": "000",
+      "code_description": "Territories, classification is not applicable",
+      "type": "8",
+      "type_description": "Census subdivision within a territory"
+    },
+    "cma_ca": null,
+    "tract": null,
+    "census_year": 2016
+  }
+}
+...
+```
+
+The following geographies may be found:
 
 ### `division`: Census division
 One of the largest Census designated geographies. The `id`, `name` and `type` code for the query is returned. The `type_description` contains values such as "District", "County", "Region", among others.
