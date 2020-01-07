@@ -1275,7 +1275,8 @@ This feature is available for both single and batch geocoding requests.
 </aside>
 
 ## Congressional Districts
-#### Field name: `cd`, `cd113`, `cd114`, `cd115`, *or* `cd116`
+**Field name: `cd`, `cd113`, `cd114`, `cd115`, *or* `cd116`**
+
 ```json
 ...
 "fields": {
@@ -1423,7 +1424,8 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 </aside>
 
 ## State Legislative Districts
-#### Field name: `stateleg`
+**Field name: `stateleg`**
+
 ```json
 ...
 "fields": {
@@ -1445,7 +1447,8 @@ You can retrieve the state legislative districts for an address or coordinate us
 The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district number for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington, DC or Nebraska), only the `senate` key is returned.
 
 ## School Districts
-#### Field name: `school`
+**Field name: `school`**
+
 > Unified school district example
 
 ```json
@@ -1491,7 +1494,8 @@ You can retrieve the school district for an address or coordinate using `school`
 The field will return either a *unified* school district or separate *elementary* and *secondary* fields depending on the area. Each school district is returned with its full name, the LEA (Local Education Agency) code, as well as the grades supported. Kindergarden is abbreviated as *KG* and pre-kindergarten is abbreviated as *PK*.
 
 ## Census Block/Tract, FIPS codes & MSA/CSA codes
-#### Field name: `census`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`
+**Field name: `census`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`**
+
 ```json
 ...
 "fields": {
@@ -1554,7 +1558,11 @@ The field will return either a *unified* school district or separate *elementary
 },
 ...
 ```
-This will append various Census-designated codes to your address.
+This will append various US Census-designated codes to your address.
+
+<aside class="notice">
+Looking for Canadian Census data? See the <a href="#canadian-statistical-boundaries-from-statistics-canada"><code>statcan</code></a> field append.
+</aside>
 
 You can request vintage data for every year back to the 2010 Census. This is done by specifying the year together with the field name, e.g. `census2015` for 2015 data. It is also possible to request multiple years at the same time, e.g. `census2010,census2019` (as shown in the example response).
 
@@ -1691,7 +1699,7 @@ For each individual result, we return the [official ACS table id](https://www.ce
 The universe can be values such as `Households`, `Population 15 Years and Older`, `Total population`, etc.
 
 ## Demographics (Census)
-## Field name: `acs-demographics`
+**Field name: `acs-demographics`**
 
 ```json
 ...
@@ -2113,7 +2121,7 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
 </aside>
 
 ## Economics: Income Data (Census)
-## Field name: `acs-economics`
+**Field name: `acs-economics`**
 
 ```json
 ...
@@ -2247,7 +2255,7 @@ The data returned includes the following data points. For each data point, the d
   * less than $10,000; $10,000-$14,999; $15,000-$19,999; $20,000-$24,999; $25,000-$29,999; $30,000-$34,999; $40,000-$44,999; $45,000-$49,999; $50,000-$59,000; $60,000-$74,999; $75,000-$99,999; $100,000-$124,999; $125,000-$149,000; $150,000-$199,999; $200,000 or more
 
 ## Families (Census)
-## Field name: `acs-families`
+**Field name: `acs-families`**
 
 ```json
 ...
@@ -2458,7 +2466,7 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
 </aside>
 
 ## Housing (Census)
-## Field name: `acs-housing`
+**Field name: `acs-housing`**
 
 ```json
 ...
@@ -2740,7 +2748,7 @@ Data points returned are:
   * less than $10,000; $10,000-$14,999; $15,000-$19,999; $20,000-$29,000; $30,000-$34,999; $40,000-$49,999; $50,000-$59,000; $60,000-$69,999; $70,000-$79,000; $80,000-$89,999; $90,000-$99,999; $100,000-$124,999; $125,000-$149,000; $150,000-$174,999; $175,000-$199,999; $200,000-$249,000; $250,000-$299,000; $300,000-$399,999; $400,000-$499,000; $500,000-$749,000; $750,000-$999,999; $1,000,000-$1,499,999; $1,500,000-$1,999,999; $2,000,000 or more
 
 ## Social: Education & Veteran Status (Census)
-## Field name: `acs-social`
+**Field name: `acs-social`**
 
 ```json
 ...
@@ -3101,7 +3109,8 @@ The data returned includes the following data points. For each data point, the d
     * Pre-World War II only
 
 ## Riding: Canadian Federal Electoral District
-#### Field name: `riding`
+**Field name: `riding`**
+
 > Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
 
 ```json
@@ -3120,7 +3129,8 @@ Look up the [riding](https://en.wikipedia.org/wiki/List_of_Canadian_federal_elec
 In some cases the French and English names will be the same.
 
 ## Canadian statistical boundaries from Statistics Canada
-#### Field name: `statcan`
+**Field name: `statcan`**
+
 
 > Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
 
@@ -3165,6 +3175,10 @@ In some cases the French and English names will be the same.
 ```
 Retrieve the [Statistics Canada boundaries](https://en.wikipedia.org/wiki/Census_geographic_units_of_Canada) that the given query is within.
 These boundaries can be matched with data from [Statistics Canada](https://www.statcan.gc.ca) to get demographic information about the area the query is within.
+
+<aside class="notice">
+Looking for US Census data? See the <a href="#census-block-tract-fips-codes-amp-msa-csa-codes"><code>census</code></a> field append.
+</aside>
 
 If a given geography does not apply to the query, `null` will be returned instead.
 
@@ -3237,7 +3251,8 @@ The full Canadian census tract code that this query is part of.
 > You can read more about the various code names from the [Statistics Canada technical specifications page](https://www150.statcan.gc.ca/n1/pub/92-151-g/2011001/tech-eng.htm).
 
 ## Timezone
-#### Field name: `timezone`
+**Field name: `timezone`**
+
 ```json
 ...
 "fields": {
