@@ -1275,7 +1275,7 @@ This feature is available for both single and batch geocoding requests.
 </aside>
 
 ## Congressional Districts
-### Field name: `cd`, `cd113`, `cd114`, `cd115`, *or* `cd116`
+#### Field name: `cd`, `cd113`, `cd114`, `cd115`, *or* `cd116`
 ```json
 ...
 "fields": {
@@ -1423,7 +1423,7 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 </aside>
 
 ## State Legislative Districts
-### Field name: `stateleg`
+#### Field name: `stateleg`
 ```json
 ...
 "fields": {
@@ -1445,7 +1445,7 @@ You can retrieve the state legislative districts for an address or coordinate us
 The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district number for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington, DC or Nebraska), only the `senate` key is returned.
 
 ## School Districts
-### Field name: `school`
+#### Field name: `school`
 > Unified school district example
 
 ```json
@@ -1491,7 +1491,7 @@ You can retrieve the school district for an address or coordinate using `school`
 The field will return either a *unified* school district or separate *elementary* and *secondary* fields depending on the area. Each school district is returned with its full name, the LEA (Local Education Agency) code, as well as the grades supported. Kindergarden is abbreviated as *KG* and pre-kindergarten is abbreviated as *PK*.
 
 ## Census Block/Tract, FIPS codes & MSA/CSA codes
-### Field name: `census`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`
+#### Field name: `census`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`
 ```json
 ...
 "fields": {
@@ -3101,7 +3101,7 @@ The data returned includes the following data points. For each data point, the d
     * Pre-World War II only
 
 ## Riding: Canadian Federal Electoral District
-### Field name: `riding`
+#### Field name: `riding`
 > Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
 
 ```json
@@ -3120,7 +3120,7 @@ Look up the [riding](https://en.wikipedia.org/wiki/List_of_Canadian_federal_elec
 In some cases the French and English names will be the same.
 
 ## Canadian statistical boundaries from Statistics Canada
-### Field name: `statcan`
+#### Field name: `statcan`
 
 > Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
 
@@ -3237,7 +3237,7 @@ The full Canadian census tract code that this query is part of.
 > You can read more about the various code names from the [Statistics Canada technical specifications page](https://www150.statcan.gc.ca/n1/pub/92-151-g/2011001/tech-eng.htm).
 
 ## Timezone
-### Field name: `timezone`
+#### Field name: `timezone`
 ```json
 ...
 "fields": {
