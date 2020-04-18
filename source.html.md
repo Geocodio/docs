@@ -1667,7 +1667,7 @@ As such, it is not possible to get ACS results for city or zip code results. Loo
   "acs": {
     "meta": {
       "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2012-2016",
+      "survey_years": "2014-2018",
       "survey_duration_years": "5"
     }
     ...
@@ -1708,7 +1708,7 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
   "acs": {
     "meta": {
       "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2012-2016",
+      "survey_years": "2014-2018",
       "survey_duration_years": "5"
     },
     "demographics": {
@@ -2130,7 +2130,7 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
   "acs": {
     "meta": {
       "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2012-2016",
+      "survey_years": "2014-2018",
       "survey_duration_years": "5"
     },
     "economics": {
@@ -2264,7 +2264,7 @@ The data returned includes the following data points. For each data point, the d
   "acs": {
     "meta": {
       "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2012-2016",
+      "survey_years": "2014-2018",
       "survey_duration_years": "5"
     },
     "families": {
@@ -2475,7 +2475,7 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
   "acs": {
     "meta": {
       "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2012-2016",
+      "survey_years": "2014-2018",
       "survey_duration_years": "5"
     },
     "housing": {
@@ -2757,7 +2757,7 @@ Data points returned are:
   "acs": {
     "meta": {
       "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2012-2016",
+      "survey_years": "2014-2018",
       "survey_duration_years": "5"
     },
     "social": {
