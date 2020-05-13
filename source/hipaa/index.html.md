@@ -45,7 +45,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 *Released on May 13, 2020*
 
 * **Breaking:** PO Box and second address lines (e.g. apartment/unit/suite numbers) are now returned as `results` and appear within the `formatted_address` keys
-* The `zip4` data append is now generally available
+* The [`zip4`](#usps-zip-4) data append is now generally available
 
 ## v1.4
 *Released on September 18th, 2019*
