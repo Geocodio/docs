@@ -3143,6 +3143,7 @@ The data returned includes the following data points. For each data point, the d
       "description": "Post Office"
     },
     "city_delivery": true,
+    "valid_delivery_area": true,
     "exact_match": true
   }
 }
@@ -3177,6 +3178,15 @@ The <code>zip4</code> data append requires using <code>v1.5</code> of the Geocod
   "22201-2890",
   "22201-2900"
 ],
+...
+```
+
+> In some rare cases a ZIP4 record is returned but without a ZIP+4 code (e.g. when it is not a valid delivery area)
+
+```json
+...
+"plus4": [],
+"zip9": [],
 ...
 ```
 
@@ -3265,6 +3275,11 @@ Possible values are:
 ### City Delivery Indicator
 
 Indicates whether our not the local post office has a city delivery carrier route.
+
+
+### Valid delivery area
+
+In some cases an address exists but it is not a valid delivery point for postal purposes. This could for example be because it is an undeveloped lot.
 
 ### <svg height="24" width="24" title="Important!" fill="#faad63" xmlns="http://www.w3.org/2000/svg" stroke-width=".501" stroke-linejoin="bevel" fill-rule="evenodd" overflow="visible" viewBox="0 0 192 192"><path d="M70.272 192l-9.744-34.512-34.8 8.784 8.8-34.752L0 121.712l25.008-25.68L0 70.288l34.512-9.76-8.784-34.816 34.752 8.816L70.288 0l25.696 25.008L121.728 0l9.76 34.496 34.8-8.784-8.816 34.752L192 70.272l-25.008 25.696L192 121.712l-34.496 9.76 8.768 34.8-34.752-8.816L121.712 192l-25.68-25.008L70.272 192zM108 132c0-6.624-5.376-12-12-12s-12 5.376-12 12 5.376 12 12 12 12-5.376 12-12zm-.016-36.464V60.48c0-6.88-5.376-12.464-11.984-12.464h-.016C89.376 48.016 84 53.6 84 60.48v35.056C84 102.416 89.376 108 95.984 108H96c6.608 0 11.984-5.584 11.984-12.464z" fill="#faad63" stroke="none" font-family="Times New Roman" font-size="16"/></svg> Exact match
 
