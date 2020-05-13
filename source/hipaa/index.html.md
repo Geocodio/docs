@@ -21,7 +21,7 @@ Geocodio's RESTful API allows you to perform forward and reverse geocoding looku
 
 You can also optionally ask for data appends such as timezone, Congressional districts or similar things of that nature.
 
-The base API url is `https://api-hipaa.geocod.io/v1.4/`.
+The base API url is `https://api-hipaa.geocod.io/v1.5/`.
 
 All HTTP responses (including errors) are returned with [JSON-formatted](http://www.json.org) output.
 
@@ -40,6 +40,12 @@ Breaking changes are introduced with new API versions, allowing you to "upgrade"
 <aside class="notice">
 Breaking changes are defined as changes that remove or rename properties in the JSON output of any API endpoint. Your API client should be able to gracefully support addition of new JSON properties, as this is not considered a breaking change.
 </aside>
+
+## v1.5
+*Released on May 13, 2020*
+
+* **Breaking:** PO Box and second address lines (e.g. apartment/unit/suite numbers) are now returned as `results` and appear within the `formatted_address` keys
+* The `zip4` data append is now generally available
 
 ## v1.4
 *Released on September 18th, 2019*
@@ -224,7 +230,7 @@ compile "rodeo:rodeo:2.0.1"
 
 ```shell
 # With curl, you can just pass the query parameter with each request
-curl "https://api-hipaa.geocod.io/v1.4/api_endpoint_here?api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.5/api_endpoint_here?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -312,7 +318,7 @@ Whenever possible, batch requests are recommended since they are significantly f
 
 ## Single address
 
-A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 <aside class="success">
 The `results` are always ordered with the most accurate locations first. It is therefore always safe to pick the first result in the list.
@@ -322,10 +328,10 @@ The `results` are always ordered with the most accurate locations first. It is t
 
 ```shell
 # Using q parameter
-curl "https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.5/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
 
 # Using individual address components
-curl "https://api-hipaa.geocod.io/v1.4/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.5/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -417,7 +423,7 @@ geocoder.geocode('1109 N Highland St, Arlington VA')
 
 ### HTTP Request
 
-`GET https://api-hipaa.geocod.io/v1.4/geocode`
+`GET https://api-hipaa.geocod.io/v1.5/geocode`
 
 ### URL Parameters
 
@@ -455,7 +461,7 @@ Parameter     | Description
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["1109 N Highland St, Arlington VA", "525 University Ave, Toronto, ON, Canada", "4410 S Highway 17 92, Casselberry FL", "15000 NE 24th Street, Redmond WA", "17015 Walnut Grove Drive, Morgan Hill CA"]' \
-  https://api-hipaa.geocod.io/v1.4/geocode?api_key=YOUR_API_KEY
+  https://api-hipaa.geocod.io/v1.5/geocode?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -646,7 +652,7 @@ You can batch geocode up to 10,000 addresses at the time. Geocoding 10,000 addre
 
 ### HTTP Request
 
-`POST https://api-hipaa.geocod.io/v1.4/geocode`
+`POST https://api-hipaa.geocod.io/v1.5/geocode`
 
 ### URL Parameters
 
@@ -720,7 +726,7 @@ A geographic coordinate consists of latitude followed by longitude separated by 
 > To reverse geocode a single coordinate:
 
 ```shell
-curl "https://api-hipaa.geocod.io/v1.4/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.5/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -819,11 +825,11 @@ geocoder.reverse('38.9002898,-76.9990361')
 }
 ```
 
-A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api-hipaa.geocod.io/v1.4/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api-hipaa.geocod.io/v1.5/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 ### HTTP Request
 
-`GET https://api-hipaa.geocod.io/v1.4/reverse`
+`GET https://api-hipaa.geocod.io/v1.5/reverse`
 
 ### URL Parameters
 
@@ -841,7 +847,7 @@ Parameter | Description
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["35.9746000,-77.9658000","32.8793700,-96.6303900","33.8337100,-117.8362320","35.4171240,-80.6784760"]' \
-  https://api-hipaa.geocod.io/v1.4/reverse?api_key=YOUR_API_KEY
+  https://api-hipaa.geocod.io/v1.5/reverse?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -1006,7 +1012,7 @@ You can batch reverse geocode up to 10,000 coordinates at a time.
 
 ### HTTP Request
 
-`POST https://api-hipaa.geocod.io/v1.4/reverse`
+`POST https://api-hipaa.geocod.io/v1.5/reverse`
 
 ### URL Parameters
 
@@ -1020,7 +1026,7 @@ Parameter | Description
 > To get e.g. the Congressional and state legislative districts for an address:
 
 ```shell
-curl "https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.5/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1251,7 +1257,7 @@ Geocodio allows you to request additional data with forward and reverse geocodin
 
 To request additional data, just add a `fields` parameter to your query string and set the value according to the table below. You can request multiple data fields at the same time by separating them with a comma. If the `fields` parameter has been specified, a new `fields` key is exposed with each geocoding result containing all necessary data for each field.
 
-Go ahead, <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+Go ahead, <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 Some fields are specific to the US and cannot be queried for other countries.
 
@@ -1266,6 +1272,7 @@ Parameter name                                                                  
 [acs-families](#families-census)                                                                                                                   | Families (Census)                                      | US-only                     |
 [acs-housing](#housing-census)                                                                                                                    | Housing (Census)                                       | US-only                     |
 [acs-social](#social-education-amp-veteran-status-census)                                                                                                                     | Social: Education & Veteran Status (Census)            | US-only                     |
+[zip4](#usps-zip-4)                                                                                                                     | USPS Zip+4 code and delivery information            | US-only                     |
 [riding](#riding-canadian-federal-electoral-district)                                                                                                                         | Riding: Canadian Federal Electoral District            | Canada-only                 |
 [statcan](#canadian-statistical-boundaries-from-statistics-canada)                                                                                                                        | Canadian statistical boundaries from Statistics Canada | Canada-only                 |
 [timezone](#timezone)                                                                                                                       | Timezone                                               | <i class="fa fa-globe"></i> |
@@ -3108,6 +3115,169 @@ The data returned includes the following data points. For each data point, the d
     * Between Korean War and World War II only
     * Pre-World War II only
 
+## USPS ZIP+4
+**Field name: `zip4`**
+
+```json
+...
+"fields": {
+  "zip4": {
+    "record_type": {
+      "code": "S",
+      "description": "Street"
+    },
+    "carrier_route": {
+      "id": "C007",
+      "description": "City Delivery"
+    },
+    "building_or_firm_name": null,
+    "plus4": [
+      "2890"
+    ],
+    "zip9": [
+      "22201-2890"
+    ],
+    "government_building": null,
+    "facility_code": {
+      "code": "P",
+      "description": "Post Office"
+    },
+    "city_delivery": true,
+    "exact_match": true
+  }
+}
+...
+```
+<aside class="notice">
+The <code>zip4</code> data append requires using <code>v1.5</code> of the Geocodio API or newer.
+</aside>
+
+> In most cases, only a single ZIP4 code is assigned to a result. If that is the case each array has one item.
+
+```json
+...
+"plus4": [
+  "2890"
+],
+"zip9": [
+  "22201-2890"
+],
+...
+```
+
+> For businesses with a range of ZIP4 codes, an array with 2 items is returned:
+
+```json
+...
+"plus4": [
+  "2890",
+  "2900",
+],
+"zip9": [
+  "22201-2890",
+  "22201-2900"
+],
+...
+```
+
+> Example of a building or firm name being returned (316 Pennsylvania Ave. SE, Lobby, Washington, DC)
+
+```json
+...
+"building_or_firm_name": "The Natl Capital Bank Of Washington",
+...
+```
+
+> Example of a government building result (134 Union Blvd Ste 130 Lakewood, CO)
+
+```json
+...
+"government_building": {
+    "code": "B",
+    "description": "Federal Government Building"
+},
+...
+```
+
+This performs a lookup to determine the USPS ZIP+4 code for a given US location, this lets you retrieve the full 9-digit ZIP Code&trade;, by combining the 5-digit ZIP code with the ZIP+4 code.
+
+Additional USPS delivery data is also returned.
+
+### Record Type
+The type of ZIP+4 result. Possible values are:
+
+* **F**: Firm
+* **G**: General Delivery
+* **H**: High-rise
+* **P**: PO Box
+* **R**: Rural Route/Contract
+* **S**: Street
+
+### Carrier Route ID
+A 4-byte code that determines the type of postal route that that servers the address.
+Possible values are:
+
+* **Bxxx**: PO Box
+* **Hxxx**: Contract
+* **Rxxx**: Rural Route
+* **Cxxx**: City Delivery
+* **Gxxx**: General Delivery
+
+### Building or Firm Name
+A USPS-provided name associated with the address. This is available for businesses that have registered their name with USPS and for most federal and state government buildings including schools and offices.
+
+The building or firm name field takes the secondary address unit into account if available.
+
+If no name is available, the value is set to `null`.
+
+### ZIP+4 and ZIP9
+The range of ZIP Codes that are associated with this result as representated by the minimum and maximum number.
+
+The ZIP9 code consists of the ZIP5 code, a dash, and the +4 code.
+
+### Government Building
+
+Type of government building (if applicable).
+
+If no name is available, the value is set to `null`.
+
+* **A**: City Government Building
+* **B**: Federal Government Building
+* **C**: State Government Building 
+* **D**: Firm Only
+* **E**: City Government Building and Firm Only
+* **F**: Federal Government Building
+* **G**: State Government Building and Firm Only
+
+### Facility Code
+
+Facility code associated with the 5-digit ZIP Code
+
+Possible values are:
+
+* **B**: Branch
+* **C**: Community post office (CPO)
+* **N**: Non-postal community name, former USPS facility, or place name
+* **P**: Post Office
+* **S**: Station
+* **U**: Urbanization
+
+### City Delivery Indicator
+
+Indicates whether our not the local post office has a city delivery carrier route.
+
+### <svg height="24" width="24" title="Important!" fill="#faad63" xmlns="http://www.w3.org/2000/svg" stroke-width=".501" stroke-linejoin="bevel" fill-rule="evenodd" overflow="visible" viewBox="0 0 192 192"><path d="M70.272 192l-9.744-34.512-34.8 8.784 8.8-34.752L0 121.712l25.008-25.68L0 70.288l34.512-9.76-8.784-34.816 34.752 8.816L70.288 0l25.696 25.008L121.728 0l9.76 34.496 34.8-8.784-8.816 34.752L192 70.272l-25.008 25.696L192 121.712l-34.496 9.76 8.768 34.8-34.752-8.816L121.712 192l-25.68-25.008L70.272 192zM108 132c0-6.624-5.376-12-12-12s-12 5.376-12 12 5.376 12 12 12 12-5.376 12-12zm-.016-36.464V60.48c0-6.88-5.376-12.464-11.984-12.464h-.016C89.376 48.016 84 53.6 84 60.48v35.056C84 102.416 89.376 108 95.984 108H96c6.608 0 11.984-5.584 11.984-12.464z" fill="#faad63" stroke="none" font-family="Times New Roman" font-size="16"/></svg> Exact match
+
+An exact match means that there was no ambiguity with the lookup and that the given ZIP+4 code is the correct and only match for the given address.
+
+Most often, not-exact matches are due to lookups for an apartment or office building that is missing a unit/apartment number.
+
+In these cases it is not possible to determine an accurate ZIP+4 code without supplying secondary address line information.
+
+<aside class="warning">
+If no ZIP+4 data is available for the given query, the `zip4` field is omitted from the JSON output (and the field lookup does not count against your usage)
+</aside>
+
 ## Riding: Canadian Federal Electoral District
 **Field name: `riding`**
 
@@ -3295,7 +3465,7 @@ As of June 2015, address parsing and correction is included by default with all 
 > To parse an address:
 
 ```shell
-curl "https://api-hipaa.geocod.io/v1.4/parse?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.5/parse?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -3350,7 +3520,7 @@ address = client.parse('1109 N Highland St, Arlington VA')
 
 ### HTTP Request
 
-`GET https://api-hipaa.geocod.io/v1.4/parse`
+`GET https://api-hipaa.geocod.io/v1.5/parse`
 
 ### URL Parameters
 
@@ -3430,38 +3600,41 @@ Geocodio supports geocoding the following entities:
 * Cities
 * Zip codes
 * States
+* PO Boxes (coordinates will be returned as a centroid of the zip code)
+* Second address lines such as unit and apartment numbers (not used for determining the exact coordinates at this time)
 
 If a city is provided without a state, Geocodio will automatically guess and add the state based on what it is most likely to be. Geocodio also understands shorthands for both streets and cities, for example *NYC*, *SF*, etc., are acceptable city names.
 
 Geocoding queries can be formatted in various ways:
 
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=PO+Box+4735,+Tulsa+OK&api_key=YOUR_API_KEY" target="_blank">PO Box 4735, Tulsa OK</a>
 
 If a country is not specified in the query, the Geocodio engine will assume the country to be USA.
 
 Examples of Canadian lookups:
 
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
 
 ## Intersections
 
 You can also geocode intersections. Just specify the two streets that you want to geocode in your query. We support various formats:
 
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
-* <a href="https://api-hipaa.geocod.io/v1.4/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
+* <a href="https://api-hipaa.geocod.io/v1.5/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
 
 An extra `address_components_secondary` property will be exposed for intersection results, but otherwise, the schema format is the same.
 
@@ -3580,7 +3753,7 @@ If no warnings have been triggered, the `_warnings` key will not be part of the 
 var address = '1109 N Highland St, Arlington VA',
     apiKey = 'YOUR_API_KEY';
 
-$.get('https://api-hipaa.geocod.io/v1.4/geocode?q='+ encodeURIComponent(address) +'&api_key=' + encodeURIComponent(apiKey), function (response) {
+$.get('https://api-hipaa.geocod.io/v1.5/geocode?q='+ encodeURIComponent(address) +'&api_key=' + encodeURIComponent(apiKey), function (response) {
   console.log(response.results);
 });
 </script>
