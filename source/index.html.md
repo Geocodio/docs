@@ -180,6 +180,11 @@ HIPAA-->
     <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
+    <td><strong>R</strong></td>
+    <td><a href="https://jessecambon.github.io/tidygeocoder" target="_blank">jessecambon/tidygeocoder</a> by <a href="https://github.com/jessecambon" target="_blank">jessecambon</a></td>
+    <td><i class="fa fa-minus"></i></td>
+  </tr>
+  <tr>
     <td><strong>C#</strong></td>
     <td><a href="https://github.com/snake-plissken/cSharpGeocodio" target="_blank">snake-plissken/cSharpGeocodio</a> by <a href="https://github.com/snake-plissken" target="_blank">Frank Deasey</a></td>
     <td><i class="fa fa-minus"></i></td>
