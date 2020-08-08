@@ -8,6 +8,7 @@ language_tabs:
   - php: PHP
   - javascript: Node
   - clojure: Clojure
+  - go: Go
 
 toc_footers:
  - <a href="https://dash.geocod.io">Sign Up for an API Key</a>
@@ -172,7 +173,7 @@ HIPAA-->
   <tr>
     <td><strong>Go</strong></td>
     <td><a href="https://github.com/stevepartridge/geocodio" target="_blank">stevepartridge/geocodio</a> by <a href="https://github.com/stevepartridge" target="_blank">stevepartridge</a></td>
-    <td><i class="fa fa-minus"></i></td>
+    <td><i class="fa fa-check"></i></td>
   </tr>
   <tr>
     <td><strong>R</strong></td>
@@ -251,6 +252,10 @@ $ yarn add geocodio-library-node
 compile "rodeo:rodeo:2.0.1"
 ```
 
+```go
+go get -u github.com/stevepartridge/geocodio
+```
+
 # Authentication
 
 > To set the `API_KEY`:
@@ -315,6 +320,16 @@ HIPAA-->
 
 ;; You can set the API key in the GEOCODIO_API_KEY environment variable
 ;; or with each request using the :api_key parameter
+```
+
+```go
+import "github.com/stevepartridge/geocodio"
+
+gc := geocodio.New("YOUR_API_KEY")
+
+// or if you set the environment variable GEOCODIO_API_KEY
+gc := geocodio.New()
+
 ```
 
 All requests require an API key. You can [register here](https://dash.geocod.io) to get your own API key.
@@ -401,6 +416,20 @@ geocoder.geocode('1109 N Highland St, Arlington VA')
   (:require [rodeo.core :refer :all]))
 
 (single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY")
+```
+
+```go
+import "github.com/stevepartridge/geocodio"
+
+gc := geocodio.New("YOUR_API_KEY")
+// or if you set the environment variable GEOCODIO_API_KEY
+gc := geocodio.New()
+
+result, err := gc.Geocode("1109 N Highland St, Arlington VA")
+if err != nil {
+  // handle error
+}
+fmt.Printf("result: %#v\n", result)
 ```
 
 > Example response:
@@ -555,6 +584,26 @@ geocoder.geocode(addresses)
 ;; You can set the API key in the GEOCODIO_API_KEY environment variable
 
 (batch ["1109 N Highland St, Arlington VA" "525 University Ave, Toronto, ON, Canada" "4410 S Highway 17 92, Casselberry FL" "15000 NE 24th Street, Redmond WA" "17015 Walnut Grove Drive, Morgan Hill CA"] :api_key "YOUR_API_KEY")
+```
+
+```go
+import "github.com/stevepartridge/geocodio"
+
+gc := geocodio.New("YOUR_API_KEY")
+// or if you set the environment variable GEOCODIO_API_KEY
+gc := geocodio.New()
+
+result, err := gc.GeocodeBatch(
+  "1109 N Highland St, Arlington VA",
+  "525 University Ave, Toronto, ON, Canada",
+  "4410 S Highway 17 92, Casselberry FL",
+  "15000 NE 24th Street, Redmond WA",
+  "17015 Walnut Grove Drive, Morgan Hill CA",
+)
+if err != nil {
+  // handle error
+}
+fmt.Printf("result: %#v\n", result)
 ```
 
 > Example response:
@@ -798,6 +847,20 @@ geocoder.reverse('38.9002898,-76.9990361')
 (single-reverse "38.9002898,-76.9990361" :api_key "YOUR_API_KEY")
 ```
 
+```go
+import "github.com/stevepartridge/geocodio"
+
+gc := geocodio.New("YOUR_API_KEY")
+// or if you set the environment variable GEOCODIO_API_KEY
+gc := geocodio.New()
+
+result, err := gc.Reverse(38.9002898,-76.9990361) // float64, float64
+if err != nil {
+  // handle error
+}
+fmt.Printf("result: %#v\n", result)
+```
+
 > Example response:
 
 ```json
@@ -935,6 +998,25 @@ geocoder.reverse(coordinates)
   (:require [rodeo.core :refer :all]))
 
 (batch-reverse ["35.9746000,-77.9658000" "32.8793700,-96.6303900" "33.8337100,-117.8362320" "35.4171240,-80.6784760"] :api-key "YOUR_API_KEY")
+```
+
+```go
+import "github.com/stevepartridge/geocodio"
+
+gc := geocodio.New("YOUR_API_KEY")
+// or if you set the environment variable GEOCODIO_API_KEY
+gc := geocodio.New()
+
+result, err := gc.ReverseBatch(
+  35.9746000, -77.9658000,
+  32.8793700, 96.6303900,
+  33.8337100, 117.8362320,
+  35.4171240, -80.6784760
+) 
+if err != nil {
+  // handle error
+}
+fmt.Printf("result: %#v\n", result)
 ```
 
 > Example response (shortened for brevity):
@@ -1096,6 +1178,23 @@ geocoder.geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg'])
   (:require [rodeo.core :refer :all]))
 
 (single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["cd" "stateleg"])
+```
+
+```go
+import "github.com/stevepartridge/geocodio"
+
+gc := geocodio.New("YOUR_API_KEY")
+// or if you set the environment variable GEOCODIO_API_KEY
+gc := geocodio.New()
+
+result, err := gc.GeocodeReturnFields(
+  "1109 N Highland St, Arlington VA", // Address string
+  "cd", "stateleg", // Fields ...string
+  )
+if err != nil {
+  // handle error
+}
+fmt.Printf("result: %#v\n", result)
 ```
 
 > Example response:
