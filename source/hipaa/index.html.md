@@ -1667,9 +1667,9 @@ area_code    | Unique census-defined code for the area
 
 ## Census ACS (American Community Survey)
 
-Geocodio can return results from the American Community Survey, for any given address in the US. This is performed by looking up 5-year estimates for the *census block* associated with the address.
+Geocodio can return results from the American Community Survey, for any given address in the US. This is performed by looking up 5-year estimates for the *census block group* associated with the address.
 
-Please note that a single census block can cover hundreds of households. As such, the returned data is not specific to the given location only.
+Please note that a single census block group can cover hundreds of households. As such, the returned data is not specific to the given location only.
 
 We have divided ACS results into 5 categories: Demographics, Economics (Income Data), Families, Housing and Social (Education & Veteran Status).
 
