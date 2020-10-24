@@ -1263,11 +1263,13 @@ geocoder.geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg'])
         "state_legislative_districts": {
           "house": {
             "name": "State House District 47",
-            "district_number": "47"
+            "district_number": "47",
+            "is_upcoming_state_legislative_district": false
           },
           "senate": {
             "name": "State Senate District 31",
-            "district_number": "31"
+            "district_number": "31",
+            "is_upcoming_state_legislative_district": false
           }
         }
       }
@@ -1290,8 +1292,8 @@ Some fields are specific to the US and cannot be queried for other countries.
 
 Parameter name                                                                                                                 | Description                                            | Coverage                    |
 -------------------------------------------------------------------------------------------------------------------------------| ------------------------------------------------------ | --------------------------- |
-[cd, cd113, cd114, cd115, *or* cd116](#congressional-districts)                                                                                            | Congressional District & Legislator information        | US-only                     |
-[stateleg](#state-legislative-districts)                                                                                                                       | State Legislative District (House & Senate)            | US-only                     |
+[cd, cd113, cd114, cd115, cd116, *or* cd117](#congressional-districts)                                                                                            | Congressional District & Legislator information        | US-only                     |
+[stateleg *or* stateleg-next](#state-legislative-districts)                                                                                                                       | State Legislative District (House & Senate)            | US-only                     |
 [school](#school-districts)                                                                                                                         | School District (elementary/secondary or unified)      | US-only                     |
 [census, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019](#census-block-tract-fips-codes-amp-msa-csa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes         | US-only                     |
 [acs-demographics](#demographics-census)                                                                                                               | Demographics (Census)                                  | US-only                     |
@@ -1309,7 +1311,7 @@ This feature is available for both single and batch geocoding requests.
 </aside>
 
 ## Congressional Districts
-**Field name: `cd`, `cd113`, `cd114`, `cd115`, *or* `cd116`**
+**Field name: `cd`, `cd113`, `cd114`, `cd115`, `cd116`, *or* `cd117`**
 
 ```json
 ...
@@ -1441,6 +1443,10 @@ This feature is available for both single and batch geocoding requests.
 ```
 You can retrieve the Congressional district for an address or coordinate pair using any one of the valid parameter names in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
 
+<aside class="notice">
+The current congress is the 116th congress. The 117th congress will be active as of January 3, 2021. We are already providing the option to return district information for the 117th congress, which include upcoming boundary changes in <a href="https://www.ncleg.gov/BillLookup/2019/H1029" target="_blank">North Carolina</a>. Others will be added as they become available. All other states will return the same district information as given for the 116th congress.
+</aside>
+
 The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd116`) is specified, we will also return detailed information about the current legislators.
 
 <aside class="success">
@@ -1458,7 +1464,7 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 </aside>
 
 ## State Legislative Districts
-**Field name: `stateleg`**
+**Field name: `stateleg` or `stateleg-next`**
 
 ```json
 ...
@@ -1466,17 +1472,28 @@ Districts are always sorted by the `proportion` in descending order (largest fir
   "state_legislative_districts": {
     "house": {
       "name": "Assembly District 42",
-      "district_number": 42
+      "district_number": 42,
+      "is_upcoming_state_legislative_district": false
     },
     "senate": {
       "name": "State Senate District 28",
-      "district_number": 28
+      "district_number": 28,
+      "is_upcoming_state_legislative_district": false
     }
   }
 }
 ...
 ```
-You can retrieve the state legislative districts for an address or coordinate using `stateleg` in the `fields` query parameter.
+You can retrieve the state legislative districts for an address or coordinate using `stateleg` or `stateleg-next` in the `fields` query parameter.
+
+If `stateleg-next` is requested, matches will be returned for upcoming district changes that may apply to current elections, but are not active for currently elected officials yet.
+
+The currently updated districts that apply to `stateleg-next` are as follows:
+
+* North Carolina House <a href="https://www.ncleg.gov/BillLookup/2019/H1020" target="_blank">HB 1020</a>
+* North Carolina Senate <a href="https://www.ncleg.gov/BillLookup/2019/S692" target="_blank">SB 692</a>
+
+For all other states, `stateleg-next` will return the same results as `stateleg`. Boundary changes in `stateleg-next` will be promoted to `stateleg` when they become active for currently elected officials.
 
 The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district number for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington, DC or Nebraska), only the `senate` key is returned.
 
