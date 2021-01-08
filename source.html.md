@@ -1142,8 +1142,8 @@ geocoder.geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg'])
           {
             "name": "Congressional District 8",
             "district_number": 8,
-            "congress_number": "116th",
-            "congress_years": "2019-2021",
+            "congress_number": "117th",
+            "congress_years": "2021-2023",
             "proportion": 1,
             "current_legislators": [
               {
@@ -1158,7 +1158,7 @@ geocoder.geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg'])
                 "contact": {
                   "url": "https://beyer.house.gov",
                   "address": "1119 Longworth House Office Building Washington DC 20515-4608",
-                  "phone": "(202) 225-4376",
+                  "phone": "202-225-4376",
                   "contact_form": null
                 },
                 "social": {
@@ -1176,7 +1176,7 @@ geocoder.geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg'])
                   "cspan_id": "21141",
                   "govtrack_id": "412657",
                   "votesmart_id": "1707",
-                  "ballotpedia_id": null,
+                  "ballotpedia_id": "Don Beyer",
                   "washington_post_id": null,
                   "icpsr_id": "21554",
                   "wikipedia_id": "Don Beyer"
@@ -1231,9 +1231,9 @@ geocoder.geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg'])
                 },
                 "contact": {
                   "url": "https://www.kaine.senate.gov",
-                  "address": null,
-                  "phone": null,
-                  "contact_form": null
+                  "address": "231 Russell Senate Office Building Washington DC 20510",
+                  "phone": "202-224-4024",
+                  "contact_form": "https://www.kaine.senate.gov/contact"
                 },
                 "social": {
                   "rss_url": "http://www.kaine.senate.gov/rss/feeds/?type=all",
@@ -1320,8 +1320,8 @@ This feature is available for both single and batch geocoding requests.
     {
       "name": "Congressional District 8",
       "district_number": 8,
-      "congress_number": "116th",
-      "congress_years": "2019-2021",
+      "congress_number": "117th",
+      "congress_years": "2021-2023",
       "proportion": 1,
       "current_legislators": [
         {
@@ -1336,7 +1336,7 @@ This feature is available for both single and batch geocoding requests.
           "contact": {
             "url": "https://beyer.house.gov",
             "address": "1119 Longworth House Office Building Washington DC 20515-4608",
-            "phone": "(202) 225-4376",
+            "phone": "202-225-4376",
             "contact_form": null
           },
           "social": {
@@ -1354,7 +1354,7 @@ This feature is available for both single and batch geocoding requests.
             "cspan_id": "21141",
             "govtrack_id": "412657",
             "votesmart_id": "1707",
-            "ballotpedia_id": null,
+            "ballotpedia_id": "Don Beyer",
             "washington_post_id": null,
             "icpsr_id": "21554",
             "wikipedia_id": "Don Beyer"
@@ -1409,9 +1409,9 @@ This feature is available for both single and batch geocoding requests.
           },
           "contact": {
             "url": "https://www.kaine.senate.gov",
-            "address": null,
-            "phone": null,
-            "contact_form": null
+            "address": "231 Russell Senate Office Building Washington DC 20510",
+            "phone": "202-224-4024",
+            "contact_form": "https://www.kaine.senate.gov/contact"
           },
           "social": {
             "rss_url": "http://www.kaine.senate.gov/rss/feeds/?type=all",
@@ -1443,11 +1443,7 @@ This feature is available for both single and batch geocoding requests.
 ```
 You can retrieve the Congressional district for an address or coordinate pair using any one of the valid parameter names in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
 
-<aside class="notice">
-The current congress is the 116th congress. The 117th congress will be active as of January 3, 2021. We are already providing the option to return district information for the 117th congress, which include upcoming boundary changes in <a href="https://www.ncleg.gov/BillLookup/2019/H1029" target="_blank">North Carolina</a>. Others will be added as they become available. All other states will return the same district information as given for the 116th congress.
-</aside>
-
-The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd116`) is specified, we will also return detailed information about the current legislators.
+The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd117`) is specified, we will also return detailed information about the current legislators.
 
 <aside class="success">
 The list of legislators is always ordered with Representative first then Senators.
