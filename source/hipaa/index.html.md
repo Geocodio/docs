@@ -37,11 +37,18 @@ The Geocodio API is continuously improved. Most updates require no changes for A
 
 Breaking changes are introduced with new API versions, allowing you to "upgrade" to the newest version at your own pace. Older API versions are guaranteed to be available for at least 12 months after they have been replaced by a newer version, but may be supported for longer.
 
+Major changes, that are not breaking are also documented here.
+
 <aside class="notice">
 Breaking changes are defined as changes that remove or rename properties in the JSON output of any API endpoint. Your API client should be able to gracefully support addition of new JSON properties, as this is not considered a breaking change.
 </aside>
 
 ## v1.6
+*Released on February 25, 2021*
+
+* Introduced `census2020` data append (the `census` data append will now default to `census2020`)
+* Update all Census ACS data to most recent 5-year release (2015-2019)
+
 *Released on May 28, 2020*
 
 * **Breaking:** This fixes a bug which has backwards-incompatible consequences for `acs-families` and `acs-demographics` field appends.
@@ -1295,7 +1302,7 @@ Parameter name                                                                  
 [cd, cd113, cd114, cd115, cd116, *or* cd117](#congressional-districts)                                                                                            | Congressional District & Legislator information        | US-only                     |
 [stateleg *or* stateleg-next](#state-legislative-districts)                                                                                                                       | State Legislative District (House & Senate)            | US-only                     |
 [school](#school-districts)                                                                                                                         | School District (elementary/secondary or unified)      | US-only                     |
-[census, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019](#census-block-tract-fips-codes-amp-msa-csa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes         | US-only                     |
+[census, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020](#census-block-tract-fips-codes-amp-msa-csa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes         | US-only                     |
 [acs-demographics](#demographics-census)                                                                                                               | Demographics (Census)                                  | US-only                     |
 [acs-economics](#economics-income-data-census)                                                                                                                  | Economics: Income Data (Census)                        | US-only                     |
 [acs-families](#families-census)                                                                                                                   | Families (Census)                                      | US-only                     |
@@ -1541,7 +1548,7 @@ You can retrieve the school district for an address or coordinate using `school`
 The field will return either a *unified* school district or separate *elementary* and *secondary* fields depending on the area. Each school district is returned with its full name, the LEA (Local Education Agency) code, as well as the grades supported. Kindergarden is abbreviated as *KG* and pre-kindergarten is abbreviated as *PK*.
 
 ## Census Block/Tract, FIPS codes & MSA/CSA codes
-**Field name: `census`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`**
+**Field name: `census`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`, `census2020`**
 
 ```json
 ...
@@ -1574,8 +1581,8 @@ The field will return either a *unified* school district or separate *elementary
       },
       "source": "US Census Bureau"
     },
-    "2019": {
-      "census_year": 2019,
+    "2020": {
+      "census_year": 2020,
       "state_fips": "51",
       "county_fips": "51013",
       "tract_code": "101801",
@@ -1611,10 +1618,10 @@ This will append various US Census-designated codes to your address.
 Looking for Canadian Census data? See the <a href="#canadian-statistical-boundaries-from-statistics-canada"><code>statcan</code></a> field append.
 </aside>
 
-You can request vintage data for every year back to the 2010 Census. This is done by specifying the year together with the field name, e.g. `census2015` for 2015 data. It is also possible to request multiple years at the same time, e.g. `census2010,census2019` (as shown in the example response).
+You can request vintage data for every year back to the 2010 Census. This is done by specifying the year together with the field name, e.g. `census2015` for 2015 data. It is also possible to request multiple years at the same time, e.g. `census2010,census2020` (as shown in the example response).
 
 <aside class="warning">
-If no year is specified, the API will default to the most recent census. I.e. currently, 2019 data is returned when appending the census field.
+If no year is specified, the API will default to the most recent census. I.e. currently, 2020 data is returned when appending the census field.
 </aside>
 
 Field        | Description
@@ -1714,7 +1721,7 @@ As such, it is not possible to get ACS results for city or zip code results. Loo
   "acs": {
     "meta": {
       "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2014-2018",
+      "survey_years": "2015-2019",
       "survey_duration_years": "5"
     }
     ...
@@ -1741,7 +1748,7 @@ This contains information about the exact ACS results we are using, including th
 
 When our ACS results are updated to a newer version, it is not considering a breaking change. This is done as soon as newer Census data is fully available and verified.
 
-For each individual result, we return the [official ACS table id](https://www.census.gov/programs-surveys/acs/technical-documentation/summary-file-documentation.2016.html) as well as the "universe" that the values covers.
+For each individual result, we return the [official ACS table id](https://www.census.gov/programs-surveys/acs/technical-documentation/summary-file-documentation.2019.html) as well as the "universe" that the values covers.
 
 The universe can be values such as `Households`, `Population 15 Years and Older`, `Total population`, etc.
 
@@ -1755,7 +1762,7 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
   "acs": {
     "meta": {
       "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2014-2018",
+      "survey_years": "2015-2019",
       "survey_duration_years": "5"
     },
     "demographics": {
@@ -1765,16 +1772,16 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
           "universe": "Total population"
         },
         "Total": {
-          "value": 32.8,
+          "value": 32.6,
           "margin_of_error": 0.6
         },
         "Male": {
-          "value": 34.6,
+          "value": 33.8,
           "margin_of_error": 1.8
         },
         "Female": {
-          "value": 31.8,
-          "margin_of_error": 0.9
+          "value": 32.1,
+          "margin_of_error": 0.7
         }
       },
       "Population by age range": {
@@ -1783,28 +1790,28 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
           "universe": "Total population"
         },
         "Total": {
-          "value": 3366,
-          "margin_of_error": 268
+          "value": 3664,
+          "margin_of_error": 320
         },
         "Male": {
-          "value": 1603,
-          "margin_of_error": 174,
-          "percentage": 0.476
+          "value": 1835,
+          "margin_of_error": 195,
+          "percentage": 0.501
         },
         "Male: Under 5 years": {
-          "value": 94,
-          "margin_of_error": 57,
-          "percentage": 0.059
+          "value": 101,
+          "margin_of_error": 66,
+          "percentage": 0.055
         },
         "Male: 5 to 9 years": {
-          "value": 43,
-          "margin_of_error": 31,
-          "percentage": 0.027
+          "value": 32,
+          "margin_of_error": 27,
+          "percentage": 0.017
         },
         "Male: 10 to 14 years": {
-          "value": 15,
-          "margin_of_error": 27,
-          "percentage": 0.009
+          "value": 21,
+          "margin_of_error": 28,
+          "percentage": 0.011
         },
         "Male: 15 to 17 years": {
           "value": 0,
@@ -1812,9 +1819,9 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
           "percentage": 0
         },
         "Male: 18 and 19 years": {
-          "value": 11,
-          "margin_of_error": 18,
-          "percentage": 0.007
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
         },
         "Male: 20 years": {
           "value": 0,
@@ -1827,54 +1834,54 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
           "percentage": 0
         },
         "Male: 22 to 24 years": {
-          "value": 72,
-          "margin_of_error": 42,
-          "percentage": 0.045
+          "value": 174,
+          "margin_of_error": 77,
+          "percentage": 0.095
         },
         "Male: 25 to 29 years": {
-          "value": 262,
-          "margin_of_error": 83,
-          "percentage": 0.163
+          "value": 302,
+          "margin_of_error": 109,
+          "percentage": 0.165
         },
         "Male: 30 to 34 years": {
-          "value": 327,
+          "value": 354,
           "margin_of_error": 94,
-          "percentage": 0.204
+          "percentage": 0.193
         },
         "Male: 35 to 39 years": {
-          "value": 176,
-          "margin_of_error": 59,
-          "percentage": 0.11
+          "value": 209,
+          "margin_of_error": 81,
+          "percentage": 0.114
         },
         "Male: 40 to 44 years": {
-          "value": 188,
-          "margin_of_error": 61,
-          "percentage": 0.117
+          "value": 205,
+          "margin_of_error": 81,
+          "percentage": 0.112
         },
         "Male: 45 to 49 years": {
-          "value": 64,
-          "margin_of_error": 40,
-          "percentage": 0.04
+          "value": 48,
+          "margin_of_error": 31,
+          "percentage": 0.026
         },
         "Male: 50 to 54 years": {
-          "value": 181,
-          "margin_of_error": 92,
-          "percentage": 0.113
+          "value": 162,
+          "margin_of_error": 86,
+          "percentage": 0.088
         },
         "Male: 55 to 59 years": {
-          "value": 92,
-          "margin_of_error": 63,
-          "percentage": 0.057
+          "value": 120,
+          "margin_of_error": 80,
+          "percentage": 0.065
         },
         "Male: 60 and 61 years": {
-          "value": 8,
-          "margin_of_error": 15,
-          "percentage": 0.005
-        },
-        "Male: 62 to 64 years": {
           "value": 0,
           "margin_of_error": 12,
           "percentage": 0
+        },
+        "Male: 62 to 64 years": {
+          "value": 8,
+          "margin_of_error": 12,
+          "percentage": 0.004
         },
         "Male: 65 and 66 years": {
           "value": 0,
@@ -1882,13 +1889,13 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
           "percentage": 0
         },
         "Male: 67 to 69 years": {
-          "value": 31,
-          "margin_of_error": 29,
-          "percentage": 0.019
+          "value": 54,
+          "margin_of_error": 35,
+          "percentage": 0.029
         },
         "Male: 70 to 74 years": {
-          "value": 27,
-          "margin_of_error": 19,
+          "value": 31,
+          "margin_of_error": 29,
           "percentage": 0.017
         },
         "Male: 75 to 79 years": {
@@ -1897,9 +1904,9 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
           "percentage": 0
         },
         "Male: 80 to 84 years": {
-          "value": 12,
-          "margin_of_error": 19,
-          "percentage": 0.007
+          "value": 14,
+          "margin_of_error": 23,
+          "percentage": 0.008
         },
         "Male: 85 years and over": {
           "value": 0,
@@ -1907,29 +1914,29 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
           "percentage": 0
         },
         "Female": {
-          "value": 1763,
-          "margin_of_error": 202,
-          "percentage": 0.524
+          "value": 1829,
+          "margin_of_error": 203,
+          "percentage": 0.499
         },
         "Female: Under 5 years": {
-          "value": 113,
-          "margin_of_error": 60,
-          "percentage": 0.064
+          "value": 116,
+          "margin_of_error": 65,
+          "percentage": 0.063
         },
         "Female: 5 to 9 years": {
-          "value": 82,
-          "margin_of_error": 71,
-          "percentage": 0.047
+          "value": 91,
+          "margin_of_error": 79,
+          "percentage": 0.05
         },
         "Female: 10 to 14 years": {
-          "value": 25,
+          "value": 32,
           "margin_of_error": 40,
-          "percentage": 0.014
+          "percentage": 0.017
         },
         "Female: 15 to 17 years": {
-          "value": 24,
-          "margin_of_error": 33,
-          "percentage": 0.014
+          "value": 32,
+          "margin_of_error": 42,
+          "percentage": 0.017
         },
         "Female: 18 and 19 years": {
           "value": 0,
@@ -1947,63 +1954,63 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
           "percentage": 0
         },
         "Female: 22 to 24 years": {
-          "value": 44,
-          "margin_of_error": 27,
-          "percentage": 0.025
+          "value": 108,
+          "margin_of_error": 75,
+          "percentage": 0.059
         },
         "Female: 25 to 29 years": {
-          "value": 399,
-          "margin_of_error": 99,
-          "percentage": 0.226
+          "value": 366,
+          "margin_of_error": 93,
+          "percentage": 0.2
         },
         "Female: 30 to 34 years": {
-          "value": 466,
-          "margin_of_error": 142,
-          "percentage": 0.264
+          "value": 419,
+          "margin_of_error": 122,
+          "percentage": 0.229
         },
         "Female: 35 to 39 years": {
-          "value": 173,
-          "margin_of_error": 63,
-          "percentage": 0.098
+          "value": 212,
+          "margin_of_error": 74,
+          "percentage": 0.116
         },
         "Female: 40 to 44 years": {
-          "value": 119,
-          "margin_of_error": 47,
-          "percentage": 0.067
+          "value": 124,
+          "margin_of_error": 55,
+          "percentage": 0.068
         },
         "Female: 45 to 49 years": {
-          "value": 116,
-          "margin_of_error": 65,
-          "percentage": 0.066
+          "value": 136,
+          "margin_of_error": 64,
+          "percentage": 0.074
         },
         "Female: 50 to 54 years": {
-          "value": 43,
-          "margin_of_error": 32,
-          "percentage": 0.024
+          "value": 51,
+          "margin_of_error": 41,
+          "percentage": 0.028
         },
         "Female: 55 to 59 years": {
-          "value": 13,
-          "margin_of_error": 20,
-          "percentage": 0.007
+          "value": 33,
+          "margin_of_error": 30,
+          "percentage": 0.018
         },
         "Female: 60 and 61 years": {
-          "value": 30,
-          "margin_of_error": 28,
-          "percentage": 0.017
+          "value": 11,
+          "margin_of_error": 15,
+          "percentage": 0.006
         },
         "Female: 62 to 64 years": {
-          "value": 63,
-          "margin_of_error": 39,
-          "percentage": 0.036
+          "value": 37,
+          "margin_of_error": 45,
+          "percentage": 0.02
         },
         "Female: 65 and 66 years": {
-          "value": 9,
-          "margin_of_error": 12,
-          "percentage": 0.005
+          "value": 12,
+          "margin_of_error": 16,
+          "percentage": 0.007
         },
         "Female: 67 to 69 years": {
-          "value": 12,
-          "margin_of_error": 15,
+          "value": 13,
+          "margin_of_error": 19,
           "percentage": 0.007
         },
         "Female: 70 to 74 years": {
@@ -2012,9 +2019,9 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
           "percentage": 0
         },
         "Female: 75 to 79 years": {
-          "value": 32,
-          "margin_of_error": 35,
-          "percentage": 0.018
+          "value": 36,
+          "margin_of_error": 37,
+          "percentage": 0.02
         },
         "Female: 80 to 84 years": {
           "value": 0,
@@ -2033,18 +2040,18 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
           "universe": "Total population"
         },
         "Total": {
-          "value": 3366,
-          "margin_of_error": 268
+          "value": 3664,
+          "margin_of_error": 320
         },
         "Male": {
-          "value": 1603,
-          "margin_of_error": 174,
-          "percentage": 0.476
+          "value": 1835,
+          "margin_of_error": 195,
+          "percentage": 0.501
         },
         "Female": {
-          "value": 1763,
-          "margin_of_error": 202,
-          "percentage": 0.524
+          "value": 1829,
+          "margin_of_error": 203,
+          "percentage": 0.499
         }
       },
       "Race and ethnicity": {
@@ -2053,33 +2060,33 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
           "universe": "Total population"
         },
         "Total": {
-          "value": 3366,
-          "margin_of_error": 268
+          "value": 3664,
+          "margin_of_error": 320
         },
         "Not Hispanic or Latino": {
-          "value": 3169,
-          "margin_of_error": 282,
-          "percentage": 0.941
+          "value": 3396,
+          "margin_of_error": 324,
+          "percentage": 0.927
         },
         "Not Hispanic or Latino: White alone": {
-          "value": 2386,
-          "margin_of_error": 303,
+          "value": 2556,
+          "margin_of_error": 330,
           "percentage": 0.753
         },
         "Not Hispanic or Latino: Black or African American alone": {
-          "value": 83,
-          "margin_of_error": 68,
-          "percentage": 0.026
+          "value": 93,
+          "margin_of_error": 71,
+          "percentage": 0.027
         },
         "Not Hispanic or Latino: American Indian and Alaska Native alone": {
-          "value": 12,
-          "margin_of_error": 19,
-          "percentage": 0.004
+          "value": 21,
+          "margin_of_error": 26,
+          "percentage": 0.006
         },
         "Not Hispanic or Latino: Asian alone": {
-          "value": 528,
-          "margin_of_error": 176,
-          "percentage": 0.167
+          "value": 573,
+          "margin_of_error": 175,
+          "percentage": 0.169
         },
         "Not Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone": {
           "value": 0,
@@ -2087,14 +2094,14 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
           "percentage": 0
         },
         "Not Hispanic or Latino: Some other race alone": {
-          "value": 8,
-          "margin_of_error": 12,
-          "percentage": 0.003
+          "value": 22,
+          "margin_of_error": 26,
+          "percentage": 0.006
         },
         "Not Hispanic or Latino: Two or more races": {
-          "value": 152,
-          "margin_of_error": 86,
-          "percentage": 0.048
+          "value": 131,
+          "margin_of_error": 69,
+          "percentage": 0.039
         },
         "Not Hispanic or Latino: Two or more races: Two races including Some other race": {
           "value": 0,
@@ -2102,19 +2109,19 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
           "percentage": 0
         },
         "Not Hispanic or Latino: Two or more races: Two races excluding Some other race, and three or more races": {
-          "value": 152,
-          "margin_of_error": 86,
+          "value": 131,
+          "margin_of_error": 69,
           "percentage": 1
         },
         "Hispanic or Latino": {
-          "value": 197,
-          "margin_of_error": 109,
-          "percentage": 0.059
+          "value": 268,
+          "margin_of_error": 128,
+          "percentage": 0.073
         },
         "Hispanic or Latino: White alone": {
-          "value": 189,
-          "margin_of_error": 107,
-          "percentage": 0.959
+          "value": 244,
+          "margin_of_error": 120,
+          "percentage": 0.91
         },
         "Hispanic or Latino: Black or African American alone": {
           "value": 0,
@@ -2137,9 +2144,9 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
           "percentage": 0
         },
         "Hispanic or Latino: Some other race alone": {
-          "value": 8,
-          "margin_of_error": 12,
-          "percentage": 0.041
+          "value": 24,
+          "margin_of_error": 28,
+          "percentage": 0.09
         },
         "Hispanic or Latino: Two or more races": {
           "value": 0,
@@ -2192,7 +2199,7 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
   "acs": {
     "meta": {
       "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2014-2018",
+      "survey_years": "2015-2019",
       "survey_duration_years": "5"
     },
     "economics": {
@@ -2202,8 +2209,8 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
           "universe": "Households"
         },
         "Total": {
-          "value": 1904,
-          "margin_of_error": 99
+          "value": 1999,
+          "margin_of_error": 87
         }
       },
       "Median household income": {
@@ -2212,8 +2219,8 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
           "universe": "Households"
         },
         "Total": {
-          "value": 152643,
-          "margin_of_error": 15674
+          "value": 158656,
+          "margin_of_error": 9227
         }
       },
       "Household income": {
@@ -2222,14 +2229,14 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
           "universe": "Households"
         },
         "Less than $10,000": {
-          "value": 23,
-          "margin_of_error": 25,
+          "value": 24,
+          "margin_of_error": 26,
           "percentage": 0.012
         },
         "$10,000 to $14,999": {
-          "value": 17,
-          "margin_of_error": 20,
-          "percentage": 0.009
+          "value": 20,
+          "margin_of_error": 22,
+          "percentage": 0.01
         },
         "$15,000 to $19,999": {
           "value": 0,
@@ -2237,14 +2244,14 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
           "percentage": 0
         },
         "$20,000 to $24,999": {
-          "value": 24,
-          "margin_of_error": 29,
-          "percentage": 0.013
+          "value": 18,
+          "margin_of_error": 26,
+          "percentage": 0.009
         },
         "$25,000 to $29,999": {
-          "value": 0,
-          "margin_of_error": 12,
-          "percentage": 0
+          "value": 10,
+          "margin_of_error": 16,
+          "percentage": 0.005
         },
         "$30,000 to $34,999": {
           "value": 0,
@@ -2257,49 +2264,49 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
           "percentage": 0
         },
         "$40,000 to $44,999": {
-          "value": 8,
-          "margin_of_error": 13,
-          "percentage": 0.004
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
         },
         "$45,000 to $49,999": {
-          "value": 45,
-          "margin_of_error": 50,
-          "percentage": 0.024
+          "value": 49,
+          "margin_of_error": 55,
+          "percentage": 0.025
         },
         "$50,000 to $59,999": {
-          "value": 17,
-          "margin_of_error": 18,
-          "percentage": 0.009
+          "value": 10,
+          "margin_of_error": 15,
+          "percentage": 0.005
         },
         "$60,000 to $74,999": {
-          "value": 69,
-          "margin_of_error": 44,
-          "percentage": 0.036
+          "value": 87,
+          "margin_of_error": 49,
+          "percentage": 0.044
         },
         "$75,000 to $99,999": {
-          "value": 208,
-          "margin_of_error": 78,
-          "percentage": 0.109
+          "value": 175,
+          "margin_of_error": 71,
+          "percentage": 0.088
         },
         "$100,000 to $124,999": {
-          "value": 247,
-          "margin_of_error": 82,
-          "percentage": 0.13
+          "value": 275,
+          "margin_of_error": 100,
+          "percentage": 0.138
         },
         "$125,000 to $149,999": {
-          "value": 268,
-          "margin_of_error": 95,
-          "percentage": 0.141
+          "value": 223,
+          "margin_of_error": 88,
+          "percentage": 0.112
         },
         "$150,000 to $199,999": {
-          "value": 357,
-          "margin_of_error": 102,
-          "percentage": 0.188
+          "value": 461,
+          "margin_of_error": 111,
+          "percentage": 0.231
         },
         "$200,000 or more": {
-          "value": 621,
-          "margin_of_error": 131,
-          "percentage": 0.326
+          "value": 647,
+          "margin_of_error": 142,
+          "percentage": 0.324
         }
       }
     }
@@ -2326,7 +2333,7 @@ The data returned includes the following data points. For each data point, the d
   "acs": {
     "meta": {
       "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2014-2018",
+      "survey_years": "2015-2019",
       "survey_duration_years": "5"
     },
     "families": {
@@ -2336,48 +2343,48 @@ The data returned includes the following data points. For each data point, the d
           "universe": "Households"
         },
         "Total": {
-          "value": 1904,
-          "margin_of_error": 99
+          "value": 1999,
+          "margin_of_error": 87
         },
         "Family households": {
-          "value": 608,
-          "margin_of_error": 126,
-          "percentage": 0.319
+          "value": 689,
+          "margin_of_error": 138,
+          "percentage": 0.345
         },
         "Family households: Married-couple family": {
-          "value": 518,
-          "margin_of_error": 111,
-          "percentage": 0.852
+          "value": 585,
+          "margin_of_error": 116,
+          "percentage": 0.849
         },
         "Family households: Other family": {
-          "value": 90,
-          "margin_of_error": 63,
-          "percentage": 0.148
+          "value": 104,
+          "margin_of_error": 78,
+          "percentage": 0.151
         },
-        "Family households: Other family: Male householder, no wife present": {
-          "value": 48,
-          "margin_of_error": 57,
-          "percentage": 0.533
+        "Family households: Other family: Male householder, no spouse present": {
+          "value": 51,
+          "margin_of_error": 67,
+          "percentage": 0.49
         },
-        "Family households: Other family: Female householder, no husband present": {
-          "value": 42,
-          "margin_of_error": 28,
-          "percentage": 0.467
+        "Family households: Other family: Female householder, no spouse present": {
+          "value": 53,
+          "margin_of_error": 33,
+          "percentage": 0.51
         },
         "Nonfamily households": {
-          "value": 1296,
-          "margin_of_error": 126,
-          "percentage": 0.681
+          "value": 1310,
+          "margin_of_error": 139,
+          "percentage": 0.655
         },
         "Nonfamily households: Householder living alone": {
-          "value": 911,
-          "margin_of_error": 127,
-          "percentage": 0.703
+          "value": 836,
+          "margin_of_error": 134,
+          "percentage": 0.638
         },
         "Nonfamily households: Householder not living alone": {
-          "value": 385,
-          "margin_of_error": 91,
-          "percentage": 0.297
+          "value": 474,
+          "margin_of_error": 109,
+          "percentage": 0.362
         }
       },
       "Household type by population": {
@@ -2386,22 +2393,22 @@ The data returned includes the following data points. For each data point, the d
           "universe": "Population in Households"
         },
         "Total": {
-          "value": 3366,
-          "margin_of_error": 268
+          "value": 3664,
+          "margin_of_error": 320
         },
         "In family households": {
-          "value": 1624,
-          "margin_of_error": 309,
-          "percentage": 0.482
+          "value": 1799,
+          "margin_of_error": 379,
+          "percentage": 0.491
         },
         "In family households: In married-couple family": {
-          "value": 1398,
-          "margin_of_error": 277,
-          "percentage": 0.861
+          "value": 1539,
+          "margin_of_error": 323,
+          "percentage": 0.855
         },
         "In family households: In married-couple family: Relatives": {
-          "value": 1398,
-          "margin_of_error": 277,
+          "value": 1539,
+          "margin_of_error": 323,
           "percentage": 1
         },
         "In family households: In married-couple family: Nonrelatives": {
@@ -2409,40 +2416,40 @@ The data returned includes the following data points. For each data point, the d
           "margin_of_error": 12,
           "percentage": 0
         },
-        "In family households: In male householder, no wife present, family": {
-          "value": 116,
-          "margin_of_error": 138,
-          "percentage": 0.071
+        "In family households: In male householder, no spouse present, family": {
+          "value": 112,
+          "margin_of_error": 144,
+          "percentage": 0.062
         },
-        "In family households: In male householder, no wife present, family: Relatives": {
-          "value": 116,
-          "margin_of_error": 138,
-          "percentage": 1
-        },
-        "In family households: In male householder, no wife present, family: Nonrelatives": {
-          "value": 0,
-          "margin_of_error": 12,
-          "percentage": 0
-        },
-        "In family households: In female householder, no husband present, family": {
+        "In family households: In male householder, no spouse present, family: Relatives": {
           "value": 110,
-          "margin_of_error": 73,
+          "margin_of_error": 144,
+          "percentage": 0.982
+        },
+        "In family households: In male householder, no spouse present, family: Nonrelatives": {
+          "value": 2,
+          "margin_of_error": 5,
+          "percentage": 0.018
+        },
+        "In family households: In female householder, no spouse present, family": {
+          "value": 148,
+          "margin_of_error": 95,
+          "percentage": 0.082
+        },
+        "In family households: In female householder, no spouse present, family: Relatives": {
+          "value": 138,
+          "margin_of_error": 86,
+          "percentage": 0.932
+        },
+        "In family households: In female householder, no spouse present, family: Nonrelatives": {
+          "value": 10,
+          "margin_of_error": 16,
           "percentage": 0.068
         },
-        "In family households: In female householder, no husband present, family: Relatives": {
-          "value": 110,
-          "margin_of_error": 73,
-          "percentage": 1
-        },
-        "In family households: In female householder, no husband present, family: Nonrelatives": {
-          "value": 0,
-          "margin_of_error": 12,
-          "percentage": 0
-        },
         "In nonfamily households": {
-          "value": 1742,
-          "margin_of_error": 200,
-          "percentage": 0.518
+          "value": 1865,
+          "margin_of_error": 234,
+          "percentage": 0.509
         }
       },
       "Marital status": {
@@ -2451,39 +2458,39 @@ The data returned includes the following data points. For each data point, the d
           "universe": "Population 15 Years And Older"
         },
         "Male": {
-          "value": 1451,
-          "margin_of_error": 160,
-          "percentage": 0.485
+          "value": 1681,
+          "margin_of_error": 162,
+          "percentage": 0.514
         },
         "Male: Never married": {
-          "value": 727,
-          "margin_of_error": 159,
-          "percentage": 0.501
+          "value": 911,
+          "margin_of_error": 166,
+          "percentage": 0.542
         },
         "Male: Now married": {
-          "value": 585,
-          "margin_of_error": 134,
-          "percentage": 0.403
+          "value": 672,
+          "margin_of_error": 135,
+          "percentage": 0.4
         },
         "Male: Now married: Married, spouse present": {
-          "value": 528,
-          "margin_of_error": 115,
-          "percentage": 0.903
+          "value": 588,
+          "margin_of_error": 113,
+          "percentage": 0.875
         },
         "Male: Now married: Married, spouse absent": {
-          "value": 57,
-          "margin_of_error": 58,
-          "percentage": 0.097
+          "value": 84,
+          "margin_of_error": 73,
+          "percentage": 0.125
         },
         "Male: Now married: Married, spouse absent: Separated": {
-          "value": 6,
-          "margin_of_error": 10,
-          "percentage": 0.105
+          "value": 7,
+          "margin_of_error": 12,
+          "percentage": 0.083
         },
         "Male: Now married: Married, spouse absent: Other": {
-          "value": 51,
-          "margin_of_error": 57,
-          "percentage": 0.895
+          "value": 77,
+          "margin_of_error": 72,
+          "percentage": 0.917
         },
         "Male: Widowed": {
           "value": 0,
@@ -2491,34 +2498,34 @@ The data returned includes the following data points. For each data point, the d
           "percentage": 0
         },
         "Male: Divorced": {
-          "value": 139,
-          "margin_of_error": 74,
-          "percentage": 0.096
+          "value": 98,
+          "margin_of_error": 53,
+          "percentage": 0.058
         },
         "Female": {
-          "value": 1543,
-          "margin_of_error": 177,
-          "percentage": 0.515
+          "value": 1590,
+          "margin_of_error": 152,
+          "percentage": 0.486
         },
         "Female: Never married": {
-          "value": 858,
-          "margin_of_error": 170,
-          "percentage": 0.556
+          "value": 827,
+          "margin_of_error": 129,
+          "percentage": 0.52
         },
         "Female: Now married": {
-          "value": 496,
-          "margin_of_error": 96,
-          "percentage": 0.321
+          "value": 566,
+          "margin_of_error": 111,
+          "percentage": 0.356
         },
         "Female: Now married: Married, spouse present": {
-          "value": 484,
-          "margin_of_error": 101,
-          "percentage": 0.976
+          "value": 553,
+          "margin_of_error": 109,
+          "percentage": 0.977
         },
         "Female: Now married: Married, spouse absent": {
-          "value": 12,
-          "margin_of_error": 15,
-          "percentage": 0.024
+          "value": 13,
+          "margin_of_error": 19,
+          "percentage": 0.023
         },
         "Female: Now married: Married, spouse absent: Separated": {
           "value": 0,
@@ -2526,24 +2533,25 @@ The data returned includes the following data points. For each data point, the d
           "percentage": 0
         },
         "Female: Now married: Married, spouse absent: Other": {
-          "value": 12,
-          "margin_of_error": 15,
+          "value": 13,
+          "margin_of_error": 19,
           "percentage": 1
         },
         "Female: Widowed": {
-          "value": 24,
-          "margin_of_error": 28,
+          "value": 26,
+          "margin_of_error": 29,
           "percentage": 0.016
         },
         "Female: Divorced": {
-          "value": 165,
-          "margin_of_error": 62,
-          "percentage": 0.107
+          "value": 171,
+          "margin_of_error": 67,
+          "percentage": 0.108
         }
       }
     }
   }
 }
+
 ...
 ```
 
@@ -2572,7 +2580,7 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
   "acs": {
     "meta": {
       "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2014-2018",
+      "survey_years": "2015-2019",
       "survey_duration_years": "5"
     },
     "housing": {
@@ -2582,7 +2590,7 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
           "universe": "Housing Units"
         },
         "Total": {
-          "value": 2070,
+          "value": 2120,
           "margin_of_error": 49
         }
       },
@@ -2592,14 +2600,14 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
           "universe": "Housing Units"
         },
         "Occupied": {
-          "value": 1904,
-          "margin_of_error": 99,
-          "percentage": 0.92
+          "value": 1999,
+          "margin_of_error": 87,
+          "percentage": 0.943
         },
         "Vacant": {
-          "value": 166,
-          "margin_of_error": 87,
-          "percentage": 0.08
+          "value": 121,
+          "margin_of_error": 71,
+          "percentage": 0.057
         }
       },
       "Ownership of occupied units": {
@@ -2608,14 +2616,14 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
           "universe": "Occupied Housing Units"
         },
         "Owner occupied": {
-          "value": 635,
-          "margin_of_error": 118,
-          "percentage": 0.334
+          "value": 610,
+          "margin_of_error": 102,
+          "percentage": 0.305
         },
         "Renter occupied": {
-          "value": 1269,
-          "margin_of_error": 127,
-          "percentage": 0.666
+          "value": 1389,
+          "margin_of_error": 108,
+          "percentage": 0.695
         }
       },
       "Units in structure": {
@@ -2624,43 +2632,43 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
           "universe": "Housing Units"
         },
         "1, detached unit": {
-          "value": 163,
-          "margin_of_error": 74,
-          "percentage": 0.079
+          "value": 170,
+          "margin_of_error": 69,
+          "percentage": 0.08
         },
         "1, attached unit": {
-          "value": 94,
-          "margin_of_error": 34,
-          "percentage": 0.045
+          "value": 90,
+          "margin_of_error": 31,
+          "percentage": 0.042
         },
         "2 units": {
-          "value": 22,
-          "margin_of_error": 35,
-          "percentage": 0.011
+          "value": 27,
+          "margin_of_error": 43,
+          "percentage": 0.013
         },
         "3 or 4 units": {
-          "value": 44,
-          "margin_of_error": 51,
-          "percentage": 0.021
+          "value": 46,
+          "margin_of_error": 56,
+          "percentage": 0.022
         },
         "5 to 9 units": {
-          "value": 17,
-          "margin_of_error": 20,
-          "percentage": 0.008
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
         },
         "10 to 19 unit": {
-          "value": 12,
-          "margin_of_error": 19,
-          "percentage": 0.006
+          "value": 15,
+          "margin_of_error": 24,
+          "percentage": 0.007
         },
         "20 to 49 units": {
-          "value": 83,
-          "margin_of_error": 66,
-          "percentage": 0.04
+          "value": 98,
+          "margin_of_error": 77,
+          "percentage": 0.046
         },
         "50 or more units": {
-          "value": 1635,
-          "margin_of_error": 108,
+          "value": 1674,
+          "margin_of_error": 109,
           "percentage": 0.79
         },
         "Mobile home units": {
@@ -2680,8 +2688,8 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
           "universe": "Owner-Occupied Housing Units"
         },
         "Total": {
-          "value": 584700,
-          "margin_of_error": 83312
+          "value": 624500,
+          "margin_of_error": 67024
         }
       },
       "Value of owner-occupied housing units": {
@@ -2690,9 +2698,9 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
           "universe": "Owner-Occupied Housing Units"
         },
         "Less than $10,000": {
-          "value": 12,
-          "margin_of_error": 18,
-          "percentage": 0.019
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
         },
         "$10,000 to $14,999": {
           "value": 0,
@@ -2755,9 +2763,9 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
           "percentage": 0
         },
         "$100,000 to $124,999": {
-          "value": 14,
-          "margin_of_error": 13,
-          "percentage": 0.022
+          "value": 5,
+          "margin_of_error": 7,
+          "percentage": 0.008
         },
         "$125,000 to $149,999": {
           "value": 0,
@@ -2785,34 +2793,34 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
           "percentage": 0
         },
         "$300,000 to $399,999": {
-          "value": 8,
-          "margin_of_error": 14,
-          "percentage": 0.013
+          "value": 6,
+          "margin_of_error": 11,
+          "percentage": 0.01
         },
         "$400,000 to $499,999": {
-          "value": 212,
-          "margin_of_error": 116,
-          "percentage": 0.334
+          "value": 174,
+          "margin_of_error": 94,
+          "percentage": 0.285
         },
         "$500,000 to $749,999": {
-          "value": 211,
-          "margin_of_error": 72,
-          "percentage": 0.332
+          "value": 241,
+          "margin_of_error": 64,
+          "percentage": 0.395
         },
         "$750,000 to $999,999": {
-          "value": 83,
-          "margin_of_error": 38,
-          "percentage": 0.131
+          "value": 93,
+          "margin_of_error": 51,
+          "percentage": 0.152
         },
         "$1,000,000 to $1,499,999": {
-          "value": 54,
-          "margin_of_error": 33,
-          "percentage": 0.085
+          "value": 53,
+          "margin_of_error": 32,
+          "percentage": 0.087
         },
         "$1,500,000 to $1,999,999": {
-          "value": 41,
-          "margin_of_error": 24,
-          "percentage": 0.065
+          "value": 38,
+          "margin_of_error": 23,
+          "percentage": 0.062
         },
         "$2,000,000 or more": {
           "value": 0,
@@ -2854,7 +2862,7 @@ Data points returned are:
   "acs": {
     "meta": {
       "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2014-2018",
+      "survey_years": "2015-2019",
       "survey_duration_years": "5"
     },
     "social": {
@@ -2864,13 +2872,13 @@ Data points returned are:
           "universe": "Population 25 Years And Over"
         },
         "Total": {
-          "value": 2843,
-          "margin_of_error": 208
+          "value": 2957,
+          "margin_of_error": 214
         },
         "Male": {
-          "value": 1368,
-          "margin_of_error": 148,
-          "percentage": 0.481
+          "value": 1507,
+          "margin_of_error": 154,
+          "percentage": 0.51
         },
         "Male: No schooling completed": {
           "value": 0,
@@ -2913,49 +2921,49 @@ Data points returned are:
           "percentage": 0
         },
         "Male: High school graduate (includes equivalency)": {
-          "value": 26,
-          "margin_of_error": 20,
-          "percentage": 0.019
+          "value": 48,
+          "margin_of_error": 36,
+          "percentage": 0.032
         },
         "Male: Some college, less than 1 year": {
-          "value": 6,
-          "margin_of_error": 10,
-          "percentage": 0.004
+          "value": 17,
+          "margin_of_error": 18,
+          "percentage": 0.011
         },
         "Male: Some college, 1 or more years, no degree": {
-          "value": 39,
-          "margin_of_error": 27,
-          "percentage": 0.029
+          "value": 46,
+          "margin_of_error": 34,
+          "percentage": 0.031
         },
         "Male: Associate's degree": {
-          "value": 28,
-          "margin_of_error": 27,
-          "percentage": 0.02
+          "value": 36,
+          "margin_of_error": 28,
+          "percentage": 0.024
         },
         "Male: Bachelor's degree": {
-          "value": 529,
-          "margin_of_error": 150,
-          "percentage": 0.387
+          "value": 540,
+          "margin_of_error": 163,
+          "percentage": 0.358
         },
         "Male: Master's degree": {
-          "value": 374,
-          "margin_of_error": 96,
-          "percentage": 0.273
+          "value": 442,
+          "margin_of_error": 112,
+          "percentage": 0.293
         },
         "Male: Professional school degree": {
-          "value": 308,
-          "margin_of_error": 76,
-          "percentage": 0.225
+          "value": 307,
+          "margin_of_error": 82,
+          "percentage": 0.204
         },
         "Male: Doctorate degree": {
-          "value": 58,
-          "margin_of_error": 36,
-          "percentage": 0.042
+          "value": 71,
+          "margin_of_error": 40,
+          "percentage": 0.047
         },
         "Female": {
-          "value": 1475,
-          "margin_of_error": 164,
-          "percentage": 0.519
+          "value": 1450,
+          "margin_of_error": 152,
+          "percentage": 0.49
         },
         "Female: No schooling completed": {
           "value": 0,
@@ -3003,39 +3011,39 @@ Data points returned are:
           "percentage": 0
         },
         "Female: Some college, less than 1 year": {
-          "value": 9,
-          "margin_of_error": 14,
-          "percentage": 0.006
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
         },
         "Female: Some college, 1 or more years, no degree": {
-          "value": 48,
-          "margin_of_error": 34,
-          "percentage": 0.033
+          "value": 43,
+          "margin_of_error": 37,
+          "percentage": 0.03
         },
         "Female: Associate's degree": {
-          "value": 30,
-          "margin_of_error": 48,
-          "percentage": 0.02
+          "value": 38,
+          "margin_of_error": 54,
+          "percentage": 0.026
         },
         "Female: Bachelor's degree": {
-          "value": 686,
-          "margin_of_error": 159,
-          "percentage": 0.465
+          "value": 619,
+          "margin_of_error": 142,
+          "percentage": 0.427
         },
         "Female: Master's degree": {
-          "value": 399,
-          "margin_of_error": 94,
-          "percentage": 0.271
+          "value": 425,
+          "margin_of_error": 106,
+          "percentage": 0.293
         },
         "Female: Professional school degree": {
-          "value": 218,
-          "margin_of_error": 63,
-          "percentage": 0.148
+          "value": 253,
+          "margin_of_error": 70,
+          "percentage": 0.174
         },
         "Female: Doctorate degree": {
-          "value": 85,
+          "value": 72,
           "margin_of_error": 44,
-          "percentage": 0.058
+          "percentage": 0.05
         }
       },
       "Population with veteran status": {
@@ -3044,136 +3052,158 @@ Data points returned are:
           "universe": "Civilian Population 18 Years And Over"
         },
         "Total": {
-          "value": 2953,
-          "margin_of_error": 207
+          "value": 3219,
+          "margin_of_error": 226
         },
         "Veteran": {
-          "value": 165,
-          "margin_of_error": 99
+          "value": 199,
+          "margin_of_error": 106,
+          "percentage": 0.062
         },
         "Nonveteran": {
-          "value": 1274,
-          "margin_of_error": 162
+          "value": 3020,
+          "margin_of_error": 233,
+          "percentage": 0.938
         },
         "Male": {
-          "value": 1439,
-          "margin_of_error": 160,
-          "percentage": 0.487
+          "value": 1675,
+          "margin_of_error": 164,
+          "percentage": 0.52
+        },
+        "Male: Veteran": {
+          "value": 167,
+          "margin_of_error": 98,
+          "percentage": 0.1
+        },
+        "Male: Nonveteran": {
+          "value": 1508,
+          "margin_of_error": 185,
+          "percentage": 0.9
         },
         "Male: 18 to 34 years": {
-          "value": 666,
-          "margin_of_error": 137,
-          "percentage": 0.463
+          "value": 828,
+          "margin_of_error": 148,
+          "percentage": 0.494
         },
         "Male: 18 to 34 years: Veteran": {
-          "value": 26,
-          "margin_of_error": 39,
-          "percentage": 0.039
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
         },
         "Male: 18 to 34 years: Nonveteran": {
-          "value": 640,
-          "margin_of_error": 141,
-          "percentage": 0.961
+          "value": 828,
+          "margin_of_error": 148,
+          "percentage": 1
         },
         "Male: 35 to 54 years": {
-          "value": 603,
+          "value": 620,
           "margin_of_error": 129,
-          "percentage": 0.419
+          "percentage": 0.37
         },
         "Male: 35 to 54 years: Veteran": {
-          "value": 107,
-          "margin_of_error": 90,
-          "percentage": 0.177
+          "value": 130,
+          "margin_of_error": 98,
+          "percentage": 0.21
         },
         "Male: 35 to 54 years: Nonveteran": {
-          "value": 496,
-          "margin_of_error": 97,
-          "percentage": 0.823
+          "value": 490,
+          "margin_of_error": 91,
+          "percentage": 0.79
         },
         "Male: 55 to 64 years": {
-          "value": 100,
-          "margin_of_error": 64,
-          "percentage": 0.069
+          "value": 128,
+          "margin_of_error": 78,
+          "percentage": 0.076
         },
         "Male: 55 to 64 years: Veteran": {
-          "value": 11,
-          "margin_of_error": 17,
-          "percentage": 0.11
+          "value": 17,
+          "margin_of_error": 22,
+          "percentage": 0.133
         },
         "Male: 55 to 64 years: Nonveteran": {
-          "value": 89,
-          "margin_of_error": 63,
-          "percentage": 0.89
+          "value": 111,
+          "margin_of_error": 72,
+          "percentage": 0.867
         },
         "Male: 65 to 74 years": {
-          "value": 58,
-          "margin_of_error": 40,
-          "percentage": 0.04
+          "value": 85,
+          "margin_of_error": 54,
+          "percentage": 0.051
         },
         "Male: 65 to 74 years: Veteran": {
-          "value": 9,
-          "margin_of_error": 13,
-          "percentage": 0.155
+          "value": 6,
+          "margin_of_error": 10,
+          "percentage": 0.071
         },
         "Male: 65 to 74 years: Nonveteran": {
-          "value": 49,
-          "margin_of_error": 39,
-          "percentage": 0.845
+          "value": 79,
+          "margin_of_error": 52,
+          "percentage": 0.929
         },
         "Male: 75 years and over": {
-          "value": 12,
-          "margin_of_error": 19,
+          "value": 14,
+          "margin_of_error": 23,
           "percentage": 0.008
         },
         "Male: 75 years and over: Veteran": {
-          "value": 30,
-          "margin_of_error": 29,
-          "percentage": 2.5
+          "value": 14,
+          "margin_of_error": 23,
+          "percentage": 1
         },
         "Male: 75 years and over: Nonveteran": {
-          "value": 1484,
-          "margin_of_error": 164,
-          "percentage": 123.667
+          "value": 0,
+          "margin_of_error": 12,
+          "percentage": 0
         },
         "Female": {
-          "value": 1514,
-          "margin_of_error": 165,
-          "percentage": 0.513
+          "value": 1544,
+          "margin_of_error": 153,
+          "percentage": 0.48
+        },
+        "Female: Veteran": {
+          "value": 32,
+          "margin_of_error": 34,
+          "percentage": 0.021
+        },
+        "Female: Nonveteran": {
+          "value": 1512,
+          "margin_of_error": 156,
+          "percentage": 0.979
         },
         "Female: 18 to 34 years": {
-          "value": 904,
-          "margin_of_error": 154,
-          "percentage": 0.597
+          "value": 891,
+          "margin_of_error": 136,
+          "percentage": 0.577
         },
         "Female: 18 to 34 years: Veteran": {
-          "value": 20,
-          "margin_of_error": 23,
-          "percentage": 0.022
+          "value": 22,
+          "margin_of_error": 31,
+          "percentage": 0.025
         },
         "Female: 18 to 34 years: Nonveteran": {
-          "value": 884,
-          "margin_of_error": 153,
-          "percentage": 0.978
+          "value": 869,
+          "margin_of_error": 137,
+          "percentage": 0.975
         },
         "Female: 35 to 54 years": {
-          "value": 451,
-          "margin_of_error": 111,
-          "percentage": 0.298
+          "value": 511,
+          "margin_of_error": 115,
+          "percentage": 0.331
         },
         "Female: 35 to 54 years: Veteran": {
           "value": 10,
-          "margin_of_error": 16,
-          "percentage": 0.022
+          "margin_of_error": 15,
+          "percentage": 0.02
         },
         "Female: 35 to 54 years: Nonveteran": {
-          "value": 441,
-          "margin_of_error": 107,
-          "percentage": 0.978
+          "value": 501,
+          "margin_of_error": 112,
+          "percentage": 0.98
         },
         "Female: 55 to 64 years": {
-          "value": 106,
-          "margin_of_error": 55,
-          "percentage": 0.07
+          "value": 81,
+          "margin_of_error": 57,
+          "percentage": 0.052
         },
         "Female: 55 to 64 years: Veteran": {
           "value": 0,
@@ -3181,14 +3211,14 @@ Data points returned are:
           "percentage": 0
         },
         "Female: 55 to 64 years: Nonveteran": {
-          "value": 106,
-          "margin_of_error": 55,
+          "value": 81,
+          "margin_of_error": 57,
           "percentage": 1
         },
         "Female: 65 to 74 years": {
-          "value": 21,
-          "margin_of_error": 27,
-          "percentage": 0.014
+          "value": 25,
+          "margin_of_error": 35,
+          "percentage": 0.016
         },
         "Female: 65 to 74 years: Veteran": {
           "value": 0,
@@ -3196,14 +3226,14 @@ Data points returned are:
           "percentage": 0
         },
         "Female: 65 to 74 years: Nonveteran": {
-          "value": 21,
-          "margin_of_error": 27,
+          "value": 25,
+          "margin_of_error": 35,
           "percentage": 1
         },
         "Female: 75 years and over": {
-          "value": 32,
-          "margin_of_error": 35,
-          "percentage": 0.021
+          "value": 36,
+          "margin_of_error": 37,
+          "percentage": 0.023
         },
         "Female: 75 years and over: Veteran": {
           "value": 0,
@@ -3211,8 +3241,8 @@ Data points returned are:
           "percentage": 0
         },
         "Female: 75 years and over: Nonveteran": {
-          "value": 32,
-          "margin_of_error": 35,
+          "value": 36,
+          "margin_of_error": 37,
           "percentage": 1
         }
       },
@@ -3222,18 +3252,18 @@ Data points returned are:
           "universe": "Civilian Veterans 18 Years And Over"
         },
         "Total": {
-          "value": 195,
-          "margin_of_error": 104
+          "value": 199,
+          "margin_of_error": 106
         },
         "Gulf War (9/2001 or later), no Gulf War (8/1990 to 8/2001), no Vietnam Era": {
-          "value": 80,
-          "margin_of_error": 53,
-          "percentage": 0.41
+          "value": 78,
+          "margin_of_error": 50,
+          "percentage": 0.392
         },
         "Gulf War (9/2001 or later) and Gulf War (8/1990 to 8/2001), no Vietnam Era": {
           "value": 14,
-          "margin_of_error": 16,
-          "percentage": 0.072
+          "margin_of_error": 15,
+          "percentage": 0.07
         },
         "Gulf War (9/2001 or later), and Gulf War (8/1990 to 8/2001), and Vietnam Era": {
           "value": 0,
@@ -3241,9 +3271,9 @@ Data points returned are:
           "percentage": 0
         },
         "Gulf War (8/1990 to 8/2001), no Vietnam Era": {
-          "value": 8,
-          "margin_of_error": 12,
-          "percentage": 0.041
+          "value": 9,
+          "margin_of_error": 14,
+          "percentage": 0.045
         },
         "Gulf War (8/1990 to 8/2001) and Vietnam Era": {
           "value": 0,
@@ -3251,9 +3281,9 @@ Data points returned are:
           "percentage": 0
         },
         "Vietnam Era, no Korean War, no World War II": {
-          "value": 12,
-          "margin_of_error": 19,
-          "percentage": 0.062
+          "value": 14,
+          "margin_of_error": 23,
+          "percentage": 0.07
         },
         "Vietnam Era and Korean War, no World War II": {
           "value": 0,
@@ -3281,14 +3311,14 @@ Data points returned are:
           "percentage": 0
         },
         "Between Gulf War and Vietnam Era only": {
-          "value": 72,
-          "margin_of_error": 85,
-          "percentage": 0.369
+          "value": 78,
+          "margin_of_error": 82,
+          "percentage": 0.392
         },
         "Between Vietnam Era and Korean War only": {
-          "value": 9,
-          "margin_of_error": 13,
-          "percentage": 0.046
+          "value": 6,
+          "margin_of_error": 10,
+          "percentage": 0.03
         },
         "Between Korean War and World War II only": {
           "value": 0,
