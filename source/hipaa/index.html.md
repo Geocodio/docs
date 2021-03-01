@@ -44,6 +44,9 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.6
+*Released on March 1, 2021*
+* `stateleg` now returns the same data as `stateleg-next`. `stateleg-next` may be used again for future legislative district changes.
+
 *Released on February 25, 2021*
 
 * Introduced `census2020` data append (the `census` data append will now default to `census2020`)
@@ -1300,7 +1303,7 @@ Some fields are specific to the US and cannot be queried for other countries.
 Parameter name                                                                                                                 | Description                                            | Coverage                    |
 -------------------------------------------------------------------------------------------------------------------------------| ------------------------------------------------------ | --------------------------- |
 [cd, cd113, cd114, cd115, cd116, *or* cd117](#congressional-districts)                                                                                            | Congressional District & Legislator information        | US-only                     |
-[stateleg *or* stateleg-next](#state-legislative-districts)                                                                                                                       | State Legislative District (House & Senate)            | US-only                     |
+[stateleg](#state-legislative-districts)                                                                                                                       | State Legislative District (House & Senate)            | US-only                     |
 [school](#school-districts)                                                                                                                         | School District (elementary/secondary or unified)      | US-only                     |
 [census, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020](#census-block-tract-fips-codes-amp-msa-csa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes         | US-only                     |
 [acs-demographics](#demographics-census)                                                                                                               | Demographics (Census)                                  | US-only                     |
@@ -1467,7 +1470,7 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 </aside>
 
 ## State Legislative Districts
-**Field name: `stateleg` or `stateleg-next`**
+**Field name: `stateleg`**
 
 ```json
 ...
@@ -1487,16 +1490,7 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 }
 ...
 ```
-You can retrieve the state legislative districts for an address or coordinate using `stateleg` or `stateleg-next` in the `fields` query parameter.
-
-If `stateleg-next` is requested, matches will be returned for upcoming district changes that may apply to current elections, but are not active for currently elected officials yet.
-
-The currently updated districts that apply to `stateleg-next` are as follows:
-
-* North Carolina House <a href="https://www.ncleg.gov/BillLookup/2019/H1020" target="_blank">HB 1020</a>
-* North Carolina Senate <a href="https://www.ncleg.gov/BillLookup/2019/S692" target="_blank">SB 692</a>
-
-For all other states, `stateleg-next` will return the same results as `stateleg`. Boundary changes in `stateleg-next` will be promoted to `stateleg` when they become active for currently elected officials.
+You can retrieve the state legislative districts for an address or coordinate using `stateleg` in the `fields` query parameter.
 
 The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district number for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington, DC or Nebraska), only the `senate` key is returned.
 
