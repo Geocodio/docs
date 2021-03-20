@@ -70,7 +70,7 @@ The following ACS data tables have titles changed and/or values corrected:
 * Race and ethnicity (Table B03002)
 
 <aside class="warning">
-  <a href="acs-diff.html">See a full diff</a> of ACS output changes between API v1.5 and v1.6
+  <a href="/docs/acs-diff.html">See a full diff</a> of ACS output changes between API v1.5 and v1.6
 </aside>
 
 ## v1.5
