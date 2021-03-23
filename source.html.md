@@ -3955,7 +3955,8 @@ Error Code | Meaning
 ---------- | -------
 200 OK | Hopefully you will see this most of the time. Note that this status code will also be returned even though no geocoding results were available.
 403 Forbidden | Invalid API key, or other reason why access is forbidden.
-422 Unprocessable Entity | A client error prevented the request from executing successfully (e.g. invalid address provided). A JSON object will be returned with an error key containing a full error message
+422 Unprocessable Entity | A client error prevented the request from executing successfully (e.g. invalid address provided). A JSON object will be returned with an error key containing a full error message.
+429 Too Many Requests | You've reached the Pay as You Go rate limit. Please inspect the following HTTP headers: `X-RateLimit-Remaining`, `X-RateLimit-Limit`, `X-RateLimit-Period` and stop making requests until the end of the `X-RateLimit-Period` value.
 500 Server Error | Hopefully you will never see this...it means that something went wrong in our end. Whoops.
 
 If you encounter any unexpected errors, please check [status.geocod.io](https://status.geocod.io) for the latest platform status updates.
