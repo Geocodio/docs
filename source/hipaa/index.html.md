@@ -1060,10 +1060,11 @@ Parameter | Description
 
 # Fields
 
-> To get e.g. the Congressional and state legislative districts for an address:
+> To get e.g. the Congressional and state legislative districts for an address or a coordinate:
 
 ```shell
 curl "https://api-hipaa.geocod.io/v1.6/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.6/reverse?q=38.886672,-77.094735&fields=cd,stateleg&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1072,6 +1073,7 @@ require 'geocodio'
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
 location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[cd stateleg])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[cd stateleg])
 ```
 
 ```python
@@ -1080,11 +1082,13 @@ from geocodio import GeocodioClient
 client = GeocodioClient(YOUR_API_KEY)
 
 location = client.geocode("1109 N Highland St, Arlington VA", fields=["cd", "stateleg"])
+location = client.reverse((38.886672, -77.094735), fields=["cd", "stateleg"])
 ```
 
 ```php
 <?php
 $response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['cd', 'stateleg']);
 ```
 
 ```javascript
@@ -1099,6 +1103,15 @@ geocoder.geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg'])
     console.error(err);
   }
 );
+
+geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
 ```
 
 ```clojure
@@ -1106,6 +1119,7 @@ geocoder.geocode('1109 N Highland St, Arlington VA', ['cd', 'stateleg'])
   (:require [rodeo.core :refer :all]))
 
 (single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["cd" "stateleg"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["cd" "stateleg"])
 ```
 
 > Example response:
