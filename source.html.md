@@ -468,6 +468,7 @@ Parameter | Description
 --------- | -----------
 `q`       | The query (i.e. address) to geocode
 `api_key` | Your Geocodio API key
+`country`   | Optional parameter. The country to geocode the address in. The default is to infer from the query, with a fallback to USA.
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
 
 ***
