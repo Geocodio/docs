@@ -3974,6 +3974,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 ## v1.6
 *Released on March 1, 2021*
+
 * `stateleg` now returns the same data as `stateleg-next`. `stateleg-next` may be used again for future legislative district changes.
 
 *Released on February 25, 2021*
