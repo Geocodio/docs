@@ -31,86 +31,6 @@ We may add additional properties to the output in the future, but existing prope
 Note the versioning prefix in the base url, which is required for all requests.
 </aside>
 
-# Changelog
-
-The Geocodio API is continuously improved. Most updates require no changes for API users, but in some cases we might have to introduce breaking changes.
-
-Breaking changes are introduced with new API versions, allowing you to "upgrade" to the newest version at your own pace. Older API versions are guaranteed to be available for at least 12 months after they have been replaced by a newer version, but may be supported for longer.
-
-Major changes, that are not breaking are also documented here.
-
-<aside class="notice">
-Breaking changes are defined as changes that remove or rename properties in the JSON output of any API endpoint. Your API client should be able to gracefully support addition of new JSON properties, as this is not considered a breaking change.
-</aside>
-
-## v1.6
-*Released on March 1, 2021*
-* `stateleg` now returns the same data as `stateleg-next`. `stateleg-next` may be used again for future legislative district changes.
-
-*Released on February 25, 2021*
-
-* Introduced `census2020` data append (the `census` data append will now default to `census2020`)
-* Update all Census ACS data to most recent 5-year release (2015-2019)
-
-*Released on May 28, 2020*
-
-* **Breaking:** This fixes a bug which has backwards-incompatible consequences for `acs-families` and `acs-demographics` field appends.
-* *Non-breaking:* The `acs-social` table, Population with veteran status (Table B21001) now includes age breakdowns.
-
-The following ACS data tables have titles changed and/or values corrected:
-
-**`acs-families`**
-
-* Household type by household (Table B11001)
-* Household type by population (Table B11002)
-* Marital status (Table B12001)
-
-**`acs-demographics`**
-
-* Race and ethnicity (Table B03002)
-
-<aside class="warning">
-  <a href="/docs/acs-diff.html">See a full diff</a> of ACS output changes between API v1.5 and v1.6
-</aside>
-
-## v1.5
-*Released on May 13, 2020*
-
-* **Breaking:** PO Box and second address lines (e.g. apartment/unit/suite numbers) are now returned as `results` and appear within the `formatted_address` keys
-* The [`zip4`](#usps-zip-4) data append is now generally available
-
-## v1.4
-*Released on September 18th, 2019*
-
-**`census` appends:**
-
-* **Breaking:** The `census` append now supports vintage years, data is keyed by year instead of just returning a single year
-
-## v1.3
-*Released on March 12th, 2018*
-
-**`timezone` appends:**
-
-* **Breaking:** `name` property has been renamed to `abbreviation`
-* `name` is now the full timezone name in a [tzdb](https://www.iana.org/time-zones)-compatible format. [Read more](#timezone)
-
-## v1.2
-*Released on January 20th, 2018*
-
-**`cd` (Congressional district) appends:**
-
-* **Breaking:** `current_legislator` property has been renamed to `current_legislators` and is now an array instead of an object
-* Both house and senate legislators are now returned
-
-## v1.1
-*Released on January 8th, 2018*
-
-**`cd` (Congressional district) appends:**
-
-* **Breaking:** `congressional_district` property has been renamed to `congressional_districts`
-* **Breaking:** Postal code lookups will now return multiple Congressional districts if the zip code area spans more than one district
-* Current legislator information is now returned with Congressional districts
-
 # Libraries
 
 ## Official libraries
@@ -4039,6 +3959,86 @@ The Geocodio API supports `CORS` using the `Access-Control-Allow-Origin` *HTTP* 
 <aside class="notice">
 <strong>Note:</strong> This will expose your API Key publicly, make sure that you understand and accept the implications of this approach.
 </aside>
+
+# Changelog
+
+The Geocodio API is continuously improved. Most updates require no changes for API users, but in some cases we might have to introduce breaking changes.
+
+Breaking changes are introduced with new API versions, allowing you to "upgrade" to the newest version at your own pace. Older API versions are guaranteed to be available for at least 12 months after they have been replaced by a newer version, but may be supported for longer.
+
+Major changes, that are not breaking are also documented here.
+
+<aside class="notice">
+Breaking changes are defined as changes that remove or rename properties in the JSON output of any API endpoint. Your API client should be able to gracefully support addition of new JSON properties, as this is not considered a breaking change.
+</aside>
+
+## v1.6
+*Released on March 1, 2021*
+* `stateleg` now returns the same data as `stateleg-next`. `stateleg-next` may be used again for future legislative district changes.
+
+*Released on February 25, 2021*
+
+* Introduced `census2020` data append (the `census` data append will now default to `census2020`)
+* Update all Census ACS data to most recent 5-year release (2015-2019)
+
+*Released on May 28, 2020*
+
+* **Breaking:** This fixes a bug which has backwards-incompatible consequences for `acs-families` and `acs-demographics` field appends.
+* *Non-breaking:* The `acs-social` table, Population with veteran status (Table B21001) now includes age breakdowns.
+
+The following ACS data tables have titles changed and/or values corrected:
+
+**`acs-families`**
+
+* Household type by household (Table B11001)
+* Household type by population (Table B11002)
+* Marital status (Table B12001)
+
+**`acs-demographics`**
+
+* Race and ethnicity (Table B03002)
+
+<aside class="warning">
+  <a href="/docs/acs-diff.html">See a full diff</a> of ACS output changes between API v1.5 and v1.6
+</aside>
+
+## v1.5
+*Released on May 13, 2020*
+
+* **Breaking:** PO Box and second address lines (e.g. apartment/unit/suite numbers) are now returned as `results` and appear within the `formatted_address` keys
+* The [`zip4`](#usps-zip-4) data append is now generally available
+
+## v1.4
+*Released on September 18th, 2019*
+
+**`census` appends:**
+
+* **Breaking:** The `census` append now supports vintage years, data is keyed by year instead of just returning a single year
+
+## v1.3
+*Released on March 12th, 2018*
+
+**`timezone` appends:**
+
+* **Breaking:** `name` property has been renamed to `abbreviation`
+* `name` is now the full timezone name in a [tzdb](https://www.iana.org/time-zones)-compatible format. [Read more](#timezone)
+
+## v1.2
+*Released on January 20th, 2018*
+
+**`cd` (Congressional district) appends:**
+
+* **Breaking:** `current_legislator` property has been renamed to `current_legislators` and is now an array instead of an object
+* Both house and senate legislators are now returned
+
+## v1.1
+*Released on January 8th, 2018*
+
+**`cd` (Congressional district) appends:**
+
+* **Breaking:** `congressional_district` property has been renamed to `congressional_districts`
+* **Breaking:** Postal code lookups will now return multiple Congressional districts if the zip code area spans more than one district
+* Current legislator information is now returned with Congressional districts
 
 # Contact & Support
 Have any questions? Feel free to tweet us [@Geocodio](http://twitter.com/Geocodio) or shoot us an email [support@geocod.io](mailto:support@geocod.io).
