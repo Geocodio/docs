@@ -3769,8 +3769,9 @@ range_interpolation   | The point was found by performing [address range interpo
 nearest_rooftop_match | The exact house number was not found, so a close, neighboring house number was used instead
 intersection          | The result is an intersection between two streets
 street_center         | The result is a geocoded street centroid
-place                 | The point is a city/town/place
-state                 | The point is a state
+place                 | The point is a city/town/place zip code centroid
+county                | The point is a county centroid
+state                 | The point is a state centroid
 
 ![Visual guide to the most common accuracy types](https://www.geocod.io/docs/images/accuracy-types.png)
 
@@ -3785,12 +3786,13 @@ nearest_street      | Nearest match for a specific street with estimated street 
 nearest_place       | Closest city/town/place
 
 # Address formats
-Geocodio supports geocoding the following entities:
+Geocodio supports geocoding the following address components:
 
 * Streets with or without house numbers (requires a city or a zip in conjuction)
 * [Intersections](#intersections)
 * Cities
 * Zip codes
+* Counties
 * States
 * PO Boxes (coordinates will be returned as a centroid of the zip code)
 * Second address lines such as unit and apartment numbers (not used for determining the exact coordinates at this time)
@@ -3809,6 +3811,9 @@ Geocoding queries can be formatted in various ways:
 * <a href="https://api.geocod.io/v1.6/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
 * <a href="https://api.geocod.io/v1.6/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
 * <a href="https://api.geocod.io/v1.6/geocode?q=PO+Box+4735,+Tulsa+OK&api_key=YOUR_API_KEY" target="_blank">PO Box 4735, Tulsa OK</a>
+* <a href="https://api.geocod.io/v1.6/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County</a>
+* <a href="https://api.geocod.io/v1.6/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, CA</a>
+* <a href="https://api.geocod.io/v1.6/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20Cupertino%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, Cupertino CA</a>
 
 If a country is not specified in the query, the Geocodio engine will assume the country to be USA.
 
@@ -3973,6 +3978,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.6
+*Released on June 16, 2021*
+
+* Counties can now be geocoded in the U.S. Either standalone, or as part of an adddress.
+
 *Released on March 1, 2021*
 
 * `stateleg` now returns the same data as `stateleg-next`. `stateleg-next` may be used again for future legislative district changes.
