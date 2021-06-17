@@ -3811,6 +3811,8 @@ Geocoding queries can be formatted in various ways:
 * <a href="https://api.geocod.io/v1.6/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
 * <a href="https://api.geocod.io/v1.6/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
 * <a href="https://api.geocod.io/v1.6/geocode?q=PO+Box+4735,+Tulsa+OK&api_key=YOUR_API_KEY" target="_blank">PO Box 4735, Tulsa OK</a>
+* <a href="https://api.geocod.io/v1.6/geocode?q=Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">Santa Clara County</a>
+* <a href="https://api.geocod.io/v1.6/geocode?q=Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">Santa Clara County, CA</a>
 * <a href="https://api.geocod.io/v1.6/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County</a>
 * <a href="https://api.geocod.io/v1.6/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, CA</a>
 * <a href="https://api.geocod.io/v1.6/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20Cupertino%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, Cupertino CA</a>
