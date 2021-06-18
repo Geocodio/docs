@@ -436,7 +436,7 @@ from geocodio import GeocodioClient
 
 client = GeocodioClient(YOUR_API_KEY)
 
-locations = client.geocode([
+locations = client.batch_geocode([
   '1109 N Highland St, Arlington VA',
   '525 University Ave, Toronto, ON, Canada',
   '4410 S Highway 17 92, Casselberry FL',
