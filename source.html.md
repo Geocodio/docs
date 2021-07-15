@@ -3744,7 +3744,7 @@ secondarynumber    | Secondary unit number. For "input" address components only
 city               |
 county             |
 state              |
-zip                | 5-digit zip code. Not returned for Canadian results.
+zip                | 5-digit zip code for US addresses. The 3-character FSA is returned for Canadian results - the full postal code is not returned
 country            |
 formatted_street   | Fully formatted street, including all directionals, suffix/prefix but not house number
 
