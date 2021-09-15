@@ -388,8 +388,9 @@ Parameter | Description
 --------- | -----------
 `q`       | The query (i.e. address) to geocode
 `api_key` | Your Geocodio API key
-`country`   | Optional parameter. The country to geocode the address in. The default is to infer from the query, with a fallback to USA.
+`country` | Optional parameter. The country to geocode the address in. The default is to infer from the query, with a fallback to USA.
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
+`format`  | Optional parameter to change the JSON output format to a different pre-defined structure. Currently, "simple" is the only valid value. If not set, the default full JSON output structure is used.
 
 ***
 
@@ -404,12 +405,47 @@ Parameter     | Description
 `state`       | E.g. DC
 `postal_code` | E.g. 20500
 `country`     | E.g. Canada (Default to USA)
-`api_key`     | Your Geocodio API key
-`limit`       | Optional parameter. The maximum number of results to return. The default is no limit.
 
 <aside>
 <strong>Note:</strong> Even if the fields are supplied separately, Geocodio might in rare circumstances try to parse the street, for example, as part of the city if more relevant results can be found.
 </aside>
+
+### The `format` parameter
+
+> Example response, when `format` is set to `simple`:
+
+```json
+{
+  "address": "1109 N Highland St, Arlington, VA 22201",
+  "lat": 38.886665,
+  "lng": -77.094733,
+  "accuracy": 1,
+  "accuracy_type": "rooftop",
+  "source": "Arlington"
+}
+```
+
+> Example response, when `format` is set to `simple` and no results are found:
+
+```json
+{
+  "address": null,
+  "lat": null,
+  "lng": null,
+  "accuracy": null,
+  "accuracy_type": null,
+  "source": null
+}
+```
+
+In most cases, the standard output format would be used. In certain situations, it can however be beneficial to work with a JSON structure that is specifically designed for your use case.
+
+**`simple` format**
+
+When `format` is set to `simple`, a very simple JSON structure is outputted, with only basic information for the best matched results. This makes it much easier to work with the JSON document in situtations where extra verbosity is not needed.
+
+The `fields` parameter is still supported when the `simple` output format is selected, but the `limit` parameter has no effect.
+
 
 ## Batch geocoding
 
@@ -796,6 +832,44 @@ Parameter | Description
 `q`       | The query (i.e. latitude/longitude pair) to geocode. The coordinate pair should be comma-separated
 `api_key` | Your Geocodio API key
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
+`format`  | Optional parameter to change the JSON output format to a different pre-defined structure. Currently, "simple" is the only valid value. If not set, the default full JSON output structure is used.
+
+### The `format` parameter
+
+> Example response, when `format` is set to `simple`:
+
+```json
+{
+  "address": "508 H St NE, Washington, DC 20002",
+  "lat": 38.900432,
+  "lng": -76.999031,
+  "accuracy": 1,
+  "accuracy_type": "rooftop",
+  "source": "Statewide"
+}
+```
+
+> Example response, when `format` is set to `simple` and no results are found:
+
+```json
+{
+  "address": null,
+  "lat": null,
+  "lng": null,
+  "accuracy": null,
+  "accuracy_type": null,
+  "source": null
+}
+```
+
+In most cases, the standard output format would be used. In certain situations, it can however be beneficial to work with a JSON structure that is specifically designed for your use case.
+
+**`simple` format**
+
+When `format` is set to `simple`, a very simple JSON structure is outputted, with only basic information for the best matched results. This makes it much easier to work with the JSON document in situtations where extra verbosity is not needed.
+
+The `fields` parameter is still supported when the `simple` output format is selected, but the `limit` parameter has no effect.
+
 
 ## Batch reverse geocoding
 
@@ -3901,6 +3975,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.6
+*Released on September 15, 2021*
+
+* Introduced the `format` parameter for single [forward](#single-address) and [reverse](#reverse-geocoding) geocoding requests.
+
 *Released on June 16, 2021*
 
 * Counties can now be geocoded in the U.S. Either standalone, or as part of an adddress.
