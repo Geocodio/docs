@@ -10,7 +10,7 @@ language_tabs:
   - clojure: Clojure
 
 toc_footers:
- - <a href="https://dash.geocod.io">Sign Up for an API Key</a>
+ - <a href="https://dash-hipaa.geocod.io">Sign Up for an API Key</a>
  - <a href="https://www.geocod.io/terms-of-use/">Terms of Use</a>
  - <a href="https://github.com/Geocodio/openapi-spec" target="_blank">OpenAPI Spec</a>
 ---
@@ -247,7 +247,7 @@ const geocoder = new Geocodio('YOUR_API_KEY', 'api-hipaa.geocod.io');
 ;; or with each request using the :api_key parameter
 ```
 
-All requests require an API key. You can [register here](https://dash.geocod.io) to get your own API key.
+All requests require an API key. You can [register here](https://dash-hipaa.geocod.io) to get your own API key.
 
 The API key must be included in all requests using the `?api_key=YOUR_API_KEY` query parameter.
 
@@ -256,8 +256,29 @@ Accounts can have multiple API keys. This can be useful if you're working on sev
 You can also download a CSV of usage and fees per API key.
 
 <aside class="warning">
-Make sure to replace YOUR_API_KEY with your personal API key found on the <a href="https://dash.geocod.io" target="_blank">Geocodio dashboard</a>.
+Make sure to replace YOUR_API_KEY with your personal API key found on the <a href="https://dash-hipaa.geocod.io" target="_blank">Geocodio dashboard</a>.
 </aside>
+
+<!--DEFAULT
+# Permissions
+
+> A `403 Forbidden` HTTP status code is returned if the API key is valid, but does not have permission to access the requested endpoint
+
+```json
+{
+  "error": "This API key does not have permission to access this feature. API key permissions can be changed in the Geocodio dashboard at https:\/\/dash-hipaa.geocod.io\/apikey"
+}
+```
+
+Per default, an API key can only access the single and batch geocoding API endpoints. These endpoints are write-only which means that a lost API key can not be used to retreive geocoded data from your account.
+
+For security reasons, additional permissions has to be assigned to the API key when using the [lists API](#geocoding-lists). This can be done in the [Geocodio dashboard](https://dash-hipaa.geocod.io/apikey). We recommend creating separate API keys for geocoding endpoints and for `GET`/`DELETE` access to lists.
+
+[![List of API key permissions with default values selected](./images/permissions.png)](https://dash-hipaa.geocod.io/apikey)
+
+*List of API key permissions with default values selected*
+
+DEFAULT-->
 
 # Geocoding
 
@@ -389,6 +410,7 @@ Parameter | Description
 `q`       | The query (i.e. address) to geocode
 `api_key` | Your Geocodio API key
 `country` | Optional parameter. The country to geocode the address in. The default is to infer from the query, with a fallback to USA.
+`fields`  | Optional parameter to request [additional field appends](#fields).
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
 `format`  | Optional parameter to change the JSON output format to a different pre-defined structure. Currently, "simple" is the only valid value. If not set, the default full JSON output structure is used.
 
@@ -653,6 +675,7 @@ You can batch geocode up to 10,000 addresses at the time. Geocoding 10,000 addre
 Parameter | Description
 --------- | -----------
 `api_key` | Your Geocodio API key
+`fields`  | Optional parameter to request [additional field appends](#fields).
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
 
 ### JSON array/object
@@ -831,6 +854,7 @@ Parameter | Description
 --------- | -----------
 `q`       | The query (i.e. latitude/longitude pair) to geocode. The coordinate pair should be comma-separated
 `api_key` | Your Geocodio API key
+`fields`  | Optional parameter to request [additional field appends](#fields).
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
 `format`  | Optional parameter to change the JSON output format to a different pre-defined structure. Currently, "simple" is the only valid value. If not set, the default full JSON output structure is used.
 
@@ -1051,7 +1075,245 @@ You can batch reverse geocode up to 10,000 coordinates at a time.
 Parameter | Description
 --------- | -----------
 `api_key` | Your Geocodio API key
+`fields`  | Optional parameter to request [additional field appends](#fields).
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit.
+
+
+<!--DEFAULT
+# Geocoding lists
+
+<aside class="notice">
+The lists API is in public <strong>beta</strong>, and is currently only available for <strong>Geocodio Unlimited customers</strong>. Please <a href="mailto:hello@geocod.io">contact us</a> if you are not subscribed to our Unlimited plan, but still want access during the beta period.
+</aside>
+
+The lists API lets you upload spreadsheets up to 1GB in size. Similar to the [spreadsheet feature](https://www.geocod.io/upload/) in the dashboard, the spreadsheet will be processed as a job on Geocodio's infrastructure and can be downloaded at a later time. While a spreadsheet is being processed it is possible to query the status and progress.
+
+<aside class="warning">
+Data for spreadsheets processed through the lists API are automatically deleted after 72 hours.
+</aside>
+
+## Create a new list
+
+
+> Create a new list from a file called "[sample_list.csv](https://www.geocod.io/sample_list.csv)"
+
+```shell
+curl "https://api-hipaa.geocod.io/v1.6/lists?api_key=YOUR_API_KEY" \
+  -F "file"="@sample_list.csv" \
+  -F "direction"="forward" \
+  -F "format"="{{A}} {{B}} {{C}} {{D}}" \
+  -F "callback"="https://example.com/my-callback"
+```
+
+> Create a new list from inline data
+
+```shell
+curl "https://api-hipaa.geocod.io/v1.6/lists?api_key=YOUR_API_KEY" \
+  -F "file"=$'Zip\n20003\n20001' \
+  -F "filename"="file.csv" \
+  -F "direction"="forward" \
+  -F "format"="{{A}}" \
+  -F "callback"="https://example.com/my-callback"
+```
+
+> Example response:
+
+```json
+{
+    "id": 42,
+    "file":
+    {
+        "headers":
+        [
+            "address",
+            "city",
+            "state",
+            "zip"
+        ],
+        "estimated_rows_count": 24,
+        "filename": "sample_list.csv"
+    }
+}
+```
+
+Creates a new spreadsheet list job and starts processing the list in the background. The response returns a list id that can be used to retrieve the job progress as well as download the processed list when it has completed.
+
+### HTTP Request
+
+`POST https://api-hipaa.geocod.io/v1.6/lists`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`api_key` | Your Geocodio API key
+`fields`  | Optional parameter to request [additional field appends](#fields)
+
+### Data Parameters
+
+Parameter   | Description
+----------- | -----------
+`file`      | The file to geocoded, can be uploaded as a form-data file or sent inline
+`filename`  | Only required if file contents are sent inline, file extension is used to determine file format so it can be processed correctly. Valid file formats include csv, tsv, xls, xlsx. A zip file can also be uploaded, it needs to contain exactly one file of the supported extensions
+`direction` | Can either be `forward` for address to coordinate geocoding or `reverse` for coordinate to address geocoding
+`format`    | A template for how addresses or coordinates should be read from the spreadsheet, see more below
+`callback`  | Optional. A valid URL that a webhook should be sent to upon completion of the spreadsheet geocoding job
+
+
+### `format` syntax
+
+The `format` parameter uses a simple templating syntax that is used to construct a full address or coordinate for geocoding. A column can be referenced by its letter, encapsulated in double curly brackets, e.g. `{{A}}`.
+
+**Examples:***
+
+* The full address can be found in column `A`: `{{A}}`
+* The street addresses are in column `A` and the zip codes are in column `D`: `{{A}} {{D}}`
+* Street addresses are column `A`. They are all located in Washington D.C: `{{A}} Washington DC`
+* The spreadsheet has a list of Canadian addresses with street addreses in column `A`, city name in column `B` and province name in column `C`: `{{A}} {{B}} {{C}} Canada`
+* For reverse geocoding, latitude is in column `A` and longitude in column `B`: `{{A}},{{B}}`
+
+### Callback
+
+> Example webhook `POST` data
+
+```json
+{
+    "id": 42,
+    "fields": ["cd"],
+    "file": {
+        "geocoded_rows_count": 24,
+        "filename": "sample_list.csv"
+    },
+    "download_url": "https://api-hipaa.geocod.io/v1.6/lists/42/download"
+}
+```
+
+The callback url is an optional method to receive a notification when a spreadsheet geocoding job has completed.
+
+The webhook is sent as a `POST` request, it needs to be publicly accessible and the URL is served over HTTPS, the SSL certificate has to be valid and active.
+A total of 3 attempts are made to delivery the webhook.
+
+## See list status
+
+```shell
+curl "https://api-hipaa.geocod.io/v1.6/lists/LIST_ID/api_key=YOUR_API_KEY"
+```
+
+> Example response:
+
+```json
+{
+    "id": 42,
+    "fields": [],
+    "file": {
+        "estimated_rows_count": 24,
+        "filename": "sample_list.csv"
+    },
+    "status": {
+        "state": "COMPLETED",
+        "progress": 100,
+        "message": "Completed",
+        "time_left": null
+    },
+    "download_url": "https://api-hipaa.geocod.io/v1.6/lists/42/download",
+    "expires_at": "2021-09-23T12:09:09.000000Z"
+}
+```
+
+View the metadata and status for a single uploaded list.
+
+### HTTP Request
+
+`GET https://api-hipaa.geocod.io/v1.6/lists/LIST_ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`api_key` | Your Geocodio API key
+
+## Show all lists
+
+```shell
+curl "https://api-hipaa.geocod.io/v1.6/lists?api_key=YOUR_API_KEY"
+```
+
+> Example response:
+
+```json
+{
+    "current_page": 1,
+    "data":
+    [
+        {
+            "id": 42,
+            "fields":
+            [],
+            "file":
+            {
+                "estimated_rows_count": 24,
+                "filename": "sample_list.csv"
+            },
+            "status":
+            {
+                "state": "COMPLETED",
+                "progress": 100,
+                "message": "Completed",
+                "time_left": null
+            },
+            "download_url": "https://api-hipaa.geocod.io/v1.6/lists/42/download",
+            "expires_at": "2021-09-23T12:09:09.000000Z"
+        },
+        ...
+    ],
+    "first_page_url": "https://api-hipaa.geocod.io/v1.6/lists?page=1",
+    "from": 1,
+    "next_page_url": "https://api-hipaa.geocod.io/v1.6/lists?page=2",
+    "path": "https://api-hipaa.geocod.io/v1.6/lists",
+    "per_page": 15,
+    "prev_page_url": null,
+    "to": 15
+}
+```
+
+Show all lists that have been created.
+
+### HTTP Request
+
+`GET https://api-hipaa.geocod.io/v1.6/lists`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`api_key` | Your Geocodio API key
+
+## Delete a list
+
+```shell
+curl -X DELETE "https://api-hipaa.geocod.io/v1.6/lists/LIST_ID?api_key=YOUR_API_KEY"
+```
+
+> Example response:
+
+```json
+{
+  "success": true
+}
+```
+
+Delete a previously uploaded list and its underlying spreadsheet data permanently. The spreadsheet data will always be deleted automatically after 72 hours if it is not deleted manually first.
+
+### HTTP Request
+
+`DELETE https://api-hipaa.geocod.io/v1.6/lists/LIST_ID`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`api_key` | Your Geocodio API key
+DEFAULT-->
 
 # Fields
 
@@ -3882,7 +4144,7 @@ An extra `address_components_secondary` property will be exposed for intersectio
 
 ```json
 {
-  "error": "You can't make this request as it is above your daily maximum. You can configure billing at https://dash.geocod.io"
+  "error": "You can't make this request as it is above your daily maximum. You can configure billing at https://dash-hipaa.geocod.io"
 }
 ```
 

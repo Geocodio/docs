@@ -1,7 +1,10 @@
 #!/bin/bash
 
+echo "Compiling changes..."
+
 # Initial files
 sed 's/api.geocod.io/api-hipaa.geocod.io/g' source.html.md > source/hipaa/index.html.md
+sed -i 's/dash.geocod.io/dash-hipaa.geocod.io/g' source/hipaa/index.html.md
 cp source.html.md source/index.html.md
 
 # HIPAA

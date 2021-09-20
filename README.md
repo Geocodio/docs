@@ -9,7 +9,9 @@ Please edit `source.html.md` for any changes.
 
 The `compile.sh` script takes changes from `source.html.md` and compiles it into `source/index.html.md` and `source/hipaa/index.html.md`.
 
-Encapsulat sections like so:
+The `watch.sh` script can be used to watch for changes in `source/` and call `compile.sh` automatically.
+
+Encapsulate sections like so:
 
 ```
 <!--HIPAA
