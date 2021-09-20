@@ -280,6 +280,22 @@ For security reasons, additional permissions has to be assigned to the API key w
 
 DEFAULT-->
 
+<!--DEFAULT
+# Overview
+
+The Geocodio API supports three different methods for processing your data. The method you choose will largely depend on your workflow and the amount of addresses or coordinates that you are looking to process.
+
+Single and batch geocoding methods are synchronous, meaning that you have to wait for the data to be fully processed and will receive it directly in your API response. The [list geocoding](#geocoding-lists) method is however asynchronous and requires a second request to be made to download the data once it is ready.
+
+Name                                  | Batch size         | Type         | Format           | Supports fields             | Supports forward & reverse geocoding
+------------------------------------- | ------------------ | ------------ | ---------------- | --------------------------- | --------------------------------------
+[Single geocoding](#geocoding)        | 1                  | Synchronous  | JSON             | <i class="fa fa-check"></i> | <i class="fa fa-check"></i>
+[Batch geocoding](#batch-geocoding)   | Up to 10,000       | Synchronous  | JSON             | <i class="fa fa-check"></i> | <i class="fa fa-check"></i>
+[List geocoding](#geocoding-lists)    | Up to 10,000,000+  | Asynchronous | CSV/TSV/Excel    | <i class="fa fa-check"></i> | <i class="fa fa-check"></i>
+
+If in doubt, [single geocoding](#geocoding) is the simplest choice for many use cases.
+DEFAULT-->
+
 # Geocoding
 
 Geocoding (also known as forward geocoding) allows you to convert one or more addresses into geographic coordinates (i.e. latitude and longitude). Geocoding will also parse the address and append additional information (e.g. if you specify a zip code, Geocodio will return the city and state corresponding the zip code as well)
@@ -299,7 +315,7 @@ Whenever possible, batch requests are recommended since they are significantly f
 A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api-hipaa.geocod.io/v1.6/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 <aside class="success">
-The `results` are always ordered with the most accurate locations first. It is therefore always safe to pick the first result in the list.
+The <code>results</code> are always ordered with the most accurate locations first. It is therefore always safe to pick the first result in the list.
 </aside>
 
 > To geocode a single address:
@@ -1089,11 +1105,10 @@ The lists API is in public <strong>beta</strong>, and is currently only availabl
 The lists API lets you upload spreadsheets up to 1GB in size. Similar to the [spreadsheet feature](https://www.geocod.io/upload/) in the dashboard, the spreadsheet will be processed as a job on Geocodio's infrastructure and can be downloaded at a later time. While a spreadsheet is being processed it is possible to query the status and progress.
 
 <aside class="warning">
-Data for spreadsheets processed through the lists API are automatically deleted after 72 hours.
+Data for spreadsheets processed through the lists API are automatically deleted 72 hours after they have finished processing.
 </aside>
 
 ## Create a new list
-
 
 > Create a new list from a file called "[sample_list.csv](https://www.geocod.io/sample_list.csv)"
 
@@ -1120,7 +1135,7 @@ curl "https://api-hipaa.geocod.io/v1.6/lists?api_key=YOUR_API_KEY" \
 
 ```json
 {
-    "id": 42,
+    "id": 48,
     "file":
     {
         "headers":
@@ -1178,13 +1193,13 @@ The `format` parameter uses a simple templating syntax that is used to construct
 
 ```json
 {
-    "id": 42,
+    "id": 49,
     "fields": ["cd"],
     "file": {
-        "geocoded_rows_count": 24,
+        "geocoded_rows_count": 39809,
         "filename": "sample_list.csv"
     },
-    "download_url": "https://api-hipaa.geocod.io/v1.6/lists/42/download"
+    "download_url": "https://api-hipaa.geocod.io/v1.6/lists/49/download"
 }
 ```
 
@@ -1195,28 +1210,77 @@ A total of 3 attempts are made to delivery the webhook.
 
 ## See list status
 
+> Show status for list id 42
+
 ```shell
-curl "https://api-hipaa.geocod.io/v1.6/lists/LIST_ID/api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.6/lists/42?api_key=YOUR_API_KEY"
 ```
 
-> Example response:
+> Example response (list that just started processing)
 
 ```json
 {
     "id": 42,
     "fields": [],
     "file": {
-        "estimated_rows_count": 24,
-        "filename": "sample_list.csv"
+        "estimated_rows_count": 39809,
+        "filename": "bigger_list.csv"
+    },
+    "status": {
+        "state": "PROCESSING",
+        "progress": 1,
+        "message": "Processing",
+        "time_left_description": "Estimating time to complete",
+        "time_left_seconds": null
+    },
+    "download_url": null,
+    "expires_at": "2021-09-23T18:23:29.000000Z"
+}
+
+```
+
+> Example response (list that is currently processing)
+
+```json
+{
+    "id": 42,
+    "fields": [],
+    "file": {
+        "estimated_rows_count": 39809,
+        "filename": "bigger_list.csv"
+    },
+    "status": {
+        "state": "PROCESSING",
+        "progress": 12.82,
+        "message": "Geocoding",
+        "time_left_description": "17 min. left",
+        "time_left_seconds": 1072
+    },
+    "download_url": null,
+    "expires_at": "2021-09-23T18:23:29.000000Z"
+}
+
+```
+
+> Example response (list that has been fully processed):
+
+```json
+{
+    "id": 42,
+    "fields": [],
+    "file": {
+        "estimated_rows_count": 39809,
+        "filename": "bigger_list.csv"
     },
     "status": {
         "state": "COMPLETED",
         "progress": 100,
         "message": "Completed",
-        "time_left": null
+        "time_left_description": null,
+        "time_left_seconds": null
     },
     "download_url": "https://api-hipaa.geocod.io/v1.6/lists/42/download",
-    "expires_at": "2021-09-23T12:09:09.000000Z"
+    "expires_at": "2021-09-23T18:23:29.000000Z"
 }
 ```
 
@@ -1231,8 +1295,11 @@ View the metadata and status for a single uploaded list.
 Parameter | Description
 --------- | -----------
 `api_key` | Your Geocodio API key
+`page`    | The page number to show
 
 ## Show all lists
+
+> Show all lists
 
 ```shell
 curl "https://api-hipaa.geocod.io/v1.6/lists?api_key=YOUR_API_KEY"
@@ -1246,7 +1313,7 @@ curl "https://api-hipaa.geocod.io/v1.6/lists?api_key=YOUR_API_KEY"
     "data":
     [
         {
-            "id": 42,
+            "id": 48,
             "fields":
             [],
             "file":
@@ -1259,9 +1326,10 @@ curl "https://api-hipaa.geocod.io/v1.6/lists?api_key=YOUR_API_KEY"
                 "state": "COMPLETED",
                 "progress": 100,
                 "message": "Completed",
-                "time_left": null
+                "time_left_description": null,
+                "time_left_seconds": null
             },
-            "download_url": "https://api-hipaa.geocod.io/v1.6/lists/42/download",
+            "download_url": "https://api-hipaa.geocod.io/v1.6/lists/48/download",
             "expires_at": "2021-09-23T12:09:09.000000Z"
         },
         ...
@@ -1276,11 +1344,73 @@ curl "https://api-hipaa.geocod.io/v1.6/lists?api_key=YOUR_API_KEY"
 }
 ```
 
-Show all lists that have been created.
+Show all lists that have been created. The endpoint is paginated, showing 15 lists at a time, ordered by recency.
 
 ### HTTP Request
 
 `GET https://api-hipaa.geocod.io/v1.6/lists`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`api_key` | Your Geocodio API key
+
+## Download a list
+
+```shell
+curl -L "https://api-hipaa.geocod.io/v1.6/lists/LIST_ID/download?api_key=YOUR_API_KEY"
+```
+
+> Example response:
+
+```csv
+address,city,state,zip,Latitude,Longitude,"Accuracy Score","Accuracy Type",Number,Street,"Unit Type","Unit Number",City,State,County,Zip,Country,Source
+"660 Pennsylvania Ave SE",Washington,DC,20003,38.885172,-76.996565,1,rooftop,660,"Pennsylvania Ave SE",,,Washington,DC,"District of Columbia",20003,US,Statewide
+"1718 14th St NW",Washington,DC,20009,38.913274,-77.032266,1,rooftop,1718,"14th St NW",,,Washington,DC,"District of Columbia",20009,US,Statewide
+"1309 5th St NE",,,20002,38.908724,-76.997653,0.9,rooftop,1309,"5th St NE",,,Washington,DC,"District of Columbia",20002,US,Statewide
+"2150 P St NW",,,20037,38.90948,-77.048527,1,rooftop,2150,"P St NW",,,Washington,DC,"District of Columbia",20037,US,Statewide
+"201 F Street NE",,,20002,38.897139,-77.003286,0.9,rooftop,201,"F St NE",,,Washington,DC,"District of Columbia",20002,US,Statewide
+"1001 2nd St SE",,,20003,38.877737,-77.003695,1,rooftop,1001,"2nd St SE",,,Washington,DC,"District of Columbia",20003,US,Statewide
+"1645 Wisconsin Avenue NW",Washington,DC,20007,38.911626,-77.065281,1,rooftop,1645,"Wisconsin Ave NW",,,Washington,DC,"District of Columbia",20007,US,Statewide
+"820 East Baltimore Street",Baltimore,MD,21202,39.290427,-76.60485,1,rooftop,820,"E Baltimore St",,,Baltimore,MD,"Baltimore City",21202,US,"City of Baltimore"
+"800 F St NW",Washington,DC,20001,38.896987,-77.023286,1,rooftop,800,"F St NW",,,Washington,DC,"District of Columbia",20004,US,Statewide
+"700 Constitution Avenue NW",Washington,DC,20565,38.892228,-77.0219,0.9,range_interpolation,700,"Constitution Ave NW",,,Washington,DC,"District of Columbia",20002,US,"TIGER/Line® dataset from the US Census Bureau"
+"1123 Pennsylvania Ave SE",Washington,DC,20003,38.882097,-76.990714,1,rooftop,1123,"Pennsylvania Ave SE",,,Washington,DC,"District of Columbia",20003,US,Statewide
+"621 Pennsylvania Ave SE",Washington,DC,20003,38.884906,-76.997682,1,rooftop,621,"Pennsylvania Ave SE",,,Washington,DC,"District of Columbia",20003,US,Statewide
+"1702 G Street NW",Washington,DC,20006,38.89816,-77.039982,1,rooftop,1702,"G St NW",,,Washington,DC,"District of Columbia",20006,US,Statewide
+"701 8th St SE",Washington,DC,20003,38.881115,-76.995245,1,rooftop,701,"8th St SE",,,Washington,DC,"District of Columbia",20003,US,Statewide
+"12187 Darnestown Rd",Gaithersburg,MD,20878,39.118169,-77.251699,1,rooftop,12187,"Darnestown Rd",,,Gaithersburg,MD,"Montgomery County",20878,US,Montgomery
+"4961 Elm Street",Bethesda,MD,,38.982196,-77.098161,1,rooftop,4961,"Elm St",,,Bethesda,MD,"Montgomery County",20814,US,Montgomery
+"3064 Mount Pleasant St NW",Washington,DC,,38.92846,-77.037509,1,rooftop,3064,"Mt Pleasant St NW",,,Washington,DC,"District of Columbia",20009,US,Statewide
+"1052 Thomas Jefferson Street NW",Washington,DC,,38.903887,-77.060437,1,rooftop,1052,"Thomas Jefferson St NW",,,Washington,DC,"District of Columbia",20007,US,Statewide
+"475 H St NW",Washington,DC,,38.900078,-77.018645,1,rooftop,475,"H St NW",,,Washington,DC,"District of Columbia",20001,US,Statewide
+"1301 U St NW",Washington,DC,,38.917294,-77.03052,1,rooftop,1301,"U St NW",,,Washington,DC,"District of Columbia",20009,US,Statewide
+"1726 20th Street, NW",Washington,DC,,38.913694,-77.045095,1,rooftop,1726,"20th St NW",,,Washington,DC,"District of Columbia",20009,US,Statewide
+"1916 I Street, NW",Washington,DC,,38.90115,-77.044172,1,rooftop,1916,"I St NW",,,Washington,DC,"District of Columbia",20006,US,Statewide
+"107 Church St NE",Vienna,VA,,38.902565,-77.265693,1,rooftop,107,"Church St NE",,,Vienna,VA,"Fairfax County",22180,US,Fairfax
+"4817 Bethesda Ave",Bethesda,MD,20814,38.981067,-77.096506,1,rooftop,4817,"Bethesda Ave",,,Bethesda,MD,"Montgomery County",20814,US,Montgomery
+```
+
+> Example response (trying to download a list that is still processing):
+
+```json
+{
+    "message": "List is still processing",
+    "success": false
+}
+
+```
+
+Download a fully geocoded list, the returned format will always be a UTF-8 encoded, comma-separated csv file.
+
+The response may be a `Redirect` HTTP header, so it is important to configure your HTTP client to follow redirects.
+
+See our [spreadsheet output guide](/guides/data-matching-overview/) for a reference of the outputted columns.
+
+### HTTP Request
+
+`GET https://api-hipaa.geocod.io/v1.6/lists/LIST_ID/download`
 
 ### URL Parameters
 
@@ -1588,7 +1718,10 @@ Parameter name                                                                  
 [timezone](#timezone)                                                                                                                       | Timezone                                               | <i class="fa fa-globe"></i> |
 
 <aside class="success">
-This feature is available for both single and batch geocoding requests.
+This feature is available for both single and batch geocoding requests
+<!--DEFAULT
+as well as the lists API
+DEFAULT-->
 </aside>
 
 ## Congressional Districts
