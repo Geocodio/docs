@@ -1447,7 +1447,7 @@ DEFAULT-->
 
 # Fields
 
-> To get e.g. the Congressional and state legislative districts for an address or a coordinate:
+> To get `cd` and `stateleg` field appends for an address or a coordinate:
 
 ```shell
 curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
@@ -1504,7 +1504,7 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
 ```clojure
 (ns my.ns
   (:require [rodeo.core :refer :all]))
-
+ 
 (single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["cd" "stateleg"])
 (single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["cd" "stateleg"])
 ```
@@ -1727,6 +1727,8 @@ DEFAULT-->
 ## Congressional Districts
 **Field name: `cd`, `cd113`, `cd114`, `cd115`, `cd116`, `cd117`, `cd118`**
 
+> To get `cd` field appends for an address or a coordinate:
+
 ```shell
 curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY"
 curl "https://api-hipaa.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=cd&api_key=YOUR_API_KEY"
@@ -1782,7 +1784,7 @@ geocoder.reverse('38.886672,-77.094735', ['cd'])
 ```clojure
 (ns my.ns
   (:require [rodeo.core :refer :all]))
-
+ 
 (single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["cd"])
 (single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["cd"])
 ```
@@ -1954,6 +1956,9 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 
 ## State Legislative Districts
 **Field name: `stateleg` or `stateleg-next`**
+
+> To get `stateleg` field appends for an address or a coordinate:
+
 ```shell
 curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=stateleg&api_key=YOUR_API_KEY"
 curl "https://api-hipaa.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=stateleg&api_key=YOUR_API_KEY"
@@ -2009,7 +2014,7 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg'])
 ```clojure
 (ns my.ns
   (:require [rodeo.core :refer :all]))
-
+ 
 (single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["stateleg"])
 (single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["stateleg"])
 ```
@@ -2114,6 +2119,9 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 
 ## School Districts
 **Field name: `school`**
+
+> To get `school` field appends for an address or a coordinate:
+
 ```shell
 curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=school&api_key=YOUR_API_KEY"
 curl "https://api-hipaa.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=school&api_key=YOUR_API_KEY"
@@ -2169,7 +2177,7 @@ geocoder.reverse('38.886672,-77.094735', ['school'])
 ```clojure
 (ns my.ns
   (:require [rodeo.core :refer :all]))
-
+ 
 (single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["school"])
 (single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["school"])
 ```
@@ -2220,6 +2228,9 @@ The field will return either a *unified* school district or separate *elementary
 
 ## Census Block/Tract, FIPS codes & MSA/CSA codes
 **Field name: `census`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`, `census2020`**
+
+> To get `census` field appends for an address or a coordinate:
+
 ```shell
 curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=census&api_key=YOUR_API_KEY"
 curl "https://api-hipaa.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=census&api_key=YOUR_API_KEY"
@@ -2275,7 +2286,7 @@ geocoder.reverse('38.886672,-77.094735', ['census'])
 ```clojure
 (ns my.ns
   (:require [rodeo.core :refer :all]))
-
+ 
 (single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["census"])
 (single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["census"])
 ```
@@ -2484,65 +2495,8 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
 
 ## Demographics (Census)
 **Field name: `acs-demographics`**
-```shell
-curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=acs-demographics&api_key=YOUR_API_KEY"
-curl "https://api-hipaa.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-demographics&api_key=YOUR_API_KEY"
-```
 
-```ruby
-require 'geocodio'
-
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
-
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-demographics])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-demographics])
-```
-
-```python
-from geocodio import GeocodioClient
-
-client = GeocodioClient(YOUR_API_KEY)
-
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-demographics"])
-location = client.reverse((38.886672, -77.094735), fields=["acs-demographics"])
-```
-
-```php
-<?php
-$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-demographics']);
-$response = $geocoder->reverse('38.886672,-77.094735', ['acs-demographics']);
-```
-
-```javascript
-const Geocodio = require('geocodio-library-node');
-const geocodio = new Geocodio('YOUR_API_KEY');
-
-geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-demographics'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-
-geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-```
-
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
-
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-demographics"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-demographics"])
-```
+<!--FIELD:acs-demographics-->
 
 ```json
 ...
@@ -2980,65 +2934,8 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
 
 ## Economics: Income Data (Census)
 **Field name: `acs-economics`**
-```shell
-curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=acs-economics&api_key=YOUR_API_KEY"
-curl "https://api-hipaa.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-economics&api_key=YOUR_API_KEY"
-```
 
-```ruby
-require 'geocodio'
-
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
-
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-economics])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-economics])
-```
-
-```python
-from geocodio import GeocodioClient
-
-client = GeocodioClient(YOUR_API_KEY)
-
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-economics"])
-location = client.reverse((38.886672, -77.094735), fields=["acs-economics"])
-```
-
-```php
-<?php
-$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-economics']);
-$response = $geocoder->reverse('38.886672,-77.094735', ['acs-economics']);
-```
-
-```javascript
-const Geocodio = require('geocodio-library-node');
-const geocodio = new Geocodio('YOUR_API_KEY');
-
-geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-economics'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-
-geocoder.reverse('38.886672,-77.094735', ['acs-economics'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-```
-
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
-
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-economics"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-economics"])
-```
+<!--FIELD:acs-economics-->
 
 ```json
 ...
@@ -3173,65 +3070,8 @@ The data returned includes the following data points. For each data point, the d
 
 ## Families (Census)
 **Field name: `acs-families`**
-```shell
-curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=acs-families&api_key=YOUR_API_KEY"
-curl "https://api-hipaa.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-families&api_key=YOUR_API_KEY"
-```
 
-```ruby
-require 'geocodio'
-
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
-
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-families])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-families])
-```
-
-```python
-from geocodio import GeocodioClient
-
-client = GeocodioClient(YOUR_API_KEY)
-
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-families"])
-location = client.reverse((38.886672, -77.094735), fields=["acs-families"])
-```
-
-```php
-<?php
-$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-families']);
-$response = $geocoder->reverse('38.886672,-77.094735', ['acs-families']);
-```
-
-```javascript
-const Geocodio = require('geocodio-library-node');
-const geocodio = new Geocodio('YOUR_API_KEY');
-
-geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-families'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-
-geocoder.reverse('38.886672,-77.094735', ['acs-families'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-```
-
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
-
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-families"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-families"])
-```
+<!--FIELD:acs-families-->
 
 ```json
 ...
@@ -3479,65 +3319,8 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
 
 ## Housing (Census)
 **Field name: `acs-housing`**
-```shell
-curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=acs-housing&api_key=YOUR_API_KEY"
-curl "https://api-hipaa.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-housing&api_key=YOUR_API_KEY"
-```
 
-```ruby
-require 'geocodio'
-
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
-
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-housing])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-housing])
-```
-
-```python
-from geocodio import GeocodioClient
-
-client = GeocodioClient(YOUR_API_KEY)
-
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-housing"])
-location = client.reverse((38.886672, -77.094735), fields=["acs-housing"])
-```
-
-```php
-<?php
-$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-housing']);
-$response = $geocoder->reverse('38.886672,-77.094735', ['acs-housing']);
-```
-
-```javascript
-const Geocodio = require('geocodio-library-node');
-const geocodio = new Geocodio('YOUR_API_KEY');
-
-geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-housing'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-
-geocoder.reverse('38.886672,-77.094735', ['acs-housing'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-```
-
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
-
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-housing"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-housing"])
-```
+<!--FIELD:acs-housing-->
 
 ```json
 ...
@@ -3820,65 +3603,8 @@ Data points returned are:
 
 ## Social: Education & Veteran Status (Census)
 **Field name: `acs-social`**
-```shell
-curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=acs-social&api_key=YOUR_API_KEY"
-curl "https://api-hipaa.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-social&api_key=YOUR_API_KEY"
-```
 
-```ruby
-require 'geocodio'
-
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
-
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-social])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-social])
-```
-
-```python
-from geocodio import GeocodioClient
-
-client = GeocodioClient(YOUR_API_KEY)
-
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-social"])
-location = client.reverse((38.886672, -77.094735), fields=["acs-social"])
-```
-
-```php
-<?php
-$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-social']);
-$response = $geocoder->reverse('38.886672,-77.094735', ['acs-social']);
-```
-
-```javascript
-const Geocodio = require('geocodio-library-node');
-const geocodio = new Geocodio('YOUR_API_KEY');
-
-geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-social'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-
-geocoder.reverse('38.886672,-77.094735', ['acs-social'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-```
-
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
-
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-social"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-social"])
-```
+<!--FIELD:acs-social-->
 
 ```json
 ...
@@ -4390,65 +4116,8 @@ The data returned includes the following data points. For each data point, the d
 
 ## USPS ZIP+4
 **Field name: `zip4`**
-```shell
-curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=zip4&api_key=YOUR_API_KEY"
-curl "https://api-hipaa.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=zip4&api_key=YOUR_API_KEY"
-```
 
-```ruby
-require 'geocodio'
-
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
-
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[zip4])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[zip4])
-```
-
-```python
-from geocodio import GeocodioClient
-
-client = GeocodioClient(YOUR_API_KEY)
-
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["zip4"])
-location = client.reverse((38.886672, -77.094735), fields=["zip4"])
-```
-
-```php
-<?php
-$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['zip4']);
-$response = $geocoder->reverse('38.886672,-77.094735', ['zip4']);
-```
-
-```javascript
-const Geocodio = require('geocodio-library-node');
-const geocodio = new Geocodio('YOUR_API_KEY');
-
-geocoder.geocode('1109 N Highland St, Arlington VA', ['zip4'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-
-geocoder.reverse('38.886672,-77.094735', ['zip4'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-```
-
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
-
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["zip4"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["zip4"])
-```
+<!--FIELD:zip4-->
 
 ```json
 ...
@@ -4887,6 +4556,9 @@ The full Canadian census tract code that this query is part of.
 
 ## Timezone
 **Field name: `timezone`**
+
+> To get `timezone` field appends for an address or a coordinate:
+
 ```shell
 curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=timezone&api_key=YOUR_API_KEY"
 curl "https://api-hipaa.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=timezone&api_key=YOUR_API_KEY"
@@ -4942,7 +4614,7 @@ geocoder.reverse('38.886672,-77.094735', ['timezone'])
 ```clojure
 (ns my.ns
   (:require [rodeo.core :refer :all]))
-
+ 
 (single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["timezone"])
 (single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["timezone"])
 ```
