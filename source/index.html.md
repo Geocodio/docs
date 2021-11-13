@@ -21,7 +21,7 @@ Geocodio's RESTful API allows you to perform forward and reverse geocoding looku
 
 You can also optionally ask for data appends such as timezone, Congressional districts or similar things of that nature.
 
-The base API url is `https://api.geocod.io/v1.6/`.
+The base API url is `https://api.geocod.io/v1.7/`.
 
 All HTTP responses (including errors) are returned with [JSON-formatted](http://www.json.org) output.
 
@@ -187,7 +187,7 @@ compile "rodeo:rodeo:2.0.1"
 
 ```shell
 # With curl, you can just pass the query parameter with each request
-curl "https://api.geocod.io/v1.6/api_endpoint_here?api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/api_endpoint_here?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -312,7 +312,7 @@ Whenever possible, batch requests are recommended since they are significantly f
 
 ## Single address
 
-A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api.geocod.io/v1.6/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 <aside class="success">
 The <code>results</code> are always ordered with the most accurate locations first. It is therefore always safe to pick the first result in the list.
@@ -322,10 +322,10 @@ The <code>results</code> are always ordered with the most accurate locations fir
 
 ```shell
 # Using q parameter
-curl "https://api.geocod.io/v1.6/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
 
 # Using individual address components
-curl "https://api.geocod.io/v1.6/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -417,7 +417,7 @@ geocoder.geocode('1109 N Highland St, Arlington VA')
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.6/geocode`
+`GET https://api.geocod.io/v1.7/geocode`
 
 ### URL Parameters
 
@@ -493,7 +493,7 @@ The `fields` parameter is still supported when the `simple` output format is sel
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["1109 N Highland St, Arlington VA", "525 University Ave, Toronto, ON, Canada", "4410 S Highway 17 92, Casselberry FL", "15000 NE 24th Street, Redmond WA", "17015 Walnut Grove Drive, Morgan Hill CA"]' \
-  https://api.geocod.io/v1.6/geocode?api_key=YOUR_API_KEY
+  https://api.geocod.io/v1.7/geocode?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -684,7 +684,7 @@ You can batch geocode up to 10,000 addresses at the time. Geocoding 10,000 addre
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.6/geocode`
+`POST https://api.geocod.io/v1.7/geocode`
 
 ### URL Parameters
 
@@ -759,7 +759,7 @@ A geographic coordinate consists of latitude followed by longitude separated by 
 > To reverse geocode a single coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.6/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -858,11 +858,11 @@ geocoder.reverse('38.9002898,-76.9990361')
 }
 ```
 
-A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api.geocod.io/v1.6/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api.geocod.io/v1.7/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.6/reverse`
+`GET https://api.geocod.io/v1.7/reverse`
 
 ### URL Parameters
 
@@ -919,7 +919,7 @@ The `fields` parameter is still supported when the `simple` output format is sel
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["35.9746000,-77.9658000","32.8793700,-96.6303900","33.8337100,-117.8362320","35.4171240,-80.6784760"]' \
-  https://api.geocod.io/v1.6/reverse?api_key=YOUR_API_KEY
+  https://api.geocod.io/v1.7/reverse?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -1084,7 +1084,7 @@ You can batch reverse geocode up to 10,000 coordinates at a time.
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.6/reverse`
+`POST https://api.geocod.io/v1.7/reverse`
 
 ### URL Parameters
 
@@ -1113,7 +1113,7 @@ Data for spreadsheets processed through the lists API are automatically deleted 
 > Create a new list from a file called "[sample_list.csv](https://www.geocod.io/sample_list.csv)"
 
 ```shell
-curl "https://api.geocod.io/v1.6/lists?api_key=YOUR_API_KEY" \
+curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
   -F "file"="@sample_list.csv" \
   -F "direction"="forward" \
   -F "format"="{{A}} {{B}} {{C}} {{D}}" \
@@ -1123,7 +1123,7 @@ curl "https://api.geocod.io/v1.6/lists?api_key=YOUR_API_KEY" \
 > Create a new list from inline data
 
 ```shell
-curl "https://api.geocod.io/v1.6/lists?api_key=YOUR_API_KEY" \
+curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
   -F "file"=$'Zip\n20003\n20001' \
   -F "filename"="file.csv" \
   -F "direction"="forward" \
@@ -1155,7 +1155,7 @@ Creates a new spreadsheet list job and starts processing the list in the backgro
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.6/lists`
+`POST https://api.geocod.io/v1.7/lists`
 
 ### URL Parameters
 
@@ -1199,7 +1199,7 @@ The `format` parameter uses a simple templating syntax that is used to construct
         "geocoded_rows_count": 39809,
         "filename": "sample_list.csv"
     },
-    "download_url": "https://api.geocod.io/v1.6/lists/49/download"
+    "download_url": "https://api.geocod.io/v1.7/lists/49/download"
 }
 ```
 
@@ -1213,7 +1213,7 @@ A total of 3 attempts are made to delivery the webhook.
 > Show status for list id 42
 
 ```shell
-curl "https://api.geocod.io/v1.6/lists/42?api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
 ```
 
 > Example response (list that just started processing)
@@ -1279,7 +1279,7 @@ curl "https://api.geocod.io/v1.6/lists/42?api_key=YOUR_API_KEY"
         "time_left_description": null,
         "time_left_seconds": null
     },
-    "download_url": "https://api.geocod.io/v1.6/lists/42/download",
+    "download_url": "https://api.geocod.io/v1.7/lists/42/download",
     "expires_at": "2021-09-23T18:23:29.000000Z"
 }
 ```
@@ -1288,7 +1288,7 @@ View the metadata and status for a single uploaded list.
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.6/lists/LIST_ID`
+`GET https://api.geocod.io/v1.7/lists/LIST_ID`
 
 ### URL Parameters
 
@@ -1302,7 +1302,7 @@ Parameter | Description
 > Show all lists
 
 ```shell
-curl "https://api.geocod.io/v1.6/lists?api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
 ```
 
 > Example response:
@@ -1329,15 +1329,15 @@ curl "https://api.geocod.io/v1.6/lists?api_key=YOUR_API_KEY"
                 "time_left_description": null,
                 "time_left_seconds": null
             },
-            "download_url": "https://api.geocod.io/v1.6/lists/48/download",
+            "download_url": "https://api.geocod.io/v1.7/lists/48/download",
             "expires_at": "2021-09-23T12:09:09.000000Z"
         },
         ...
     ],
-    "first_page_url": "https://api.geocod.io/v1.6/lists?page=1",
+    "first_page_url": "https://api.geocod.io/v1.7/lists?page=1",
     "from": 1,
-    "next_page_url": "https://api.geocod.io/v1.6/lists?page=2",
-    "path": "https://api.geocod.io/v1.6/lists",
+    "next_page_url": "https://api.geocod.io/v1.7/lists?page=2",
+    "path": "https://api.geocod.io/v1.7/lists",
     "per_page": 15,
     "prev_page_url": null,
     "to": 15
@@ -1348,7 +1348,7 @@ Show all lists that have been created. The endpoint is paginated, showing 15 lis
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.6/lists`
+`GET https://api.geocod.io/v1.7/lists`
 
 ### URL Parameters
 
@@ -1359,7 +1359,7 @@ Parameter | Description
 ## Download a list
 
 ```shell
-curl -L "https://api.geocod.io/v1.6/lists/LIST_ID/download?api_key=YOUR_API_KEY"
+curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_API_KEY"
 ```
 
 > Example response:
@@ -1410,7 +1410,7 @@ See our [spreadsheet output guide](/guides/data-matching-overview/) for a refere
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.6/lists/LIST_ID/download`
+`GET https://api.geocod.io/v1.7/lists/LIST_ID/download`
 
 ### URL Parameters
 
@@ -1421,7 +1421,7 @@ Parameter | Description
 ## Delete a list
 
 ```shell
-curl -X DELETE "https://api.geocod.io/v1.6/lists/LIST_ID?api_key=YOUR_API_KEY"
+curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_KEY"
 ```
 
 > Example response:
@@ -1436,7 +1436,7 @@ Delete a previously uploaded list and its underlying spreadsheet data permanentl
 
 ### HTTP Request
 
-`DELETE https://api.geocod.io/v1.6/lists/LIST_ID`
+`DELETE https://api.geocod.io/v1.7/lists/LIST_ID`
 
 ### URL Parameters
 
@@ -1450,8 +1450,8 @@ Parameter | Description
 > To get e.g. the Congressional and state legislative districts for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.6/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.6/reverse?q=38.886672,-77.094735&fields=cd,stateleg&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=cd,stateleg&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1697,25 +1697,25 @@ Geocodio allows you to request additional data with forward and reverse geocodin
 
 To request additional data, just add a `fields` parameter to your query string and set the value according to the table below. You can request multiple data fields at the same time by separating them with a comma. If the `fields` parameter has been specified, a new `fields` key is exposed with each geocoding result containing all necessary data for each field.
 
-Go ahead, <a href="https://api.geocod.io/v1.6/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+Go ahead, <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 Some fields are specific to the US and cannot be queried for other countries.
 
-Parameter name                                                                                                                 | Description                                            | Coverage                    |
--------------------------------------------------------------------------------------------------------------------------------| ------------------------------------------------------ | --------------------------- |
-[cd, cd113, cd114, cd115, cd116, *or* cd117](#congressional-districts)                                                                                            | Congressional District & Legislator information        | US-only                     |
-[stateleg](#state-legislative-districts)                                                                                                                       | State Legislative District (House & Senate)            | US-only                     |
-[school](#school-districts)                                                                                                                         | School District (elementary/secondary or unified)      | US-only                     |
-[census, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020](#census-block-tract-fips-codes-amp-msa-csa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes         | US-only                     |
-[acs-demographics](#demographics-census)                                                                                                               | Demographics (Census)                                  | US-only                     |
-[acs-economics](#economics-income-data-census)                                                                                                                  | Economics: Income Data (Census)                        | US-only                     |
-[acs-families](#families-census)                                                                                                                   | Families (Census)                                      | US-only                     |
-[acs-housing](#housing-census)                                                                                                                    | Housing (Census)                                       | US-only                     |
-[acs-social](#social-education-amp-veteran-status-census)                                                                                                                     | Social: Education & Veteran Status (Census)            | US-only                     |
-[zip4](#usps-zip-4)                                                                                                                     | USPS Zip+4 code and delivery information            | US-only                     |
-[riding](#riding-canadian-federal-electoral-district)                                                                                                                         | Riding: Canadian Federal Electoral District            | Canada-only                 |
-[statcan](#canadian-statistical-boundaries-from-statistics-canada)                                                                                                                        | Canadian statistical boundaries from Statistics Canada | Canada-only                 |
-[timezone](#timezone)                                                                                                                       | Timezone                                               | <i class="fa fa-globe"></i> |
+Parameter name                                                                                                                                                                                | Description                                            | Coverage                    |
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | --------------------------- |
+[cd, cd113, cd114, cd115, cd116, cd117, cd118](#congressional-districts)                                                                                                                      | Congressional District & Legislator information        | US-only                     |
+[stateleg](#state-legislative-districts)                                                                                                                                                      | State Legislative District (House & Senate)            | US-only                     |
+[school](#school-districts)                                                                                                                                                                   | School District (elementary/secondary or unified)      | US-only                     |
+[census, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020](#census-block-tract-fips-codes-amp-msa-csa-codes)| Census Block/Tract, FIPS codes & MSA/CSA codes         | US-only                     |
+[acs-demographics](#demographics-census)                                                                                                                                                      | Demographics (Census)                                  | US-only                     |
+[acs-economics](#economics-income-data-census)                                                                                                                                                | Economics: Income Data (Census)                        | US-only                     |
+[acs-families](#families-census)                                                                                                                                                              | Families (Census)                                      | US-only                     |
+[acs-housing](#housing-census)                                                                                                                                                                | Housing (Census)                                       | US-only                     |
+[acs-social](#social-education-amp-veteran-status-census)                                                                                                                                     | Social: Education & Veteran Status (Census)            | US-only                     |
+[zip4](#usps-zip-4)                                                                                                                                                                           | USPS Zip+4 code and delivery information               | US-only                     |
+[riding](#riding-canadian-federal-electoral-district)                                                                                                                                         | Riding: Canadian Federal Electoral District            | Canada-only                 |
+[statcan](#canadian-statistical-boundaries-from-statistics-canada)                                                                                                                            | Canadian statistical boundaries from Statistics Canada | Canada-only                 |
+[timezone](#timezone)                                                                                                                                                                         | Timezone                                               | <i class="fa fa-globe"></i> |
 
 <aside class="success">
 This feature is available for both single and batch geocoding requests
@@ -1725,7 +1725,67 @@ as well as the lists API
 </aside>
 
 ## Congressional Districts
-**Field name: `cd`, `cd113`, `cd114`, `cd115`, `cd116`, *or* `cd117`**
+**Field name: `cd`, `cd113`, `cd114`, `cd115`, `cd116`, `cd117`, `cd118`**
+
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=cd&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[cd])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[cd])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["cd"])
+location = client.reverse((38.886672, -77.094735), fields=["cd"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['cd']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['cd']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['cd'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['cd'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["cd"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["cd"])
+```
 
 ```json
 ...
@@ -1863,6 +1923,25 @@ The field returns the full name of the Congressional district, the district numb
 The list of legislators is always ordered with Representative first then Senators.
 </aside>
 
+### District boundaries for the 118th congress
+
+When requesting congressional districts for the 118th congress, Geocodio will use newly published redistricting data when available (please note that the boundaries are preliminary and not final for most states). Where new boundaries are not available, we will return the congressional district based on 117th congress district boundaries instead.
+
+The following states currently have updated boundaries for the 118th congress:
+
+* Colorado
+* Indiana
+* Maine
+* Maryland
+* Montana
+* Nebraska
+* North Carolina
+* Oregon
+* Texas
+* West Virginia
+
+We are updating boundaries and adding new states as redistricting occurs and maps are publushed. The list will continue to be updated.
+
 ### Appending Congressional districts for ZIP codes
 
 Geocodio can return the most likely Congressional districts given a ZIP code. In cases where there may be multiple possible Congressional districts for a postal code, we will return multiple Congressional districts, and rank them each using a `proportion` key. This key is a decimal percentage representation of how much of the district boundary that intersect with the zip code boundary (i.e. bigger number = more likely to be the correct district for citizens in that zip code).
@@ -1870,36 +1949,230 @@ Geocodio can return the most likely Congressional districts given a ZIP code. In
 Districts are always sorted by the `proportion` in descending order (largest first).
 
 <aside class="notice">
-  Where possible, we recommend looking up Congressional districts with full addresses rather than ZIP codes. This will result in more accurate results, as ZIP codes are postal routes rather than geographic areas.
+  Where possible, we recommend looking up Congressional districts with full addresses rather than ZIP codes. This will result in more accurate results, as ZIP codes are postal routes rather than geographic areas and may not be as accurate.
 </aside>
 
 ## State Legislative Districts
-**Field name: `stateleg`**
+**Field name: `stateleg` or `stateleg-next`**
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=stateleg&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=stateleg&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[stateleg])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[stateleg])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["stateleg"])
+location = client.reverse((38.886672, -77.094735), fields=["stateleg"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['stateleg']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['stateleg']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['stateleg'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['stateleg'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["stateleg"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["stateleg"])
+```
+
+> Example lookup using a full address
 
 ```json
 ...
 "fields": {
   "state_legislative_districts": {
-    "house": {
-      "name": "Assembly District 42",
-      "district_number": 42,
-      "is_upcoming_state_legislative_district": false
-    },
-    "senate": {
-      "name": "State Senate District 28",
-      "district_number": 28,
-      "is_upcoming_state_legislative_district": false
-    }
+    "house": [
+      {
+        "name": "Assembly District 42",
+        "district_number": 42,
+        "is_upcoming_state_legislative_district": false,
+        "proportion": 1
+      }
+    ],
+    "senate": [
+      {
+        "name": "State Senate District 28",
+        "district_number": 28,
+        "is_upcoming_state_legislative_district": false,
+        "proportion": 1
+      }
+    ]
   }
 }
 ...
 ```
-You can retrieve the state legislative districts for an address or coordinate using `stateleg` in the `fields` query parameter.
+You can retrieve the state legislative districts for an address or coordinate using `stateleg` in the `fields` query parameter. The `stateleg-next` can be used to retrieve state legislative districts based on upcoming district changes.
 
 The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district number for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington, DC or Nebraska), only the `senate` key is returned.
 
+### Using `stateleg-next`
+
+`stateleg-next` is a preview of upcoming 2021 redistrict changes based on the 2020 census. Where available, the state legislative district returned will be based on newly redistricted boundaries. If new boundaries are not available, the current boundaries are used instead (effectively returning the same data as when the `stateleg` field append is used).
+
+The following states have updated boundaries:
+
+* Colorado
+* Illinois
+* Indiana
+* Maine
+* Nebraska (State Senate only)
+* North Carolina
+* Oklahoma
+* Oregon
+* Texas (State House only)
+* West Virginia (State House only)
+
+We are updating boundaries and adding new states as redistricting occurs. The list will continue to be updated.
+
+> Example lookup using the `22206` zip code instead of a full address
+
+```json
+...
+"fields": {
+  "state_legislative_districts": {
+    "house": [
+      {
+        "name": "State House District 49",
+        "district_number": "49",
+        "is_upcoming_state_legislative_district": false,
+        "proportion": 0.532
+      },
+      {
+        "name": "State House District 45",
+        "district_number": "45",
+        "is_upcoming_state_legislative_district": false,
+        "proportion": 0.453
+      },
+      {
+        "name": "State House District 46",
+        "district_number": "46",
+        "is_upcoming_state_legislative_district": false,
+        "proportion": 0.015
+      }
+    ],
+    "senate": [
+      {
+        "name": "State Senate District 30",
+        "district_number": "30",
+        "is_upcoming_state_legislative_district": false,
+        "proportion": 1
+      }
+    ]
+  }
+}
+...
+```
+
+### Appending state legislative districts for ZIP codes
+
+Geocodio can return the most likely state legislative districts given a ZIP code. In cases where there may be multiple possible state legislative districts for a postal code, we will return multiple state legislative districts, and rank them each using a `proportion` key. This key is a decimal percentage representation of how much of the district boundary that intersect with the zip code boundary (i.e. bigger number = more likely to be the correct district for citizens in that zip code).
+
+Districts are always sorted by the `proportion` in descending order (largest first).
+
+<aside class="notice">
+  Where possible, we recommend looking up state legislative districts with full addresses rather than ZIP codes. This will result in more accurate results, as ZIP codes are postal routes rather than geographic areas and may not be as accurate.
+</aside>
+
 ## School Districts
 **Field name: `school`**
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=school&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=school&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[school])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[school])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["school"])
+location = client.reverse((38.886672, -77.094735), fields=["school"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['school']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['school']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['school'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['school'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["school"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["school"])
+```
 
 > Unified school district example
 
@@ -1947,6 +2220,65 @@ The field will return either a *unified* school district or separate *elementary
 
 ## Census Block/Tract, FIPS codes & MSA/CSA codes
 **Field name: `census`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`, `census2020`**
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=census&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=census&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[census])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[census])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["census"])
+location = client.reverse((38.886672, -77.094735), fields=["census"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['census']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['census']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['census'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['census'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["census"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["census"])
+```
 
 ```json
 ...
@@ -2152,6 +2484,65 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
 
 ## Demographics (Census)
 **Field name: `acs-demographics`**
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=acs-demographics&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-demographics&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-demographics])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-demographics])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-demographics"])
+location = client.reverse((38.886672, -77.094735), fields=["acs-demographics"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-demographics']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['acs-demographics']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-demographics'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-demographics"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-demographics"])
+```
 
 ```json
 ...
@@ -2589,6 +2980,65 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
 
 ## Economics: Income Data (Census)
 **Field name: `acs-economics`**
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=acs-economics&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-economics&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-economics])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-economics])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-economics"])
+location = client.reverse((38.886672, -77.094735), fields=["acs-economics"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-economics']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['acs-economics']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-economics'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['acs-economics'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-economics"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-economics"])
+```
 
 ```json
 ...
@@ -2723,6 +3173,65 @@ The data returned includes the following data points. For each data point, the d
 
 ## Families (Census)
 **Field name: `acs-families`**
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=acs-families&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-families&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-families])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-families])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-families"])
+location = client.reverse((38.886672, -77.094735), fields=["acs-families"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-families']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['acs-families']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-families'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['acs-families'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-families"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-families"])
+```
 
 ```json
 ...
@@ -2970,6 +3479,65 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
 
 ## Housing (Census)
 **Field name: `acs-housing`**
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=acs-housing&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-housing&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-housing])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-housing])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-housing"])
+location = client.reverse((38.886672, -77.094735), fields=["acs-housing"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-housing']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['acs-housing']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-housing'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['acs-housing'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-housing"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-housing"])
+```
 
 ```json
 ...
@@ -3252,6 +3820,65 @@ Data points returned are:
 
 ## Social: Education & Veteran Status (Census)
 **Field name: `acs-social`**
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=acs-social&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-social&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-social])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-social])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-social"])
+location = client.reverse((38.886672, -77.094735), fields=["acs-social"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-social']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['acs-social']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-social'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['acs-social'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-social"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-social"])
+```
 
 ```json
 ...
@@ -3763,6 +4390,65 @@ The data returned includes the following data points. For each data point, the d
 
 ## USPS ZIP+4
 **Field name: `zip4`**
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=zip4&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=zip4&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[zip4])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[zip4])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["zip4"])
+location = client.reverse((38.886672, -77.094735), fields=["zip4"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['zip4']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['zip4']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['zip4'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['zip4'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["zip4"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["zip4"])
+```
 
 ```json
 ...
@@ -3941,6 +4627,65 @@ If no ZIP+4 data is available for the given query, the `zip4` field is omitted f
 
 ## Riding: Canadian Federal Electoral District
 **Field name: `riding`**
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=riding&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=45.505082,-73.698455&fields=riding&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['2546 Rue Bourgoin, Saint-Laurent, QC Canada'], :fields %w[riding])
+location = geocodio.reverse_geocode(['45.505082,-73.698455'], :fields %w[riding])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("2546 Rue Bourgoin, Saint-Laurent, QC Canada", fields=["riding"])
+location = client.reverse((45.505082, -73.698455), fields=["riding"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('2546 Rue Bourgoin, Saint-Laurent, QC Canada', ['riding']);
+$response = $geocoder->reverse('45.505082,-73.698455', ['riding']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('2546 Rue Bourgoin, Saint-Laurent, QC Canada', ['riding'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('45.505082,-73.698455', ['riding'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+
+(single "2546 Rue Bourgoin, Saint-Laurent, QC Canada" :api_key "YOUR_API_KEY" :fields ["riding"])
+(single-reverse "45.505082,-73.698455" :api_key "YOUR_API_KEY" :fields ["riding"])
+```
 
 > Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
 
@@ -3961,6 +4706,65 @@ In some cases the French and English names will be the same.
 
 ## Canadian statistical boundaries from Statistics Canada
 **Field name: `statcan`**
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=statcan&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=45.505082,-73.698455&fields=statcan&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['2546 Rue Bourgoin, Saint-Laurent, QC Canada'], :fields %w[statcan])
+location = geocodio.reverse_geocode(['45.505082,-73.698455'], :fields %w[statcan])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("2546 Rue Bourgoin, Saint-Laurent, QC Canada", fields=["statcan"])
+location = client.reverse((45.505082, -73.698455), fields=["statcan"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('2546 Rue Bourgoin, Saint-Laurent, QC Canada', ['statcan']);
+$response = $geocoder->reverse('45.505082,-73.698455', ['statcan']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('2546 Rue Bourgoin, Saint-Laurent, QC Canada', ['statcan'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('45.505082,-73.698455', ['statcan'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+
+(single "2546 Rue Bourgoin, Saint-Laurent, QC Canada" :api_key "YOUR_API_KEY" :fields ["statcan"])
+(single-reverse "45.505082,-73.698455" :api_key "YOUR_API_KEY" :fields ["statcan"])
+```
 
 
 > Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
@@ -4083,6 +4887,65 @@ The full Canadian census tract code that this query is part of.
 
 ## Timezone
 **Field name: `timezone`**
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=timezone&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=timezone&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[timezone])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[timezone])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["timezone"])
+location = client.reverse((38.886672, -77.094735), fields=["timezone"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['timezone']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['timezone']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['timezone'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['timezone'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["timezone"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["timezone"])
+```
 
 ```json
 ...
@@ -4191,39 +5054,39 @@ If a city is provided without a state, Geocodio will automatically guess and add
 
 Geocoding queries can be formatted in various ways:
 
-* <a href="https://api.geocod.io/v1.6/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=PO+Box+4735,+Tulsa+OK&api_key=YOUR_API_KEY" target="_blank">PO Box 4735, Tulsa OK</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">Santa Clara County</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">Santa Clara County, CA</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, CA</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20Cupertino%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, Cupertino CA</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=PO+Box+4735,+Tulsa+OK&api_key=YOUR_API_KEY" target="_blank">PO Box 4735, Tulsa OK</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">Santa Clara County</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">Santa Clara County, CA</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, CA</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20Cupertino%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, Cupertino CA</a>
 
 If a country is not specified in the query, the Geocodio engine will assume the country to be USA.
 
 Examples of Canadian lookups:
 
-* <a href="https://api.geocod.io/v1.6/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
 
 ## Intersections
 
 You can also geocode intersections. Just specify the two streets that you want to geocode in your query. We support various formats:
 
-* <a href="https://api.geocod.io/v1.6/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
-* <a href="https://api.geocod.io/v1.6/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
+* <a href="https://api.geocod.io/v1.7/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
 
 An extra `address_components_secondary` property will be exposed for intersection results, but otherwise, the schema format is the same.
 
@@ -4343,7 +5206,7 @@ If no warnings have been triggered, the `_warnings` key will not be part of the 
 var address = '1109 N Highland St, Arlington VA',
     apiKey = 'YOUR_API_KEY';
 
-$.get('https://api.geocod.io/v1.6/geocode?q='+ encodeURIComponent(address) +'&api_key=' + encodeURIComponent(apiKey), function (response) {
+$.get('https://api.geocod.io/v1.7/geocode?q='+ encodeURIComponent(address) +'&api_key=' + encodeURIComponent(apiKey), function (response) {
   console.log(response.results);
 });
 </script>
@@ -4368,6 +5231,14 @@ Major changes, that are not breaking are also documented here.
 <aside class="notice">
 Breaking changes are defined as changes that remove or rename properties in the JSON output of any API endpoint. Your API client should be able to gracefully support addition of new JSON properties, as this is not considered a breaking change.
 </aside>
+
+## v1.7
+*Released on November 12, 2021*
+
+* **Breaking:** The `state_legislative_districts` key from the [`stateleg`](#state-legislative-districts) field append now returns an array of `house` and `senate` districts instead of a single object.
+* The [`stateleg-next`](#state-legislative-districts) field append is back! Now returning a preview from upcoming state legislative district changes. As with congressional districts, we are updating district data on an ongoing basis as more states complete their redistricting process.
+* [`stateleg`](#state-legislative-districts) and [`stateleg-next`](#state-legislative-districts) can now return all districts that intersect with a zip code boundary along with the proportion of overlap.
+* [`cd118`](#congressional-districts) has been added as a field append, returning districts for the upcoming 118th congress. Districts are updated on an ongoing basis as more states complete their redistricting process.
 
 ## v1.6
 *Released on September 15, 2021*
