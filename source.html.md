@@ -1447,7 +1447,7 @@ DEFAULT-->
 
 # Fields
 
-<!--FIELD:cd,stateleg-->
+<!--FIELD:us:cd,stateleg-->
 
 > Example response:
 
@@ -1667,7 +1667,7 @@ DEFAULT-->
 ## Congressional Districts
 **Field name: `cd`, `cd113`, `cd114`, `cd115`, `cd116`, `cd117`, `cd118`**
 
-<!--FIELD:cd-->
+<!--FIELD:us:cd-->
 
 ```json
 ...
@@ -1837,7 +1837,7 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 ## State Legislative Districts
 **Field name: `stateleg` or `stateleg-next`**
 
-<!--FIELD:stateleg-->
+<!--FIELD:us:stateleg-->
 
 > Example lookup using a full address
 
@@ -1940,7 +1940,7 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 ## School Districts
 **Field name: `school`**
 
-<!--FIELD:school-->
+<!--FIELD:us:school-->
 
 > Unified school district example
 
@@ -1989,7 +1989,7 @@ The field will return either a *unified* school district or separate *elementary
 ## Census Block/Tract, FIPS codes & MSA/CSA codes
 **Field name: `census`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`, `census2020`**
 
-<!--FIELD:census-->
+<!--FIELD:us:census-->
 
 ```json
 ...
@@ -2196,7 +2196,7 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
 ## Demographics (Census)
 **Field name: `acs-demographics`**
 
-<!--FIELD:acs-demographics-->
+<!--FIELD:us:acs-demographics-->
 
 ```json
 ...
@@ -2635,7 +2635,7 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
 ## Economics: Income Data (Census)
 **Field name: `acs-economics`**
 
-<!--FIELD:acs-economics-->
+<!--FIELD:us:acs-economics-->
 
 ```json
 ...
@@ -2771,7 +2771,7 @@ The data returned includes the following data points. For each data point, the d
 ## Families (Census)
 **Field name: `acs-families`**
 
-<!--FIELD:acs-families-->
+<!--FIELD:us:acs-families-->
 
 ```json
 ...
@@ -3020,7 +3020,7 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
 ## Housing (Census)
 **Field name: `acs-housing`**
 
-<!--FIELD:acs-housing-->
+<!--FIELD:us:acs-housing-->
 
 ```json
 ...
@@ -3304,7 +3304,7 @@ Data points returned are:
 ## Social: Education & Veteran Status (Census)
 **Field name: `acs-social`**
 
-<!--FIELD:acs-social-->
+<!--FIELD:us:acs-social-->
 
 ```json
 ...
@@ -3817,7 +3817,7 @@ The data returned includes the following data points. For each data point, the d
 ## USPS ZIP+4
 **Field name: `zip4`**
 
-<!--FIELD:zip4-->
+<!--FIELD:us:zip4-->
 
 ```json
 ...
@@ -3996,65 +3996,8 @@ If no ZIP+4 data is available for the given query, the `zip4` field is omitted f
 
 ## Riding: Canadian Federal Electoral District
 **Field name: `riding`**
-```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=riding&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=45.505082,-73.698455&fields=riding&api_key=YOUR_API_KEY"
-```
 
-```ruby
-require 'geocodio'
-
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
-
-location = geocodio.geocode(['2546 Rue Bourgoin, Saint-Laurent, QC Canada'], :fields %w[riding])
-location = geocodio.reverse_geocode(['45.505082,-73.698455'], :fields %w[riding])
-```
-
-```python
-from geocodio import GeocodioClient
-
-client = GeocodioClient(YOUR_API_KEY)
-
-location = client.geocode("2546 Rue Bourgoin, Saint-Laurent, QC Canada", fields=["riding"])
-location = client.reverse((45.505082, -73.698455), fields=["riding"])
-```
-
-```php
-<?php
-$response = $geocoder->geocode('2546 Rue Bourgoin, Saint-Laurent, QC Canada', ['riding']);
-$response = $geocoder->reverse('45.505082,-73.698455', ['riding']);
-```
-
-```javascript
-const Geocodio = require('geocodio-library-node');
-const geocodio = new Geocodio('YOUR_API_KEY');
-
-geocoder.geocode('2546 Rue Bourgoin, Saint-Laurent, QC Canada', ['riding'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-
-geocoder.reverse('45.505082,-73.698455', ['riding'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-```
-
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
-
-(single "2546 Rue Bourgoin, Saint-Laurent, QC Canada" :api_key "YOUR_API_KEY" :fields ["riding"])
-(single-reverse "45.505082,-73.698455" :api_key "YOUR_API_KEY" :fields ["riding"])
-```
+<!--FIELD:ca:riding-->
 
 > Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
 
@@ -4075,66 +4018,8 @@ In some cases the French and English names will be the same.
 
 ## Canadian statistical boundaries from Statistics Canada
 **Field name: `statcan`**
-```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=statcan&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=45.505082,-73.698455&fields=statcan&api_key=YOUR_API_KEY"
-```
 
-```ruby
-require 'geocodio'
-
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
-
-location = geocodio.geocode(['2546 Rue Bourgoin, Saint-Laurent, QC Canada'], :fields %w[statcan])
-location = geocodio.reverse_geocode(['45.505082,-73.698455'], :fields %w[statcan])
-```
-
-```python
-from geocodio import GeocodioClient
-
-client = GeocodioClient(YOUR_API_KEY)
-
-location = client.geocode("2546 Rue Bourgoin, Saint-Laurent, QC Canada", fields=["statcan"])
-location = client.reverse((45.505082, -73.698455), fields=["statcan"])
-```
-
-```php
-<?php
-$response = $geocoder->geocode('2546 Rue Bourgoin, Saint-Laurent, QC Canada', ['statcan']);
-$response = $geocoder->reverse('45.505082,-73.698455', ['statcan']);
-```
-
-```javascript
-const Geocodio = require('geocodio-library-node');
-const geocodio = new Geocodio('YOUR_API_KEY');
-
-geocoder.geocode('2546 Rue Bourgoin, Saint-Laurent, QC Canada', ['statcan'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-
-geocoder.reverse('45.505082,-73.698455', ['statcan'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-```
-
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
-
-(single "2546 Rue Bourgoin, Saint-Laurent, QC Canada" :api_key "YOUR_API_KEY" :fields ["statcan"])
-(single-reverse "45.505082,-73.698455" :api_key "YOUR_API_KEY" :fields ["statcan"])
-```
-
+<!--FIELD:ca:statcan-->
 
 > Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
 
@@ -4257,7 +4142,7 @@ The full Canadian census tract code that this query is part of.
 ## Timezone
 **Field name: `timezone`**
 
-<!--FIELD:timezone-->
+<!--FIELD:us:timezone-->
 
 ```json
 ...

@@ -1450,7 +1450,7 @@ Parameter | Description
 > To get `cd` and `stateleg` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
 curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=cd,stateleg&api_key=YOUR_API_KEY"
 ```
 
@@ -1730,7 +1730,7 @@ as well as the lists API
 > To get `cd` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=cd&api_key=YOUR_API_KEY"
 curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=cd&api_key=YOUR_API_KEY"
 ```
 
@@ -1960,7 +1960,7 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 > To get `stateleg` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=stateleg&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=stateleg&api_key=YOUR_API_KEY"
 curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=stateleg&api_key=YOUR_API_KEY"
 ```
 
@@ -2123,7 +2123,7 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 > To get `school` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=school&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=school&api_key=YOUR_API_KEY"
 curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=school&api_key=YOUR_API_KEY"
 ```
 
@@ -2232,7 +2232,7 @@ The field will return either a *unified* school district or separate *elementary
 > To get `census` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=census&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=census&api_key=YOUR_API_KEY"
 curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=census&api_key=YOUR_API_KEY"
 ```
 
@@ -2496,7 +2496,7 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
 ## Demographics (Census)
 **Field name: `acs-demographics`**
 
-<!--FIELD:acs-demographics-->
+<!--FIELD:us:acs-demographics-->
 
 ```json
 ...
@@ -2935,7 +2935,7 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
 ## Economics: Income Data (Census)
 **Field name: `acs-economics`**
 
-<!--FIELD:acs-economics-->
+<!--FIELD:us:acs-economics-->
 
 ```json
 ...
@@ -3071,7 +3071,7 @@ The data returned includes the following data points. For each data point, the d
 ## Families (Census)
 **Field name: `acs-families`**
 
-<!--FIELD:acs-families-->
+<!--FIELD:us:acs-families-->
 
 ```json
 ...
@@ -3320,7 +3320,7 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
 ## Housing (Census)
 **Field name: `acs-housing`**
 
-<!--FIELD:acs-housing-->
+<!--FIELD:us:acs-housing-->
 
 ```json
 ...
@@ -3604,7 +3604,7 @@ Data points returned are:
 ## Social: Education & Veteran Status (Census)
 **Field name: `acs-social`**
 
-<!--FIELD:acs-social-->
+<!--FIELD:us:acs-social-->
 
 ```json
 ...
@@ -4117,7 +4117,7 @@ The data returned includes the following data points. For each data point, the d
 ## USPS ZIP+4
 **Field name: `zip4`**
 
-<!--FIELD:zip4-->
+<!--FIELD:us:zip4-->
 
 ```json
 ...
@@ -4296,8 +4296,11 @@ If no ZIP+4 data is available for the given query, the `zip4` field is omitted f
 
 ## Riding: Canadian Federal Electoral District
 **Field name: `riding`**
+
+> To get `riding` field appends for an address or a coordinate:
+
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=riding&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/geocode?q=2546+Rue+Bourgoin%2C+Saint-Laurent%2C+QC+Canada&fields=riding&api_key=YOUR_API_KEY"
 curl "https://api.geocod.io/v1.7/reverse?q=45.505082,-73.698455&fields=riding&api_key=YOUR_API_KEY"
 ```
 
@@ -4351,7 +4354,7 @@ geocoder.reverse('45.505082,-73.698455', ['riding'])
 ```clojure
 (ns my.ns
   (:require [rodeo.core :refer :all]))
-
+ 
 (single "2546 Rue Bourgoin, Saint-Laurent, QC Canada" :api_key "YOUR_API_KEY" :fields ["riding"])
 (single-reverse "45.505082,-73.698455" :api_key "YOUR_API_KEY" :fields ["riding"])
 ```
@@ -4375,8 +4378,11 @@ In some cases the French and English names will be the same.
 
 ## Canadian statistical boundaries from Statistics Canada
 **Field name: `statcan`**
+
+> To get `statcan` field appends for an address or a coordinate:
+
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=statcan&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/geocode?q=2546+Rue+Bourgoin%2C+Saint-Laurent%2C+QC+Canada&fields=statcan&api_key=YOUR_API_KEY"
 curl "https://api.geocod.io/v1.7/reverse?q=45.505082,-73.698455&fields=statcan&api_key=YOUR_API_KEY"
 ```
 
@@ -4430,11 +4436,10 @@ geocoder.reverse('45.505082,-73.698455', ['statcan'])
 ```clojure
 (ns my.ns
   (:require [rodeo.core :refer :all]))
-
+ 
 (single "2546 Rue Bourgoin, Saint-Laurent, QC Canada" :api_key "YOUR_API_KEY" :fields ["statcan"])
 (single-reverse "45.505082,-73.698455" :api_key "YOUR_API_KEY" :fields ["statcan"])
 ```
-
 
 > Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
 
@@ -4560,7 +4565,7 @@ The full Canadian census tract code that this query is part of.
 > To get `timezone` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=timezone&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=timezone&api_key=YOUR_API_KEY"
 curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=timezone&api_key=YOUR_API_KEY"
 ```
 

@@ -1,5 +1,23 @@
 <?php
-function template($fields) {
+function template($country, $fields) {
+	switch ($country) {
+		case 'us':
+			$address = '1109 N Highland St, Arlington VA';
+			$coordinate = '38.886672,-77.094735';
+			break;
+
+		case 'ca':
+			$address = '2546 Rue Bourgoin, Saint-Laurent, QC Canada';
+			$coordinate = '45.505082,-73.698455';
+			break;
+
+		default:
+			throw new \Exception('Unsupported country: ' . $country);
+	}
+
+	$addressUrlEncoded = urlencode($address);
+	$coordinateWithSpace = str_replace(',', ', ', $coordinate);
+
 	$fieldsWithBackTicks = array_map(function ($f) { return '`' . $f . '`'; }, $fields);
 	$fieldAppendsDescription = count($fieldsWithBackTicks) === 2
 		? implode(' and ', $fieldsWithBackTicks)
@@ -15,8 +33,8 @@ function template($fields) {
 	> To get $fieldAppendsDescription field appends for an address or a coordinate:
 
 	```shell
-	curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=$commaSeparated&api_key=YOUR_API_KEY"
-	curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=$commaSeparated&api_key=YOUR_API_KEY"
+	curl "https://api.geocod.io/v1.7/geocode?q=$addressUrlEncoded&fields=$commaSeparated&api_key=YOUR_API_KEY"
+	curl "https://api.geocod.io/v1.7/reverse?q=$coordinate&fields=$commaSeparated&api_key=YOUR_API_KEY"
 	```
 
 	```ruby
@@ -24,8 +42,8 @@ function template($fields) {
 
 	geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-	location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[$spaceSeparated])
-	location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[$spaceSeparated])
+	location = geocodio.geocode(['$address'], :fields %w[$spaceSeparated])
+	location = geocodio.reverse_geocode(['$coordinate'], :fields %w[$spaceSeparated])
 	```
 
 	```python
@@ -33,21 +51,21 @@ function template($fields) {
 
 	client = GeocodioClient(YOUR_API_KEY)
 
-	location = client.geocode("1109 N Highland St, Arlington VA", fields=[$doubleQuotedCommaSeparated])
-	location = client.reverse((38.886672, -77.094735), fields=[$doubleQuotedCommaSeparated])
+	location = client.geocode("$address", fields=[$doubleQuotedCommaSeparated])
+	location = client.reverse(($coordinateWithSpace), fields=[$doubleQuotedCommaSeparated])
 	```
 
 	```php
 	<?php
-	\$response = \$geocoder->geocode('1109 N Highland St, Arlington VA', [$singleQuotedCommaSeparated]);
-	\$response = \$geocoder->reverse('38.886672,-77.094735', [$singleQuotedCommaSeparated]);
+	\$response = \$geocoder->geocode('$address', [$singleQuotedCommaSeparated]);
+	\$response = \$geocoder->reverse('$coordinate', [$singleQuotedCommaSeparated]);
 	```
 
 	```javascript
 	const Geocodio = require('geocodio-library-node');
 	const geocodio = new Geocodio('YOUR_API_KEY');
 
-	geocoder.geocode('1109 N Highland St, Arlington VA', [$singleQuotedCommaSeparated])
+	geocoder.geocode('$address', [$singleQuotedCommaSeparated])
 	  .then(response => {
 	    console.log(response);
 	  })
@@ -56,7 +74,7 @@ function template($fields) {
 	  }
 	);
 
-	geocoder.reverse('38.886672,-77.094735', [$singleQuotedCommaSeparated])
+	geocoder.reverse('$coordinate', [$singleQuotedCommaSeparated])
 	  .then(response => {
 	    console.log(response);
 	  })
@@ -70,13 +88,15 @@ function template($fields) {
 	(ns my.ns
 	  (:require [rodeo.core :refer :all]))
 	 
-	(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields [$doubleQuotedSpaceSeparated])
-	(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields [$doubleQuotedSpaceSeparated])
+	(single "$address" :api_key "YOUR_API_KEY" :fields [$doubleQuotedSpaceSeparated])
+	(single-reverse "$coordinate" :api_key "YOUR_API_KEY" :fields [$doubleQuotedSpaceSeparated])
 	```
 	TEMPLATE;
 }
 
-echo preg_replace_callback('/<!--FIELD:([A-Z,]+)-->/i', function($match) {
-	$fields = explode(',', $match[1]);
-	return template($fields);
+echo preg_replace_callback('/<!--FIELD:([A-Z]{2}):([A-Z,]+)-->/i', function($match) {
+	list(,$country, $fields) = $match;
+
+	$fields = explode(',', $fields);
+	return template($country, $fields);
 }, file_get_contents('source.html.md'));
