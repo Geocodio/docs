@@ -4366,13 +4366,17 @@ geocoder.reverse('45.505082,-73.698455', ['riding'])
 "fields": {
   "riding": {
     "code": "24068",
+    "ocd_id": "ocd-division/country:ca/ed:24068-2013",
     "name_french": "Saint-Laurent",
-    "name_english": "Saint-Laurent"
+    "name_english": "Saint-Laurent",
+    "source": "Statistics Canada"
    },
 }
 ...
 ```
 Look up the [riding](https://en.wikipedia.org/wiki/List_of_Canadian_federal_electoral_districts) for the specified address in Canada. The riding code is returned along with the French and English name for the riding.
+
+The OCD-ID can be used to uniquely identify the district, using the [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) project.
 
 In some cases the French and English names will be the same.
 
