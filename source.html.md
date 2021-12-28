@@ -1098,10 +1098,6 @@ Parameter | Description
 <!--DEFAULT
 # Geocoding lists
 
-<aside class="notice">
-The lists API is in public <strong>beta</strong>, and is currently only available for <strong>Geocodio Unlimited customers</strong>. Please <a href="mailto:hello@geocod.io">contact us</a> if you are not subscribed to our Unlimited plan, but still want access during the beta period.
-</aside>
-
 The lists API lets you upload spreadsheets up to 1GB in size. Similar to the [spreadsheet feature](https://www.geocod.io/upload/) in the dashboard, the spreadsheet will be processed as a job on Geocodio's infrastructure and can be downloaded at a later time. While a spreadsheet is being processed it is possible to query the status and progress.
 
 <aside class="warning">
