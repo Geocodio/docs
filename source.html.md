@@ -1807,24 +1807,29 @@ When requesting congressional districts for the 118th congress, Geocodio will us
 
 The following states currently have updated boundaries for the 118th congress:
 
+* Arkansas
 * Colorado
+* Illinois
 * Indiana
 * Maine
 * Maryland
 * Montana
 * Nebraska
+* New York
 * North Carolina
 * Oregon
 * Texas
+* Utah
 * West Virginia
+* Wisconsin
 
-We are updating boundaries and adding new states as redistricting occurs and maps are publushed. The list will continue to be updated.
+We are updating boundaries and adding new states as redistricting occurs and maps are publushed. The list will continue to be updated. Last change was made on 1/13/2022.
 
 ### Appending Congressional districts for ZIP codes
 
 Geocodio can return the most likely Congressional districts given a ZIP code. In cases where there may be multiple possible Congressional districts for a postal code, we will return multiple Congressional districts, and rank them each using a `proportion` key. This key is a decimal percentage representation of how much of the district boundary that intersect with the zip code boundary (i.e. bigger number = more likely to be the correct district for citizens in that zip code).
 
-Districts are always sorted by the `proportion` in descending order (largest first).
+Districts are always sorted by the `proportion` value in descending order (largest first).
 
 <aside class="notice">
   Where possible, we recommend looking up Congressional districts with full addresses rather than ZIP codes. This will result in more accurate results, as ZIP codes are postal routes rather than geographic areas and may not be as accurate.
@@ -1872,15 +1877,19 @@ The field will return both the *house* and *senate* state legislative district (
 The following states have updated boundaries:
 
 * Colorado
+* Delaware
 * Illinois
 * Indiana
 * Maine
-* Nebraska (State Senate only)
+* Nebraska
+* New York
 * North Carolina
 * Oklahoma
 * Oregon
 * Texas (State House only)
+* Utah
 * West Virginia (State House only)
+* Wisconsin
 
 We are updating boundaries and adding new states as redistricting occurs. The list will continue to be updated.
 
