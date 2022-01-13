@@ -1943,7 +1943,7 @@ The following states currently have updated boundaries for the 118th congress:
 * West Virginia
 * Wisconsin
 
-We are updating boundaries and adding new states as redistricting occurs and maps are publushed. The list will continue to be updated. Last change was made on 1/13/2022.
+We are updating boundaries and adding new states as redistricting occurs and maps are published. The list will continue to be updated. Last change was made on 1/13/2022.
 
 ### Appending Congressional districts for ZIP codes
 
@@ -2071,7 +2071,7 @@ The following states have updated boundaries:
 * West Virginia (State House only)
 * Wisconsin
 
-We are updating boundaries and adding new states as redistricting occurs. The list will continue to be updated.
+We are updating boundaries and adding new states as redistricting occurs and maps are published. The list will continue to be updated. Last change was made on 1/13/2022.
 
 > Example lookup using the `22206` zip code instead of a full address
 
