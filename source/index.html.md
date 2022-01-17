@@ -1702,7 +1702,7 @@ Parameter name                                                                  
 [cd, cd113, cd114, cd115, cd116, cd117, cd118](#congressional-districts)                                                                                                                      | Congressional District & Legislator information        | US-only                     |
 [stateleg](#state-legislative-districts)                                                                                                                                                      | State Legislative District (House & Senate)            | US-only                     |
 [school](#school-districts)                                                                                                                                                                   | School District (elementary/secondary or unified)      | US-only                     |
-[census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020](#census-block-tract-fips-codes-amp-msa-csa-codes)| Census Block/Tract, FIPS codes & MSA/CSA codes         | US-only                     |
+[census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021](#census-block-tract-fips-codes-amp-msa-csa-codes)| Census Block/Tract, FIPS codes & MSA/CSA codes         | US-only                     |
 [acs-demographics](#demographics-census)                                                                                                                                                      | Demographics (Census)                                  | US-only                     |
 [acs-economics](#economics-income-data-census)                                                                                                                                                | Economics: Income Data (Census)                        | US-only                     |
 [acs-families](#families-census)                                                                                                                                                              | Families (Census)                                      | US-only                     |
@@ -2232,13 +2232,13 @@ You can retrieve the school district for an address or coordinate using `school`
 The field will return either a *unified* school district or separate *elementary* and *secondary* fields depending on the area. Each school district is returned with its full name, the LEA (Local Education Agency) code, as well as the grades supported. Kindergarden is abbreviated as *KG* and pre-kindergarten is abbreviated as *PK*.
 
 ## Census Block/Tract, FIPS codes & MSA/CSA codes
-**Field name: `census`, `census2000`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`, `census2020`**
+**Field name: `census`, `census2000`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`, `census2020`, `census2021`**
 
-> To get `census` field appends for an address or a coordinate:
+> To get `census2010` and `census` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=census&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=census&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=census2010,census&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=census2010,census&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -2246,8 +2246,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[census])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[census])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[census2010 census])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[census2010 census])
 ```
 
 ```python
@@ -2255,21 +2255,21 @@ from geocodio import GeocodioClient
 
 client = GeocodioClient(YOUR_API_KEY)
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["census"])
-location = client.reverse((38.886672, -77.094735), fields=["census"])
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["census2010", "census"])
+location = client.reverse((38.886672, -77.094735), fields=["census2010", "census"])
 ```
 
 ```php
 <?php
-$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['census']);
-$response = $geocoder->reverse('38.886672,-77.094735', ['census']);
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['census2010', 'census']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['census2010', 'census']);
 ```
 
 ```javascript
 const Geocodio = require('geocodio-library-node');
 const geocodio = new Geocodio('YOUR_API_KEY');
 
-geocoder.geocode('1109 N Highland St, Arlington VA', ['census'])
+geocoder.geocode('1109 N Highland St, Arlington VA', ['census2010', 'census'])
   .then(response => {
     console.log(response);
   })
@@ -2278,7 +2278,7 @@ geocoder.geocode('1109 N Highland St, Arlington VA', ['census'])
   }
 );
 
-geocoder.reverse('38.886672,-77.094735', ['census'])
+geocoder.reverse('38.886672,-77.094735', ['census2010', 'census'])
   .then(response => {
     console.log(response);
   })
@@ -2292,8 +2292,8 @@ geocoder.reverse('38.886672,-77.094735', ['census'])
 (ns my.ns
   (:require [rodeo.core :refer :all]))
  
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["census"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["census"])
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["census2010" "census"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["census2010" "census"])
 ```
 
 ```json
@@ -2327,14 +2327,14 @@ geocoder.reverse('38.886672,-77.094735', ['census'])
       },
       "source": "US Census Bureau"
     },
-    "2020": {
-      "census_year": 2020,
+    "2021": {
+      "census_year": 2021,
       "state_fips": "51",
       "county_fips": "51013",
       "tract_code": "101801",
-      "block_code": "1004",
-      "block_group": "1",
-      "full_fips": "510131018011004",
+      "block_code": "2004",
+      "block_group": "2",
+      "full_fips": "510131018012004",
       "place": {
         "name": "Arlington",
         "fips": "5103000"
@@ -2355,7 +2355,7 @@ geocoder.reverse('38.886672,-77.094735', ['census'])
       "source": "US Census Bureau"
     }
   }
-},
+}
 ...
 ```
 This will append various US Census-designated codes to your address.
@@ -2364,12 +2364,12 @@ This will append various US Census-designated codes to your address.
 Looking for Canadian Census data? See the <a href="#canadian-statistical-boundaries-from-statistics-canada"><code>statcan</code></a> field append.
 </aside>
 
-You can request vintage data for every year back to the 2010 Census. This is done by specifying the year together with the field name, e.g. `census2015` for 2015 data. It is also possible to request multiple years at the same time, e.g. `census2010,census2020` (as shown in the example response).
+You can request vintage data for every year back to the 2010 Census. This is done by specifying the year together with the field name, e.g. `census2015` for 2015 data. It is also possible to request multiple years at the same time, e.g. `census2010,census` (as shown in the example response).
 
 Data for the 2000 census is available as well, using the `census2000` field append. Only County, Place, Tract and Block FIPS codes are returned for this Census year.
 
 <aside class="warning">
-If no year is specified, the API will default to the most recent census. I.e. currently, 2020 data is returned when appending the census field.
+If no year is specified, the API will default to the most recent census. I.e. currently, 2021 data is returned when appending the census field.
 </aside>
 
 Field        | Description
@@ -2503,7 +2503,67 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
 ## Demographics (Census)
 **Field name: `acs-demographics`**
 
-<!--FIELD:us:acs-demographics-->
+> To get `acs-demographics` field appends for an address or a coordinate:
+
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-demographics&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-demographics&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-demographics])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-demographics])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-demographics"])
+location = client.reverse((38.886672, -77.094735), fields=["acs-demographics"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-demographics']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['acs-demographics']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-demographics'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+ 
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-demographics"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-demographics"])
+```
 
 ```json
 ...
@@ -2942,7 +3002,67 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
 ## Economics: Income Data (Census)
 **Field name: `acs-economics`**
 
-<!--FIELD:us:acs-economics-->
+> To get `acs-economics` field appends for an address or a coordinate:
+
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-economics&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-economics&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-economics])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-economics])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-economics"])
+location = client.reverse((38.886672, -77.094735), fields=["acs-economics"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-economics']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['acs-economics']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-economics'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['acs-economics'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+ 
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-economics"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-economics"])
+```
 
 ```json
 ...
@@ -3078,7 +3198,67 @@ The data returned includes the following data points. For each data point, the d
 ## Families (Census)
 **Field name: `acs-families`**
 
-<!--FIELD:us:acs-families-->
+> To get `acs-families` field appends for an address or a coordinate:
+
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-families&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-families&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-families])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-families])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-families"])
+location = client.reverse((38.886672, -77.094735), fields=["acs-families"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-families']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['acs-families']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-families'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['acs-families'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+ 
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-families"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-families"])
+```
 
 ```json
 ...
@@ -3327,7 +3507,67 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
 ## Housing (Census)
 **Field name: `acs-housing`**
 
-<!--FIELD:us:acs-housing-->
+> To get `acs-housing` field appends for an address or a coordinate:
+
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-housing&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-housing&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-housing])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-housing])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-housing"])
+location = client.reverse((38.886672, -77.094735), fields=["acs-housing"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-housing']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['acs-housing']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-housing'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['acs-housing'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+ 
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-housing"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-housing"])
+```
 
 ```json
 ...
@@ -3611,7 +3851,67 @@ Data points returned are:
 ## Social: Education & Veteran Status (Census)
 **Field name: `acs-social`**
 
-<!--FIELD:us:acs-social-->
+> To get `acs-social` field appends for an address or a coordinate:
+
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-social&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-social&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-social])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-social])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-social"])
+location = client.reverse((38.886672, -77.094735), fields=["acs-social"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['acs-social']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['acs-social']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['acs-social'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['acs-social'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+ 
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-social"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-social"])
+```
 
 ```json
 ...
@@ -4124,7 +4424,67 @@ The data returned includes the following data points. For each data point, the d
 ## USPS ZIP+4
 **Field name: `zip4`**
 
-<!--FIELD:us:zip4-->
+> To get `zip4` field appends for an address or a coordinate:
+
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=zip4&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=zip4&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[zip4])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[zip4])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["zip4"])
+location = client.reverse((38.886672, -77.094735), fields=["zip4"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['zip4']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['zip4']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['zip4'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['zip4'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+ 
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["zip4"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["zip4"])
+```
 
 ```json
 ...
@@ -4921,6 +5281,15 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+*Released on January 17, 2021*
+
+* Introduced `census2021` data append (the `census` data append will now default to `census2021`)
+
+*Released on January 13, 2021*
+
+* Introduced `census2000` data append for 2000 vintage census boundaries
+* Updated `cd118` and `stateleg-next` data appends with data for additional redistricted states
+
 *Released on November 12, 2021*
 
 * **Breaking:** The `state_legislative_districts` key from the [`stateleg`](#state-legislative-districts) field append now returns an array of `house` and `senate` districts instead of a single object.

@@ -94,7 +94,7 @@ function template($country, $fields) {
 	TEMPLATE;
 }
 
-echo preg_replace_callback('/<!--FIELD:([A-Z]{2}):([A-Z,]+)-->/i', function($match) {
+echo preg_replace_callback('/<!--FIELD:([A-Z]{2}):([A-Z0-9-,]+)-->/i', function($match) {
 	list(,$country, $fields) = $match;
 
 	$fields = explode(',', $fields);
