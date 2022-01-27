@@ -740,6 +740,18 @@ Here's a couple of examples of what the `POST` body can look like:
 }
 </pre>
 
+**Accepted Address Components**
+
+When suppplying an address as individual components (instead of a single string) you can use a combination of `street`, `city`, `state` `postal_code`, and/or `country`. This can be useful if the address is already stored as separate fields on your end.
+
+Parameter     | Description
+------------- | -----------
+`street`      | E.g. 1600 Pennsylvania Ave NW
+`city`        | E.g. Washington
+`state`       | E.g. DC
+`postal_code` | E.g. 20500
+`country`     | E.g. Canada (Default to USA)
+
 # Reverse Geocoding
 
 Reverse geocoding is the process of converting latitude and longitude into a street address.
