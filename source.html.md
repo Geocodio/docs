@@ -740,7 +740,7 @@ Here's a couple of examples of what the `POST` body can look like:
 }
 </pre>
 
-**Accepted Address Components**
+#### Accepted Address Components
 
 When suppplying an address as individual components (instead of a single string) you can use a combination of `street`, `city`, `state` `postal_code`, and/or `country`. This can be useful if the address is already stored as separate fields on your end.
 
