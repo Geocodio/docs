@@ -4453,11 +4453,11 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
-*Released on January 17, 2021*
+*Released on January 17, 2022*
 
 * Introduced `census2021` data append (the `census` data append will now default to `census2021`)
 
-*Released on January 13, 2021*
+*Released on January 13, 2022*
 
 * Introduced `census2000` data append for 2000 vintage census boundaries
 * Updated `cd118` and `stateleg-next` data appends with data for additional redistricted states
