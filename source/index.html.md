@@ -1940,11 +1940,13 @@ When requesting congressional districts for the 118th congress, Geocodio will us
 The following states currently have updated boundaries for the 118th congress:
 
 * Arkansas
+* California
 * Colorado
 * Illinois
 * Indiana
 * Maine
 * Maryland
+* Massachusetts
 * Montana
 * Nebraska
 * New York
@@ -1952,10 +1954,11 @@ The following states currently have updated boundaries for the 118th congress:
 * Oregon
 * Texas
 * Utah
+* Virginia
 * West Virginia
 * Wisconsin
 
-We are updating boundaries and adding new states as redistricting occurs and maps are published. The list will continue to be updated. Last change was made on 1/13/2022.
+We are updating boundaries and adding new states as redistricting occurs and maps are published. The list will continue to be updated. Last change was made on 2/10/2022.
 
 ### Appending Congressional districts for ZIP codes
 
@@ -2068,11 +2071,13 @@ The field will return both the *house* and *senate* state legislative district (
 
 The following states have updated boundaries:
 
+* California
 * Colorado
 * Delaware
 * Illinois
 * Indiana
 * Maine
+* Massachusetts
 * Nebraska
 * New York
 * North Carolina
@@ -2080,10 +2085,11 @@ The following states have updated boundaries:
 * Oregon
 * Texas (State House only)
 * Utah
+* Virginia
 * West Virginia (State House only)
 * Wisconsin
 
-We are updating boundaries and adding new states as redistricting occurs and maps are published. The list will continue to be updated. Last change was made on 1/13/2022.
+We are updating boundaries and adding new states as redistricting occurs and maps are published. The list will continue to be updated. Last change was made on 2/10/2022.
 
 > Example lookup using the `22206` zip code instead of a full address
 
@@ -5293,6 +5299,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+*Released on February 10, 2022*
+
+* The `cd118` and `stateleg-next` data appends has been updated with the addition of updated districts for California, Massachusetts and Virginia.
+
 *Released on January 17, 2022*
 
 * Introduced `census2021` data append (the `census` data append will now default to `census2021`)
