@@ -1785,7 +1785,7 @@ Parameter name                                                                  
 [acs-social](#social-education-amp-veteran-status-census)                                                                                                                                                                          | Social: Education & Veteran Status (Census)            | US-only                     |
 [zip4](#usps-zip-4)                                                                                                                                                                                                                | USPS Zip+4 code and delivery information               | US-only                     |
 [riding](#riding-canadian-federal-electoral-district)                                                                                                                                                                              | Riding: Canadian Federal Electoral District            | Canada-only                 |
-[provriding](#riding-canadian-provincial-electoral-district)                                                                                                                                                                       | Riding: Canadian Provincial Electoral District         | Canada-only                 |
+[provriding](#riding-canadian-provincial-electoral-district)                                                                                                                                                                       | Riding: Canadian Provincial/Territorial Electoral District         | Canada-only                 |
 [statcan](#canadian-statistical-boundaries-from-statistics-canada)                                                                                                                                                                 | Canadian statistical boundaries from Statistics Canada | Canada-only                 |
 [timezone](#timezone)                                                                                                                                                                                                              | Timezone                                               | <i class="fa fa-globe"></i> |
 
@@ -4750,7 +4750,7 @@ If no ZIP+4 data is available for the given query, the `zip4` field is omitted f
 
 ```shell
 curl "https://api.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=riding&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=45.505082,-73.698455&fields=riding&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=riding&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -4759,7 +4759,7 @@ require 'geocodio'
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
 location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], :fields %w[riding])
-location = geocodio.reverse_geocode(['45.505082,-73.698455'], :fields %w[riding])
+location = geocodio.reverse_geocode(['46.225866,-79.36316'], :fields %w[riding])
 ```
 
 ```python
@@ -4768,13 +4768,13 @@ from geocodio import GeocodioClient
 client = GeocodioClient(YOUR_API_KEY)
 
 location = client.geocode("300 King St, Sturgeon Falls, ON P2B 3A1, Canada", fields=["riding"])
-location = client.reverse((45.505082, -73.698455), fields=["riding"])
+location = client.reverse((46.225866, -79.36316), fields=["riding"])
 ```
 
 ```php
 <?php
 $response = $geocoder->geocode('300 King St, Sturgeon Falls, ON P2B 3A1, Canada', ['riding']);
-$response = $geocoder->reverse('45.505082,-73.698455', ['riding']);
+$response = $geocoder->reverse('46.225866,-79.36316', ['riding']);
 ```
 
 ```javascript
@@ -4790,7 +4790,7 @@ geocoder.geocode('300 King St, Sturgeon Falls, ON P2B 3A1, Canada', ['riding'])
   }
 );
 
-geocoder.reverse('45.505082,-73.698455', ['riding'])
+geocoder.reverse('46.225866,-79.36316', ['riding'])
   .then(response => {
     console.log(response);
   })
@@ -4805,7 +4805,7 @@ geocoder.reverse('45.505082,-73.698455', ['riding'])
   (:require [rodeo.core :refer :all]))
  
 (single "300 King St, Sturgeon Falls, ON P2B 3A1, Canada" :api_key "YOUR_API_KEY" :fields ["riding"])
-(single-reverse "45.505082,-73.698455" :api_key "YOUR_API_KEY" :fields ["riding"])
+(single-reverse "46.225866,-79.36316" :api_key "YOUR_API_KEY" :fields ["riding"])
 ```
 
 > Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada"
@@ -4836,7 +4836,7 @@ In some cases the French and English names will be the same.
 
 ```shell
 curl "https://api.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=provriding&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=45.505082,-73.698455&fields=provriding&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=provriding&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -4845,7 +4845,7 @@ require 'geocodio'
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
 location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], :fields %w[provriding])
-location = geocodio.reverse_geocode(['45.505082,-73.698455'], :fields %w[provriding])
+location = geocodio.reverse_geocode(['46.225866,-79.36316'], :fields %w[provriding])
 ```
 
 ```python
@@ -4854,13 +4854,13 @@ from geocodio import GeocodioClient
 client = GeocodioClient(YOUR_API_KEY)
 
 location = client.geocode("300 King St, Sturgeon Falls, ON P2B 3A1, Canada", fields=["provriding"])
-location = client.reverse((45.505082, -73.698455), fields=["provriding"])
+location = client.reverse((46.225866, -79.36316), fields=["provriding"])
 ```
 
 ```php
 <?php
 $response = $geocoder->geocode('300 King St, Sturgeon Falls, ON P2B 3A1, Canada', ['provriding']);
-$response = $geocoder->reverse('45.505082,-73.698455', ['provriding']);
+$response = $geocoder->reverse('46.225866,-79.36316', ['provriding']);
 ```
 
 ```javascript
@@ -4876,7 +4876,7 @@ geocoder.geocode('300 King St, Sturgeon Falls, ON P2B 3A1, Canada', ['provriding
   }
 );
 
-geocoder.reverse('45.505082,-73.698455', ['provriding'])
+geocoder.reverse('46.225866,-79.36316', ['provriding'])
   .then(response => {
     console.log(response);
   })
@@ -4891,7 +4891,7 @@ geocoder.reverse('45.505082,-73.698455', ['provriding'])
   (:require [rodeo.core :refer :all]))
  
 (single "300 King St, Sturgeon Falls, ON P2B 3A1, Canada" :api_key "YOUR_API_KEY" :fields ["provriding"])
-(single-reverse "45.505082,-73.698455" :api_key "YOUR_API_KEY" :fields ["provriding"])
+(single-reverse "46.225866,-79.36316" :api_key "YOUR_API_KEY" :fields ["provriding"])
 ```
 
 > Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada"
@@ -4921,7 +4921,7 @@ In some cases the French and English names will be the same.
 
 ```shell
 curl "https://api.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=statcan&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=45.505082,-73.698455&fields=statcan&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=statcan&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -4930,7 +4930,7 @@ require 'geocodio'
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
 location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], :fields %w[statcan])
-location = geocodio.reverse_geocode(['45.505082,-73.698455'], :fields %w[statcan])
+location = geocodio.reverse_geocode(['46.225866,-79.36316'], :fields %w[statcan])
 ```
 
 ```python
@@ -4939,13 +4939,13 @@ from geocodio import GeocodioClient
 client = GeocodioClient(YOUR_API_KEY)
 
 location = client.geocode("300 King St, Sturgeon Falls, ON P2B 3A1, Canada", fields=["statcan"])
-location = client.reverse((45.505082, -73.698455), fields=["statcan"])
+location = client.reverse((46.225866, -79.36316), fields=["statcan"])
 ```
 
 ```php
 <?php
 $response = $geocoder->geocode('300 King St, Sturgeon Falls, ON P2B 3A1, Canada', ['statcan']);
-$response = $geocoder->reverse('45.505082,-73.698455', ['statcan']);
+$response = $geocoder->reverse('46.225866,-79.36316', ['statcan']);
 ```
 
 ```javascript
@@ -4961,7 +4961,7 @@ geocoder.geocode('300 King St, Sturgeon Falls, ON P2B 3A1, Canada', ['statcan'])
   }
 );
 
-geocoder.reverse('45.505082,-73.698455', ['statcan'])
+geocoder.reverse('46.225866,-79.36316', ['statcan'])
   .then(response => {
     console.log(response);
   })
@@ -4976,7 +4976,7 @@ geocoder.reverse('45.505082,-73.698455', ['statcan'])
   (:require [rodeo.core :refer :all]))
  
 (single "300 King St, Sturgeon Falls, ON P2B 3A1, Canada" :api_key "YOUR_API_KEY" :fields ["statcan"])
-(single-reverse "45.505082,-73.698455" :api_key "YOUR_API_KEY" :fields ["statcan"])
+(single-reverse "46.225866,-79.36316" :api_key "YOUR_API_KEY" :fields ["statcan"])
 ```
 
 > Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada"
@@ -5448,6 +5448,9 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+*Released on February 11, 2022*
+* Added the new `provriding` field append for provincial/territorial legislative districts in Canada
+
 *Released on February 10, 2022*
 
 * The `cd118` and `stateleg-next` data appends has been updated with the addition of updated districts for California, Massachusetts and Virginia.
