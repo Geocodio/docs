@@ -1725,6 +1725,7 @@ Parameter name                                                                  
 [acs-social](#social-education-amp-veteran-status-census)                                                                                                                                                                          | Social: Education & Veteran Status (Census)            | US-only                     |
 [zip4](#usps-zip-4)                                                                                                                                                                                                                | USPS Zip+4 code and delivery information               | US-only                     |
 [riding](#riding-canadian-federal-electoral-district)                                                                                                                                                                              | Riding: Canadian Federal Electoral District            | Canada-only                 |
+[provriding](#riding-canadian-provincial-electoral-district)                                                                                                                                                                       | Riding: Canadian Provincial Electoral District         | Canada-only                 |
 [statcan](#canadian-statistical-boundaries-from-statistics-canada)                                                                                                                                                                 | Canadian statistical boundaries from Statistics Canada | Canada-only                 |
 [timezone](#timezone)                                                                                                                                                                                                              | Timezone                                               | <i class="fa fa-globe"></i> |
 
@@ -4087,22 +4088,47 @@ If no ZIP+4 data is available for the given query, the `zip4` field is omitted f
 
 <!--FIELD:ca:riding-->
 
-> Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
+> Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada"
 
 ```json
 ...
 "fields": {
   "riding": {
-    "code": "24068",
-    "ocd_id": "ocd-division/country:ca/ed:24068-2013",
-    "name_french": "Saint-Laurent",
-    "name_english": "Saint-Laurent",
+    "code": "35070",
+    "ocd_id": "ocd-division/country:ca/ed:35070-2013",
+    "name_french": "Nipissing--Timiskaming",
+    "name_english": "Nipissing--Timiskaming",
     "source": "Statistics Canada"
-   },
+  }
 }
 ...
 ```
-Look up the [riding](https://en.wikipedia.org/wiki/List_of_Canadian_federal_electoral_districts) for the specified address in Canada. The riding code is returned along with the French and English name for the riding.
+Look up the [riding](https://en.wikipedia.org/wiki/List_of_Canadian_federal_electoral_districts) for the specified address in Canada. The riding code and OCD-ID is returned along with the French and English name for the riding.
+
+The OCD-ID can be used to uniquely identify the district, using the [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) project.
+
+In some cases the French and English names will be the same.
+
+## Riding: Canadian Provincial Electoral District
+**Field name: `provriding`**
+
+<!--FIELD:ca:provriding-->
+
+> Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada"
+
+```json
+...
+"fields": {
+  "provincial_riding": {
+    "ocd_id": "ocd-division/country:ca/province:on/ed:72-2015",
+    "name_french": "Nipissing",
+    "name_english": "Nipissing",
+    "source": "Elections Ontario"
+  }
+}
+...
+```
+Look up the [provincial or territorial electoral district](https://en.wikipedia.org/wiki/Canadian_provincial_electoral_districts) for the specified address in Canada. The OCD-ID is returned along with the French and English name for the riding.
 
 The OCD-ID can be used to uniquely identify the district, using the [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) project.
 
@@ -4113,42 +4139,42 @@ In some cases the French and English names will be the same.
 
 <!--FIELD:ca:statcan-->
 
-> Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
+> Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada"
 
 ```json
 ...
 "fields": {
   "statcan": {
     "division": {
-      "id": "2466",
-      "name": "Montréal",
-      "type": "TÉ",
-      "type_description": "Territoire équivalent"
+      "id": "3549",
+      "name": "Parry Sound",
+      "type": "DIS",
+      "type_description": "District"
     },
     "consolidated_subdivision": {
-      "id": "2466023",
-      "name": "Montréal"
+      "id": "3549066",
+      "name": "Callander"
     },
     "subdivision": {
-      "id": "2466023",
-      "name": "Montréal",
-      "type": "V",
-      "type_description": "Ville"
+      "id": "3549066",
+      "name": "Callander",
+      "type": "MU",
+      "type_description": "Municipality"
     },
-    "economic_region": "Montréal",
+    "economic_region": "Northeast / Nord-est",
     "statistical_area": {
-      "code": "462",
+      "code": "575",
       "code_description": "CMA or CA",
-      "type": "1",
-      "type_description": "Census subdivision within census metropolitan area"
+      "type": "2",
+      "type_description": "Census subdivision within census agglomeration with at least one census tract"
     },
     "cma_ca": {
-      "id": "462",
-      "name": "Montréal",
-      "type": "B",
-      "type_description": "Census metropolitan area (CMA)"
+      "id": "575",
+      "name": "North Bay",
+      "type": "K",
+      "type_description": "Census agglomeration (CA) that is tracted"
     },
-    "tract": "4620415.04",
+    "tract": "5750100.00",
     "census_year": 2016
   }
 }

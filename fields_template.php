@@ -7,8 +7,8 @@ function template($country, $fields) {
 			break;
 
 		case 'ca':
-			$address = '2546 Rue Bourgoin, Saint-Laurent, QC Canada';
-			$coordinate = '45.505082,-73.698455';
+			$address = '300 King St, Sturgeon Falls, ON P2B 3A1, Canada';
+			$coordinate = '46.225866,-79.36316';
 			break;
 
 		default:

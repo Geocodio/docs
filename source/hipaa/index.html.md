@@ -1785,6 +1785,7 @@ Parameter name                                                                  
 [acs-social](#social-education-amp-veteran-status-census)                                                                                                                                                                          | Social: Education & Veteran Status (Census)            | US-only                     |
 [zip4](#usps-zip-4)                                                                                                                                                                                                                | USPS Zip+4 code and delivery information               | US-only                     |
 [riding](#riding-canadian-federal-electoral-district)                                                                                                                                                                              | Riding: Canadian Federal Electoral District            | Canada-only                 |
+[provriding](#riding-canadian-provincial-electoral-district)                                                                                                                                                                       | Riding: Canadian Provincial Electoral District         | Canada-only                 |
 [statcan](#canadian-statistical-boundaries-from-statistics-canada)                                                                                                                                                                 | Canadian statistical boundaries from Statistics Canada | Canada-only                 |
 [timezone](#timezone)                                                                                                                                                                                                              | Timezone                                               | <i class="fa fa-globe"></i> |
 
@@ -4748,7 +4749,7 @@ If no ZIP+4 data is available for the given query, the `zip4` field is omitted f
 > To get `riding` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api-hipaa.geocod.io/v1.7/geocode?q=2546+Rue+Bourgoin%2C+Saint-Laurent%2C+QC+Canada&fields=riding&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=riding&api_key=YOUR_API_KEY"
 curl "https://api-hipaa.geocod.io/v1.7/reverse?q=45.505082,-73.698455&fields=riding&api_key=YOUR_API_KEY"
 ```
 
@@ -4757,7 +4758,7 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['2546 Rue Bourgoin, Saint-Laurent, QC Canada'], :fields %w[riding])
+location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], :fields %w[riding])
 location = geocodio.reverse_geocode(['45.505082,-73.698455'], :fields %w[riding])
 ```
 
@@ -4766,13 +4767,13 @@ from geocodio import GeocodioClient
 
 client = GeocodioClient(YOUR_API_KEY)
 
-location = client.geocode("2546 Rue Bourgoin, Saint-Laurent, QC Canada", fields=["riding"])
+location = client.geocode("300 King St, Sturgeon Falls, ON P2B 3A1, Canada", fields=["riding"])
 location = client.reverse((45.505082, -73.698455), fields=["riding"])
 ```
 
 ```php
 <?php
-$response = $geocoder->geocode('2546 Rue Bourgoin, Saint-Laurent, QC Canada', ['riding']);
+$response = $geocoder->geocode('300 King St, Sturgeon Falls, ON P2B 3A1, Canada', ['riding']);
 $response = $geocoder->reverse('45.505082,-73.698455', ['riding']);
 ```
 
@@ -4780,7 +4781,7 @@ $response = $geocoder->reverse('45.505082,-73.698455', ['riding']);
 const Geocodio = require('geocodio-library-node');
 const geocodio = new Geocodio('YOUR_API_KEY');
 
-geocoder.geocode('2546 Rue Bourgoin, Saint-Laurent, QC Canada', ['riding'])
+geocoder.geocode('300 King St, Sturgeon Falls, ON P2B 3A1, Canada', ['riding'])
   .then(response => {
     console.log(response);
   })
@@ -4803,26 +4804,111 @@ geocoder.reverse('45.505082,-73.698455', ['riding'])
 (ns my.ns
   (:require [rodeo.core :refer :all]))
  
-(single "2546 Rue Bourgoin, Saint-Laurent, QC Canada" :api_key "YOUR_API_KEY" :fields ["riding"])
+(single "300 King St, Sturgeon Falls, ON P2B 3A1, Canada" :api_key "YOUR_API_KEY" :fields ["riding"])
 (single-reverse "45.505082,-73.698455" :api_key "YOUR_API_KEY" :fields ["riding"])
 ```
 
-> Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
+> Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada"
 
 ```json
 ...
 "fields": {
   "riding": {
-    "code": "24068",
-    "ocd_id": "ocd-division/country:ca/ed:24068-2013",
-    "name_french": "Saint-Laurent",
-    "name_english": "Saint-Laurent",
+    "code": "35070",
+    "ocd_id": "ocd-division/country:ca/ed:35070-2013",
+    "name_french": "Nipissing--Timiskaming",
+    "name_english": "Nipissing--Timiskaming",
     "source": "Statistics Canada"
-   },
+  }
 }
 ...
 ```
-Look up the [riding](https://en.wikipedia.org/wiki/List_of_Canadian_federal_electoral_districts) for the specified address in Canada. The riding code is returned along with the French and English name for the riding.
+Look up the [riding](https://en.wikipedia.org/wiki/List_of_Canadian_federal_electoral_districts) for the specified address in Canada. The riding code and OCD-ID is returned along with the French and English name for the riding.
+
+The OCD-ID can be used to uniquely identify the district, using the [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) project.
+
+In some cases the French and English names will be the same.
+
+## Riding: Canadian Provincial Electoral District
+**Field name: `provriding`**
+
+> To get `provriding` field appends for an address or a coordinate:
+
+```shell
+curl "https://api-hipaa.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=provriding&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.7/reverse?q=45.505082,-73.698455&fields=provriding&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], :fields %w[provriding])
+location = geocodio.reverse_geocode(['45.505082,-73.698455'], :fields %w[provriding])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("300 King St, Sturgeon Falls, ON P2B 3A1, Canada", fields=["provriding"])
+location = client.reverse((45.505082, -73.698455), fields=["provriding"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('300 King St, Sturgeon Falls, ON P2B 3A1, Canada', ['provriding']);
+$response = $geocoder->reverse('45.505082,-73.698455', ['provriding']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('300 King St, Sturgeon Falls, ON P2B 3A1, Canada', ['provriding'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('45.505082,-73.698455', ['provriding'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+ 
+(single "300 King St, Sturgeon Falls, ON P2B 3A1, Canada" :api_key "YOUR_API_KEY" :fields ["provriding"])
+(single-reverse "45.505082,-73.698455" :api_key "YOUR_API_KEY" :fields ["provriding"])
+```
+
+> Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada"
+
+```json
+...
+"fields": {
+  "provincial_riding": {
+    "ocd_id": "ocd-division/country:ca/province:on/ed:72-2015",
+    "name_french": "Nipissing",
+    "name_english": "Nipissing",
+    "source": "Elections Ontario"
+  }
+}
+...
+```
+Look up the [provincial or territorial electoral district](https://en.wikipedia.org/wiki/Canadian_provincial_electoral_districts) for the specified address in Canada. The OCD-ID is returned along with the French and English name for the riding.
 
 The OCD-ID can be used to uniquely identify the district, using the [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) project.
 
@@ -4834,7 +4920,7 @@ In some cases the French and English names will be the same.
 > To get `statcan` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api-hipaa.geocod.io/v1.7/geocode?q=2546+Rue+Bourgoin%2C+Saint-Laurent%2C+QC+Canada&fields=statcan&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=statcan&api_key=YOUR_API_KEY"
 curl "https://api-hipaa.geocod.io/v1.7/reverse?q=45.505082,-73.698455&fields=statcan&api_key=YOUR_API_KEY"
 ```
 
@@ -4843,7 +4929,7 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['2546 Rue Bourgoin, Saint-Laurent, QC Canada'], :fields %w[statcan])
+location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], :fields %w[statcan])
 location = geocodio.reverse_geocode(['45.505082,-73.698455'], :fields %w[statcan])
 ```
 
@@ -4852,13 +4938,13 @@ from geocodio import GeocodioClient
 
 client = GeocodioClient(YOUR_API_KEY)
 
-location = client.geocode("2546 Rue Bourgoin, Saint-Laurent, QC Canada", fields=["statcan"])
+location = client.geocode("300 King St, Sturgeon Falls, ON P2B 3A1, Canada", fields=["statcan"])
 location = client.reverse((45.505082, -73.698455), fields=["statcan"])
 ```
 
 ```php
 <?php
-$response = $geocoder->geocode('2546 Rue Bourgoin, Saint-Laurent, QC Canada', ['statcan']);
+$response = $geocoder->geocode('300 King St, Sturgeon Falls, ON P2B 3A1, Canada', ['statcan']);
 $response = $geocoder->reverse('45.505082,-73.698455', ['statcan']);
 ```
 
@@ -4866,7 +4952,7 @@ $response = $geocoder->reverse('45.505082,-73.698455', ['statcan']);
 const Geocodio = require('geocodio-library-node');
 const geocodio = new Geocodio('YOUR_API_KEY');
 
-geocoder.geocode('2546 Rue Bourgoin, Saint-Laurent, QC Canada', ['statcan'])
+geocoder.geocode('300 King St, Sturgeon Falls, ON P2B 3A1, Canada', ['statcan'])
   .then(response => {
     console.log(response);
   })
@@ -4889,46 +4975,46 @@ geocoder.reverse('45.505082,-73.698455', ['statcan'])
 (ns my.ns
   (:require [rodeo.core :refer :all]))
  
-(single "2546 Rue Bourgoin, Saint-Laurent, QC Canada" :api_key "YOUR_API_KEY" :fields ["statcan"])
+(single "300 King St, Sturgeon Falls, ON P2B 3A1, Canada" :api_key "YOUR_API_KEY" :fields ["statcan"])
 (single-reverse "45.505082,-73.698455" :api_key "YOUR_API_KEY" :fields ["statcan"])
 ```
 
-> Example for "2546 Rue Bourgoin, Saint-Laurent, QC Canada"
+> Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada"
 
 ```json
 ...
 "fields": {
   "statcan": {
     "division": {
-      "id": "2466",
-      "name": "Montréal",
-      "type": "TÉ",
-      "type_description": "Territoire équivalent"
+      "id": "3549",
+      "name": "Parry Sound",
+      "type": "DIS",
+      "type_description": "District"
     },
     "consolidated_subdivision": {
-      "id": "2466023",
-      "name": "Montréal"
+      "id": "3549066",
+      "name": "Callander"
     },
     "subdivision": {
-      "id": "2466023",
-      "name": "Montréal",
-      "type": "V",
-      "type_description": "Ville"
+      "id": "3549066",
+      "name": "Callander",
+      "type": "MU",
+      "type_description": "Municipality"
     },
-    "economic_region": "Montréal",
+    "economic_region": "Northeast / Nord-est",
     "statistical_area": {
-      "code": "462",
+      "code": "575",
       "code_description": "CMA or CA",
-      "type": "1",
-      "type_description": "Census subdivision within census metropolitan area"
+      "type": "2",
+      "type_description": "Census subdivision within census agglomeration with at least one census tract"
     },
     "cma_ca": {
-      "id": "462",
-      "name": "Montréal",
-      "type": "B",
-      "type_description": "Census metropolitan area (CMA)"
+      "id": "575",
+      "name": "North Bay",
+      "type": "K",
+      "type_description": "Census agglomeration (CA) that is tracted"
     },
-    "tract": "4620415.04",
+    "tract": "5750100.00",
     "census_year": 2016
   }
 }
