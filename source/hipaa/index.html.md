@@ -714,14 +714,77 @@ Here's a couple of examples of what the `POST` body can look like:
 ]
 </pre>
 
+> Example response when POST'ing JSON object:
+
+```json
+{
+  "results": {
+    "FID1": {
+      "query": "1109 N Highland St, Arlington VA",
+      "response": {
+        "input": {
+          "address_components": {
+            "number": "1109",
+            "predirectional": "N",
+            "street": "Highland",
+            "suffix": "St",
+            "formatted_street": "N Highland St",
+            "city": "Arlington",
+            "state": "VA",
+            "country": "US"
+          },
+          "formatted_address": "1109 N Highland St, Arlington, VA"
+        },
+        "results": [
+          {
+            "address_components": {
+              "number": "1109",
+              "predirectional": "N",
+              "street": "Highland",
+              "suffix": "St",
+              "formatted_street": "N Highland St",
+              "city": "Arlington",
+              "county": "Arlington County",
+              "state": "VA",
+              "zip": "22201",
+              "country": "US"
+            },
+            "formatted_address": "1109 N Highland St, Arlington, VA 22201",
+            "location": {
+              "lat": 38.886672,
+              "lng": -77.094735
+            },
+            "accuracy": 1,
+            "accuracy_type": "rooftop",
+            "source": "Arlington"
+          }
+        ]
+      }
+    },
+    "FID2": {
+     ...
+    },
+    "FID3": {
+     ...
+    },
+    "FID4": {
+     ...
+    },
+    "FID5": {
+     ...
+    }
+  }
+}
+```
+
 ### JSON object
 <pre class="inline">
 {
-  "1": "1109 N Highland St, Arlington VA",
-  "2": "525 University Ave, Toronto, ON, Canada",
-  "3": "4410 S Highway 17 92, Casselberry FL",
-  "4": "15000 NE 24th Street, Redmond WA",
-  "5": "17015 Walnut Grove Drive, Morgan Hill CA"
+  "FID1": "1109 N Highland St, Arlington VA",
+  "FID2": "525 University Ave, Toronto, ON, Canada",
+  "FID3": "4410 S Highway 17 92, Casselberry FL",
+  "FID4": "15000 NE 24th Street, Redmond WA",
+  "FID5": "17015 Walnut Grove Drive, Morgan Hill CA"
 }
 </pre>
 
