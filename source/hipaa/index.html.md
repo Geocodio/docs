@@ -2153,7 +2153,7 @@ The following states have updated boundaries:
 * West Virginia (State House only)
 * Wisconsin
 
-We are updating boundaries and adding new states as redistricting occurs and maps are published. The list will continue to be updated. Last change was made on 2/16/2022.
+We are updating boundaries and adding new states as redistricting occurs and maps are published. The list will continue to be updated. Last change was made on 2/25/2022.
 
 > Example lookup using the `22206` zip code instead of a full address
 
