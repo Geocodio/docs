@@ -1999,30 +1999,9 @@ The list of legislators is always ordered with Representative first then Senator
 
 ### District boundaries for the 118th congress
 
-When requesting congressional districts for the 118th congress, Geocodio will use newly published redistricting data when available (please note that the boundaries are preliminary and not final for most states). Where new boundaries are not available, we will return the congressional district based on 117th congress district boundaries instead.
+When requesting congressional districts for the 118th congress using the `cd118` field append, Geocodio will use newly published redistricting data when available (please note that the boundaries are preliminary and not final in some states). Where new boundaries are not available, we will return the congressional district based on 117th congress district boundaries instead.
 
-The following states currently have updated boundaries for the 118th congress:
-
-* Arkansas
-* California
-* Colorado
-* Illinois
-* Indiana
-* Maine
-* Maryland
-* Massachusetts
-* Montana
-* Nebraska
-* New York
-* North Carolina
-* Oregon
-* Texas
-* Utah
-* Virginia
-* West Virginia
-* Wisconsin
-
-We are updating boundaries and adding new states as redistricting occurs and maps are published. The list will continue to be updated. Last change was made on 2/10/2022.
+See our [redistricting 2020 page](https://www.geocod.io/redistricting-2022/) for more information on updated states.
 
 ### Appending Congressional districts for ZIP codes
 
@@ -2131,29 +2110,11 @@ The field will return both the *house* and *senate* state legislative district (
 
 ### Using `stateleg-next`
 
-`stateleg-next` is a preview of upcoming 2021 redistrict changes based on the 2020 census. Where available, the state legislative district returned will be based on newly redistricted boundaries. If new boundaries are not available, the current boundaries are used instead (effectively returning the same data as when the `stateleg` field append is used).
+`stateleg-next` is a preview of upcoming 2022 redistricting changes based on the 2020 census. Where available, the state legislative district returned will be based on newly redistricted boundaries.
 
-The following states have updated boundaries:
+If new boundaries are not available, the current boundaries are used instead (effectively returning the same data as when the `stateleg` field append is used). The `is_upcoming_state_legislative_district` indicates whether redistricted data is returned.
 
-* California
-* Colorado
-* Delaware
-* Illinois
-* Indiana
-* Maine
-* Massachusetts
-* Nebraska
-* New York
-* North Carolina
-* Oklahoma
-* Oregon
-* Texas
-* Utah
-* Virginia
-* West Virginia (State House only)
-* Wisconsin
-
-We are updating boundaries and adding new states as redistricting occurs and maps are published. The list will continue to be updated. Last change was made on 2/25/2022.
+See our [redistricting 2020 page](https://www.geocod.io/redistricting-2022/) for more information on updated states.
 
 > Example lookup using the `22206` zip code instead of a full address
 
@@ -5448,6 +5409,9 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+*Released on March 7, 2022*
+* When using the `stateleg-next` data append, the `is_upcoming_state_legislative_district` property will now return `false` in cases where the state's data has not been updated yet.
+
 *Released on February 11, 2022*
 * Added the new `provriding` field append for provincial/territorial legislative districts in Canada
 
