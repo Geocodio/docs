@@ -1173,10 +1173,10 @@ Parameter | Description
 
 # Geocoding lists
 
-The lists API lets you upload spreadsheets up to 1GB in size. Similar to the [spreadsheet feature](https://www.geocod.io/upload/) in the dashboard, the spreadsheet will be processed as a job on Geocodio's infrastructure and can be downloaded at a later time. While a spreadsheet is being processed it is possible to query the status and progress.
+The lists API lets you upload and process spreadsheet with addresses or coordinates. Similar to the [spreadsheet feature](https://www.geocod.io/upload/) in the dashboard, the spreadsheet will be processed as a job on Geocodio's infrastructure and can be downloaded at a later time. While a spreadsheet is being processed it is possible to query the status and progress.
 
 <aside class="warning">
-Data for spreadsheets processed through the lists API are automatically deleted 72 hours after they have finished processing.
+Data for spreadsheets processed through the lists API are automatically deleted 72 hours after they have finished processing. In addition to a 1GB file size limit, we recommend a maximum of 10M lookups per list batch. Larger batches should be split up into multiple list jobs.
 </aside>
 
 ## Create a new list
