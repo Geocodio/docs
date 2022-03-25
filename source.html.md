@@ -679,7 +679,7 @@ If you have several addresses that you need to geocode, batch geocoding is a muc
 Batch geocoding requests are performed by making a `POST` request to the *geocode* endpoint, suppliying a `JSON` array or `JSON` object in the body with any key of your choosing.
 
 <aside class="warning">
-You can batch geocode up to 10,000 addresses at the time. Geocoding 10,000 addresses takes about 600 seconds, so please make sure to adjust your timeout value accordingly.
+You can process up to 10,000 lookups at the time. Field appends count as lookups, so geocoding 5,000 addresses with the `census` field append would be a total of 10,000 lookups. Geocoding 10,000 lookups takes about 600 seconds, so please make sure to adjust your timeout value accordingly.
 </aside>
 
 ### HTTP Request
@@ -1154,7 +1154,7 @@ If you have several coordinates that you need to reverse geocode, batch reverse 
 Batch reverse geocoding requests are performed by making a `POST` request to the *reverse* endpoint, suppliying a `JSON` array in the body.
 
 <aside class="warning">
-You can batch reverse geocode up to 10,000 coordinates at a time.
+You can batch reverse geocode up to 10,000 coordinates at a time. Field appends count as lookups as well, make sure to keep the overall number of lookups at 10,000 or below.
 </aside>
 
 ### HTTP Request
