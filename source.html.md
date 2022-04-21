@@ -125,6 +125,11 @@ HIPAA-->
     <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
+    <td><strong>Rust</strong></td>
+    <td><a href="https://github.com/populist-vote/geocodio" target="_blank">populist-vote/geocodio</a> by <a href="https://github.com/wileymc" target="_blank">wileymc</a></td>
+    <td><i class="fa fa-minus"></i></td>
+  </tr>
+  <tr>
     <td colspan="3">Are you the author of an awesome library that you would like to get featured here? Just <a href="mailto:hello@geocod.io">let us know</a> or <a href="https://github.com/geocodio/docs" target="_blank">create a pull request</a>.</td>
   </tr>
 </tbody></table>
