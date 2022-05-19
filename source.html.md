@@ -1569,6 +1569,7 @@ DEFAULT-->
           {
             "name": "Congressional District 8",
             "district_number": 8,
+            "ocd_id": null,
             "congress_number": "117th",
             "congress_years": "2021-2023",
             "proportion": 1,
@@ -1691,11 +1692,13 @@ DEFAULT-->
           "house": {
             "name": "State House District 47",
             "district_number": "47",
+            "ocd_id": null,
             "is_upcoming_state_legislative_district": false
           },
           "senate": {
             "name": "State Senate District 31",
             "district_number": "31",
+            "ocd_id": null,
             "is_upcoming_state_legislative_district": false
           }
         }
@@ -1753,6 +1756,7 @@ DEFAULT-->
     {
       "name": "Congressional District 8",
       "district_number": 8,
+      "ocd_id": null,
       "congress_number": "117th",
       "congress_years": "2021-2023",
       "proportion": 1,
@@ -1888,6 +1892,33 @@ When requesting congressional districts for the 118th congress using the `cd118`
 
 See our [redistricting 2020 page](https://www.geocod.io/redistricting-2022/) for more information on updated states.
 
+<!--FIELD:us:cd118-->
+
+> Example lookup using a full address with `cd118`
+
+```json
+...
+"fields": {
+  "congressional_districts": [
+    {
+      "name": "Congressional District 8",
+      "district_number": 8,
+      "ocd_id": "ocd-division/country:us/state:va/cd:8",
+      "congress_number": "118th",
+      "congress_years": "2023-2025",
+      "proportion": 1
+    }
+  ]
+},
+...
+```
+
+### OCD Identifiers
+
+[Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) (OCD-IDs) are returned for each district when using `cd118`.
+
+When requesting boundaries for other congressional periods, the `ocd_id` property is still present, but set to `null`.
+
 ### Appending Congressional districts for ZIP codes
 
 Geocodio can return the most likely Congressional districts given a ZIP code. In cases where there may be multiple possible Congressional districts for a postal code, we will return multiple Congressional districts, and rank them each using a `proportion` key. This key is a decimal percentage representation of how much of the district boundary that intersect with the zip code boundary (i.e. bigger number = more likely to be the correct district for citizens in that zip code).
@@ -1903,7 +1934,7 @@ Districts are always sorted by the `proportion` value in descending order (large
 
 <!--FIELD:us:stateleg-->
 
-> Example lookup using a full address
+> Example lookup using a full address with `stateleg`
 
 ```json
 ...
@@ -1911,16 +1942,18 @@ Districts are always sorted by the `proportion` value in descending order (large
   "state_legislative_districts": {
     "house": [
       {
-        "name": "Assembly District 42",
-        "district_number": 42,
+        "name": "State House District 47",
+        "district_number": "47",
+        "ocd_id": null,
         "is_upcoming_state_legislative_district": false,
         "proportion": 1
       }
     ],
     "senate": [
       {
-        "name": "State Senate District 28",
-        "district_number": 28,
+        "name": "State Senate District 31",
+        "district_number": "31",
+        "ocd_id": null,
         "is_upcoming_state_legislative_district": false,
         "proportion": 1
       }
@@ -1941,6 +1974,43 @@ If new boundaries are not available, the current boundaries are used instead (ef
 
 See our [redistricting 2020 page](https://www.geocod.io/redistricting-2022/) for more information on updated states.
 
+<!--FIELD:us:stateleg-next-->
+
+> Example lookup using a full address with `stateleg-next`
+
+```json
+...
+"fields": {
+  "state_legislative_districts": {
+    "house": [
+      {
+        "name": "State House District 2",
+        "district_number": "2",
+        "ocd_id": "ocd-division/country:us/state:va/sldl:2",
+        "is_upcoming_state_legislative_district": true,
+        "proportion": 1
+      }
+    ],
+    "senate": [
+      {
+        "name": "State Senate District 40",
+        "district_number": "40",
+        "ocd_id": "ocd-division/country:us/state:va/sldu:40",
+        "is_upcoming_state_legislative_district": true,
+        "proportion": 1
+      }
+    ]
+  }
+}
+...
+```
+
+### OCD Identifiers
+
+[Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) (OCD-IDs) are returned for each district when using `stateleg-next`.
+
+When using the regular `stateleg` data append, the `ocd_id` property is still present, but set to `null`.
+
 > Example lookup using the `22206` zip code instead of a full address
 
 ```json
@@ -1951,18 +2021,21 @@ See our [redistricting 2020 page](https://www.geocod.io/redistricting-2022/) for
       {
         "name": "State House District 49",
         "district_number": "49",
+        "ocd_id": null,
         "is_upcoming_state_legislative_district": false,
         "proportion": 0.532
       },
       {
         "name": "State House District 45",
         "district_number": "45",
+        "ocd_id": null,
         "is_upcoming_state_legislative_district": false,
         "proportion": 0.453
       },
       {
         "name": "State House District 46",
         "district_number": "46",
+        "ocd_id": null,
         "is_upcoming_state_legislative_district": false,
         "proportion": 0.015
       }
@@ -1971,6 +2044,7 @@ See our [redistricting 2020 page](https://www.geocod.io/redistricting-2022/) for
       {
         "name": "State Senate District 30",
         "district_number": "30",
+        "ocd_id": null,
         "is_upcoming_state_legislative_district": false,
         "proportion": 1
       }
@@ -2038,6 +2112,7 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 You can retrieve the school district for an address or coordinate using `school` in the `fields` query parameter.
 
 The field will return either a *unified* school district or separate *elementary* and *secondary* fields depending on the area. Each school district is returned with its full name, the LEA (Local Education Agency) code, as well as the grades supported. Kindergarden is abbreviated as *KG* and pre-kindergarten is abbreviated as *PK*.
+
 
 ## Census Block/Tract, FIPS codes & MSA/CSA codes
 **Field name: `census`, `census2000`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`, `census2020`, `census2021`**
@@ -4514,6 +4589,9 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+*Released on May 19, 2022*
+* The `stateleg-next` and `cd118` field appends now return OCD identifiers.
+
 *Released on March 7, 2022*
 * When using the `stateleg-next` data append, the `is_upcoming_state_legislative_district` property will now return `false` in cases where the state's data has not been updated yet.
 

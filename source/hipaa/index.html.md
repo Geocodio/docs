@@ -1629,6 +1629,7 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
           {
             "name": "Congressional District 8",
             "district_number": 8,
+            "ocd_id": null,
             "congress_number": "117th",
             "congress_years": "2021-2023",
             "proportion": 1,
@@ -1751,11 +1752,13 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
           "house": {
             "name": "State House District 47",
             "district_number": "47",
+            "ocd_id": null,
             "is_upcoming_state_legislative_district": false
           },
           "senate": {
             "name": "State Senate District 31",
             "district_number": "31",
+            "ocd_id": null,
             "is_upcoming_state_legislative_district": false
           }
         }
@@ -1873,6 +1876,7 @@ geocoder.reverse('38.886672,-77.094735', ['cd'])
     {
       "name": "Congressional District 8",
       "district_number": 8,
+      "ocd_id": null,
       "congress_number": "117th",
       "congress_years": "2021-2023",
       "proportion": 1,
@@ -2008,6 +2012,93 @@ When requesting congressional districts for the 118th congress using the `cd118`
 
 See our [redistricting 2020 page](https://www.geocod.io/redistricting-2022/) for more information on updated states.
 
+> To get `cd118` field appends for an address or a coordinate:
+
+```shell
+curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=cd118&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=cd118&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[cd118])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[cd118])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["cd118"])
+location = client.reverse((38.886672, -77.094735), fields=["cd118"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['cd118']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['cd118']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['cd118'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['cd118'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+ 
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["cd118"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["cd118"])
+```
+
+> Example lookup using a full address with `cd118`
+
+```json
+...
+"fields": {
+  "congressional_districts": [
+    {
+      "name": "Congressional District 8",
+      "district_number": 8,
+      "ocd_id": "ocd-division/country:us/state:va/cd:8",
+      "congress_number": "118th",
+      "congress_years": "2023-2025",
+      "proportion": 1
+    }
+  ]
+},
+...
+```
+
+### OCD Identifiers
+
+[Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) (OCD-IDs) are returned for each district when using `cd118`.
+
+When requesting boundaries for other congressional periods, the `ocd_id` property is still present, but set to `null`.
+
 ### Appending Congressional districts for ZIP codes
 
 Geocodio can return the most likely Congressional districts given a ZIP code. In cases where there may be multiple possible Congressional districts for a postal code, we will return multiple Congressional districts, and rank them each using a `proportion` key. This key is a decimal percentage representation of how much of the district boundary that intersect with the zip code boundary (i.e. bigger number = more likely to be the correct district for citizens in that zip code).
@@ -2083,7 +2174,7 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg'])
 (single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["stateleg"])
 ```
 
-> Example lookup using a full address
+> Example lookup using a full address with `stateleg`
 
 ```json
 ...
@@ -2091,16 +2182,18 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg'])
   "state_legislative_districts": {
     "house": [
       {
-        "name": "Assembly District 42",
-        "district_number": 42,
+        "name": "State House District 47",
+        "district_number": "47",
+        "ocd_id": null,
         "is_upcoming_state_legislative_district": false,
         "proportion": 1
       }
     ],
     "senate": [
       {
-        "name": "State Senate District 28",
-        "district_number": 28,
+        "name": "State Senate District 31",
+        "district_number": "31",
+        "ocd_id": null,
         "is_upcoming_state_legislative_district": false,
         "proportion": 1
       }
@@ -2121,6 +2214,103 @@ If new boundaries are not available, the current boundaries are used instead (ef
 
 See our [redistricting 2020 page](https://www.geocod.io/redistricting-2022/) for more information on updated states.
 
+> To get `stateleg-next` field appends for an address or a coordinate:
+
+```shell
+curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=stateleg-next&api_key=YOUR_API_KEY"
+curl "https://api-hipaa.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=stateleg-next&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio'
+
+geocodio = Geocodio::Client.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[stateleg-next])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[stateleg-next])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["stateleg-next"])
+location = client.reverse((38.886672, -77.094735), fields=["stateleg-next"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['stateleg-next']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['stateleg-next']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['stateleg-next'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['stateleg-next'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+ 
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["stateleg-next"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["stateleg-next"])
+```
+
+> Example lookup using a full address with `stateleg-next`
+
+```json
+...
+"fields": {
+  "state_legislative_districts": {
+    "house": [
+      {
+        "name": "State House District 2",
+        "district_number": "2",
+        "ocd_id": "ocd-division/country:us/state:va/sldl:2",
+        "is_upcoming_state_legislative_district": true,
+        "proportion": 1
+      }
+    ],
+    "senate": [
+      {
+        "name": "State Senate District 40",
+        "district_number": "40",
+        "ocd_id": "ocd-division/country:us/state:va/sldu:40",
+        "is_upcoming_state_legislative_district": true,
+        "proportion": 1
+      }
+    ]
+  }
+}
+...
+```
+
+### OCD Identifiers
+
+[Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) (OCD-IDs) are returned for each district when using `stateleg-next`.
+
+When using the regular `stateleg` data append, the `ocd_id` property is still present, but set to `null`.
+
 > Example lookup using the `22206` zip code instead of a full address
 
 ```json
@@ -2131,18 +2321,21 @@ See our [redistricting 2020 page](https://www.geocod.io/redistricting-2022/) for
       {
         "name": "State House District 49",
         "district_number": "49",
+        "ocd_id": null,
         "is_upcoming_state_legislative_district": false,
         "proportion": 0.532
       },
       {
         "name": "State House District 45",
         "district_number": "45",
+        "ocd_id": null,
         "is_upcoming_state_legislative_district": false,
         "proportion": 0.453
       },
       {
         "name": "State House District 46",
         "district_number": "46",
+        "ocd_id": null,
         "is_upcoming_state_legislative_district": false,
         "proportion": 0.015
       }
@@ -2151,6 +2344,7 @@ See our [redistricting 2020 page](https://www.geocod.io/redistricting-2022/) for
       {
         "name": "State Senate District 30",
         "district_number": "30",
+        "ocd_id": null,
         "is_upcoming_state_legislative_district": false,
         "proportion": 1
       }
@@ -2278,6 +2472,7 @@ geocoder.reverse('38.886672,-77.094735', ['school'])
 You can retrieve the school district for an address or coordinate using `school` in the `fields` query parameter.
 
 The field will return either a *unified* school district or separate *elementary* and *secondary* fields depending on the area. Each school district is returned with its full name, the LEA (Local Education Agency) code, as well as the grades supported. Kindergarden is abbreviated as *KG* and pre-kindergarten is abbreviated as *PK*.
+
 
 ## Census Block/Tract, FIPS codes & MSA/CSA codes
 **Field name: `census`, `census2000`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`, `census2020`, `census2021`**
@@ -5414,6 +5609,9 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+*Released on May 19, 2022*
+* The `stateleg-next` and `cd118` field appends now return OCD identifiers.
+
 *Released on March 7, 2022*
 * When using the `stateleg-next` data append, the `is_upcoming_state_legislative_district` property will now return `false` in cases where the state's data has not been updated yet.
 
