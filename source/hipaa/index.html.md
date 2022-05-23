@@ -5610,12 +5610,15 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 ## v1.7
 *Released on May 19, 2022*
+
 * The `stateleg-next` and `cd118` field appends now return OCD identifiers.
 
 *Released on March 7, 2022*
+
 * When using the `stateleg-next` data append, the `is_upcoming_state_legislative_district` property will now return `false` in cases where the state's data has not been updated yet.
 
 *Released on February 11, 2022*
+
 * Added the new `provriding` field append for provincial/territorial legislative districts in Canada
 
 *Released on February 10, 2022*
