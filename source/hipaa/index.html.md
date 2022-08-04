@@ -1508,7 +1508,11 @@ curl -X DELETE "https://api-hipaa.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_
 }
 ```
 
-Delete a previously uploaded list and its underlying spreadsheet data permanently. The spreadsheet data will always be deleted automatically after 72 hours if it is not deleted manually first.
+Delete a previously uploaded list and its underlying spreadsheet data permanently. This can also be used to cancel and delete a spreadsheet that is currently processing.
+
+Geocodio Unlimited customers can cancel a spreadsheet at any time. Pay as You Go customers can only cancel a spreadsheet if it was just recently started.
+
+The spreadsheet data will always be deleted automatically after 72 hours if it is not deleted manually first.
 
 ### HTTP Request
 
