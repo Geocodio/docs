@@ -1409,6 +1409,8 @@ The U.S. Census Bureau also provides a more [detailed guide](https://www.census.
 
 Using Census tracts and blocks, you can match addresses and latitude/longitude pairs with statistical data from the U.S. Census Bureau. For example, appending Census tracts and blocks to addresses enables you to utilize the [American Community Survey (ACS) data](https://www.census.gov/programs-surveys/acs/data.html).
 
+Note: When using our spreadsheet upload tool instead of the API, "Full FIPS (block)" is equivalent to full_fips in our API response. Similarly, "Full FIPS (track)" is equivalent to full_fips with the last 4 characters removed. 
+
 ### Metropolitan/Micropolitan Statistical Area (MSA)
 
 This field is return for locations that are within an MSA area. If no MSA area is associated with the location, the API will return `null` instead of the individual fields.
