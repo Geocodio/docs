@@ -1539,8 +1539,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[cd stateleg])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[cd stateleg])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[cd stateleg])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[cd stateleg])
 ```
 
 ```python
@@ -1823,8 +1823,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[cd])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[cd])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[cd])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[cd])
 ```
 
 ```python
@@ -2028,8 +2028,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[cd118])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[cd118])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[cd118])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[cd118])
 ```
 
 ```python
@@ -2128,8 +2128,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[stateleg])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[stateleg])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[stateleg])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[stateleg])
 ```
 
 ```python
@@ -2230,8 +2230,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[stateleg-next])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[stateleg-next])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[stateleg-next])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[stateleg-next])
 ```
 
 ```python
@@ -2383,8 +2383,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[school])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[school])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[school])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[school])
 ```
 
 ```python
@@ -2493,8 +2493,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[census2010 census])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[census2010 census])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[census2010 census])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[census2010 census])
 ```
 
 ```python
@@ -2762,8 +2762,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-demographics])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-demographics])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[acs-demographics])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[acs-demographics])
 ```
 
 ```python
@@ -3261,8 +3261,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-economics])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-economics])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[acs-economics])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[acs-economics])
 ```
 
 ```python
@@ -3457,8 +3457,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-families])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-families])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[acs-families])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[acs-families])
 ```
 
 ```python
@@ -3766,8 +3766,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-housing])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-housing])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[acs-housing])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[acs-housing])
 ```
 
 ```python
@@ -4110,8 +4110,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[acs-social])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[acs-social])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[acs-social])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[acs-social])
 ```
 
 ```python
@@ -4683,8 +4683,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[zip4])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[zip4])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[zip4])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[zip4])
 ```
 
 ```python
@@ -4923,8 +4923,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], :fields %w[riding])
-location = geocodio.reverse_geocode(['46.225866,-79.36316'], :fields %w[riding])
+location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], fields: %w[riding])
+location = geocodio.reverse_geocode(['46.225866,-79.36316'], fields: %w[riding])
 ```
 
 ```python
@@ -5009,8 +5009,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], :fields %w[provriding])
-location = geocodio.reverse_geocode(['46.225866,-79.36316'], :fields %w[provriding])
+location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], fields: %w[provriding])
+location = geocodio.reverse_geocode(['46.225866,-79.36316'], fields: %w[provriding])
 ```
 
 ```python
@@ -5094,8 +5094,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], :fields %w[statcan])
-location = geocodio.reverse_geocode(['46.225866,-79.36316'], :fields %w[statcan])
+location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], fields: %w[statcan])
+location = geocodio.reverse_geocode(['46.225866,-79.36316'], fields: %w[statcan])
 ```
 
 ```python
@@ -5277,8 +5277,8 @@ require 'geocodio'
 
 geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], :fields %w[timezone])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], :fields %w[timezone])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[timezone])
+location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[timezone])
 ```
 
 ```python

@@ -42,8 +42,8 @@ function template($country, $fields) {
 
 	geocodio = Geocodio::Client.new('YOUR_API_KEY')
 
-	location = geocodio.geocode(['$address'], :fields %w[$spaceSeparated])
-	location = geocodio.reverse_geocode(['$coordinate'], :fields %w[$spaceSeparated])
+	location = geocodio.geocode(['$address'], fields: %w[$spaceSeparated])
+	location = geocodio.reverse_geocode(['$coordinate'], fields: %w[$spaceSeparated])
 	```
 
 	```python
