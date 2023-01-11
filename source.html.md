@@ -1729,7 +1729,7 @@ Parameter name                                                                  
 [cd, cd113, cd114, cd115, cd116, cd117, cd118](#congressional-districts)                                                                                                                                                           | Congressional District & Legislator information        | US-only                     |
 [stateleg, stateleg-next](#state-legislative-districts)                                                                                                                                                                            | State Legislative District (House & Senate)            | US-only                     |
 [school](#school-districts)                                                                                                                                                                                                        | School District (elementary/secondary or unified)      | US-only                     |
-[census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021](#census-block-tract-fips-codes-amp-msa-csa-codes)             | Census Block/Tract, FIPS codes & MSA/CSA codes         | US-only                     |
+[census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021, census2022](#census-block-tract-fips-codes-amp-msa-csa-codes)             | Census Block/Tract, FIPS codes & MSA/CSA codes         | US-only                     |
 [acs-demographics](#demographics-census)                                                                                                                                                                                           | Demographics (Census)                                  | US-only                     |
 [acs-economics](#economics-income-data-census)                                                                                                                                                                                     | Economics: Income Data (Census)                        | US-only                     |
 [acs-families](#families-census)                                                                                                                                                                                                   | Families (Census)                                      | US-only                     |
@@ -2119,7 +2119,7 @@ The field will return either a *unified* school district or separate *elementary
 
 
 ## Census Block/Tract, FIPS codes & MSA/CSA codes
-**Field name: `census`, `census2000`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`, `census2020`, `census2021`**
+**Field name: `census`, `census2000`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`, `census2020`, `census2021`, `census2022`**
 
 <!--FIELD:us:census2010,census-->
 
@@ -2196,7 +2196,7 @@ You can request vintage data for every year back to the 2010 Census. This is don
 Data for the 2000 census is available as well, using the `census2000` field append. Only County, Place, Tract and Block FIPS codes are returned for this Census year.
 
 <aside class="warning">
-If no year is specified, the API will default to the most recent census. I.e. currently, 2021 data is returned when appending the census field.
+If no year is specified, the API will default to the most recent census. I.e. currently, 2022 data is returned when appending the census field.
 </aside>
 
 Field        | Description
