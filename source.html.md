@@ -2132,8 +2132,8 @@ The field will return either a *unified* school district or separate *elementary
       },
       "source": "US Census Bureau"
     },
-    "2021": {
-      "census_year": 2021,
+    "2022": {
+      "census_year": 2022,
       "state_fips": "51",
       "county_fips": "51013",
       "tract_code": "101801",
