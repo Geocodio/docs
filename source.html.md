@@ -4593,13 +4593,18 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+*Released on January 11, 2023*
+
+* Introduced `census2022` data append (the `census` data append will now default to `census2022`)
+* `stateleg` data append now returns redistricted boundaries for all states except KY, MS, NJ, LA, MT and VA. For these states, use `stateleg-next` to get redistricted data instead
+
 *Released on May 19, 2022*
 
-* The `stateleg-next` and `cd118` field appends now return OCD identifiers.
+* The `stateleg-next` and `cd118` field appends now return OCD identifiers
 
 *Released on March 7, 2022*
 
-* When using the `stateleg-next` data append, the `is_upcoming_state_legislative_district` property will now return `false` in cases where the state's data has not been updated yet.
+* When using the `stateleg-next` data append, the `is_upcoming_state_legislative_district` property will now return `false` in cases where the state's data has not been updated yet
 
 *Released on February 11, 2022*
 
@@ -4607,7 +4612,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 *Released on February 10, 2022*
 
-* The `cd118` and `stateleg-next` data appends has been updated with the addition of updated districts for California, Massachusetts and Virginia.
+* The `cd118` and `stateleg-next` data appends has been updated with the addition of updated districts for California, Massachusetts and Virginia
 
 *Released on January 17, 2022*
 
@@ -4620,23 +4625,23 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 *Released on November 12, 2021*
 
-* **Breaking:** The `state_legislative_districts` key from the [`stateleg`](#state-legislative-districts) field append now returns an array of `house` and `senate` districts instead of a single object.
-* The [`stateleg-next`](#state-legislative-districts) field append is back! Now returning a preview from upcoming state legislative district changes. As with congressional districts, we are updating district data on an ongoing basis as more states complete their redistricting process.
-* [`stateleg`](#state-legislative-districts) and [`stateleg-next`](#state-legislative-districts) can now return all districts that intersect with a zip code boundary along with the proportion of overlap.
-* [`cd118`](#congressional-districts) has been added as a field append, returning districts for the upcoming 118th congress. Districts are updated on an ongoing basis as more states complete their redistricting process.
+* **Breaking:** The `state_legislative_districts` key from the [`stateleg`](#state-legislative-districts) field append now returns an array of `house` and `senate` districts instead of a single object
+* The [`stateleg-next`](#state-legislative-districts) field append is back! Now returning a preview from upcoming state legislative district changes. As with congressional districts, we are updating district data on an ongoing basis as more states complete their redistricting process
+* [`stateleg`](#state-legislative-districts) and [`stateleg-next`](#state-legislative-districts) can now return all districts that intersect with a zip code boundary along with the proportion of overlap
+* [`cd118`](#congressional-districts) has been added as a field append, returning districts for the upcoming 118th congress. Districts are updated on an ongoing basis as more states complete their redistricting process
 
 ## v1.6
 *Released on September 15, 2021*
 
-* Introduced the `format` parameter for single [forward](#single-address) and [reverse](#reverse-geocoding) geocoding requests.
+* Introduced the `format` parameter for single [forward](#single-address) and [reverse](#reverse-geocoding) geocoding requests
 
 *Released on June 16, 2021*
 
-* Counties can now be geocoded in the U.S. Either standalone, or as part of an adddress.
+* Counties can now be geocoded in the U.S. Either standalone, or as part of an adddress
 
 *Released on March 1, 2021*
 
-* `stateleg` now returns the same data as `stateleg-next`. `stateleg-next` may be used again for future legislative district changes.
+* `stateleg` now returns the same data as `stateleg-next`. `stateleg-next` may be used again for future legislative district changes
 
 *Released on February 25, 2021*
 
@@ -4645,8 +4650,8 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 *Released on May 28, 2020*
 
-* **Breaking:** This fixes a bug which has backwards-incompatible consequences for `acs-families` and `acs-demographics` field appends.
-* *Non-breaking:* The `acs-social` table, Population with veteran status (Table B21001) now includes age breakdowns.
+* **Breaking:** This fixes a bug which has backwards-incompatible consequences for `acs-families` and `acs-demographics` field appends
+* *Non-breaking:* The `acs-social` table, Population with veteran status (Table B21001) now includes age breakdowns
 
 The following ACS data tables have titles changed and/or values corrected:
 
