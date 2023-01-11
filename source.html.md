@@ -1890,7 +1890,7 @@ DEFAULT-->
 ```
 You can retrieve the Congressional district for an address or coordinate pair using any one of the valid parameter names in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
 
-The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd117`) is specified, we will also return detailed information about the current legislators.
+The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd118`) is specified, we will also return detailed information about the current legislators.
 
 <aside class="success">
 The list of legislators is always ordered with Representative first then Senators.
@@ -1952,7 +1952,19 @@ The field will return both the *house* and *senate* state legislative district (
 
 ### Using `stateleg-next`
 
-`stateleg-next` is a preview of upcoming redistricting changes. This field currently applies to the following states
+`stateleg-next` is a preview of upcoming redistricting changes for states that have off-year elections.
+
+Where available, the state legislative district returned will be based on newly redistricted boundaries.
+
+The following states are affected. Redistricted boundaries will be returned with the `stateleg` data append, after the noted cut-off date. Until then, `stateleg-next` is needed to retrieve districts based on redistricted boundaries.
+
+* **KY:** 2024-01-02
+* **MS:** 2024-01-02
+* **NJ:** 2024-01-09
+* **VA:** 2024-01-10
+* **LA:** 2024-03-11
+* **MT:** 2025-01-06
+
 
 If new boundaries are not available, the current boundaries are used instead (effectively returning the same data as when the `stateleg` field append is used). The `is_upcoming_state_legislative_district` indicates whether redistricted data is returned.
 
