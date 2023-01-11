@@ -1633,9 +1633,9 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
           {
             "name": "Congressional District 8",
             "district_number": 8,
-            "ocd_id": null,
-            "congress_number": "117th",
-            "congress_years": "2021-2023",
+            "ocd_id": "ocd-division/country:us/state:va/cd:8",
+            "congress_number": "118th",
+            "congress_years": "2023-2025",
             "proportion": 1,
             "current_legislators": [
               {
@@ -1688,7 +1688,7 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
                   "url": "https://www.warner.senate.gov",
                   "address": "703 Hart Senate Office Building Washington DC 20510",
                   "phone": "202-224-2023",
-                  "contact_form": "http://www.warner.senate.gov/public/index.cfm?p=Contact"
+                  "contact_form": "https://www.warner.senate.gov/public/index.cfm?p=Contact"
                 },
                 "social": {
                   "rss_url": "http://www.warner.senate.gov/public/?a=rss.feed",
@@ -1753,18 +1753,24 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
           }
         ],
         "state_legislative_districts": {
-          "house": {
-            "name": "State House District 47",
-            "district_number": "47",
-            "ocd_id": null,
-            "is_upcoming_state_legislative_district": false
-          },
-          "senate": {
-            "name": "State Senate District 31",
-            "district_number": "31",
-            "ocd_id": null,
-            "is_upcoming_state_legislative_district": false
-          }
+          "house": [
+            {
+              "name": "State House District 47",
+              "district_number": "47",
+              "ocd_id": null,
+              "is_upcoming_state_legislative_district": false,
+              "proportion": 1
+            }
+          ],
+          "senate": [
+            {
+              "name": "State Senate District 31",
+              "district_number": "31",
+              "ocd_id": null,
+              "is_upcoming_state_legislative_district": false,
+              "proportion": 1
+            }
+          ]
         }
       }
     }
@@ -1876,129 +1882,129 @@ geocoder.reverse('38.886672,-77.094735', ['cd'])
 ```json
 ...
 "fields": {
-  "congressional_districts": [
-    {
-      "name": "Congressional District 8",
-      "district_number": 8,
-      "ocd_id": null,
-      "congress_number": "117th",
-      "congress_years": "2021-2023",
-      "proportion": 1,
-      "current_legislators": [
+    "congressional_districts": [
         {
-          "type": "representative",
-          "bio": {
-            "last_name": "Beyer",
-            "first_name": "Donald",
-            "birthday": "1950-06-20",
-            "gender": "M",
-            "party": "Democrat"
-          },
-          "contact": {
-            "url": "https://beyer.house.gov",
-            "address": "1119 Longworth House Office Building Washington DC 20515-4608",
-            "phone": "202-225-4376",
-            "contact_form": null
-          },
-          "social": {
-            "rss_url": null,
-            "twitter": "RepDonBeyer",
-            "facebook": "RepDonBeyer",
-            "youtube": null,
-            "youtube_id": "UCPJGVbOVcAVGiBwq8qr_T9w"
-          },
-          "references": {
-            "bioguide_id": "B001292",
-            "thomas_id": "02272",
-            "opensecrets_id": "N00036018",
-            "lis_id": null,
-            "cspan_id": "21141",
-            "govtrack_id": "412657",
-            "votesmart_id": "1707",
-            "ballotpedia_id": "Don Beyer",
-            "washington_post_id": null,
-            "icpsr_id": "21554",
-            "wikipedia_id": "Don Beyer"
-          },
-          "source": "Legislator data is originally collected and aggregated by https://github.com/unitedstates/"
-        },
-        {
-          "type": "senator",
-          "bio": {
-            "last_name": "Warner",
-            "first_name": "Mark",
-            "birthday": "1954-12-15",
-            "gender": "M",
-            "party": "Democrat"
-          },
-          "contact": {
-            "url": "https://www.warner.senate.gov",
-            "address": "703 Hart Senate Office Building Washington DC 20510",
-            "phone": "202-224-2023",
-            "contact_form": "http://www.warner.senate.gov/public/index.cfm?p=Contact"
-          },
-          "social": {
-            "rss_url": "http://www.warner.senate.gov/public/?a=rss.feed",
-            "twitter": "MarkWarner",
-            "facebook": "MarkRWarner",
-            "youtube": "SenatorMarkWarner",
-            "youtube_id": "UCwyivNlEGf4sGd1oDLfY5jw"
-          },
-          "references": {
-            "bioguide_id": "W000805",
-            "thomas_id": "01897",
-            "opensecrets_id": "N00002097",
-            "lis_id": "S327",
-            "cspan_id": "7630",
-            "govtrack_id": "412321",
-            "votesmart_id": "535",
-            "ballotpedia_id": "Mark Warner",
-            "washington_post_id": null,
-            "icpsr_id": "40909",
-            "wikipedia_id": "Mark Warner"
-          },
-          "source": "Legislator data is originally collected and aggregated by https://github.com/unitedstates/"
-        },
-        {
-          "type": "senator",
-          "bio": {
-            "last_name": "Kaine",
-            "first_name": "Timothy",
-            "birthday": "1958-02-26",
-            "gender": "M",
-            "party": "Democrat"
-          },
-          "contact": {
-            "url": "https://www.kaine.senate.gov",
-            "address": "231 Russell Senate Office Building Washington DC 20510",
-            "phone": "202-224-4024",
-            "contact_form": "https://www.kaine.senate.gov/contact"
-          },
-          "social": {
-            "rss_url": "http://www.kaine.senate.gov/rss/feeds/?type=all",
-            "twitter": null,
-            "facebook": "SenatorKaine",
-            "youtube": "SenatorTimKaine",
-            "youtube_id": "UC27LgTZlUnBQoNEQFZdn9LA"
-          },
-          "references": {
-            "bioguide_id": "K000384",
-            "thomas_id": "02176",
-            "opensecrets_id": "N00033177",
-            "lis_id": "S362",
-            "cspan_id": "49219",
-            "govtrack_id": "412582",
-            "votesmart_id": "50772",
-            "ballotpedia_id": "Tim Kaine",
-            "washington_post_id": null,
-            "icpsr_id": "41305",
-            "wikipedia_id": "Tim Kaine"
-          },
-          "source": "Legislator data is originally collected and aggregated by https://github.com/unitedstates/"
+            "name": "Congressional District 8",
+            "district_number": 8,
+            "ocd_id": "ocd-division/country:us/state:va/cd:8",
+            "congress_number": "118th",
+            "congress_years": "2023-2025",
+            "proportion": 1,
+            "current_legislators": [
+                {
+                    "type": "representative",
+                    "bio": {
+                        "last_name": "Beyer",
+                        "first_name": "Donald",
+                        "birthday": "1950-06-20",
+                        "gender": "M",
+                        "party": "Democrat"
+                    },
+                    "contact": {
+                        "url": "https://beyer.house.gov",
+                        "address": "1119 Longworth House Office Building Washington DC 20515-4608",
+                        "phone": "202-225-4376",
+                        "contact_form": null
+                    },
+                    "social": {
+                        "rss_url": null,
+                        "twitter": "RepDonBeyer",
+                        "facebook": "RepDonBeyer",
+                        "youtube": null,
+                        "youtube_id": "UCPJGVbOVcAVGiBwq8qr_T9w"
+                    },
+                    "references": {
+                        "bioguide_id": "B001292",
+                        "thomas_id": "02272",
+                        "opensecrets_id": "N00036018",
+                        "lis_id": null,
+                        "cspan_id": "21141",
+                        "govtrack_id": "412657",
+                        "votesmart_id": "1707",
+                        "ballotpedia_id": "Don Beyer",
+                        "washington_post_id": null,
+                        "icpsr_id": "21554",
+                        "wikipedia_id": "Don Beyer"
+                    },
+                    "source": "Legislator data is originally collected and aggregated by https://github.com/unitedstates/"
+                },
+                {
+                    "type": "senator",
+                    "bio": {
+                        "last_name": "Warner",
+                        "first_name": "Mark",
+                        "birthday": "1954-12-15",
+                        "gender": "M",
+                        "party": "Democrat"
+                    },
+                    "contact": {
+                        "url": "https://www.warner.senate.gov",
+                        "address": "703 Hart Senate Office Building Washington DC 20510",
+                        "phone": "202-224-2023",
+                        "contact_form": "https://www.warner.senate.gov/public/index.cfm?p=Contact"
+                    },
+                    "social": {
+                        "rss_url": "http://www.warner.senate.gov/public/?a=rss.feed",
+                        "twitter": "MarkWarner",
+                        "facebook": "MarkRWarner",
+                        "youtube": "SenatorMarkWarner",
+                        "youtube_id": "UCwyivNlEGf4sGd1oDLfY5jw"
+                    },
+                    "references": {
+                        "bioguide_id": "W000805",
+                        "thomas_id": "01897",
+                        "opensecrets_id": "N00002097",
+                        "lis_id": "S327",
+                        "cspan_id": "7630",
+                        "govtrack_id": "412321",
+                        "votesmart_id": "535",
+                        "ballotpedia_id": "Mark Warner",
+                        "washington_post_id": null,
+                        "icpsr_id": "40909",
+                        "wikipedia_id": "Mark Warner"
+                    },
+                    "source": "Legislator data is originally collected and aggregated by https://github.com/unitedstates/"
+                },
+                {
+                    "type": "senator",
+                    "bio": {
+                        "last_name": "Kaine",
+                        "first_name": "Timothy",
+                        "birthday": "1958-02-26",
+                        "gender": "M",
+                        "party": "Democrat"
+                    },
+                    "contact": {
+                        "url": "https://www.kaine.senate.gov",
+                        "address": "231 Russell Senate Office Building Washington DC 20510",
+                        "phone": "202-224-4024",
+                        "contact_form": "https://www.kaine.senate.gov/contact"
+                    },
+                    "social": {
+                        "rss_url": "http://www.kaine.senate.gov/rss/feeds/?type=all",
+                        "twitter": null,
+                        "facebook": "SenatorKaine",
+                        "youtube": "SenatorTimKaine",
+                        "youtube_id": "UC27LgTZlUnBQoNEQFZdn9LA"
+                    },
+                    "references": {
+                        "bioguide_id": "K000384",
+                        "thomas_id": "02176",
+                        "opensecrets_id": "N00033177",
+                        "lis_id": "S362",
+                        "cspan_id": "49219",
+                        "govtrack_id": "412582",
+                        "votesmart_id": "50772",
+                        "ballotpedia_id": "Tim Kaine",
+                        "washington_post_id": null,
+                        "icpsr_id": "41305",
+                        "wikipedia_id": "Tim Kaine"
+                    },
+                    "source": "Legislator data is originally collected and aggregated by https://github.com/unitedstates/"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ],
 },
 ...
 ```
@@ -2010,92 +2016,6 @@ The field returns the full name of the Congressional district, the district numb
 The list of legislators is always ordered with Representative first then Senators.
 </aside>
 
-### District boundaries for the 118th congress
-
-When requesting congressional districts for the 118th congress using the `cd118` field append, Geocodio will use newly published redistricting data when available (please note that the boundaries are preliminary and not final in some states). Where new boundaries are not available, we will return the congressional district based on 117th congress district boundaries instead.
-
-See our [redistricting 2020 page](https://www.geocod.io/redistricting-2022/) for more information on updated states.
-
-> To get `cd118` field appends for an address or a coordinate:
-
-```shell
-curl "https://api-hipaa.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=cd118&api_key=YOUR_API_KEY"
-curl "https://api-hipaa.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=cd118&api_key=YOUR_API_KEY"
-```
-
-```ruby
-require 'geocodio'
-
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
-
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[cd118])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[cd118])
-```
-
-```python
-from geocodio import GeocodioClient
-
-client = GeocodioClient(YOUR_API_KEY)
-
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["cd118"])
-location = client.reverse((38.886672, -77.094735), fields=["cd118"])
-```
-
-```php
-<?php
-$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['cd118']);
-$response = $geocoder->reverse('38.886672,-77.094735', ['cd118']);
-```
-
-```javascript
-const Geocodio = require('geocodio-library-node');
-const geocodio = new Geocodio('YOUR_API_KEY');
-
-geocoder.geocode('1109 N Highland St, Arlington VA', ['cd118'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-
-geocoder.reverse('38.886672,-77.094735', ['cd118'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-```
-
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["cd118"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["cd118"])
-```
-
-> Example lookup using a full address with `cd118`
-
-```json
-...
-"fields": {
-  "congressional_districts": [
-    {
-      "name": "Congressional District 8",
-      "district_number": 8,
-      "ocd_id": "ocd-division/country:us/state:va/cd:8",
-      "congress_number": "118th",
-      "congress_years": "2023-2025",
-      "proportion": 1
-    }
-  ]
-},
-...
-```
 
 ### OCD Identifiers
 
@@ -2208,15 +2128,13 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg'])
 ```
 You can retrieve the state legislative districts for an address or coordinate using `stateleg` in the `fields` query parameter. The `stateleg-next` can be used to retrieve state legislative districts based on upcoming district changes.
 
-The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district number for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington, DC or Nebraska), only the `senate` key is returned.
+The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district number for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington, DC or Nebraska), the `house` and `senate` keys return the same district.
 
 ### Using `stateleg-next`
 
-`stateleg-next` is a preview of upcoming 2022 redistricting changes based on the 2020 census. Where available, the state legislative district returned will be based on newly redistricted boundaries.
+`stateleg-next` is a preview of upcoming redistricting changes. This field currently applies to the following states
 
 If new boundaries are not available, the current boundaries are used instead (effectively returning the same data as when the `stateleg` field append is used). The `is_upcoming_state_legislative_district` indicates whether redistricted data is returned.
-
-See our [redistricting 2020 page](https://www.geocod.io/redistricting-2022/) for more information on updated states.
 
 > To get `stateleg-next` field appends for an address or a coordinate:
 
@@ -2311,9 +2229,9 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg-next'])
 
 ### OCD Identifiers
 
-[Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) (OCD-IDs) are returned for each district when using `stateleg-next`.
+[Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) (OCD-IDs) are returned for all redistricted states.
 
-When using the regular `stateleg` data append, the `ocd_id` property is still present, but set to `null`.
+If the data returned is from before redistricting, the `ocd_id` property is still present, but set to `null`.
 
 > Example lookup using the `22206` zip code instead of a full address
 
