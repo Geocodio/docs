@@ -459,6 +459,10 @@ Parameter     | Description
 
 ### The `format` parameter
 
+```ruby
+  response = geocodio.geocode(["1109 N Highland St, Arlington, VA"], [], nil, "simple")
+```
+
 > Example response, when `format` is set to `simple`:
 
 ```json
