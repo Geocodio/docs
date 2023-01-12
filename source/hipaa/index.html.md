@@ -86,7 +86,7 @@ HIPAA-->
   <tr>
     <td><strong>Ruby</strong></td>
     <td><a href="https://github.com/davidcelis/geocodio" target="_blank">davidcelis/geocodio</a> by <a href="https://twitter.com/davidcelis" target="_blank">@davidcelis</a></td>
-    <td><i class="fa fa-check"></i></td>
+    <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
     <td><strong>Python</strong></td>
