@@ -1031,11 +1031,11 @@ curl -X POST \
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio-gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-address_sets = geocodio.reverse_geocode(['35.9746000,-77.9658000', '32.8793700,-96.6303900', '33.8337100,-117.8362320', '35.4171240,-80.6784760'])
+address_sets = geocodio.reverse(['35.9746000,-77.9658000', '32.8793700,-96.6303900', '33.8337100,-117.8362320', '35.4171240,-80.6784760'])
 ```
 
 ```python
