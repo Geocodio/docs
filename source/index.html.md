@@ -972,6 +972,18 @@ Parameter | Description
 
 ### The `format` parameter
 
+```ruby
+#  To receive a `simple` response, include the string `"simple"` 
+#  as the fourth argument after any fields or limit parameters 
+#  you have set. 
+
+  require 'geocodio-gem'
+
+  geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+  response = geocodio.reverse(["38.9002898,-76.9990361"], [], nil, "simple")
+```
+
 > Example response, when `format` is set to `simple`:
 
 ```json
