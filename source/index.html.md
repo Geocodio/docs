@@ -859,11 +859,11 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.9002898,-76.9990361&api_key=YOUR_A
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio-gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-addresses = geocodio.reverse_geocode(['38.9002898,-76.9990361'])
+addresses = geocodio.reverse(['38.9002898,-76.9990361'])
 ```
 
 ```python
