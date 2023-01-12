@@ -52,6 +52,10 @@ GitHub pull requests and issues are also more than welcome!
     <td><strong>Node.js</strong></td>
     <td><a href="https://github.com/Geocodio/geocodio-library-node" target="_blank">Geocodio/geocodio-library-node</a></td>
   </tr>
+    <tr>
+    <td><strong>Ruby</strong></td>
+    <td><a href="https://github.com/Geocodio/geocodio-gem" target="_blank">Geocodio/geocodio-gem</a></td>
+  </tr>
 </tbody></table>
 
 ## Third-party libraries
