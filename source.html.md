@@ -145,8 +145,8 @@ HIPAA-->
 ```
 
 ```ruby
-# Add thge following to your Gemfile:
-gem 'geocodio'
+# Add the following to your Gemfile:
+gem 'geocodio-gem'
 
 # And then run:
 bundle install
