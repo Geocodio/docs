@@ -338,9 +338,9 @@ curl "https://api-hipaa.geocod.io/v1.7/geocode?street=1109+N+Highland+St&city=Ar
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio-gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
 location = geocodio.geocode(['1109 N Highland St, Arlington VA'])
 ```
