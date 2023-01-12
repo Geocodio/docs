@@ -200,9 +200,9 @@ curl "https://api-hipaa.geocod.io/v1.7/api_endpoint_here?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio-gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 ```
 
 ```python
