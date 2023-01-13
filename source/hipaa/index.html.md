@@ -1224,6 +1224,26 @@ curl "https://api-hipaa.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
   -F "callback"="https://example.com/my-callback"
 ```
 
+```ruby
+  require 'geocodio-gem'
+
+  geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+  response = geocodio.createList(File.read("sample_list_test.csv"), "sample_list_test.csv", "forward", "{{A}} {{B}} {{C}} {{D}}")
+```
+
+```javascript
+  const Geocodio = require('geocodio-library-node');
+  const geocoder = new Geocodio('YOUR_API_KEY');
+
+  geocoder.list.create(
+  `${__dirname}/stubs/sample_list.csv`,
+  "forward",
+  "{{A}} {{B}} {{C}} {{D}}",
+  "https://example.com/my-callback"
+  )
+```
+
 > Create a new list from inline data
 
 ```shell
@@ -1320,6 +1340,22 @@ A total of 3 attempts are made to delivery the webhook.
 curl "https://api-hipaa.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
 ```
 
+```ruby
+  require 'geocodio-gem'
+  geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+  response = geocodio.getList(42)
+```
+
+```javascript
+  const Geocodio = require('geocodio-library-node');
+  const geocoder = new Geocodio('YOUR_API_KEY');
+
+  geocoder.list.status(42)
+  .then(response => { ... })
+  .catch(err => { ... });
+```
+
 > Example response (list that just started processing)
 
 ```json
@@ -1409,6 +1445,21 @@ Parameter | Description
 curl "https://api-hipaa.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
 ```
 
+```ruby
+  require 'geocodio-gem'
+  geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+  response = geocodio.getAllLists
+```
+
+```javascript
+  const Geocodio = require('geocodio-library-node');
+  const geocoder = new Geocodio('YOUR_API_KEY');
+
+  geocoder.list.all()
+  .then(response => { ... })
+  .catch(err => { ... });
+```
 > Example response:
 
 ```json
@@ -1464,6 +1515,22 @@ Parameter | Description
 
 ```shell
 curl -L "https://api-hipaa.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_API_KEY"
+```
+
+```ruby
+  require 'geocodio-gem'
+  geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+  response = geocodio.downloadList(42)
+```
+
+```javascript
+  const Geocodio = require('geocodio-library-node');
+  const geocoder = new Geocodio('YOUR_API_KEY');
+
+  geocoder.list.download(42, "geocoded_file.csv")
+   .then(response => { ...})
+   .catch(err => { ... });
 ```
 
 > Example response:
@@ -1526,6 +1593,22 @@ Parameter | Description
 
 ```shell
 curl -X DELETE "https://api-hipaa.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_KEY"
+```
+
+```ruby
+  require 'geocodio-gem'
+  geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+  response = geocodio.deleteList(42)
+```
+
+```javascript
+  const Geocodio = require('geocodio-library-node');
+  const geocoder = new Geocodio('YOUR_API_KEY');
+
+  geocoder.list.delete(42)
+  .then(response => { ... })
+  .catch(err => { ... });
 ```
 
 > Example response:
