@@ -1958,7 +1958,6 @@ Where available, the state legislative district returned will be based on newly 
 
 The following states are affected. Redistricted boundaries will be returned with the `stateleg` data append, after the noted cut-off date. Until then, `stateleg-next` is needed to retrieve districts based on redistricted boundaries.
 
-* **KY:** 2024-01-02
 * **MS:** 2024-01-02
 * **NJ:** 2024-01-09
 * **VA:** 2024-01-10
