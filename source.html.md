@@ -4585,7 +4585,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 *Released on January 11, 2023*
 
 * Introduced `census2022` data append (the `census` data append will now default to `census2022`)
-* `stateleg` data append now returns redistricted boundaries for all states except KY, MS, NJ, LA, MT and VA. For these states, use `stateleg-next` to get redistricted data instead
+* `stateleg` data append now returns redistricted boundaries for all states except MS, NJ, LA, MT and VA. For these states, use `stateleg-next` to get redistricted data instead
 
 *Released on May 19, 2022*
 
