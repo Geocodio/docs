@@ -1232,6 +1232,18 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
   response = geocodio.createList(File.read("sample_list_test.csv"), "sample_list_test.csv", "forward", "{{A}} {{B}} {{C}} {{D}}")
 ```
 
+```python
+  Our third-party Python library does not support the Lists API. 
+```
+
+```php
+  Our PHP library does not support the Lists API. 
+```
+
+```clojure
+  Our Clojure library does not support the Lists API. 
+```
+
 ```javascript
   const Geocodio = require('geocodio-library-node');
   const geocoder = new Geocodio('YOUR_API_KEY');
@@ -1347,6 +1359,18 @@ curl "https://api.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
   response = geocodio.getList(42)
 ```
 
+```python
+  Our third-party Python library does not support the Lists API. 
+```
+
+```php
+  Our PHP library does not support the Lists API. 
+```
+
+```clojure
+  Our Clojure library does not support the Lists API. 
+```
+
 ```javascript
   const Geocodio = require('geocodio-library-node');
   const geocoder = new Geocodio('YOUR_API_KEY');
@@ -1452,6 +1476,18 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
   response = geocodio.getAllLists
 ```
 
+```python
+  Our third-party Python library does not support the Lists API. 
+```
+
+```php
+  Our PHP library does not support the Lists API. 
+```
+
+```clojure
+  Our Clojure library does not support the Lists API. 
+```
+
 ```javascript
   const Geocodio = require('geocodio-library-node');
   const geocoder = new Geocodio('YOUR_API_KEY');
@@ -1522,6 +1558,18 @@ curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_API_KEY"
   geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
   response = geocodio.downloadList(42)
+```
+
+```python
+  Our third-party Python library does not support the Lists API. 
+```
+
+```php
+  Our PHP library does not support the Lists API. 
+```
+
+```clojure
+  Our Clojure library does not support the Lists API. 
 ```
 
 ```javascript
@@ -1600,6 +1648,18 @@ curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_KEY"
   geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
   response = geocodio.deleteList(42)
+```
+
+```python
+  Our third-party Python library does not support the Lists API. 
+```
+
+```php
+  Our PHP library does not support the Lists API. 
+```
+
+```clojure
+  Our Clojure library does not support the Lists API. 
 ```
 
 ```javascript
