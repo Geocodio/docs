@@ -4583,6 +4583,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 ## v1.7
 *Released on January 17, 2023*
+
 * Census ACS data has been updated to the latest release (2021 ACS data)
 * The `ocd_id` value is now set for all `stateleg` district result (previously, it was `null` for pre-redistricting districts)
 
