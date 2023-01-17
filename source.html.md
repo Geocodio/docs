@@ -200,7 +200,7 @@ curl "https://api.geocod.io/v1.7/api_endpoint_here?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
-require 'geocodio-gem'
+require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 ```
@@ -338,7 +338,7 @@ curl "https://api.geocod.io/v1.7/geocode?street=1109+N+Highland+St&city=Arlingto
 ```
 
 ```ruby
-require 'geocodio-gem'
+require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
@@ -464,7 +464,7 @@ Parameter     | Description
 #  as the fourth argument after any fields or limit parameters 
 #  you have set. 
 
-  require 'geocodio-gem'
+  require 'geocodio/gem'
 
   geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
@@ -518,7 +518,7 @@ curl -X POST \
 ```
 
 ```ruby
-require 'geocodio-gem'
+require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
@@ -859,7 +859,7 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.9002898,-76.9990361&api_key=YOUR_A
 ```
 
 ```ruby
-require 'geocodio-gem'
+require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
@@ -977,7 +977,7 @@ Parameter | Description
 #  as the fourth argument after any fields or limit parameters 
 #  you have set. 
 
-  require 'geocodio-gem'
+  require 'geocodio/gem'
 
   geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
@@ -1031,7 +1031,7 @@ curl -X POST \
 ```
 
 ```ruby
-require 'geocodio-gem'
+require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
@@ -1225,7 +1225,7 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
 ```
 
 ```ruby
-  require 'geocodio-gem'
+  require 'geocodio/gem'
 
   geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
@@ -1341,7 +1341,7 @@ curl "https://api.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
-  require 'geocodio-gem'
+  require 'geocodio/gem'
   geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
   response = geocodio.getList(42)
@@ -1446,7 +1446,7 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
-  require 'geocodio-gem'
+  require 'geocodio/gem'
   geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
   response = geocodio.getAllLists
@@ -1518,7 +1518,7 @@ curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
-  require 'geocodio-gem'
+  require 'geocodio/gem'
   geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
   response = geocodio.downloadList(42)
@@ -1596,7 +1596,7 @@ curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
-  require 'geocodio-gem'
+  require 'geocodio/gem'
   geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
   response = geocodio.deleteList(42)

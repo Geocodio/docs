@@ -38,12 +38,12 @@ function template($country, $fields) {
 	```
 
 	```ruby
-	require 'geocodio'
+	require 'geocodio/gem'
 
-	geocodio = Geocodio::Client.new('YOUR_API_KEY')
+	geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-	location = geocodio.geocode(['$address'], fields: %w[$spaceSeparated])
-	location = geocodio.reverse_geocode(['$coordinate'], fields: %w[$spaceSeparated])
+	location = geocodio.geocode(['$address'], ['$spaceSeparated'])
+	location = geocodio.reverse(['$coordinate'], ['$spaceSeparated'])
 	```
 
 	```python
