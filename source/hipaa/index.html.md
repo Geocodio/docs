@@ -1710,8 +1710,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['cd stateleg'])
-location = geocodio.reverse(['38.886672,-77.094735'], ['cd stateleg'])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], [''cd', 'stateleg''])
+location = geocodio.reverse(['38.886672,-77.094735'], [''cd', 'stateleg''])
 ```
 
 ```python
@@ -2000,8 +2000,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['cd'])
-location = geocodio.reverse(['38.886672,-77.094735'], ['cd'])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], [''cd''])
+location = geocodio.reverse(['38.886672,-77.094735'], [''cd''])
 ```
 
 ```python
@@ -2219,8 +2219,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['stateleg'])
-location = geocodio.reverse(['38.886672,-77.094735'], ['stateleg'])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], [''stateleg''])
+location = geocodio.reverse(['38.886672,-77.094735'], [''stateleg''])
 ```
 
 ```python
@@ -2331,8 +2331,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['stateleg-next'])
-location = geocodio.reverse(['38.886672,-77.094735'], ['stateleg-next'])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], [''stateleg-next''])
+location = geocodio.reverse(['38.886672,-77.094735'], [''stateleg-next''])
 ```
 
 ```python
@@ -2484,8 +2484,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['school'])
-location = geocodio.reverse(['38.886672,-77.094735'], ['school'])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], [''school''])
+location = geocodio.reverse(['38.886672,-77.094735'], [''school''])
 ```
 
 ```python
@@ -2594,8 +2594,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['census2010 census'])
-location = geocodio.reverse(['38.886672,-77.094735'], ['census2010 census'])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], [''census2010', 'census''])
+location = geocodio.reverse(['38.886672,-77.094735'], [''census2010', 'census''])
 ```
 
 ```python
@@ -2863,8 +2863,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['acs-demographics'])
-location = geocodio.reverse(['38.886672,-77.094735'], ['acs-demographics'])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], [''acs-demographics''])
+location = geocodio.reverse(['38.886672,-77.094735'], [''acs-demographics''])
 ```
 
 ```python
@@ -3362,8 +3362,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['acs-economics'])
-location = geocodio.reverse(['38.886672,-77.094735'], ['acs-economics'])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], [''acs-economics''])
+location = geocodio.reverse(['38.886672,-77.094735'], [''acs-economics''])
 ```
 
 ```python
@@ -3558,8 +3558,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['acs-families'])
-location = geocodio.reverse(['38.886672,-77.094735'], ['acs-families'])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], [''acs-families''])
+location = geocodio.reverse(['38.886672,-77.094735'], [''acs-families''])
 ```
 
 ```python
@@ -3867,8 +3867,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['acs-housing'])
-location = geocodio.reverse(['38.886672,-77.094735'], ['acs-housing'])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], [''acs-housing''])
+location = geocodio.reverse(['38.886672,-77.094735'], [''acs-housing''])
 ```
 
 ```python
@@ -4211,8 +4211,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['acs-social'])
-location = geocodio.reverse(['38.886672,-77.094735'], ['acs-social'])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], [''acs-social''])
+location = geocodio.reverse(['38.886672,-77.094735'], [''acs-social''])
 ```
 
 ```python
@@ -4784,8 +4784,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['zip4'])
-location = geocodio.reverse(['38.886672,-77.094735'], ['zip4'])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], [''zip4''])
+location = geocodio.reverse(['38.886672,-77.094735'], [''zip4''])
 ```
 
 ```python
@@ -5024,8 +5024,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], ['riding'])
-location = geocodio.reverse(['46.225866,-79.36316'], ['riding'])
+location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], [''riding''])
+location = geocodio.reverse(['46.225866,-79.36316'], [''riding''])
 ```
 
 ```python
@@ -5110,8 +5110,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], ['provriding'])
-location = geocodio.reverse(['46.225866,-79.36316'], ['provriding'])
+location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], [''provriding''])
+location = geocodio.reverse(['46.225866,-79.36316'], [''provriding''])
 ```
 
 ```python
@@ -5195,8 +5195,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], ['statcan'])
-location = geocodio.reverse(['46.225866,-79.36316'], ['statcan'])
+location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], [''statcan''])
+location = geocodio.reverse(['46.225866,-79.36316'], [''statcan''])
 ```
 
 ```python
@@ -5378,8 +5378,8 @@ require 'geocodio/gem'
 
 geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['timezone'])
-location = geocodio.reverse(['38.886672,-77.094735'], ['timezone'])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], [''timezone''])
+location = geocodio.reverse(['38.886672,-77.094735'], [''timezone''])
 ```
 
 ```python
