@@ -1233,7 +1233,7 @@ curl "https://api-hipaa.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
 ```
 
 ```python
-  Our third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API. 
 ```
 
 ```php
@@ -1241,7 +1241,7 @@ curl "https://api-hipaa.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
 ```
 
 ```clojure
-  Our Clojure library does not support the Lists API. 
+  The third-party Clojure library does not support the Lists API. 
 ```
 
 ```javascript
@@ -1360,7 +1360,7 @@ curl "https://api-hipaa.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
 ```
 
 ```python
-  Our third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API. 
 ```
 
 ```php
@@ -1368,7 +1368,7 @@ curl "https://api-hipaa.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
 ```
 
 ```clojure
-  Our Clojure library does not support the Lists API. 
+  The third-party Clojure library does not support the Lists API. 
 ```
 
 ```javascript
@@ -1477,7 +1477,7 @@ curl "https://api-hipaa.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
 ```
 
 ```python
-  Our third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API. 
 ```
 
 ```php
@@ -1485,7 +1485,7 @@ curl "https://api-hipaa.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
 ```
 
 ```clojure
-  Our Clojure library does not support the Lists API. 
+  The third-party Clojure library does not support the Lists API. 
 ```
 
 ```javascript
@@ -1561,7 +1561,7 @@ curl -L "https://api-hipaa.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_AP
 ```
 
 ```python
-  Our third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API. 
 ```
 
 ```php
@@ -1569,7 +1569,7 @@ curl -L "https://api-hipaa.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_AP
 ```
 
 ```clojure
-  Our Clojure library does not support the Lists API. 
+  The third-party Clojure library does not support the Lists API.
 ```
 
 ```javascript
@@ -1651,7 +1651,7 @@ curl -X DELETE "https://api-hipaa.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_
 ```
 
 ```python
-  Our third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API. 
 ```
 
 ```php
@@ -1659,7 +1659,7 @@ curl -X DELETE "https://api-hipaa.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_
 ```
 
 ```clojure
-  Our Clojure library does not support the Lists API. 
+  The third-party Clojure library does not support the Lists API. 
 ```
 
 ```javascript
