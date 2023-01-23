@@ -10,7 +10,7 @@ language_tabs:
   - clojure: Clojure
 
 toc_footers:
- - <a href="https://dash.geocod.io">Sign Up for an API Key</a>
+ - <a href="https://dash-hipaa.geocod.io">Sign Up for an API Key</a>
  - <a href="https://www.geocod.io/terms-of-use/">Terms of Use</a>
  - <a href="https://github.com/Geocodio/openapi-spec" target="_blank">OpenAPI Spec</a>
 ---
@@ -66,11 +66,11 @@ We will do our best to assist in online chat or email, but may not be able to he
 
 Some of the libraries are featured here with basic examples, but please make sure to check out the full documentation for the individual libraries (linked below).
 
-<!--HIPAA
+
   <aside class="warning">
     Please consult the individual library documentation to ensure that you are using the <strong>api-hipaa.geocod.io</strong> hostname instead of the regular <strong>api-hipaa.geocod.io</strong> hostname.
   </aside>
-HIPAA-->
+
 
 <table class="table">
   <tbody><tr>
@@ -211,14 +211,14 @@ from geocodio import GeocodioClient
 client = GeocodioClient(YOUR_API_KEY)
 ```
 
-<!--HIPAA
+
 ```php
 <?php
 $geocoder = new Geocodio\Geocodio();
 $geocoder->setApiKey('YOUR_API_KEY');
 $geocoder->setHostname('api-hipaa.geocod.io');
 ```
-HIPAA-->
+
 
 <!--DEFAULT
 ```php
@@ -237,7 +237,7 @@ const geocoder = new Geocodio('YOUR_API_KEY');
 ```
 DEFAULT-->
 
-<!--HIPAA
+
 ```javascript
 const Geocodio = require('geocodio-library-node');
 const geocoder = new Geocodio('YOUR_API_KEY', 'api-hipaa.geocod.io');
@@ -246,7 +246,7 @@ const geocoder = new Geocodio('YOUR_API_KEY', 'api-hipaa.geocod.io');
 // GEOCODIO_API_KEY=YOUR_API_KEY
 // GEOCODIO_HOSTNAME=api-hipaa.geocod.io
 ```
-HIPAA-->
+
 
 ```clojure
 (ns my.ns
@@ -256,7 +256,7 @@ HIPAA-->
 ;; or with each request using the :api_key parameter
 ```
 
-All requests require an API key. You can [register here](https://dash.geocod.io) to get your own API key.
+All requests require an API key. You can [register here](https://dash-hipaa.geocod.io) to get your own API key.
 
 The API key must be included in all requests using the `?api_key=YOUR_API_KEY` query parameter.
 
@@ -265,7 +265,7 @@ Accounts can have multiple API keys. This can be useful if you're working on sev
 You can also download a CSV of usage and fees per API key.
 
 <aside class="warning">
-Make sure to replace YOUR_API_KEY with your personal API key found on the <a href="https://dash.geocod.io" target="_blank">Geocodio dashboard</a>.
+Make sure to replace YOUR_API_KEY with your personal API key found on the <a href="https://dash-hipaa.geocod.io" target="_blank">Geocodio dashboard</a>.
 </aside>
 
 <!--DEFAULT
@@ -275,15 +275,15 @@ Make sure to replace YOUR_API_KEY with your personal API key found on the <a hre
 
 ```json
 {
-  "error": "This API key does not have permission to access this feature. API key permissions can be changed in the Geocodio dashboard at https:\/\/dash.geocod.io\/apikey"
+  "error": "This API key does not have permission to access this feature. API key permissions can be changed in the Geocodio dashboard at https:\/\/dash-hipaa.geocod.io\/apikey"
 }
 ```
 
 Per default, an API key can only access the single and batch geocoding API endpoints. These endpoints are write-only which means that a lost API key can not be used to retreive geocoded data from your account.
 
-For security reasons, additional permissions has to be assigned to the API key when using the [lists API](#geocoding-lists). This can be done in the [Geocodio dashboard](https://dash.geocod.io/apikey). We recommend creating separate API keys for geocoding endpoints and for `GET`/`DELETE` access to lists.
+For security reasons, additional permissions has to be assigned to the API key when using the [lists API](#geocoding-lists). This can be done in the [Geocodio dashboard](https://dash-hipaa.geocod.io/apikey). We recommend creating separate API keys for geocoding endpoints and for `GET`/`DELETE` access to lists.
 
-[![List of API key permissions with default values selected](./images/permissions.png)](https://dash.geocod.io/apikey)
+[![List of API key permissions with default values selected](./images/permissions.png)](https://dash-hipaa.geocod.io/apikey)
 
 *List of API key permissions with default values selected*
 
@@ -5621,7 +5621,7 @@ An extra `address_components_secondary` property will be exposed for intersectio
 
 ```json
 {
-  "error": "You can't make this request as it is above your daily maximum. You can configure billing at https://dash.geocod.io"
+  "error": "You can't make this request as it is above your daily maximum. You can configure billing at https://dash-hipaa.geocod.io"
 }
 ```
 
