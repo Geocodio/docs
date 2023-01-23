@@ -52,6 +52,10 @@ GitHub pull requests and issues are also more than welcome!
     <td><strong>Node.js</strong></td>
     <td><a href="https://github.com/Geocodio/geocodio-library-node" target="_blank">Geocodio/geocodio-library-node</a></td>
   </tr>
+    <tr>
+    <td><strong>Ruby</strong></td>
+    <td><a href="https://github.com/Geocodio/geocodio-gem" target="_blank">Geocodio/geocodio-gem</a></td>
+  </tr>
 </tbody></table>
 
 ## Third-party libraries
@@ -82,7 +86,7 @@ HIPAA-->
   <tr>
     <td><strong>Ruby</strong></td>
     <td><a href="https://github.com/davidcelis/geocodio" target="_blank">davidcelis/geocodio</a> by <a href="https://twitter.com/davidcelis" target="_blank">@davidcelis</a></td>
-    <td><i class="fa fa-check"></i></td>
+    <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
     <td><strong>Python</strong></td>
@@ -141,8 +145,8 @@ HIPAA-->
 ```
 
 ```ruby
-# Add thge following to your Gemfile:
-gem 'geocodio'
+# Add the following to your Gemfile:
+gem 'geocodio-gem'
 
 # And then run:
 bundle install
@@ -196,9 +200,9 @@ curl "https://api.geocod.io/v1.7/api_endpoint_here?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 ```
 
 ```python
@@ -334,9 +338,9 @@ curl "https://api.geocod.io/v1.7/geocode?street=1109+N+Highland+St&city=Arlingto
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
 location = geocodio.geocode(['1109 N Highland St, Arlington VA'])
 ```
@@ -455,6 +459,18 @@ Parameter     | Description
 
 ### The `format` parameter
 
+```ruby
+#  To receive a `simple` response, include the string `"simple"` 
+#  as the fourth argument after any fields or limit parameters 
+#  you have set. 
+
+  require 'geocodio/gem'
+
+  geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+  response = geocodio.geocode(["1109 N Highland St, Arlington, VA"], [], nil, "simple")
+```
+
 > Example response, when `format` is set to `simple`:
 
 ```json
@@ -502,9 +518,9 @@ curl -X POST \
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
 locations = geocodio.geocode(['1109 N Highland St, Arlington VA', '525 University Ave, Toronto, ON, Canada', '4410 S Highway 17 92, Casselberry FL', '15000 NE 24th Street, Redmond WA', '17015 Walnut Grove Drive, Morgan Hill CA'])
 
@@ -843,11 +859,11 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.9002898,-76.9990361&api_key=YOUR_A
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-addresses = geocodio.reverse_geocode(['38.9002898,-76.9990361'])
+addresses = geocodio.reverse(['38.9002898,-76.9990361'])
 ```
 
 ```python
@@ -956,6 +972,18 @@ Parameter | Description
 
 ### The `format` parameter
 
+```ruby
+#  To receive a `simple` response, include the string `"simple"` 
+#  as the fourth argument after any fields or limit parameters 
+#  you have set. 
+
+  require 'geocodio/gem'
+
+  geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+  response = geocodio.reverse(["38.9002898,-76.9990361"], [], nil, "simple")
+```
+
 > Example response, when `format` is set to `simple`:
 
 ```json
@@ -1003,11 +1031,11 @@ curl -X POST \
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-address_sets = geocodio.reverse_geocode(['35.9746000,-77.9658000', '32.8793700,-96.6303900', '33.8337100,-117.8362320', '35.4171240,-80.6784760'])
+address_sets = geocodio.reverse(['35.9746000,-77.9658000', '32.8793700,-96.6303900', '33.8337100,-117.8362320', '35.4171240,-80.6784760'])
 ```
 
 ```python
@@ -1196,6 +1224,38 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
   -F "callback"="https://example.com/my-callback"
 ```
 
+```ruby
+  require 'geocodio/gem'
+
+  geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+  response = geocodio.createList(File.read("sample_list_test.csv"), "sample_list_test.csv", "forward", "{{A}} {{B}} {{C}} {{D}}")
+```
+
+```python
+  The third-party Python library does not support the Lists API. 
+```
+
+```php
+  Our PHP library does not support the Lists API. 
+```
+
+```clojure
+  The third-party Clojure library does not support the Lists API. 
+```
+
+```javascript
+  const Geocodio = require('geocodio-library-node');
+  const geocoder = new Geocodio('YOUR_API_KEY');
+
+  geocoder.list.create(
+  `${__dirname}/stubs/sample_list.csv`,
+  "forward",
+  "{{A}} {{B}} {{C}} {{D}}",
+  "https://example.com/my-callback"
+  )
+```
+
 > Create a new list from inline data
 
 ```shell
@@ -1292,6 +1352,34 @@ A total of 3 attempts are made to delivery the webhook.
 curl "https://api.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
 ```
 
+```ruby
+  require 'geocodio/gem'
+  geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+  response = geocodio.getList(42)
+```
+
+```python
+  The third-party Python library does not support the Lists API. 
+```
+
+```php
+  Our PHP library does not support the Lists API. 
+```
+
+```clojure
+  The third-party Clojure library does not support the Lists API. 
+```
+
+```javascript
+  const Geocodio = require('geocodio-library-node');
+  const geocoder = new Geocodio('YOUR_API_KEY');
+
+  geocoder.list.status(42)
+  .then(response => { ... })
+  .catch(err => { ... });
+```
+
 > Example response (list that just started processing)
 
 ```json
@@ -1381,6 +1469,33 @@ Parameter | Description
 curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
 ```
 
+```ruby
+  require 'geocodio/gem'
+  geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+  response = geocodio.getAllLists
+```
+
+```python
+  The third-party Python library does not support the Lists API. 
+```
+
+```php
+  Our PHP library does not support the Lists API. 
+```
+
+```clojure
+  The third-party Clojure library does not support the Lists API. 
+```
+
+```javascript
+  const Geocodio = require('geocodio-library-node');
+  const geocoder = new Geocodio('YOUR_API_KEY');
+
+  geocoder.list.all()
+  .then(response => { ... })
+  .catch(err => { ... });
+```
 > Example response:
 
 ```json
@@ -1436,6 +1551,34 @@ Parameter | Description
 
 ```shell
 curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_API_KEY"
+```
+
+```ruby
+  require 'geocodio/gem'
+  geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+  response = geocodio.downloadList(42)
+```
+
+```python
+  The third-party Python library does not support the Lists API. 
+```
+
+```php
+  Our PHP library does not support the Lists API. 
+```
+
+```clojure
+  The third-party Clojure library does not support the Lists API.
+```
+
+```javascript
+  const Geocodio = require('geocodio-library-node');
+  const geocoder = new Geocodio('YOUR_API_KEY');
+
+  geocoder.list.download(42, "geocoded_file.csv")
+   .then(response => { ...})
+   .catch(err => { ... });
 ```
 
 > Example response:
@@ -1500,6 +1643,34 @@ Parameter | Description
 curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_KEY"
 ```
 
+```ruby
+  require 'geocodio/gem'
+  geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+  response = geocodio.deleteList(42)
+```
+
+```python
+  The third-party Python library does not support the Lists API. 
+```
+
+```php
+  Our PHP library does not support the Lists API. 
+```
+
+```clojure
+  The third-party Clojure library does not support the Lists API. 
+```
+
+```javascript
+  const Geocodio = require('geocodio-library-node');
+  const geocoder = new Geocodio('YOUR_API_KEY');
+
+  geocoder.list.delete(42)
+  .then(response => { ... })
+  .catch(err => { ... });
+```
+
 > Example response:
 
 ```json
@@ -1535,12 +1706,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=cd,statel
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[cd stateleg])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[cd stateleg])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['cd', 'stateleg'])
+location = geocodio.reverse(['38.886672,-77.094735'], ['cd', 'stateleg'])
 ```
 
 ```python
@@ -1825,12 +1996,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=cd&api_ke
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[cd])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[cd])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['cd'])
+location = geocodio.reverse(['38.886672,-77.094735'], ['cd'])
 ```
 
 ```python
@@ -2044,12 +2215,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=stateleg&
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[stateleg])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[stateleg])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['stateleg'])
+location = geocodio.reverse(['38.886672,-77.094735'], ['stateleg'])
 ```
 
 ```python
@@ -2155,12 +2326,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=stateleg-
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[stateleg-next])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[stateleg-next])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['stateleg-next'])
+location = geocodio.reverse(['38.886672,-77.094735'], ['stateleg-next'])
 ```
 
 ```python
@@ -2308,12 +2479,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=school&ap
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[school])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[school])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['school'])
+location = geocodio.reverse(['38.886672,-77.094735'], ['school'])
 ```
 
 ```python
@@ -2418,12 +2589,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=census201
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[census2010 census])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[census2010 census])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['census2010', 'census'])
+location = geocodio.reverse(['38.886672,-77.094735'], ['census2010', 'census'])
 ```
 
 ```python
@@ -2687,12 +2858,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-demog
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[acs-demographics])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[acs-demographics])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['acs-demographics'])
+location = geocodio.reverse(['38.886672,-77.094735'], ['acs-demographics'])
 ```
 
 ```python
@@ -3186,12 +3357,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-econo
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[acs-economics])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[acs-economics])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['acs-economics'])
+location = geocodio.reverse(['38.886672,-77.094735'], ['acs-economics'])
 ```
 
 ```python
@@ -3382,12 +3553,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-famil
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[acs-families])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[acs-families])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['acs-families'])
+location = geocodio.reverse(['38.886672,-77.094735'], ['acs-families'])
 ```
 
 ```python
@@ -3691,12 +3862,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-housi
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[acs-housing])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[acs-housing])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['acs-housing'])
+location = geocodio.reverse(['38.886672,-77.094735'], ['acs-housing'])
 ```
 
 ```python
@@ -4035,12 +4206,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-socia
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[acs-social])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[acs-social])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['acs-social'])
+location = geocodio.reverse(['38.886672,-77.094735'], ['acs-social'])
 ```
 
 ```python
@@ -4608,12 +4779,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=zip4&api_
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[zip4])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[zip4])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['zip4'])
+location = geocodio.reverse(['38.886672,-77.094735'], ['zip4'])
 ```
 
 ```python
@@ -4848,12 +5019,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=riding&api
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], fields: %w[riding])
-location = geocodio.reverse_geocode(['46.225866,-79.36316'], fields: %w[riding])
+location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], ['riding'])
+location = geocodio.reverse(['46.225866,-79.36316'], ['riding'])
 ```
 
 ```python
@@ -4934,12 +5105,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=provriding
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], fields: %w[provriding])
-location = geocodio.reverse_geocode(['46.225866,-79.36316'], fields: %w[provriding])
+location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], ['provriding'])
+location = geocodio.reverse(['46.225866,-79.36316'], ['provriding'])
 ```
 
 ```python
@@ -5019,12 +5190,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=statcan&ap
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], fields: %w[statcan])
-location = geocodio.reverse_geocode(['46.225866,-79.36316'], fields: %w[statcan])
+location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], ['statcan'])
+location = geocodio.reverse(['46.225866,-79.36316'], ['statcan'])
 ```
 
 ```python
@@ -5202,12 +5373,12 @@ curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=timezone&
 ```
 
 ```ruby
-require 'geocodio'
+require 'geocodio/gem'
 
-geocodio = Geocodio::Client.new('YOUR_API_KEY')
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 
-location = geocodio.geocode(['1109 N Highland St, Arlington VA'], fields: %w[timezone])
-location = geocodio.reverse_geocode(['38.886672,-77.094735'], fields: %w[timezone])
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['timezone'])
+location = geocodio.reverse(['38.886672,-77.094735'], ['timezone'])
 ```
 
 ```python
