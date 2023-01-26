@@ -5713,6 +5713,11 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+*Released on January 23, 2023*
+
+* Updated congressional district and state legislative district boundaries for Wisconsin
+* Corrected an issue where 4th Middlesex and 5th Middlesex in Massachusetts was returning an incorrect OCD id
+
 *Released on January 17, 2023*
 
 * Census ACS data has been updated to the latest release (2021 ACS data)

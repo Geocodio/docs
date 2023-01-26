@@ -44,7 +44,7 @@ function template($country, $fields) {
 
 	location = geocodio.geocode(['$address'], [$singleQuotedCommaSeparated])
 	location = geocodio.reverse(['$coordinate'], [$singleQuotedCommaSeparated])
-	```./
+	```
 
 	```python
 	from geocodio import GeocodioClient
