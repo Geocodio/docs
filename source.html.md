@@ -2134,6 +2134,7 @@ The following states are affected. Redistricted boundaries will be returned with
 * **VA:** 2024-01-10
 * **LA:** 2024-03-11
 * **MT:** 2025-01-06
+* **NM (senate only):** 2025-01-21
 
 
 If new boundaries are not available, the current boundaries are used instead (effectively returning the same data as when the `stateleg` field append is used). The `is_upcoming_state_legislative_district` indicates whether redistricted data is returned.
@@ -4753,6 +4754,15 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+*Released on February 1st, 2023*
+
+* Corrected version of state legislative districts returned for New Mexico Senate. New districts will be returned when the next session commences 1/21/2025, or using the `stateleg-next` data append.
+* Corrected the following Massachusetts state legislative district OCD ids:
+  * Changed "ocd-division/country:us/state:ma/sldu:berkshire_hampshire_franklin_and_hampden" to "ocd-division/country:us/state:ma/sldu:berkshire_hampden_franklin_and_hampshire"
+  * Changed "ocd-division/country:us/state:ma/sldu:1st_hampden_and_hampshire" to "ocd-division/country:us/state:ma/sldu:hampden_and_hampshire"
+  * Changed "ocd-division/country:us/state:ma/sldu:1st_middlesex_and_norfolk" to "ocd-division/country:us/state:ma/sldu:middlesex_and_norfolk"
+  * Changed "ocd-division/country:us/state:ma/sldu:norfolk_bristol_and_plymouth" to "ocd-division/country:us/state:ma/sldu:norfolk_plymouth_and_bristol"
+
 *Released on January 23, 2023*
 
 * Updated congressional district and state legislative district boundaries for Wisconsin
