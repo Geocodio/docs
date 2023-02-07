@@ -315,6 +315,10 @@ html, body {
 // This is all the stuff with the light background in the left half of the page
 
 .content {
+  &>div.highlight {
+    clear:none;
+  }
+  
   // fixes webkit rendering bug for some: see #538
   -webkit-transform: translateZ(0);
   // to place content above the dark box
