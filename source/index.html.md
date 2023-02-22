@@ -1218,6 +1218,26 @@ Data for spreadsheets processed through the lists API are automatically deleted 
 
 ## Create a new list
 
+```ruby
+  The Ruby library does not currently support the Lists API. 
+```
+
+```python
+  The Python library does not currently support the Lists API. 
+```
+
+```php
+  The PHP library does not currently support the Lists API. 
+```
+
+```node
+  The Node library does not currently support the Lists API. 
+```
+
+```clojure
+  The Clojure library does not currently support the Lists API.
+```
+
 > Create a new list from a file called "[sample_list.csv](https://www.geocod.io/sample_list.csv)"
 
 ```shell
@@ -1352,6 +1372,26 @@ A total of 3 attempts are made to delivery the webhook.
 
 > Show status for list id 42
 
+```ruby
+  The Ruby library does not currently support the Lists API. 
+```
+
+```python
+  The Python library does not currently support the Lists API. 
+```
+
+```php
+  The PHP library does not currently support the Lists API. 
+```
+
+```node
+  The Node library does not currently support the Lists API. 
+```
+
+```clojure
+  The Clojure library does not currently support the Lists API.
+```
+
 ```shell
 curl "https://api.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
 ```
@@ -1469,6 +1509,26 @@ Parameter | Description
 
 > Show all lists
 
+```ruby
+  The Ruby library does not currently support the Lists API. 
+```
+
+```python
+  The Python library does not currently support the Lists API. 
+```
+
+```php
+  The PHP library does not currently support the Lists API. 
+```
+
+```node
+  The Node library does not currently support the Lists API. 
+```
+
+```clojure
+  The Clojure library does not currently support the Lists API.
+```
+
 ```shell
 curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
 ```
@@ -1552,6 +1612,26 @@ Parameter | Description
 `api_key` | Your Geocodio API key
 
 ## Download a list
+
+```ruby
+  The Ruby library does not currently support the Lists API. 
+```
+
+```python
+  The Python library does not currently support the Lists API. 
+```
+
+```php
+  The PHP library does not currently support the Lists API. 
+```
+
+```node
+  The Node library does not currently support the Lists API. 
+```
+
+```clojure
+  The Clojure library does not currently support the Lists API.
+```
 
 ```shell
 curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_API_KEY"
@@ -1642,6 +1722,26 @@ Parameter | Description
 `api_key` | Your Geocodio API key
 
 ## Delete a list
+
+```ruby
+  The Ruby library does not currently support the Lists API. 
+```
+
+```python
+  The Python library does not currently support the Lists API. 
+```
+
+```php
+  The PHP library does not currently support the Lists API. 
+```
+
+```node
+  The Node library does not currently support the Lists API. 
+```
+
+```clojure
+  The Clojure library does not currently support the Lists API.
+```
 
 ```shell
 curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_KEY"
