@@ -70,11 +70,11 @@ We will do our best to assist in online chat or email, but may not be able to he
 
 Some of the libraries are featured here with basic examples, but please make sure to check out the full documentation for the individual libraries (linked below).
 
-<!--HIPAA
+<!--ENTERPRISE
   <aside class="warning">
     Please consult the individual library documentation to ensure that you are using the <strong>api-hipaa.geocod.io</strong> hostname instead of the regular <strong>api.geocod.io</strong> hostname.
   </aside>
-HIPAA-->
+ENTERPRISE-->
 
 <table class="table">
   <tbody><tr>
@@ -215,14 +215,14 @@ from geocodio import GeocodioClient
 client = GeocodioClient(YOUR_API_KEY)
 ```
 
-<!--HIPAA
+<!--ENTERPRISE
 ```php
 <?php
 $geocoder = new Geocodio\Geocodio();
 $geocoder->setApiKey('YOUR_API_KEY');
 $geocoder->setHostname('api-hipaa.geocod.io');
 ```
-HIPAA-->
+ENTERPRISE-->
 
 
 ```php
@@ -241,7 +241,7 @@ const geocoder = new Geocodio('YOUR_API_KEY');
 ```
 
 
-<!--HIPAA
+<!--ENTERPRISE
 ```javascript
 const Geocodio = require('geocodio-library-node');
 const geocoder = new Geocodio('YOUR_API_KEY', 'api-hipaa.geocod.io');
@@ -250,7 +250,7 @@ const geocoder = new Geocodio('YOUR_API_KEY', 'api-hipaa.geocod.io');
 // GEOCODIO_API_KEY=YOUR_API_KEY
 // GEOCODIO_HOSTNAME=api-hipaa.geocod.io
 ```
-HIPAA-->
+ENTERPRISE-->
 
 ```clojure
 (ns my.ns

@@ -7,21 +7,21 @@ Contributing
 
 Please edit `source.html.md` for any changes.
 
-The `compile.sh` script takes changes from `source.html.md` and compiles it into `source/index.html.md` and `source/hipaa/index.html.md`.
+The `compile.sh` script takes changes from `source.html.md` and compiles it into `source/index.html.md` and `source/enterprise/index.html.md`.
 
 The `watch.sh` script can be used to watch for changes in `source/` and call `compile.sh` automatically.
 
 Encapsulate sections like so:
 
 ```
-<!--HIPAA
-This content will only be displayed in the Geocodio+HIPAA documentation
-HIPAA-->
+<!--ENTERPRISE
+This content will only be displayed in the Geocodio Enterprise documentation
+ENTERPRISE-->
 ```
 
 ```
 <!--DEFAULT
-This content will only be displayed in the non Geocodio+HIPAA documentation
+This content will only be displayed in the non Geocodio Enterprise documentation
 DEFAULT-->
 ```
 
