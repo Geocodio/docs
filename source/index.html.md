@@ -72,7 +72,7 @@ Some of the libraries are featured here with basic examples, but please make sur
 
 <!--ENTERPRISE
   <aside class="warning">
-    Please consult the individual library documentation to ensure that you are using the <strong>api-hipaa.geocod.io</strong> hostname instead of the regular <strong>api.geocod.io</strong> hostname.
+    Please consult the individual library documentation to ensure that you are using the <strong>api.enterprise.geocod.io</strong> hostname instead of the regular <strong>api.geocod.io</strong> hostname.
   </aside>
 ENTERPRISE-->
 
@@ -220,7 +220,7 @@ client = GeocodioClient(YOUR_API_KEY)
 <?php
 $geocoder = new Geocodio\Geocodio();
 $geocoder->setApiKey('YOUR_API_KEY');
-$geocoder->setHostname('api-hipaa.geocod.io');
+$geocoder->setHostname('api.enterprise.geocod.io');
 ```
 ENTERPRISE-->
 
@@ -244,11 +244,11 @@ const geocoder = new Geocodio('YOUR_API_KEY');
 <!--ENTERPRISE
 ```javascript
 const Geocodio = require('geocodio-library-node');
-const geocoder = new Geocodio('YOUR_API_KEY', 'api-hipaa.geocod.io');
+const geocoder = new Geocodio('YOUR_API_KEY', 'api.enterprise.geocod.io');
 
 // You can also leave out the parameters and define the following environment variables instead:
 // GEOCODIO_API_KEY=YOUR_API_KEY
-// GEOCODIO_HOSTNAME=api-hipaa.geocod.io
+// GEOCODIO_HOSTNAME=api.enterprise.geocod.io
 ```
 ENTERPRISE-->
 
