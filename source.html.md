@@ -514,6 +514,62 @@ When `format` is set to `simple`, a very simple JSON structure is outputted, wit
 
 The `fields` parameter is still supported when the `simple` output format is selected, but the `limit` parameter has no effect.
 
+> To geocode an address with a Suite/Apartment Number 
+
+```shell
+  curl "https://api.geocod.io/v1.7/geocode?q=2800+Clarendon+Blvd+Suite+R500+Arlington+VA+22201&api_key=YOUR_API_KEY"
+```
+
+> Example response with Suite/Apartment Number
+
+```json
+{
+  "input": {
+    "address_components": {
+      "number": "2800",
+      "street": "Clarendon",
+      "suffix": "Blvd",
+      "secondaryunit": "Ste",
+      "secondarynumber": "R500",
+      "formatted_street": "Clarendon Blvd",
+      "city": "Arlington",
+      "state": "VA",
+      "zip": "22201",
+      "country": "US"
+    },
+    "formatted_address": "2800 Clarendon Blvd, Ste 500, Arlington, VA 22201"
+  },
+  "results": [
+    {
+      "address_components": {
+        "number": "2800",
+        "street": "Clarendon",
+        "suffix": "Blvd",
+        "secondaryunit": "Ste",
+        "secondarynumber": "R500",
+        "formatted_street": "Clarendon Blvd",
+        "city": "Arlington",
+        "county": "Arlington County",
+        "state": "VA",
+        "zip": "22201",
+        "country": "US"
+      },
+      "formatted_address": "2800 Clarendon Blvd, Ste R500, Arlington, VA 22201",
+      "location": {
+        "lat": 38.887455,
+        "lng": -77.092018
+      },
+      "accuracy": 1,
+      "accuracy_type": "rooftop",
+      "source": "Arlington"
+    }
+  ]
+}
+```
+
+**Suite/Apartment Secondary Unity Response**
+
+If you include an Apartment or Suite number along as a suffix to the street name, we will parse that number and return it as part of your response. It will be broken out into the `secondaryunit` and `secondarynumber` keys within `address_components`.
 
 ## Batch geocoding
 
