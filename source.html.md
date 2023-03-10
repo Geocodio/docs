@@ -2232,6 +2232,9 @@ The field returns the full name of the Congressional district, the district numb
 The list of legislators is always ordered with Representative first then Senators.
 </aside>
 
+<aside class="notice">
+If you receive a response of 'Congressional District 0', that is because it is the official designation by the Census for states with only one Congressional district. Similarly, if you receive a response of 'Congressional District 98', this is in reference to districts with non-voting delegates.
+</aside>
 
 ### OCD Identifiers
 
