@@ -138,6 +138,11 @@ Some of the libraries are featured here with basic examples, but please make sur
     <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
+    <td><strong>Java</strong></td>
+    <td><a href="https://github.com/deansg/jeocodio" target="_blank">deansg/jeocodio</a> by <a href="https://github.com/deansg" target="_blank">Dean Gurvitz</a></td>
+    <td><i class="fa fa-minus"></i></td>
+  </tr>
+  <tr>
     <td colspan="3">Are you the author of an awesome library that you would like to get featured here? Just <a href="mailto:hello@geocod.io">let us know</a> or <a href="https://github.com/geocodio/docs" target="_blank">create a pull request</a>.</td>
   </tr>
 </tbody></table>
