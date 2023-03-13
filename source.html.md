@@ -514,13 +514,15 @@ When `format` is set to `simple`, a very simple JSON structure is outputted, wit
 
 The `fields` parameter is still supported when the `simple` output format is selected, but the `limit` parameter has no effect.
 
-> To geocode an address with a Suite/Apartment Number 
+### Geocoding with Unit Numbers
+
+> To geocode an address with a Unit Number 
 
 ```shell
   curl "https://api.geocod.io/v1.7/geocode?q=2800+Clarendon+Blvd+Suite+R500+Arlington+VA+22201&api_key=YOUR_API_KEY"
 ```
 
-> Example response with Suite/Apartment Number
+> Example response with Unit Number
 
 ```json
 {
@@ -537,7 +539,7 @@ The `fields` parameter is still supported when the `simple` output format is sel
       "zip": "22201",
       "country": "US"
     },
-    "formatted_address": "2800 Clarendon Blvd, Ste 500, Arlington, VA 22201"
+    "formatted_address": "2800 Clarendon Blvd, Ste R500, Arlington, VA 22201"
   },
   "results": [
     {
@@ -567,9 +569,13 @@ The `fields` parameter is still supported when the `simple` output format is sel
 }
 ```
 
-**Suite/Apartment Secondary Unity Response**
-
 If you include an Apartment or Suite number along as a suffix to the street name, we will parse that number and return it as part of your response. It will be broken out into the `secondaryunit` and `secondarynumber` keys within `address_components`.
+
+**For US addresses:** The `secondaryunit` value will be standardized based on USPS records, if the unit number is deemed mailable and valid.
+
+E.g. if the unit number is inputted as `#R500`, the outputted value will be `Ste R500`.
+
+In order to verify that the unit number is valid per USPS, you can request the [`zip4`](#usps-zip-4) field append and check the `exact_match` value. If it is set to `true` it means that the unit number is accepted by USPS.
 
 ## Batch geocoding
 
@@ -2233,7 +2239,9 @@ The list of legislators is always ordered with Representative first then Senator
 </aside>
 
 <aside class="notice">
-If you receive a response of 'Congressional District 0', that is because it is the official designation by the Census for states with only one Congressional district. Similarly, if you receive a response of 'Congressional District 98', this is in reference to districts with non-voting delegates.
+Per U.S. Census Bureau specifications, the following rules apply:<br />
+States with a single congressional district, will return a special "district_number" of 0 (i.e. Vermont).<br />
+Districts with non-voting delegates will return a special "district_number" of 98 (i.e. Washington DC).
 </aside>
 
 ### OCD Identifiers
