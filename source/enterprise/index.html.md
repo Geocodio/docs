@@ -5892,7 +5892,11 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
-*Released on February 7th, 2023*
+*Released on March 14, 2023*
+
+* Updated Alaska state legislative district boundaries
+
+*Released on February 7, 2023*
 
 * Corrected version of state legislative districts returned for:
   * NM State Senate. New districts will be returned when the next session commences 1/21/2025
@@ -5900,7 +5904,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
   * SC State Senate. New districts will be returned when the next session commences 1/7/2025
 * Redistricted state boundaries can still be requested early by using the `stateleg-next` data append
 
-*Released on February 1st, 2023*
+*Released on February 1, 2023*
 
 * ~~Corrected version of state legislative districts returned for New Mexico Senate. New districts will be returned when the next session commences 1/21/2025, or using the `stateleg-next` data append.~~ *(This was rolled back and postponed to February 7th)*
 * Corrected the following Massachusetts state legislative district OCD ids:
