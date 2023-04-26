@@ -4559,7 +4559,23 @@ In some cases the French and English names will be the same.
       "type_description": "Census agglomeration (CA) that is tracted"
     },
     "tract": "5750100.00",
-    "census_year": 2016
+    "designated_place": null,
+    "population_centre": {
+      "id": "350595",
+      "name": "North Bay",
+      "type": "1",
+      "type_description": "Core inside of a census metropolitan area or census agglomeration",
+      "class": "3",
+      "class_description": "Medium population centre (30,000 to 99,999)"
+    },
+    "dissemination_area": {
+      "id": "35490146"
+    },
+    "dissemination_block": {
+      "id": "35490146015",
+      "population": "155"
+    },
+    "census_year": 2021
   }
 }
 ...
@@ -4590,10 +4606,10 @@ If a given geography does not apply to the query, `null` will be returned instea
       "name": "Yukon, Unorganized"
     },
     "subdivision": {
-      "id": "6001006",
-      "name": "Teslin",
-      "type": "VL",
-      "type_description": "Village"
+      "id": "6001047",
+      "name": "Johnsons Crossing",
+      "type": "SÉ",
+      "type_description": "Not applicable"
     },
     "economic_region": "Yukon",
     "statistical_area": {
@@ -4604,7 +4620,23 @@ If a given geography does not apply to the query, `null` will be returned instea
     },
     "cma_ca": null,
     "tract": null,
-    "census_year": 2016
+    "designated_place": null,
+    "population_centre": {
+      "id": "609960",
+      "name": "Yukon Territory Rural Area / Région rurale: Territoire du Yukon",
+      "type": "5",
+      "type_description": "Rural area outside of a census metropolitan area or census agglomeration",
+      "class": "1",
+      "class_description": "Rural area"
+    },
+    "dissemination_area": {
+      "id": "60010135"
+    },
+    "dissemination_block": {
+      "id": "60010135008",
+      "population": "10"
+    },
+    "census_year": 2021
   }
 }
 ...
@@ -4639,7 +4671,25 @@ The Census Metropolitan Area or Census Agglomeration that the query is part of. 
 
 The full Canadian census tract code that this query is part of.
 
-> You can read more about the various code names from the [Statistics Canada technical specifications page](https://www150.statcan.gc.ca/n1/pub/92-151-g/2011001/tech-eng.htm).
+### `designated_place`: Designated place
+
+A Designated Place (DPL) typically refers to a small community or settlement that doesn't fulfill Statistics Canada's requirements for being a census subdivision (an area with municipal status) or a population centre.
+
+Provinces and territories work with Statistics Canada to establish designated places, which serve as data sources for submunicipal regions.
+
+
+### `population_centre`: Population centre
+
+Population centres in Canada have a population of at least 1,000 and a population density of 400 persons or more per square kilometre, based on the current census population count. Rural areas are defined as areas outside population centres. All of Canada is covered by either population centres or rural areas.
+
+Population centres are grouped into three categories based on their population size: small, medium, and large. The population count for population centres includes all people living in the cores, secondary cores, and fringes of census metropolitan areas and census agglomerations, as well as those living in population centres outside of these areas.
+
+### `dissemination_area` and `dissemination_block`: Dissemination area and block
+
+The dissemination area is geographically one step lower than census tracts. Dissemination blocks are one step lower than dissemination areas.
+
+
+> You can read more about the various code names from the [Statistics Canada technical specifications page](https://www150.statcan.gc.ca/n1/pub/92-151-g/92-151-g2021001-eng.htm). Statistics Canada also provides a helpful [hierarchy of geographic areas](https://www12.statcan.gc.ca/census-recensement/2021/ref/dict/fig/index-eng.cfm?ID=f1_1).
 
 ## Timezone
 **Field name: `timezone`**
@@ -4932,6 +4982,16 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+*Released on April 26, 2023*
+
+* Added upcoming redistricted boundaries for Montana with the `stateleg-next` data append
+* Corrected boundaries current senate state legislative districts for California. Districts with odd numbers were incorrectly using upcoming boundaries. Geocodio is now applying special logic required due to partial redistricting. You can read more [here](https://sdmg.senate.ca.gov/Current).
+* Updated Statistics Canada data to latest 2021 census release. The following additional values has been added as well:
+  * Designated place
+  * Population centre
+  * Dissemination area
+  * Dissemination block
+
 *Released on March 14, 2023*
 
 * Updated Alaska state legislative district boundaries
