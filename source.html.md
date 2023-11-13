@@ -4982,6 +4982,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+*Released on November 8, 2023*
+
+* Updated state legislative districts for North Carolina
+
 *Released on August 14, 2023*
 
 * Corrected an issue that caused batch geocoding requests to only return results from the first country when addresses from mixed countries were present in a single batch. The original issue was inadvertently introduced on July 24th.
