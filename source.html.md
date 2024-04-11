@@ -4498,8 +4498,6 @@ In some cases the French and English names will be the same.
 
 `riding-next` is a preview of upcoming, redistricted ridings. The redistricted ridings were established in 2023 and will be in effect for a federal general election called any time after April 22, 2024.
 
-Geocodio will automatically be returning redistricted ridings after April 22, 2024 when the `riding` field append is requested.
-
 <!--FIELD:ca:riding-next-->
 
 > Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada"

@@ -5278,8 +5278,6 @@ In some cases the French and English names will be the same.
 
 `riding-next` is a preview of upcoming, redistricted ridings. The redistricted ridings were established in 2023 and will be in effect for a federal general election called any time after April 22, 2024.
 
-Geocodio will automatically be returning redistricted ridings after April 22, 2024 when the `riding` field append is requested.
-
 > To get `riding-next` field appends for an address or a coordinate:
 
 ```shell
