@@ -6026,6 +6026,11 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+
+*Released on April 8, 2024*
+
+* Introduced the [`riding-next`](#riding-canadian-federal-electoral-district) which allows federal electoral district lookups in Canada, based on redistricting ridings
+
 *Released on January 18, 2024*
 
 * Introduced `census2023` data append (the `census` data append will now default to `census2023`)
