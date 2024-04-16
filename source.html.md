@@ -2305,15 +2305,13 @@ Where available, the state legislative district returned will be based on newly 
 
 The following states are affected. Redistricted boundaries will be returned with the `stateleg` data append, after the noted cut-off date. Until then, `stateleg-next` is needed to retrieve districts based on redistricted boundaries.
 
-* **MS:** 2024-01-02
-* **NJ:** 2024-01-09
-* **VA:** 2024-01-10
-* **LA:** 2024-03-11
-* **MT:** 2025-01-06
-* **NM (senate only):** 2025-01-21
-* **KS (senate only):** 2025-01-15
-* **SC (senate only):** 2025-01-07
-
+* **Washington:** 8/6 2024
+* **Ohio:** 1/1 2025
+* **New York Assembly districts:** 1/1 2025
+* **Montana:** 1/6 2025
+* **South Carolina (senate only):** 1/7 2025
+* **Kansas (senate only):** 1/15 2025
+* **New Mexico (senate only):** 1/21 2025
 
 If new boundaries are not available, the current boundaries are used instead (effectively returning the same data as when the `stateleg` field append is used). The `is_upcoming_state_legislative_district` indicates whether redistricted data is returned.
 
@@ -5006,6 +5004,15 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+
+*Released on April 16, 2024*
+
+* `cd118`: District boundaries were updated for North Carolina, Louisana and New York
+* `stateleg`: Wisconsins and Michigan House district boundaries were updated. New Mexico Senate district boundaries were updated.
+* `stateleg-next`: Upcoming districts boundaries were added as follows:
+  * New York Assembly districts, will be promoted to `stateleg` on 1/1 2025
+  * Ohio House & Senate districts, will be promoted to `stateleg` on 1/1 2025
+  * Washington House & Senate districts, will be promoted to `stateleg` on 8/6 2024
 
 *Released on April 8, 2024*
 
