@@ -577,6 +577,12 @@ E.g. if the unit number is inputted as `#R500`, the outputted value will be `Ste
 
 In order to verify that the unit number is valid per USPS, you can request the [`zip4`](#usps-zip-4) field append and check the `exact_match` value. If it is set to `true` it means that the unit number is accepted by USPS.
 
+### The `input` Object 
+
+The `input` object that is returned in the API response is not a one-for-one parsing of the initial address that is provided. In order to ensure that the `address_components` returned in `input` are accurate, we cross-reference them with the `address_components` returned in the `results` object. 
+
+As such, if we aren't able to identify the exact address location in `results`, this could impact our ability to return a parsed address in `input`. In the vast majority of cases, the data returned will match the original address provided to the Geocodio API, but there may be some instances where we are not able to parse the exact input - especially in responses with lower `accuracy_type` values like `place` or `street_center`.
+
 ## Batch geocoding
 
 > To perform batch geocoding:
