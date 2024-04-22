@@ -229,22 +229,22 @@ $geocoder->setHostname('api.enterprise.geocod.io');
 ```
 ENTERPRISE-->
 
-<!--DEFAULT
+
 ```php
 <?php
 $geocoder = new Geocodio\Geocodio();
 $geocoder->setApiKey('YOUR_API_KEY');
 ```
-DEFAULT-->
 
-<!--DEFAULT
+
+
 ```javascript
 const Geocodio = require('geocodio-library-node');
 const geocoder = new Geocodio('YOUR_API_KEY');
 
 // You can also leave out the parameter and define the "GEOCODIO_API_KEY" environment variable instead
 ```
-DEFAULT-->
+
 
 <!--ENTERPRISE
 ```javascript
@@ -277,7 +277,7 @@ You can also download a CSV of usage and fees per API key.
 Make sure to replace YOUR_API_KEY with your personal API key found on the <a href="https://dash.geocod.io" target="_blank">Geocodio dashboard</a>.
 </aside>
 
-<!--DEFAULT
+
 # Permissions
 
 > A `403 Forbidden` HTTP status code is returned if the API key is valid, but does not have permission to access the requested endpoint
@@ -296,9 +296,9 @@ For security reasons, additional permissions has to be assigned to the API key w
 
 *List of API key permissions with default values selected*
 
-DEFAULT-->
 
-<!--DEFAULT
+
+
 # Overview
 
 The Geocodio API supports three different methods for processing your data. The method you choose will largely depend on your workflow and the amount of addresses or coordinates that you are looking to process.
@@ -312,7 +312,7 @@ Name                                  | Batch size         | Type         | Form
 [List geocoding](#geocoding-lists)    | Up to 10,000,000+  | Asynchronous | CSV/TSV/Excel    | <i class="fa fa-check"></i> | <i class="fa fa-check"></i>
 
 If in doubt, [single geocoding](#geocoding) is the simplest choice for many use cases.
-DEFAULT-->
+
 
 # Geocoding
 
@@ -1280,7 +1280,7 @@ Parameter | Description
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
 
 
-<!--DEFAULT
+
 # Geocoding lists
 
 The lists API lets you upload and process spreadsheet with addresses or coordinates. Similar to the [spreadsheet feature](https://www.geocod.io/upload/) in the dashboard, the spreadsheet will be processed as a job on Geocodio's infrastructure and can be downloaded at a later time. While a spreadsheet is being processed it is possible to query the status and progress.
@@ -1871,7 +1871,7 @@ The spreadsheet data will always be deleted automatically after 72 hours if it i
 Parameter | Description
 --------- | -----------
 `api_key` | Your Geocodio API key
-DEFAULT-->
+
 
 # Fields
 
@@ -2157,9 +2157,9 @@ Parameter name                                                                  
 
 <aside class="success">
 This feature is available for both single and batch geocoding requests
-<!--DEFAULT
+
 as well as the lists API
-DEFAULT-->
+
 </aside>
 
 ## Congressional Districts
