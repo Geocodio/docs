@@ -2495,6 +2495,14 @@ The field will return either a *unified* school district or separate *elementary
         "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
         "area_code": "47894"
       },
+      "county_subdivision": {
+        "name": "Arlington",
+        "fips": "90072",
+        "fips_class": {
+          "class_code": "Z7",
+          "description": "A county subdivision that is coextensive with a county or equivalent feature or all or part of an incorporated place that the Census Bureau recognizes separately"
+        }
+      },
       "source": "US Census Bureau"
     },
     "2023": {
@@ -2521,6 +2529,14 @@ The field will return either a *unified* school district or separate *elementary
       "metropolitan_division": {
         "name": "Arlington-Alexandria-Reston, VA-WV",
         "area_code": "11694"
+      },
+      "county_subdivision": {
+        "name": "Arlington",
+        "fips": "90072",
+        "fips_class": {
+          "class_code": "Z7",
+          "description": "A county subdivision that is coextensive with a county or equivalent feature or all or part of an incorporated place that the Census Bureau recognizes separately"
+        }
       },
       "source": "US Census Bureau"
     }
@@ -2602,6 +2618,16 @@ Field        | Description
 ------------ | -----------------------------------------------------------
 name         | The official Census-designated name for the area
 area_code    | Unique census-defined code for the area
+
+### County Subdivisions
+
+Depending on the state, this is either a [MCD (Minor Civil Division)](https://en.wikipedia.org/wiki/Minor_civil_division) or [CCD (Census County Division)](https://en.wikipedia.org/wiki/Census_county_division).
+
+Field        | Description
+------------ | -----------------------------------------------------------
+name         | The name of the county subdivision. Depending on the state, this could be a city/town/township name or a district number
+fips         | Unique census-defined code for the area
+fips_class   | The `class_code` and `description` for the given [class code](https://www.census.gov/library/reference/code-lists/class-codes.html)
 
 ## Census ACS (American Community Survey)
 
@@ -5010,6 +5036,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+
+*Released on April 24, 2024*
+
+* Added Census County Subdivisions to the [`census`](#census-block-tract-fips-codes-amp-msa-csa-codes) field append
 
 *Released on April 16, 2024*
 
