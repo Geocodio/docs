@@ -448,6 +448,12 @@ Parameter | Description
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
 `format`  | Optional parameter to change the JSON output format to a different pre-defined structure. Currently, "simple" is the only valid value. If not set, the default full JSON output structure is used.
 
+
+Parameter | Description
+--------- | -----------
+`verbose`       | Optional parameter. Available only for enterprise and on-premise customers. Enabling verbose output.
+
+
 ***
 
 **Alternative URL Parameters**
@@ -480,7 +486,7 @@ Parameter     | Description
   response = geocodio.geocode(["1109 N Highland St, Arlington, VA"], [], nil, "simple")
 ```
 
-> Example response, when `format` is set to `simple`:
+> Example response when `format` is set to `simple`:
 
 ```json
 {
@@ -493,7 +499,7 @@ Parameter     | Description
 }
 ```
 
-> Example response, when `format` is set to `simple` and no results are found:
+> Example response when `format` is set to `simple` and no results are found:
 
 ```json
 {
@@ -513,6 +519,39 @@ In most cases, the standard output format would be used. In certain situations, 
 When `format` is set to `simple`, a very simple JSON structure is outputted, with only basic information for the best matched results. This makes it much easier to work with the JSON document in situtations where extra verbosity is not needed.
 
 The `fields` parameter is still supported when the `simple` output format is selected, but the `limit` parameter has no effect.
+
+
+### The `verbose` parameter
+
+When including the `verbose` query parameter in your API request, a breakdown of the accuracy score will be returned with each geocoding result. This can be found in the `accuracy_breakdown` JSON key.
+
+This feature is only available for enterprise and on-premise customers.
+
+The accuracy breakdown lists all of the factors used to compute the accuracy score. Each factor has a short description along with a designated category. The following categories are available: `MISC`, `SCORING`, `STATE`, `POSTAL_CODE`, `POSTAL_SERVICE`, `HOUSE_NUMBER`, `ENGINE_CASCADE`, `POINT_GEOCODING_ENGINE`, `RANGE_GEOCODING_ENGINE`, `INTERSECTION_GEOCODING_ENGINE`, `PLACE_GEOCODING_ENGINE`.
+
+Accuracy breakdown descriptions and scores are subject to change and should not be programatically relied upon. Categories can however be expected to be consistent.
+
+> Example response with the following query: "1109 Highland St, Arlington, VA 22201" (Directional is missing)
+
+
+```json
+...
+"accuracy": 0.9,
+"accuracy_type": "rooftop",
+"accuracy_breakdown": {
+  "Directional was added even though input did not have one": {
+    "score": -1,
+    "category": "SCORING"
+  },
+  "Exact USPS match": {
+    "score": 0.01,
+    "category": "POSTAL_SERVICE"
+  }
+},
+...
+```
+
+
 
 ### Geocoding with Unit Numbers
 
