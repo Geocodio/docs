@@ -5079,7 +5079,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 *Released on April 29, 2024*
 
-* `stateleg-next`: Upcoming districts boundaries were for Minnesota House & Senate districts, will be promoted to `stateleg` on 1/14 2025
+* `stateleg-next`: Upcoming districts boundaries were added for Minnesota House & Senate districts, they will be promoted to `stateleg` on 1/14 2025
 
 *Released on April 24, 2024*
 
