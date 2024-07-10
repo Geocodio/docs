@@ -134,7 +134,7 @@ ENTERPRISE-->
   </tr>
   <tr>
     <td><strong>Rust</strong></td>
-    <td><a href="https://github.com/populist-vote/geocodio" target="_blank">populist-vote/geocodio</a> by <a href="https://github.com/wileymc" target="_blank">wileymc</a></td>
+    <td><a href="https://github.com/Cosiamo/geocodio_lib_rust" target="_blank">Cosiamo/geocodio_lib_rust</a> by <a href="https://github.com/Cosiamo" target="_blank">Cosiamo</a></td>
     <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
