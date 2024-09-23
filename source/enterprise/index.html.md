@@ -70,11 +70,11 @@ We will do our best to assist in online chat or email, but may not be able to he
 
 Some of the libraries are featured here with basic examples, but please make sure to check out the full documentation for the individual libraries (linked below).
 
-<!--ENTERPRISE
+
   <aside class="warning">
     Please consult the individual library documentation to ensure that you are using the <strong>api.enterprise.geocod.io</strong> hostname instead of the regular <strong>api.enterprise.geocod.io</strong> hostname.
   </aside>
-ENTERPRISE-->
+
 
 <table class="table">
   <tbody><tr>
@@ -220,14 +220,14 @@ from geocodio import GeocodioClient
 client = GeocodioClient(YOUR_API_KEY)
 ```
 
-<!--ENTERPRISE
+
 ```php
 <?php
 $geocoder = new Geocodio\Geocodio();
 $geocoder->setApiKey('YOUR_API_KEY');
 $geocoder->setHostname('api.enterprise.geocod.io');
 ```
-ENTERPRISE-->
+
 
 <!--DEFAULT
 ```php
@@ -246,7 +246,7 @@ const geocoder = new Geocodio('YOUR_API_KEY');
 ```
 DEFAULT-->
 
-<!--ENTERPRISE
+
 ```javascript
 const Geocodio = require('geocodio-library-node');
 const geocoder = new Geocodio('YOUR_API_KEY', 'api.enterprise.geocod.io');
@@ -255,7 +255,7 @@ const geocoder = new Geocodio('YOUR_API_KEY', 'api.enterprise.geocod.io');
 // GEOCODIO_API_KEY=YOUR_API_KEY
 // GEOCODIO_HOSTNAME=api.enterprise.geocod.io
 ```
-ENTERPRISE-->
+
 
 ```clojure
 (ns my.ns
@@ -448,11 +448,11 @@ Parameter | Description
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
 `format`  | Optional parameter to change the JSON output format to a different pre-defined structure. Currently, "simple" is the only valid value. If not set, the default full JSON output structure is used.
 
-<!--ENTERPRISE
+
 Parameter | Description
 --------- | -----------
 `verbose`       | Optional parameter. Available only for enterprise and on-premise customers. Enabling verbose output.
-ENTERPRISE-->
+
 
 ***
 
@@ -520,7 +520,7 @@ When `format` is set to `simple`, a very simple JSON structure is outputted, wit
 
 The `fields` parameter is still supported when the `simple` output format is selected, but the `limit` parameter has no effect.
 
-<!--ENTERPRISE
+
 ### The `verbose` parameter
 
 When including the `verbose` query parameter in your API request, a breakdown of the accuracy score will be returned with each geocoding result. This can be found in the `accuracy_breakdown` JSON key.
@@ -551,7 +551,7 @@ Accuracy breakdown descriptions and scores are subject to change and should not 
 ...
 ```
 
-ENTERPRISE-->
+
 
 ### Geocoding with Unit Numbers
 
