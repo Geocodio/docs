@@ -5501,6 +5501,7 @@ geocoder.reverse('46.225866,-79.36316', ['provriding'])
     "ocd_id": "ocd-division/country:ca/province:on/ed:72-2015",
     "name_french": "Nipissing",
     "name_english": "Nipissing",
+    "is_upcoming_district": false,
     "source": "Elections Ontario"
   }
 }
@@ -6096,6 +6097,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+
+*Released on September 20, 2024*
+
+* `provriding`: New district boundaries are now used for British Columbia
 
 *Released on April 29, 2024*
 
