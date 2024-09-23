@@ -10,7 +10,7 @@ language_tabs:
   - clojure: Clojure
 
 toc_footers:
- - <a href="https://dash.geocod.io">Sign Up for an API Key</a>
+ - <a href="https://dash.enterprise.geocod.io">Sign Up for an API Key</a>
  - <a href="https://www.geocod.io/terms-of-use/">Terms of Use</a>
  - <a href="https://github.com/Geocodio/openapi-spec" target="_blank">OpenAPI Spec</a>
 
@@ -25,7 +25,7 @@ Geocodio's RESTful API allows you to perform forward and reverse geocoding looku
 
 You can also optionally ask for data appends such as timezone, Congressional districts or similar things of that nature.
 
-The base API url is `https://api.geocod.io/v1.7/`.
+The base API url is `https://api.enterprise.geocod.io/v1.7/`.
 
 All HTTP responses (including errors) are returned with [JSON-formatted](http://www.json.org) output.
 
@@ -72,9 +72,9 @@ Some of the libraries are featured here with basic examples, but please make sur
 
 <!--ENTERPRISE
   <aside class="warning">
-    Please consult the individual library documentation to ensure that you are using the <strong>api.enterprise.geocod.io</strong> hostname instead of the regular <strong>api.geocod.io</strong> hostname.
+    Please consult the individual library documentation to ensure that you are using the <strong>api.enterprise.geocod.io</strong> hostname instead of the regular <strong>api.enterprise.geocod.io</strong> hostname.
   </aside>
-ENTERPRISE-->
+
 
 <table class="table">
   <tbody><tr>
@@ -205,7 +205,7 @@ compile "rodeo:rodeo:2.0.1"
 
 ```shell
 # With curl, you can just pass the query parameter with each request
-curl "https://api.geocod.io/v1.7/api_endpoint_here?api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/api_endpoint_here?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -227,7 +227,7 @@ $geocoder = new Geocodio\Geocodio();
 $geocoder->setApiKey('YOUR_API_KEY');
 $geocoder->setHostname('api.enterprise.geocod.io');
 ```
-ENTERPRISE-->
+
 
 
 ```php
@@ -255,7 +255,7 @@ const geocoder = new Geocodio('YOUR_API_KEY', 'api.enterprise.geocod.io');
 // GEOCODIO_API_KEY=YOUR_API_KEY
 // GEOCODIO_HOSTNAME=api.enterprise.geocod.io
 ```
-ENTERPRISE-->
+
 
 ```clojure
 (ns my.ns
@@ -265,7 +265,7 @@ ENTERPRISE-->
 ;; or with each request using the :api_key parameter
 ```
 
-All requests require an API key. You can [register here](https://dash.geocod.io) to get your own API key.
+All requests require an API key. You can [register here](https://dash.enterprise.geocod.io) to get your own API key.
 
 The API key must be included in all requests using the `?api_key=YOUR_API_KEY` query parameter.
 
@@ -274,7 +274,7 @@ Accounts can have multiple API keys. This can be useful if you're working on sev
 You can also download a CSV of usage and fees per API key.
 
 <aside class="warning">
-Make sure to replace YOUR_API_KEY with your personal API key found on the <a href="https://dash.geocod.io" target="_blank">Geocodio dashboard</a>.
+Make sure to replace YOUR_API_KEY with your personal API key found on the <a href="https://dash.enterprise.geocod.io" target="_blank">Geocodio dashboard</a>.
 </aside>
 
 
@@ -284,15 +284,15 @@ Make sure to replace YOUR_API_KEY with your personal API key found on the <a hre
 
 ```json
 {
-  "error": "This API key does not have permission to access this feature. API key permissions can be changed in the Geocodio dashboard at https:\/\/dash.geocod.io\/apikey"
+  "error": "This API key does not have permission to access this feature. API key permissions can be changed in the Geocodio dashboard at https:\/\/dash.enterprise.geocod.io\/apikey"
 }
 ```
 
 Per default, an API key can only access the single and batch geocoding API endpoints. These endpoints are write-only which means that a lost API key can not be used to retreive geocoded data from your account.
 
-For security reasons, additional permissions has to be assigned to the API key when using the [lists API](#geocoding-lists). This can be done in the [Geocodio dashboard](https://dash.geocod.io/apikey). We recommend creating separate API keys for geocoding endpoints and for `GET`/`DELETE` access to lists.
+For security reasons, additional permissions has to be assigned to the API key when using the [lists API](#geocoding-lists). This can be done in the [Geocodio dashboard](https://dash.enterprise.geocod.io/apikey). We recommend creating separate API keys for geocoding endpoints and for `GET`/`DELETE` access to lists.
 
-[![List of API key permissions with default values selected](./images/permissions-4de4e690.png)](https://dash.geocod.io/apikey)
+[![List of API key permissions with default values selected](./images/permissions-4de4e690.png)](https://dash.enterprise.geocod.io/apikey)
 
 *List of API key permissions with default values selected*
 
@@ -330,7 +330,7 @@ Whenever possible, batch requests are recommended since they are significantly f
 
 ## Single address
 
-A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 <aside class="success">
 The <code>results</code> are always ordered with the most accurate locations first. It is therefore always safe to pick the first result in the list.
@@ -340,10 +340,10 @@ The <code>results</code> are always ordered with the most accurate locations fir
 
 ```shell
 # Using q parameter
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
 
 # Using individual address components
-curl "https://api.geocod.io/v1.7/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -435,7 +435,7 @@ geocoder.geocode('1109 N Highland St, Arlington VA')
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.7/geocode`
+`GET https://api.enterprise.geocod.io/v1.7/geocode`
 
 ### URL Parameters
 
@@ -452,7 +452,7 @@ Parameter | Description
 Parameter | Description
 --------- | -----------
 `verbose`       | Optional parameter. Available only for enterprise and on-premise customers. Enabling verbose output.
-ENTERPRISE-->
+
 
 ***
 
@@ -475,9 +475,9 @@ Parameter     | Description
 ### The `format` parameter
 
 ```ruby
-#  To receive a `simple` response, include the string `"simple"` 
-#  as the fourth argument after any fields or limit parameters 
-#  you have set. 
+#  To receive a `simple` response, include the string `"simple"`
+#  as the fourth argument after any fields or limit parameters
+#  you have set.
 
   require 'geocodio/gem'
 
@@ -551,14 +551,14 @@ Accuracy breakdown descriptions and scores are subject to change and should not 
 ...
 ```
 
-ENTERPRISE-->
+
 
 ### Geocoding with Unit Numbers
 
-> To geocode an address with a Unit Number 
+> To geocode an address with a Unit Number
 
 ```shell
-  curl "https://api.geocod.io/v1.7/geocode?q=2800+Clarendon+Blvd+Suite+R500+Arlington+VA+22201&api_key=YOUR_API_KEY"
+  curl "https://api.enterprise.geocod.io/v1.7/geocode?q=2800+Clarendon+Blvd+Suite+R500+Arlington+VA+22201&api_key=YOUR_API_KEY"
 ```
 
 > Example response with Unit Number
@@ -616,9 +616,9 @@ E.g. if the unit number is inputted as `#R500`, the outputted value will be `Ste
 
 In order to verify that the unit number is valid per USPS, you can request the [`zip4`](#usps-zip-4) field append and check the `exact_match` value. If it is set to `true` it means that the unit number is accepted by USPS.
 
-### The `input` Object 
+### The `input` Object
 
-The `input` object that is returned in the API response is not a one-for-one parsing of the initial address that is provided. In order to ensure that the `address_components` returned in `input` are accurate, we cross-reference them with the `address_components` returned in the `results` object. 
+The `input` object that is returned in the API response is not a one-for-one parsing of the initial address that is provided. In order to ensure that the `address_components` returned in `input` are accurate, we cross-reference them with the `address_components` returned in the `results` object.
 
 As such, if we aren't able to identify the exact address location in `results`, this could impact our ability to return a parsed address in `input`. In the vast majority of cases, the data returned will match the original address provided to the Geocodio API, but there may be some instances where we are not able to parse the exact input - especially in responses with lower `accuracy_type` values like `place` or `street_center`.
 
@@ -630,7 +630,7 @@ As such, if we aren't able to identify the exact address location in `results`, 
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["1109 N Highland St, Arlington VA", "525 University Ave, Toronto, ON, Canada", "4410 S Highway 17 92, Casselberry FL", "15000 NE 24th Street, Redmond WA", "17015 Walnut Grove Drive, Morgan Hill CA"]' \
-  https://api.geocod.io/v1.7/geocode?api_key=YOUR_API_KEY
+  https://api.enterprise.geocod.io/v1.7/geocode?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -821,7 +821,7 @@ You can process up to 10,000 lookups at the time. Field appends count as lookups
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.7/geocode`
+`POST https://api.enterprise.geocod.io/v1.7/geocode`
 
 ### URL Parameters
 
@@ -971,7 +971,7 @@ A geographic coordinate consists of latitude followed by longitude separated by 
 > To reverse geocode a single coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1070,11 +1070,11 @@ geocoder.reverse('38.9002898,-76.9990361')
 }
 ```
 
-A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api.geocod.io/v1.7/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api.enterprise.geocod.io/v1.7/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.7/reverse`
+`GET https://api.enterprise.geocod.io/v1.7/reverse`
 
 ### URL Parameters
 
@@ -1089,9 +1089,9 @@ Parameter | Description
 ### The `format` parameter
 
 ```ruby
-#  To receive a `simple` response, include the string `"simple"` 
-#  as the fourth argument after any fields or limit parameters 
-#  you have set. 
+#  To receive a `simple` response, include the string `"simple"`
+#  as the fourth argument after any fields or limit parameters
+#  you have set.
 
   require 'geocodio/gem'
 
@@ -1143,7 +1143,7 @@ The `fields` parameter is still supported when the `simple` output format is sel
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["35.9746000,-77.9658000","32.8793700,-96.6303900","33.8337100,-117.8362320","35.4171240,-80.6784760"]' \
-  https://api.geocod.io/v1.7/reverse?api_key=YOUR_API_KEY
+  https://api.enterprise.geocod.io/v1.7/reverse?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -1308,7 +1308,7 @@ You can batch reverse geocode up to 10,000 coordinates at a time. Field appends 
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.7/reverse`
+`POST https://api.enterprise.geocod.io/v1.7/reverse`
 
 ### URL Parameters
 
@@ -1330,30 +1330,10 @@ Data for spreadsheets processed through the lists API are automatically deleted 
 
 ## Create a new list
 
-```ruby
-  The Ruby library does not currently support the Lists API. 
-```
-
-```python
-  The Python library does not currently support the Lists API. 
-```
-
-```php
-  The PHP library does not currently support the Lists API. 
-```
-
-```node
-  The Node library does not currently support the Lists API. 
-```
-
-```clojure
-  The Clojure library does not currently support the Lists API.
-```
-
 > Create a new list from a file called "[sample_list.csv](https://www.geocod.io/sample_list.csv)"
 
 ```shell
-curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
+curl "https://api.enterprise.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
   -F "file"="@sample_list.csv" \
   -F "direction"="forward" \
   -F "format"="{{A}} {{B}} {{C}} {{D}}" \
@@ -1369,15 +1349,20 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
 ```
 
 ```python
-  The third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API.
 ```
 
 ```php
-  Our PHP library does not support the Lists API. 
+$response = $geocoder->uploadList(
+    file: 'sample_list_test.csv',
+    direction: GeocodeDirection::Forward,
+    format: '{{B}} {{C}} {{D}} {{E}}',
+    callbackWebhook: 'https://example.com/callbacks/list-upload',
+);
 ```
 
 ```clojure
-  The third-party Clojure library does not support the Lists API. 
+  The third-party Clojure library does not support the Lists API.
 ```
 
 ```javascript
@@ -1395,12 +1380,28 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
 > Create a new list from inline data
 
 ```shell
-curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
+curl "https://api.enterprise.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
   -F "file"=$'Zip\n20003\n20001' \
   -F "filename"="file.csv" \
   -F "direction"="forward" \
   -F "format"="{{A}}" \
   -F "callback"="https://example.com/my-callback"
+```
+
+```php
+// Upload a list from inline data
+$csvData = <<<'CSV'
+name,street,city,state,zip
+"Peregrine Espresso","660 Pennsylvania Ave SE",Washington,DC,20003
+"Lot 38 Espresso Bar","1001 2nd St SE",Washington,DC,20003
+CSV;
+
+$geocodio->uploadInlineList(
+    $csvData,
+    'coffee-shops.csv',
+    GeocodeDirection::Forward,
+    '{{B}} {{C}} {{D}} {{E}}'
+);
 ```
 
 > Example response:
@@ -1427,7 +1428,7 @@ Creates a new spreadsheet list job and starts processing the list in the backgro
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.7/lists`
+`POST https://api.enterprise.geocod.io/v1.7/lists`
 
 ### URL Parameters
 
@@ -1471,7 +1472,7 @@ The `format` parameter uses a simple templating syntax that is used to construct
         "geocoded_rows_count": 39809,
         "filename": "sample_list.csv"
     },
-    "download_url": "https://api.geocod.io/v1.7/lists/49/download"
+    "download_url": "https://api.enterprise.geocod.io/v1.7/lists/49/download"
 }
 ```
 
@@ -1484,28 +1485,8 @@ A total of 3 attempts are made to delivery the webhook.
 
 > Show status for list id 42
 
-```ruby
-  The Ruby library does not currently support the Lists API. 
-```
-
-```python
-  The Python library does not currently support the Lists API. 
-```
-
-```php
-  The PHP library does not currently support the Lists API. 
-```
-
-```node
-  The Node library does not currently support the Lists API. 
-```
-
-```clojure
-  The Clojure library does not currently support the Lists API.
-```
-
 ```shell
-curl "https://api.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1516,15 +1497,15 @@ curl "https://api.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
 ```
 
 ```python
-  The third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API.
 ```
 
 ```php
-  Our PHP library does not support the Lists API. 
+$response = $geocoder->listStatus(42);
 ```
 
 ```clojure
-  The third-party Clojure library does not support the Lists API. 
+  The third-party Clojure library does not support the Lists API.
 ```
 
 ```javascript
@@ -1599,7 +1580,7 @@ curl "https://api.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
         "time_left_description": null,
         "time_left_seconds": null
     },
-    "download_url": "https://api.geocod.io/v1.7/lists/42/download",
+    "download_url": "https://api.enterprise.geocod.io/v1.7/lists/42/download",
     "expires_at": "2021-09-23T18:23:29.000000Z"
 }
 ```
@@ -1608,7 +1589,7 @@ View the metadata and status for a single uploaded list.
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.7/lists/LIST_ID`
+`GET https://api.enterprise.geocod.io/v1.7/lists/LIST_ID`
 
 ### URL Parameters
 
@@ -1621,28 +1602,8 @@ Parameter | Description
 
 > Show all lists
 
-```ruby
-  The Ruby library does not currently support the Lists API. 
-```
-
-```python
-  The Python library does not currently support the Lists API. 
-```
-
-```php
-  The PHP library does not currently support the Lists API. 
-```
-
-```node
-  The Node library does not currently support the Lists API. 
-```
-
-```clojure
-  The Clojure library does not currently support the Lists API.
-```
-
 ```shell
-curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1653,15 +1614,15 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
 ```
 
 ```python
-  The third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API.
 ```
 
 ```php
-  Our PHP library does not support the Lists API. 
+$response = $geocoder->lists();
 ```
 
 ```clojure
-  The third-party Clojure library does not support the Lists API. 
+  The third-party Clojure library does not support the Lists API.
 ```
 
 ```javascript
@@ -1696,15 +1657,15 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
                 "time_left_description": null,
                 "time_left_seconds": null
             },
-            "download_url": "https://api.geocod.io/v1.7/lists/48/download",
+            "download_url": "https://api.enterprise.geocod.io/v1.7/lists/48/download",
             "expires_at": "2021-09-23T12:09:09.000000Z"
         },
         ...
     ],
-    "first_page_url": "https://api.geocod.io/v1.7/lists?page=1",
+    "first_page_url": "https://api.enterprise.geocod.io/v1.7/lists?page=1",
     "from": 1,
-    "next_page_url": "https://api.geocod.io/v1.7/lists?page=2",
-    "path": "https://api.geocod.io/v1.7/lists",
+    "next_page_url": "https://api.enterprise.geocod.io/v1.7/lists?page=2",
+    "path": "https://api.enterprise.geocod.io/v1.7/lists",
     "per_page": 15,
     "prev_page_url": null,
     "to": 15
@@ -1715,7 +1676,7 @@ Show all lists that have been created. The endpoint is paginated, showing 15 lis
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.7/lists`
+`GET https://api.enterprise.geocod.io/v1.7/lists`
 
 ### URL Parameters
 
@@ -1725,28 +1686,8 @@ Parameter | Description
 
 ## Download a list
 
-```ruby
-  The Ruby library does not currently support the Lists API. 
-```
-
-```python
-  The Python library does not currently support the Lists API. 
-```
-
-```php
-  The PHP library does not currently support the Lists API. 
-```
-
-```node
-  The Node library does not currently support the Lists API. 
-```
-
-```clojure
-  The Clojure library does not currently support the Lists API.
-```
-
 ```shell
-curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_API_KEY"
+curl -L "https://api.enterprise.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1757,11 +1698,11 @@ curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_API_KEY"
 ```
 
 ```python
-  The third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API.
 ```
 
 ```php
-  Our PHP library does not support the Lists API. 
+$response = $geocoder->downloadList(42, 'path/to/file.csv');
 ```
 
 ```clojure
@@ -1825,7 +1766,7 @@ See our [spreadsheet output guide](/guides/data-matching-overview/) for a refere
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.7/lists/LIST_ID/download`
+`GET https://api.enterprise.geocod.io/v1.7/lists/LIST_ID/download`
 
 ### URL Parameters
 
@@ -1835,28 +1776,8 @@ Parameter | Description
 
 ## Delete a list
 
-```ruby
-  The Ruby library does not currently support the Lists API. 
-```
-
-```python
-  The Python library does not currently support the Lists API. 
-```
-
-```php
-  The PHP library does not currently support the Lists API. 
-```
-
-```node
-  The Node library does not currently support the Lists API. 
-```
-
-```clojure
-  The Clojure library does not currently support the Lists API.
-```
-
 ```shell
-curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_KEY"
+curl -X DELETE "https://api.enterprise.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1867,15 +1788,15 @@ curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_KEY"
 ```
 
 ```python
-  The third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API.
 ```
 
 ```php
-  Our PHP library does not support the Lists API. 
+$response = $geocoder->deleteList(42);
 ```
 
 ```clojure
-  The third-party Clojure library does not support the Lists API. 
+  The third-party Clojure library does not support the Lists API.
 ```
 
 ```javascript
@@ -1903,7 +1824,7 @@ The spreadsheet data will always be deleted automatically after 72 hours if it i
 
 ### HTTP Request
 
-`DELETE https://api.geocod.io/v1.7/lists/LIST_ID`
+`DELETE https://api.enterprise.geocod.io/v1.7/lists/LIST_ID`
 
 ### URL Parameters
 
@@ -1917,8 +1838,8 @@ Parameter | Description
 > To get `cd` and `stateleg` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=cd,stateleg&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=cd,stateleg&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -2173,7 +2094,7 @@ Geocodio allows you to request additional data with forward and reverse geocodin
 
 To request additional data, just add a `fields` parameter to your query string and set the value according to the table below. You can request multiple data fields at the same time by separating them with a comma. If the `fields` parameter has been specified, a new `fields` key is exposed with each geocoding result containing all necessary data for each field.
 
-Go ahead, <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+Go ahead, <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 Some fields are specific to the US and cannot be queried for other countries.
 
@@ -2207,8 +2128,8 @@ as well as the lists API
 > To get `cd` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=cd&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=cd&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=cd&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=cd&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -2431,8 +2352,8 @@ Districts are always sorted by the `proportion` value in descending order (large
 > To get `stateleg` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=stateleg&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=stateleg&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=stateleg&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=stateleg&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -2544,8 +2465,8 @@ If new boundaries are not available, the current boundaries are used instead (ef
 > To get `stateleg-next` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=stateleg-next&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=stateleg-next&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=stateleg-next&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=stateleg-next&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -2697,8 +2618,8 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 > To get `school` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=school&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=school&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=school&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=school&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -2807,8 +2728,8 @@ The field will return either a *unified* school district or separate *elementary
 > To get `census2010` and `census` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=census2010,census&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=census2010,census&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=census2010,census&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=census2010,census&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -3102,8 +3023,8 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
 > To get `acs-demographics` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-demographics&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-demographics&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-demographics&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-demographics&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -3601,8 +3522,8 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
 > To get `acs-economics` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-economics&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-economics&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-economics&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-economics&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -3797,8 +3718,8 @@ The data returned includes the following data points. For each data point, the d
 > To get `acs-families` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-families&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-families&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-families&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-families&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -4106,8 +4027,8 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
 > To get `acs-housing` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-housing&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-housing&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-housing&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-housing&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -4450,8 +4371,8 @@ Data points returned are:
 > To get `acs-social` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-social&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-social&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-social&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=acs-social&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -5023,8 +4944,8 @@ The data returned includes the following data points. For each data point, the d
 > To get `zip4` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=zip4&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=zip4&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=zip4&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=zip4&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -5263,8 +5184,8 @@ If no ZIP+4 data is available for the given query, the `zip4` field is omitted f
 > To get `riding` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=riding&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=riding&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=riding&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=riding&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -5351,8 +5272,8 @@ In some cases the French and English names will be the same.
 > To get `riding-next` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=riding-next&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=riding-next&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=riding-next&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=riding-next&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -5433,8 +5354,8 @@ geocoder.reverse('46.225866,-79.36316', ['riding-next'])
 > To get `provriding` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=provriding&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=provriding&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=provriding&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=provriding&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -5519,8 +5440,8 @@ In some cases the French and English names will be the same.
 > To get `statcan` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=statcan&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=statcan&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=statcan&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=statcan&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -5752,8 +5673,8 @@ The dissemination area is geographically one step lower than census tracts. Diss
 > To get `timezone` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=timezone&api_key=YOUR_API_KEY"
-curl "https://api.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=timezone&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=timezone&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=timezone&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -5918,39 +5839,39 @@ If a city is provided without a state, Geocodio will automatically guess and add
 
 Geocoding queries can be formatted in various ways:
 
-* <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=PO+Box+4735,+Tulsa+OK&api_key=YOUR_API_KEY" target="_blank">PO Box 4735, Tulsa OK</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">Santa Clara County</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">Santa Clara County, CA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, CA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20Cupertino%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, Cupertino CA</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=PO+Box+4735,+Tulsa+OK&api_key=YOUR_API_KEY" target="_blank">PO Box 4735, Tulsa OK</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">Santa Clara County</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">Santa Clara County, CA</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, CA</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20Cupertino%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, Cupertino CA</a>
 
 If a country is not specified in the query, the Geocodio engine will assume the country to be USA.
 
 Examples of Canadian lookups:
 
-* <a href="https://api.geocod.io/v1.7/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
 
 ## Intersections
 
 You can also geocode intersections. Just specify the two streets that you want to geocode in your query. We support various formats:
 
-* <a href="https://api.geocod.io/v1.7/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
+* <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
 
 An extra `address_components_secondary` property will be exposed for intersection results, but otherwise, the schema format is the same.
 
@@ -6004,7 +5925,7 @@ An extra `address_components_secondary` property will be exposed for intersectio
 
 ```json
 {
-  "error": "You can't make this request as it is above your daily maximum. You can configure billing at https://dash.geocod.io"
+  "error": "You can't make this request as it is above your daily maximum. You can configure billing at https://dash.enterprise.geocod.io"
 }
 ```
 
@@ -6070,7 +5991,7 @@ If no warnings have been triggered, the `_warnings` key will not be part of the 
 var address = '1109 N Highland St, Arlington VA',
     apiKey = 'YOUR_API_KEY';
 
-$.get('https://api.geocod.io/v1.7/geocode?q='+ encodeURIComponent(address) +'&api_key=' + encodeURIComponent(apiKey), function (response) {
+$.get('https://api.enterprise.geocod.io/v1.7/geocode?q='+ encodeURIComponent(address) +'&api_key=' + encodeURIComponent(apiKey), function (response) {
   console.log(response.results);
 });
 </script>

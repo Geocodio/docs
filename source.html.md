@@ -475,9 +475,9 @@ Parameter     | Description
 ### The `format` parameter
 
 ```ruby
-#  To receive a `simple` response, include the string `"simple"` 
-#  as the fourth argument after any fields or limit parameters 
-#  you have set. 
+#  To receive a `simple` response, include the string `"simple"`
+#  as the fourth argument after any fields or limit parameters
+#  you have set.
 
   require 'geocodio/gem'
 
@@ -555,7 +555,7 @@ ENTERPRISE-->
 
 ### Geocoding with Unit Numbers
 
-> To geocode an address with a Unit Number 
+> To geocode an address with a Unit Number
 
 ```shell
   curl "https://api.geocod.io/v1.7/geocode?q=2800+Clarendon+Blvd+Suite+R500+Arlington+VA+22201&api_key=YOUR_API_KEY"
@@ -616,9 +616,9 @@ E.g. if the unit number is inputted as `#R500`, the outputted value will be `Ste
 
 In order to verify that the unit number is valid per USPS, you can request the [`zip4`](#usps-zip-4) field append and check the `exact_match` value. If it is set to `true` it means that the unit number is accepted by USPS.
 
-### The `input` Object 
+### The `input` Object
 
-The `input` object that is returned in the API response is not a one-for-one parsing of the initial address that is provided. In order to ensure that the `address_components` returned in `input` are accurate, we cross-reference them with the `address_components` returned in the `results` object. 
+The `input` object that is returned in the API response is not a one-for-one parsing of the initial address that is provided. In order to ensure that the `address_components` returned in `input` are accurate, we cross-reference them with the `address_components` returned in the `results` object.
 
 As such, if we aren't able to identify the exact address location in `results`, this could impact our ability to return a parsed address in `input`. In the vast majority of cases, the data returned will match the original address provided to the Geocodio API, but there may be some instances where we are not able to parse the exact input - especially in responses with lower `accuracy_type` values like `place` or `street_center`.
 
@@ -1089,9 +1089,9 @@ Parameter | Description
 ### The `format` parameter
 
 ```ruby
-#  To receive a `simple` response, include the string `"simple"` 
-#  as the fourth argument after any fields or limit parameters 
-#  you have set. 
+#  To receive a `simple` response, include the string `"simple"`
+#  as the fourth argument after any fields or limit parameters
+#  you have set.
 
   require 'geocodio/gem'
 
@@ -1330,26 +1330,6 @@ Data for spreadsheets processed through the lists API are automatically deleted 
 
 ## Create a new list
 
-```ruby
-  The Ruby library does not currently support the Lists API. 
-```
-
-```python
-  The Python library does not currently support the Lists API. 
-```
-
-```php
-  The PHP library does not currently support the Lists API. 
-```
-
-```node
-  The Node library does not currently support the Lists API. 
-```
-
-```clojure
-  The Clojure library does not currently support the Lists API.
-```
-
 > Create a new list from a file called "[sample_list.csv](https://www.geocod.io/sample_list.csv)"
 
 ```shell
@@ -1369,15 +1349,20 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
 ```
 
 ```python
-  The third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API.
 ```
 
 ```php
-  Our PHP library does not support the Lists API. 
+$response = $geocoder->uploadList(
+    file: 'sample_list_test.csv',
+    direction: GeocodeDirection::Forward,
+    format: '{{B}} {{C}} {{D}} {{E}}',
+    callbackWebhook: 'https://example.com/callbacks/list-upload',
+);
 ```
 
 ```clojure
-  The third-party Clojure library does not support the Lists API. 
+  The third-party Clojure library does not support the Lists API.
 ```
 
 ```javascript
@@ -1401,6 +1386,22 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
   -F "direction"="forward" \
   -F "format"="{{A}}" \
   -F "callback"="https://example.com/my-callback"
+```
+
+```php
+// Upload a list from inline data
+$csvData = <<<'CSV'
+name,street,city,state,zip
+"Peregrine Espresso","660 Pennsylvania Ave SE",Washington,DC,20003
+"Lot 38 Espresso Bar","1001 2nd St SE",Washington,DC,20003
+CSV;
+
+$geocodio->uploadInlineList(
+    $csvData,
+    'coffee-shops.csv',
+    GeocodeDirection::Forward,
+    '{{B}} {{C}} {{D}} {{E}}'
+);
 ```
 
 > Example response:
@@ -1484,26 +1485,6 @@ A total of 3 attempts are made to delivery the webhook.
 
 > Show status for list id 42
 
-```ruby
-  The Ruby library does not currently support the Lists API. 
-```
-
-```python
-  The Python library does not currently support the Lists API. 
-```
-
-```php
-  The PHP library does not currently support the Lists API. 
-```
-
-```node
-  The Node library does not currently support the Lists API. 
-```
-
-```clojure
-  The Clojure library does not currently support the Lists API.
-```
-
 ```shell
 curl "https://api.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
 ```
@@ -1516,15 +1497,15 @@ curl "https://api.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
 ```
 
 ```python
-  The third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API.
 ```
 
 ```php
-  Our PHP library does not support the Lists API. 
+$response = $geocoder->listStatus(42);
 ```
 
 ```clojure
-  The third-party Clojure library does not support the Lists API. 
+  The third-party Clojure library does not support the Lists API.
 ```
 
 ```javascript
@@ -1621,26 +1602,6 @@ Parameter | Description
 
 > Show all lists
 
-```ruby
-  The Ruby library does not currently support the Lists API. 
-```
-
-```python
-  The Python library does not currently support the Lists API. 
-```
-
-```php
-  The PHP library does not currently support the Lists API. 
-```
-
-```node
-  The Node library does not currently support the Lists API. 
-```
-
-```clojure
-  The Clojure library does not currently support the Lists API.
-```
-
 ```shell
 curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
 ```
@@ -1653,15 +1614,15 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
 ```
 
 ```python
-  The third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API.
 ```
 
 ```php
-  Our PHP library does not support the Lists API. 
+$response = $geocoder->lists();
 ```
 
 ```clojure
-  The third-party Clojure library does not support the Lists API. 
+  The third-party Clojure library does not support the Lists API.
 ```
 
 ```javascript
@@ -1725,26 +1686,6 @@ Parameter | Description
 
 ## Download a list
 
-```ruby
-  The Ruby library does not currently support the Lists API. 
-```
-
-```python
-  The Python library does not currently support the Lists API. 
-```
-
-```php
-  The PHP library does not currently support the Lists API. 
-```
-
-```node
-  The Node library does not currently support the Lists API. 
-```
-
-```clojure
-  The Clojure library does not currently support the Lists API.
-```
-
 ```shell
 curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_API_KEY"
 ```
@@ -1757,11 +1698,11 @@ curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_API_KEY"
 ```
 
 ```python
-  The third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API.
 ```
 
 ```php
-  Our PHP library does not support the Lists API. 
+$response = $geocoder->downloadList(42, 'path/to/file.csv');
 ```
 
 ```clojure
@@ -1835,26 +1776,6 @@ Parameter | Description
 
 ## Delete a list
 
-```ruby
-  The Ruby library does not currently support the Lists API. 
-```
-
-```python
-  The Python library does not currently support the Lists API. 
-```
-
-```php
-  The PHP library does not currently support the Lists API. 
-```
-
-```node
-  The Node library does not currently support the Lists API. 
-```
-
-```clojure
-  The Clojure library does not currently support the Lists API.
-```
-
 ```shell
 curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_KEY"
 ```
@@ -1867,15 +1788,15 @@ curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_KEY"
 ```
 
 ```python
-  The third-party Python library does not support the Lists API. 
+  The third-party Python library does not support the Lists API.
 ```
 
 ```php
-  Our PHP library does not support the Lists API. 
+$response = $geocoder->deleteList(42);
 ```
 
 ```clojure
-  The third-party Clojure library does not support the Lists API. 
+  The third-party Clojure library does not support the Lists API.
 ```
 
 ```javascript
