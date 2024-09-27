@@ -11,6 +11,11 @@ function template($country, $fields) {
 			$coordinate = '46.225866,-79.36316';
 			break;
 
+		case 'ca-alt':
+			$address = '203 Laycoe Crescent, Saskatoon, SK, Canada';
+			$coordinate = '52.155106,-106.589896';
+			break;
+
 		default:
 			throw new \Exception('Unsupported country: ' . $country);
 	}
@@ -94,7 +99,7 @@ function template($country, $fields) {
 	TEMPLATE;
 }
 
-echo preg_replace_callback('/<!--FIELD:([A-Z]{2}):([A-Z0-9-,]+)-->/i', function($match) {
+echo preg_replace_callback('/<!--FIELD:([A-Z-]+):([A-Z0-9-,]+)-->/i', function($match) {
 	list(,$country, $fields) = $match;
 
 	$fields = explode(',', $fields);

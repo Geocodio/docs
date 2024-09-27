@@ -2111,7 +2111,7 @@ Parameter name                                                                  
 [acs-social](#social-education-amp-veteran-status-census)                                                                                                                                                                          | Social: Education & Veteran Status (Census)            | US-only                     |
 [zip4](#usps-zip-4)                                                                                                                                                                                                                | USPS Zip+4 code and delivery information               | US-only                     |
 [riding, riding-next](#riding-canadian-federal-electoral-district)                                                                                                                                                                              | Riding: Canadian Federal Electoral District            | Canada-only                 |
-[provriding](#riding-canadian-provincial-electoral-district)                                                                                                                                                                       | Riding: Canadian Provincial/Territorial Electoral District         | Canada-only                 |
+[provriding, provriding-next](#riding-canadian-provincial-electoral-district)                                                                                                                                                                       | Riding: Canadian Provincial/Territorial Electoral District         | Canada-only                 |
 [statcan](#canadian-statistical-boundaries-from-statistics-canada)                                                                                                                                                                 | Canadian statistical boundaries from Statistics Canada | Canada-only                 |
 [timezone](#timezone)                                                                                                                                                                                                              | Timezone                                               | <i class="fa fa-globe"></i> |
 
@@ -5349,7 +5349,7 @@ geocoder.reverse('46.225866,-79.36316', ['riding-next'])
 ```
 
 ## Riding: Canadian Provincial Electoral District
-**Field name: `provriding`**
+**Field name: `provriding` or `provriding-next`**
 
 > To get `provriding` field appends for an address or a coordinate:
 
@@ -5433,6 +5433,88 @@ Look up the [provincial or territorial electoral district](https://en.wikipedia.
 The OCD-ID can be used to uniquely identify the district, using the [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) project.
 
 In some cases the French and English names will be the same.
+
+### Using `provriding-next`
+
+`provriding-next` is a preview of upcoming, redistricted provincial ridings.
+
+> To get `provriding-next` field appends for an address or a coordinate:
+
+```shell
+curl "https://api.geocod.io/v1.7/geocode?q=203+Laycoe+Crescent%2C+Saskatoon%2C+SK%2C+Canada&fields=provriding-next&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.7/reverse?q=52.155106,-106.589896&fields=provriding-next&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['203 Laycoe Crescent, Saskatoon, SK, Canada'], ['provriding-next'])
+location = geocodio.reverse(['52.155106,-106.589896'], ['provriding-next'])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("203 Laycoe Crescent, Saskatoon, SK, Canada", fields=["provriding-next"])
+location = client.reverse((52.155106, -106.589896), fields=["provriding-next"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('203 Laycoe Crescent, Saskatoon, SK, Canada', ['provriding-next']);
+$response = $geocoder->reverse('52.155106,-106.589896', ['provriding-next']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('203 Laycoe Crescent, Saskatoon, SK, Canada', ['provriding-next'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('52.155106,-106.589896', ['provriding-next'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+ 
+(single "203 Laycoe Crescent, Saskatoon, SK, Canada" :api_key "YOUR_API_KEY" :fields ["provriding-next"])
+(single-reverse "52.155106,-106.589896" :api_key "YOUR_API_KEY" :fields ["provriding-next"])
+```
+
+> Example for "203 Laycoe Crescent, Saskatoon, SK, Canada"
+
+```json
+...
+"fields": {
+  "provincial_riding": {
+    "ocd_id": "ocd-division/country:ca/province:sk/ed:52-2022",
+    "name_french": "Saskatoon University-Sutherland",
+    "name_english": "Saskatoon University-Sutherland",
+    "is_upcoming_district": true,
+    "source": "Elections Saskatchewan"
+  }
+}
+...
+```
 
 ## Canadian statistical boundaries from Statistics Canada
 **Field name: `statcan`**
@@ -6018,6 +6100,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+
+*Released on September 27, 2024*
+
+* The `provriding-next` data append is now available. Upcoming provincial ridings for Saskatchewan can be previewed. The `provriding` will be returning these new ridings as of 10/28/2024.
 
 *Released on September 20, 2024*
 

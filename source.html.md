@@ -2051,7 +2051,7 @@ Parameter name                                                                  
 [acs-social](#social-education-amp-veteran-status-census)                                                                                                                                                                          | Social: Education & Veteran Status (Census)            | US-only                     |
 [zip4](#usps-zip-4)                                                                                                                                                                                                                | USPS Zip+4 code and delivery information               | US-only                     |
 [riding, riding-next](#riding-canadian-federal-electoral-district)                                                                                                                                                                              | Riding: Canadian Federal Electoral District            | Canada-only                 |
-[provriding](#riding-canadian-provincial-electoral-district)                                                                                                                                                                       | Riding: Canadian Provincial/Territorial Electoral District         | Canada-only                 |
+[provriding, provriding-next](#riding-canadian-provincial-electoral-district)                                                                                                                                                                       | Riding: Canadian Provincial/Territorial Electoral District         | Canada-only                 |
 [statcan](#canadian-statistical-boundaries-from-statistics-canada)                                                                                                                                                                 | Canadian statistical boundaries from Statistics Canada | Canada-only                 |
 [timezone](#timezone)                                                                                                                                                                                                              | Timezone                                               | <i class="fa fa-globe"></i> |
 
@@ -4509,7 +4509,7 @@ In some cases the French and English names will be the same.
 ```
 
 ## Riding: Canadian Provincial Electoral District
-**Field name: `provriding`**
+**Field name: `provriding` or `provriding-next`**
 
 <!--FIELD:ca:provriding-->
 
@@ -4533,6 +4533,28 @@ Look up the [provincial or territorial electoral district](https://en.wikipedia.
 The OCD-ID can be used to uniquely identify the district, using the [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) project.
 
 In some cases the French and English names will be the same.
+
+### Using `provriding-next`
+
+`provriding-next` is a preview of upcoming, redistricted provincial ridings.
+
+<!--FIELD:ca-alt:provriding-next-->
+
+> Example for "203 Laycoe Crescent, Saskatoon, SK, Canada"
+
+```json
+...
+"fields": {
+  "provincial_riding": {
+    "ocd_id": "ocd-division/country:ca/province:sk/ed:52-2022",
+    "name_french": "Saskatoon University-Sutherland",
+    "name_english": "Saskatoon University-Sutherland",
+    "is_upcoming_district": true,
+    "source": "Elections Saskatchewan"
+  }
+}
+...
+```
 
 ## Canadian statistical boundaries from Statistics Canada
 **Field name: `statcan`**
@@ -4998,6 +5020,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+
+*Released on September 27, 2024*
+
+* The `provriding-next` data append is now available. Upcoming provincial ridings for Saskatchewan can be previewed. The `provriding` will be returning these new ridings as of 10/28/2024.
 
 *Released on September 20, 2024*
 
