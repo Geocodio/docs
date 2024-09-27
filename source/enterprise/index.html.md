@@ -1353,6 +1353,8 @@ curl "https://api.enterprise.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
 ```
 
 ```php
+<?php
+
 $response = $geocoder->uploadList(
     file: 'sample_list_test.csv',
     direction: GeocodeDirection::Forward,
@@ -1389,6 +1391,8 @@ curl "https://api.enterprise.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
 ```
 
 ```php
+<?php
+
 // Upload a list from inline data
 $csvData = <<<'CSV'
 name,street,city,state,zip
@@ -1501,6 +1505,8 @@ curl "https://api.enterprise.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
 ```
 
 ```php
+<?php
+
 $response = $geocoder->listStatus(42);
 ```
 
@@ -1618,6 +1624,8 @@ curl "https://api.enterprise.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
 ```
 
 ```php
+<?php
+
 $response = $geocoder->lists();
 ```
 
@@ -1702,6 +1710,8 @@ curl -L "https://api.enterprise.geocod.io/v1.7/lists/LIST_ID/download?api_key=YO
 ```
 
 ```php
+<?php
+
 $response = $geocoder->downloadList(42, 'path/to/file.csv');
 ```
 
@@ -1792,6 +1802,8 @@ curl -X DELETE "https://api.enterprise.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR
 ```
 
 ```php
+<?php
+
 $response = $geocoder->deleteList(42);
 ```
 
