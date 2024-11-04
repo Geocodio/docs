@@ -4303,6 +4303,7 @@ The data returned includes the following data points. For each data point, the d
       "code": "S",
       "description": "Street"
     },
+    "residential": false,
     "carrier_route": {
       "id": "C007",
       "description": "City Delivery"
@@ -4399,6 +4400,11 @@ The type of ZIP+4 result. Possible values are:
 * **P**: PO Box
 * **R**: Rural Route/Contract
 * **S**: Street
+
+
+### Residential Delivery Indicator (RDI)
+
+`residential` will be set to `true` for residential addreses and `false` for commercial addresses.
 
 ### Carrier Route ID
 A 4-byte code that determines the type of postal route that that servers the address.
@@ -5032,6 +5038,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+
+*Released on November 4, 2024*
+
+* The [`zip4`](#usps-zip-4) field append now returns a residential delivery indicator (RDI) with the new `residential` property.
 
 *Released on September 27, 2024*
 
