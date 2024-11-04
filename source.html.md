@@ -4406,6 +4406,8 @@ The type of ZIP+4 result. Possible values are:
 
 `residential` will be set to `true` for residential addreses and `false` for commercial addresses.
 
+The value can also be `null` if there are no records that indicate the residential status of this property.
+
 ### Carrier Route ID
 A 4-byte code that determines the type of postal route that that servers the address.
 Possible values are:
