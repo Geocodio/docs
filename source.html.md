@@ -2210,6 +2210,10 @@ DEFAULT-->
 ```
 You can retrieve the Congressional district for an address or coordinate pair using any one of the valid parameter names in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
 
+<aside class="notice">
+The current congress session will switch from `cd118` to `cd119` as of January 3rd, 2025.
+</aside>
+
 The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd118`) is specified, we will also return detailed information about the current legislators.
 
 <aside class="success">
@@ -5040,6 +5044,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+
+*Released on December 16, 2024*
+
+* The [`cd119`](#congressional-districts) field append has been added, for the 119th congress. This will be the new default congressional district append, starting on January 3rd, 2025.
 
 *Released on November 4, 2024*
 
