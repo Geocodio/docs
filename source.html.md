@@ -1894,8 +1894,8 @@ DEFAULT-->
             "name": "Congressional District 8",
             "district_number": 8,
             "ocd_id": "ocd-division/country:us/state:va/cd:8",
-            "congress_number": "118th",
-            "congress_years": "2023-2025",
+            "congress_number": "119th",
+            "congress_years": "2025-2027",
             "proportion": 1,
             "current_legislators": [
               {
@@ -1909,8 +1909,8 @@ DEFAULT-->
                 },
                 "contact": {
                   "url": "https://beyer.house.gov",
-                  "address": "1119 Longworth House Office Building Washington DC 20515-4608",
-                  "phone": "202-225-4376",
+                  "address": null,
+                  "phone": null,
                   "contact_form": null
                 },
                 "social": {
@@ -1933,7 +1933,7 @@ DEFAULT-->
                   "icpsr_id": "21554",
                   "wikipedia_id": "Don Beyer"
                 },
-                "source": "Legislator data is originally collected and aggregated by https://github.com/unitedstates/"
+                "source": "Legislator data collected by https://github.com/unitedstates/"
               },
               {
                 "type": "senator",
@@ -1970,7 +1970,7 @@ DEFAULT-->
                   "icpsr_id": "40909",
                   "wikipedia_id": "Mark Warner"
                 },
-                "source": "Legislator data is originally collected and aggregated by https://github.com/unitedstates/"
+                "source": "Legislator data collected by https://github.com/unitedstates/"
               },
               {
                 "type": "senator",
@@ -1983,9 +1983,9 @@ DEFAULT-->
                 },
                 "contact": {
                   "url": "https://www.kaine.senate.gov",
-                  "address": "231 Russell Senate Office Building Washington DC 20510",
-                  "phone": "202-224-4024",
-                  "contact_form": "https://www.kaine.senate.gov/contact"
+                  "address": null,
+                  "phone": null,
+                  "contact_form": null
                 },
                 "social": {
                   "rss_url": "http://www.kaine.senate.gov/rss/feeds/?type=all",
@@ -2007,7 +2007,7 @@ DEFAULT-->
                   "icpsr_id": "41305",
                   "wikipedia_id": "Tim Kaine"
                 },
-                "source": "Legislator data is originally collected and aggregated by https://github.com/unitedstates/"
+                "source": "Legislator data collected by https://github.com/unitedstates/"
               }
             ]
           }
@@ -2015,18 +2015,18 @@ DEFAULT-->
         "state_legislative_districts": {
           "house": [
             {
-              "name": "State House District 47",
-              "district_number": "47",
-              "ocd_id": "ocd-division/country:us/state:va/sldl:47",
+              "name": "State House District 2",
+              "district_number": "2",
+              "ocd_id": "ocd-division/country:us/state:va/sldl:2",
               "is_upcoming_state_legislative_district": false,
               "proportion": 1
             }
           ],
           "senate": [
             {
-              "name": "State Senate District 31",
-              "district_number": "31",
-              "ocd_id": "ocd-division/country:us/state:va/sldu:31",
+              "name": "State Senate District 40",
+              "district_number": "40",
+              "ocd_id": "ocd-division/country:us/state:va/sldu:40",
               "is_upcoming_state_legislative_district": false,
               "proportion": 1
             }
@@ -2082,139 +2082,135 @@ DEFAULT-->
 ```json
 ...
 "fields": {
-    "congressional_districts": [
+  "congressional_districts": [
+    {
+      "name": "Congressional District 8",
+      "district_number": 8,
+      "ocd_id": "ocd-division/country:us/state:va/cd:8",
+      "congress_number": "119th",
+      "congress_years": "2025-2027",
+      "proportion": 1,
+      "current_legislators": [
         {
-            "name": "Congressional District 8",
-            "district_number": 8,
-            "ocd_id": "ocd-division/country:us/state:va/cd:8",
-            "congress_number": "118th",
-            "congress_years": "2023-2025",
-            "proportion": 1,
-            "current_legislators": [
-                {
-                    "type": "representative",
-                    "bio": {
-                        "last_name": "Beyer",
-                        "first_name": "Donald",
-                        "birthday": "1950-06-20",
-                        "gender": "M",
-                        "party": "Democrat"
-                    },
-                    "contact": {
-                        "url": "https://beyer.house.gov",
-                        "address": "1119 Longworth House Office Building Washington DC 20515-4608",
-                        "phone": "202-225-4376",
-                        "contact_form": null
-                    },
-                    "social": {
-                        "rss_url": null,
-                        "twitter": "RepDonBeyer",
-                        "facebook": "RepDonBeyer",
-                        "youtube": null,
-                        "youtube_id": "UCPJGVbOVcAVGiBwq8qr_T9w"
-                    },
-                    "references": {
-                        "bioguide_id": "B001292",
-                        "thomas_id": "02272",
-                        "opensecrets_id": "N00036018",
-                        "lis_id": null,
-                        "cspan_id": "21141",
-                        "govtrack_id": "412657",
-                        "votesmart_id": "1707",
-                        "ballotpedia_id": "Don Beyer",
-                        "washington_post_id": null,
-                        "icpsr_id": "21554",
-                        "wikipedia_id": "Don Beyer"
-                    },
-                    "source": "Legislator data is originally collected and aggregated by https://github.com/unitedstates/"
-                },
-                {
-                    "type": "senator",
-                    "bio": {
-                        "last_name": "Warner",
-                        "first_name": "Mark",
-                        "birthday": "1954-12-15",
-                        "gender": "M",
-                        "party": "Democrat"
-                    },
-                    "contact": {
-                        "url": "https://www.warner.senate.gov",
-                        "address": "703 Hart Senate Office Building Washington DC 20510",
-                        "phone": "202-224-2023",
-                        "contact_form": "https://www.warner.senate.gov/public/index.cfm?p=Contact"
-                    },
-                    "social": {
-                        "rss_url": "http://www.warner.senate.gov/public/?a=rss.feed",
-                        "twitter": "MarkWarner",
-                        "facebook": "MarkRWarner",
-                        "youtube": "SenatorMarkWarner",
-                        "youtube_id": "UCwyivNlEGf4sGd1oDLfY5jw"
-                    },
-                    "references": {
-                        "bioguide_id": "W000805",
-                        "thomas_id": "01897",
-                        "opensecrets_id": "N00002097",
-                        "lis_id": "S327",
-                        "cspan_id": "7630",
-                        "govtrack_id": "412321",
-                        "votesmart_id": "535",
-                        "ballotpedia_id": "Mark Warner",
-                        "washington_post_id": null,
-                        "icpsr_id": "40909",
-                        "wikipedia_id": "Mark Warner"
-                    },
-                    "source": "Legislator data is originally collected and aggregated by https://github.com/unitedstates/"
-                },
-                {
-                    "type": "senator",
-                    "bio": {
-                        "last_name": "Kaine",
-                        "first_name": "Timothy",
-                        "birthday": "1958-02-26",
-                        "gender": "M",
-                        "party": "Democrat"
-                    },
-                    "contact": {
-                        "url": "https://www.kaine.senate.gov",
-                        "address": "231 Russell Senate Office Building Washington DC 20510",
-                        "phone": "202-224-4024",
-                        "contact_form": "https://www.kaine.senate.gov/contact"
-                    },
-                    "social": {
-                        "rss_url": "http://www.kaine.senate.gov/rss/feeds/?type=all",
-                        "twitter": null,
-                        "facebook": "SenatorKaine",
-                        "youtube": "SenatorTimKaine",
-                        "youtube_id": "UC27LgTZlUnBQoNEQFZdn9LA"
-                    },
-                    "references": {
-                        "bioguide_id": "K000384",
-                        "thomas_id": "02176",
-                        "opensecrets_id": "N00033177",
-                        "lis_id": "S362",
-                        "cspan_id": "49219",
-                        "govtrack_id": "412582",
-                        "votesmart_id": "50772",
-                        "ballotpedia_id": "Tim Kaine",
-                        "washington_post_id": null,
-                        "icpsr_id": "41305",
-                        "wikipedia_id": "Tim Kaine"
-                    },
-                    "source": "Legislator data is originally collected and aggregated by https://github.com/unitedstates/"
-                }
-            ]
+          "type": "representative",
+          "bio": {
+            "last_name": "Beyer",
+            "first_name": "Donald",
+            "birthday": "1950-06-20",
+            "gender": "M",
+            "party": "Democrat"
+          },
+          "contact": {
+            "url": "https://beyer.house.gov",
+            "address": null,
+            "phone": null,
+            "contact_form": null
+          },
+          "social": {
+            "rss_url": null,
+            "twitter": "RepDonBeyer",
+            "facebook": "RepDonBeyer",
+            "youtube": null,
+            "youtube_id": "UCPJGVbOVcAVGiBwq8qr_T9w"
+          },
+          "references": {
+            "bioguide_id": "B001292",
+            "thomas_id": "02272",
+            "opensecrets_id": "N00036018",
+            "lis_id": null,
+            "cspan_id": "21141",
+            "govtrack_id": "412657",
+            "votesmart_id": "1707",
+            "ballotpedia_id": "Don Beyer",
+            "washington_post_id": null,
+            "icpsr_id": "21554",
+            "wikipedia_id": "Don Beyer"
+          },
+          "source": "Legislator data collected by https://github.com/unitedstates/"
+        },
+        {
+          "type": "senator",
+          "bio": {
+            "last_name": "Warner",
+            "first_name": "Mark",
+            "birthday": "1954-12-15",
+            "gender": "M",
+            "party": "Democrat"
+          },
+          "contact": {
+            "url": "https://www.warner.senate.gov",
+            "address": "703 Hart Senate Office Building Washington DC 20510",
+            "phone": "202-224-2023",
+            "contact_form": "https://www.warner.senate.gov/public/index.cfm?p=Contact"
+          },
+          "social": {
+            "rss_url": "http://www.warner.senate.gov/public/?a=rss.feed",
+            "twitter": "MarkWarner",
+            "facebook": "MarkRWarner",
+            "youtube": "SenatorMarkWarner",
+            "youtube_id": "UCwyivNlEGf4sGd1oDLfY5jw"
+          },
+          "references": {
+            "bioguide_id": "W000805",
+            "thomas_id": "01897",
+            "opensecrets_id": "N00002097",
+            "lis_id": "S327",
+            "cspan_id": "7630",
+            "govtrack_id": "412321",
+            "votesmart_id": "535",
+            "ballotpedia_id": "Mark Warner",
+            "washington_post_id": null,
+            "icpsr_id": "40909",
+            "wikipedia_id": "Mark Warner"
+          },
+          "source": "Legislator data collected by https://github.com/unitedstates/"
+        },
+        {
+          "type": "senator",
+          "bio": {
+            "last_name": "Kaine",
+            "first_name": "Timothy",
+            "birthday": "1958-02-26",
+            "gender": "M",
+            "party": "Democrat"
+          },
+          "contact": {
+            "url": "https://www.kaine.senate.gov",
+            "address": null,
+            "phone": null,
+            "contact_form": null
+          },
+          "social": {
+            "rss_url": "http://www.kaine.senate.gov/rss/feeds/?type=all",
+            "twitter": null,
+            "facebook": "SenatorKaine",
+            "youtube": "SenatorTimKaine",
+            "youtube_id": "UC27LgTZlUnBQoNEQFZdn9LA"
+          },
+          "references": {
+            "bioguide_id": "K000384",
+            "thomas_id": "02176",
+            "opensecrets_id": "N00033177",
+            "lis_id": "S362",
+            "cspan_id": "49219",
+            "govtrack_id": "412582",
+            "votesmart_id": "50772",
+            "ballotpedia_id": "Tim Kaine",
+            "washington_post_id": null,
+            "icpsr_id": "41305",
+            "wikipedia_id": "Tim Kaine"
+          },
+          "source": "Legislator data collected by https://github.com/unitedstates/"
         }
-    ],
+      ]
+    }
+  ]
 },
 ...
 ```
 You can retrieve the Congressional district for an address or coordinate pair using any one of the valid parameter names in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
 
-<aside class="notice">
-The current congress session will switch from `cd118` to `cd119` as of January 3rd, 2025.
-</aside>
-
-The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd118`) is specified, we will also return detailed information about the current legislators.
+The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd119`) is specified, we will also return detailed information about the current legislators.
 
 <aside class="success">
 The list of legislators is always ordered with Representative first then Senators.
@@ -2228,7 +2224,7 @@ Districts with non-voting delegates will return a special "district_number" of 9
 
 ### OCD Identifiers
 
-[Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) (OCD-IDs) are returned for each district when using `cd118`.
+[Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) (OCD-IDs) are returned for each district when using `cd119`.
 
 When requesting boundaries for other congressional periods, the `ocd_id` property is still present, but set to `null`.
 
@@ -2527,7 +2523,7 @@ You can request vintage data for every year back to the 2010 Census. This is don
 Data for the 2000 census is available as well, using the `census2000` field append. Only County, Place, Tract and Block FIPS codes are returned for this Census year.
 
 <aside class="warning">
-If no year is specified, the API will default to the most recent census. I.e. currently, 2023 data is returned when appending the census field.
+If no year is specified, the API will default to the most recent census. I.e. currently, 2024 data is returned when appending the census field.
 </aside>
 
 Field        | Description
