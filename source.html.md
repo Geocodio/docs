@@ -2287,11 +2287,6 @@ Where available, the state legislative district returned will be based on newly 
 
 The following states are affected. Redistricted boundaries will be returned with the `stateleg` data append, after the noted cut-off date. Until then, `stateleg-next` is needed to retrieve districts based on redistricted boundaries.
 
-* **Washington:** 8/6 2024
-* **Ohio:** 1/1 2025
-* **New York Assembly districts:** 1/1 2025
-* **Montana:** 1/6 2025
-* **South Carolina (senate only):** 1/7 2025
 * **Minnesota:** 1/14 2025
 * **Kansas (senate only):** 1/15 2025
 * **New Mexico (senate only):** 1/21 2025
