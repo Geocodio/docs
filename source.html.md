@@ -66,7 +66,7 @@ GitHub pull requests and issues are also more than welcome!
 
 Thanks to the wonderful open-source community, we have language bindings for several additional languages and platforms.
 
-We will do our best to assist in online chat or email, but may not be able to help in all cases with these libraries.
+We will do our best to assist via email, but may not be able to help in all cases with these libraries.
 
 Some of the libraries are featured here with basic examples, but please make sure to check out the full documentation for the individual libraries (linked below).
 
@@ -2055,7 +2055,7 @@ Parameter name                                                                  
 [cd, cd113, cd114, cd115, cd116, cd117, cd118, cd119](#congressional-districts)                                                                                                                                                           | Congressional District & Legislator information        | US-only                     |
 [stateleg, stateleg-next](#state-legislative-districts)                                                                                                                                                                            | State Legislative District (House & Senate)            | US-only                     |
 [school](#school-districts)                                                                                                                                                                                                        | School District (elementary/secondary or unified)      | US-only                     |
-[census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021, census2022, census2023](#census-block-tract-fips-codes-amp-msa-csa-codes)             | Census Block/Tract, FIPS codes & MSA/CSA codes         | US-only                     |
+[census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021, census2022, census2023, census2024](#census-block-tract-fips-codes-amp-msa-csa-codes)             | Census Block/Tract, FIPS codes & MSA/CSA codes         | US-only                     |
 [acs-demographics](#demographics-census)                                                                                                                                                                                           | Demographics (Census)                                  | US-only                     |
 [acs-economics](#economics-income-data-census)                                                                                                                                                                                     | Economics: Income Data (Census)                        | US-only                     |
 [acs-families](#families-census)                                                                                                                                                                                                   | Families (Census)                                      | US-only                     |
@@ -2439,7 +2439,7 @@ The field will return either a *unified* school district or separate *elementary
 
 
 ## Census Block/Tract, FIPS codes & MSA/CSA codes
-**Field name: `census`, `census2000`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`, `census2020`, `census2021`, `census2022`, `census2023`**
+**Field name: `census`, `census2000`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`, `census2020`, `census2021`, `census2022`, `census2023`, `census2024`**
 
 <!--FIELD:us:census2010,census-->
 
@@ -2482,8 +2482,8 @@ The field will return either a *unified* school district or separate *elementary
       },
       "source": "US Census Bureau"
     },
-    "2023": {
-      "census_year": 2023,
+    "2024": {
+      "census_year": 2024,
       "state_fips": "51",
       "county_fips": "51013",
       "tract_code": "101801",
@@ -5045,17 +5045,22 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 ## v1.7
 
+*Released on January 9, 2024*
+
+* The [`census2024`](#census-block-tract-fips-codes-amp-msa-csa-codes) field append is now available (the `census` data append will now default to `census2024`)
+* The senate districts for California has been updated with new post-election boundaries
+
 *Released on December 16, 2024*
 
-* The [`cd119`](#congressional-districts) field append has been added, for the 119th congress. This will be the new default congressional district append, starting on January 3rd, 2025.
+* The [`cd119`](#congressional-districts) field append has been added, for the 119th congress. This will be the new default congressional district append, starting on January 3rd, 2025
 
 *Released on November 4, 2024*
 
-* The [`zip4`](#usps-zip-4) field append now returns a residential delivery indicator (RDI) with the new `residential` property.
+* The [`zip4`](#usps-zip-4) field append now returns a residential delivery indicator (RDI) with the new `residential` property
 
 *Released on September 27, 2024*
 
-* The `provriding-next` data append is now available. Upcoming provincial ridings for Saskatchewan can be previewed. The `provriding` will be returning these new ridings as of 10/28/2024.
+* The `provriding-next` data append is now available. Upcoming provincial ridings for Saskatchewan can be previewed. The `provriding` will be returning these new ridings as of 10/28/2024
 
 *Released on September 20, 2024*
 
