@@ -458,19 +458,19 @@ Parameter | Description
 
 **Alternative URL Parameters**
 
-Instead of using the *q* parameter, you can use a combination of `street`, `city`, `state` `postal_code`, and/or `country`. This can be useful if the address is already stored as separate fields on your end.
+Instead of using the *q* parameter, you can use a combination of `street`, `street2`, `city`, `county`, `state`, `postal_code`, and/or `country`.
+
+This is recommended if the address is already stored as separate fields on your end.
 
 Parameter     | Description
 ------------- | -----------
 `street`      | E.g. 1600 Pennsylvania Ave NW
+`street2`     | E.g. Apt 204
 `city`        | E.g. Washington
+`county`      | E.g. Arlington
 `state`       | E.g. DC
 `postal_code` | E.g. 20500
 `country`     | E.g. Canada (Default to USA)
-
-<aside>
-<strong>Note:</strong> Even if the fields are supplied separately, Geocodio might in rare circumstances try to parse the street, for example, as part of the city if more relevant results can be found.
-</aside>
 
 ### The `format` parameter
 
@@ -942,12 +942,16 @@ Here's a couple of examples of what the `POST` body can look like:
 
 ### Accepted Address Components
 
-When suppplying an address as individual components (instead of a single string) you can use a combination of `street`, `city`, `state` `postal_code`, and/or `country`. This can be useful if the address is already stored as separate fields on your end.
+When suppplying an address as individual components (instead of a single string) you can use a combination of `street`, `street2`, `city`, `county`, `state` `postal_code`, and/or `country`.
+
+This is recommended if the address is already stored as separate fields on your end.
 
 Parameter     | Description
 ------------- | -----------
 `street`      | E.g. 1600 Pennsylvania Ave NW
+`street2`     | E.g. Apt 204
 `city`        | E.g. Washington
+`county`      | E.g. Arlington
 `state`       | E.g. DC
 `postal_code` | E.g. 20500
 `country`     | E.g. Canada (Default to USA)
@@ -6115,6 +6119,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+
+*Released on January 17, 2024*
+
+* Added support for `street2` and `county` as input address components. Available for both [single geocoding](#single-address) and [batch geocoding](#batch-geocoding)
 
 *Released on January 9, 2024*
 
