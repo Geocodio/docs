@@ -1904,6 +1904,7 @@ DEFAULT-->
             "current_legislators": [
               {
                 "type": "representative",
+                "seniority": null,
                 "bio": {
                   "last_name": "Beyer",
                   "first_name": "Donald",
@@ -1913,8 +1914,8 @@ DEFAULT-->
                 },
                 "contact": {
                   "url": "https://beyer.house.gov",
-                  "address": null,
-                  "phone": null,
+                  "address": "1226 Longworth House Office Building Washington DC 20515-4608",
+                  "phone": "202-225-4376",
                   "contact_form": null
                 },
                 "social": {
@@ -1941,6 +1942,7 @@ DEFAULT-->
               },
               {
                 "type": "senator",
+                "seniority": "senior",
                 "bio": {
                   "last_name": "Warner",
                   "first_name": "Mark",
@@ -1978,6 +1980,7 @@ DEFAULT-->
               },
               {
                 "type": "senator",
+                "seniority": "junior",
                 "bio": {
                   "last_name": "Kaine",
                   "first_name": "Timothy",
@@ -1987,9 +1990,9 @@ DEFAULT-->
                 },
                 "contact": {
                   "url": "https://www.kaine.senate.gov",
-                  "address": null,
-                  "phone": null,
-                  "contact_form": null
+                  "address": "231 Russell Senate Office Building Washington DC 20510",
+                  "phone": "202-224-4024",
+                  "contact_form": "https://www.kaine.senate.gov/contact"
                 },
                 "social": {
                   "rss_url": "http://www.kaine.senate.gov/rss/feeds/?type=all",
@@ -2097,6 +2100,7 @@ DEFAULT-->
       "current_legislators": [
         {
           "type": "representative",
+          "seniority": null,
           "bio": {
             "last_name": "Beyer",
             "first_name": "Donald",
@@ -2106,8 +2110,8 @@ DEFAULT-->
           },
           "contact": {
             "url": "https://beyer.house.gov",
-            "address": null,
-            "phone": null,
+            "address": "1226 Longworth House Office Building Washington DC 20515-4608",
+            "phone": "202-225-4376",
             "contact_form": null
           },
           "social": {
@@ -2134,6 +2138,7 @@ DEFAULT-->
         },
         {
           "type": "senator",
+          "seniority": "senior",
           "bio": {
             "last_name": "Warner",
             "first_name": "Mark",
@@ -2171,6 +2176,7 @@ DEFAULT-->
         },
         {
           "type": "senator",
+          "seniority": "junior",
           "bio": {
             "last_name": "Kaine",
             "first_name": "Timothy",
@@ -2180,9 +2186,9 @@ DEFAULT-->
           },
           "contact": {
             "url": "https://www.kaine.senate.gov",
-            "address": null,
-            "phone": null,
-            "contact_form": null
+            "address": "231 Russell Senate Office Building Washington DC 20510",
+            "phone": "202-224-4024",
+            "contact_form": "https://www.kaine.senate.gov/contact"
           },
           "social": {
             "rss_url": "http://www.kaine.senate.gov/rss/feeds/?type=all",
@@ -5039,6 +5045,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+
+*Released on February 27, 2024*
+
+* The `current_legislators` data for the `cd` field append now return sorted legislators. The representative is always returned first, senators are then returned sorted by seniority. In addition, a new `seniority` key can be used to determine if a senator is `senior` or `junior`. The value is `null` for representatives.
 
 *Released on January 17, 2024*
 
