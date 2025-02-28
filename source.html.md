@@ -5046,15 +5046,15 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 ## v1.7
 
-*Released on February 27, 2024*
+*Released on February 27, 2025*
 
 * The `current_legislators` data for the `cd` field append now return sorted legislators. The representative is always returned first, senators are then returned sorted by seniority. In addition, a new `seniority` key can be used to determine if a senator is `senior` or `junior`. The value is `null` for representatives.
 
-*Released on January 17, 2024*
+*Released on January 17, 2025*
 
 * Added support for `street2` and `county` as input address components. Available for both [single geocoding](#single-address) and [batch geocoding](#batch-geocoding)
 
-*Released on January 9, 2024*
+*Released on January 9, 2025*
 
 * The [`census2024`](#census-block-tract-fips-codes-amp-msa-csa-codes) field append is now available (the `census` data append will now default to `census2024`)
 * The senate districts for California has been updated with new post-election boundaries
