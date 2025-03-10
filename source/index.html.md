@@ -277,7 +277,6 @@ You can also download a CSV of usage and fees per API key.
 Make sure to replace YOUR_API_KEY with your personal API key found on the <a href="https://dash.geocod.io" target="_blank">Geocodio dashboard</a>.
 </aside>
 
-
 # Permissions
 
 > A `403 Forbidden` HTTP status code is returned if the API key is valid, but does not have permission to access the requested endpoint
@@ -295,8 +294,6 @@ For security reasons, additional permissions has to be assigned to the API key w
 [![List of API key permissions with default values selected](./images/permissions-4de4e690.png)](https://dash.geocod.io/apikey)
 
 *List of API key permissions with default values selected*
-
-
 
 
 # Overview
@@ -1323,7 +1320,6 @@ Parameter | Description
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
 
 
-
 # Geocoding lists
 
 The lists API lets you upload and process spreadsheet with addresses or coordinates. Similar to the [spreadsheet feature](https://www.geocod.io/upload/) in the dashboard, the spreadsheet will be processed as a job on Geocodio's infrastructure and can be downloaded at a later time. While a spreadsheet is being processed it is possible to query the status and progress.
@@ -1332,9 +1328,19 @@ The lists API lets you upload and process spreadsheet with addresses or coordina
 Data for spreadsheets processed through the lists API are automatically deleted 72 hours after they have finished processing. In addition to a 1GB file size limit, we recommend a maximum of 10M lookups per list batch. Larger batches should be split up into multiple list jobs.
 </aside>
 
+<!--ENTERPRISE
+<aside class="warning">
+When using the List API with Geocodio Enterprise you must send the API key as a Bearer token in the Authorization header.
+
+<br /><br />
+Authorization: Bearer YOUR_API_KEY
+</aside>
+ENTERPRISE-->
+
 ## Create a new list
 
 > Create a new list from a file called "[sample_list.csv](https://www.geocod.io/sample_list.csv)"
+
 
 ```shell
 curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
@@ -1343,6 +1349,17 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
   -F "format"="{{A}} {{B}} {{C}} {{D}}" \
   -F "callback"="https://example.com/my-callback"
 ```
+
+<!--ENTERPRISE
+```shell
+curl "https://api.geocod.io/v1.7/lists \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file"="@sample_list.csv" \
+  -F "direction"="forward" \
+  -F "format"="{{A}} {{B}} {{C}} {{D}}" \
+  -F "callback"="https://example.com/my-callback"
+```
+ENTERPRISE-->
 
 ```ruby
   require 'geocodio/gem'
@@ -1385,6 +1402,7 @@ $response = $geocoder->uploadList(
 
 > Create a new list from inline data
 
+
 ```shell
 curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
   -F "file"=$'Zip\n20003\n20001' \
@@ -1393,6 +1411,18 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
   -F "format"="{{A}}" \
   -F "callback"="https://example.com/my-callback"
 ```
+
+<!--ENTERPRISE
+```shell
+curl "https://api.geocod.io/v1.7/lists" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file"=$'Zip\n20003\n20001' \
+  -F "filename"="file.csv" \
+  -F "direction"="forward" \
+  -F "format"="{{A}}" \
+  -F "callback"="https://example.com/my-callback"
+```
+ENTERPRISE-->
 
 ```php
 <?php
@@ -1440,10 +1470,17 @@ Creates a new spreadsheet list job and starts processing the list in the backgro
 
 ### URL Parameters
 
+
 Parameter | Description
 --------- | -----------
 `api_key` | Your Geocodio API key
 `fields`  | Optional parameter to request [additional field appends](#fields)
+
+<!--ENTERPRISE
+Parameter | Description
+--------- | -----------
+`fields`  | Optional parameter to request [additional field appends](#fields)
+ENTERPRISE-->
 
 ### Data Parameters
 
@@ -1493,9 +1530,17 @@ A total of 3 attempts are made to delivery the webhook.
 
 > Show status for list id 42
 
+
 ```shell
 curl "https://api.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
 ```
+
+<!--ENTERPRISE
+```shell
+curl "https://api.geocod.io/v1.7/lists/42" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+ENTERPRISE-->
 
 ```ruby
   require 'geocodio/gem'
@@ -1603,18 +1648,33 @@ View the metadata and status for a single uploaded list.
 
 ### URL Parameters
 
+
 Parameter | Description
 --------- | -----------
 `api_key` | Your Geocodio API key
 `page`    | The page number to show
 
+<!--ENTERPRISE
+Parameter | Description
+--------- | -----------
+`page`    | The page number to show
+ENTERPRISE-->
+
 ## Show all lists
 
 > Show all lists
 
+
 ```shell
 curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
 ```
+
+<!--ENTERPRISE
+```shell
+curl "https://api.geocod.io/v1.7/lists" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+ENTERPRISE-->
 
 ```ruby
   require 'geocodio/gem'
@@ -1692,15 +1752,25 @@ Show all lists that have been created. The endpoint is paginated, showing 15 lis
 
 ### URL Parameters
 
+
 Parameter | Description
 --------- | -----------
 `api_key` | Your Geocodio API key
 
+
 ## Download a list
+
 
 ```shell
 curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_API_KEY"
 ```
+
+<!--ENTERPRISE
+```shell
+curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+ENTERPRISE-->
 
 ```ruby
   require 'geocodio/gem'
@@ -1784,15 +1854,25 @@ See our [spreadsheet output guide](/guides/data-matching-overview/) for a refere
 
 ### URL Parameters
 
+
 Parameter | Description
 --------- | -----------
 `api_key` | Your Geocodio API key
 
+
 ## Delete a list
+
 
 ```shell
 curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_KEY"
 ```
+
+<!--ENTERPRISE
+```shell
+curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+ENTERPRISE-->
 
 ```ruby
   require 'geocodio/gem'
@@ -1843,6 +1923,7 @@ The spreadsheet data will always be deleted automatically after 72 hours if it i
 `DELETE https://api.geocod.io/v1.7/lists/LIST_ID`
 
 ### URL Parameters
+
 
 Parameter | Description
 --------- | -----------
@@ -2135,10 +2216,7 @@ Parameter name                                                                  
 [timezone](#timezone)                                                                                                                                                                                                              | Timezone                                               | <i class="fa fa-globe"></i> |
 
 <aside class="success">
-This feature is available for both single and batch geocoding requests
-
-as well as the lists API
-
+This feature is available for both single and batch geocoding requests as well as the lists API
 </aside>
 
 ## Congressional Districts
