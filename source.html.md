@@ -295,7 +295,6 @@ For security reasons, additional permissions has to be assigned to the API key w
 
 *List of API key permissions with default values selected*
 
-<!--DEFAULT
 # Overview
 
 The Geocodio API supports three different methods for processing your data. The method you choose will largely depend on your workflow and the amount of addresses or coordinates that you are looking to process.
@@ -309,7 +308,6 @@ Name                                  | Batch size         | Type         | Form
 [List geocoding](#geocoding-lists)    | Up to 10,000,000+  | Asynchronous | CSV/TSV/Excel    | <i class="fa fa-check"></i> | <i class="fa fa-check"></i>
 
 If in doubt, [single geocoding](#geocoding) is the simplest choice for many use cases.
-DEFAULT-->
 
 # Geocoding
 
