@@ -6204,6 +6204,11 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 ## v1.7
 
+*Released on March 10, 2025*
+
+* Added the ability to use the `Authorization` header for [API authentication](#authentication)
+* [List geocoding](#geocoding-lists) is now available for Geocodio Enterprise
+
 *Released on February 27, 2025*
 
 * The `current_legislators` data for the `cd` field append now return sorted legislators. The representative is always returned first, senators are then returned sorted by seniority. In addition, a new `seniority` key can be used to determine if a senator is `senior` or `junior`. The value is `null` for representatives.
