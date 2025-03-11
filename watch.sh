@@ -9,5 +9,5 @@ if ! command -v fswatch &> /dev/null; then
     exit 1
 fi
 
-echo "Watching for changins in source.html.md"
+echo "Watching for changes in source.html.md"
 fswatch -0 source.html.md | xargs -0 -n1 ./compile.sh
