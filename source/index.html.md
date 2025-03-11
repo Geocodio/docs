@@ -72,7 +72,7 @@ Some of the libraries are featured here with basic examples, but please make sur
 
 <!--ENTERPRISE
   <aside class="warning">
-    Please consult the individual library documentation to ensure that you are using the <strong>api.enterprise.geocod.io</strong> hostname instead of the regular <strong>api.geocod.io</strong> hostname.
+    Please consult the individual library documentation to ensure that you are using the <strong>api.enterprise.geocod.io</strong> hostname instead of the regular hostname.
   </aside>
 ENTERPRISE-->
 
@@ -204,8 +204,12 @@ compile "rodeo:rodeo:2.0.1"
 > To set the `API_KEY`:
 
 ```shell
-# With curl, you can just pass the query parameter with each request
+# With curl, you can pass the query parameter with each request
 curl "https://api.geocod.io/v1.7/api_endpoint_here?api_key=YOUR_API_KEY"
+
+# or use the Authorization header
+curl "https://api.geocod.io/v1.7/api_endpoint_here" \
+  -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
 ```ruby
@@ -267,16 +271,35 @@ ENTERPRISE-->
 
 All requests require an API key. You can [register here](https://dash.geocod.io) to get your own API key.
 
-The API key must be included in all requests using the `?api_key=YOUR_API_KEY` query parameter.
+The API key must be included in all requests using the `api_key` query parameter. It is also possible to supply the API key via the `Authorization` header.
 
 Accounts can have multiple API keys. This can be useful if you're working on several projects and want to be able to revoke access using the API key for a single project in the future or if you want to keep track of usage per API key.
 
-You can also download a CSV of usage and fees per API key.
+You can also download a CSV of usage and fees per API key [in the dashboard](https://dash.geocod.io/usage).
 
 <aside class="warning">
 Make sure to replace YOUR_API_KEY with your personal API key found on the <a href="https://dash.geocod.io" target="_blank">Geocodio dashboard</a>.
 </aside>
 
+## Using query parameter
+
+The simplest way to authenticatio is using the `api_key` query parameter. The API key must be included in all requests using the `&api_key=YOUR_API_KEY` query parameter.
+
+## Using Authorization header
+
+Alternatively, the API key can be supplied via an HTTP request header, like so:
+
+<aside>
+  <code>
+  Authorization: Bearer YOUR_API_KEY
+  </code>
+</aside>
+
+<!--ENTERPRISE
+<aside class="warning">
+When using the List API with Geocodio Enterprise this type of authentication is mandatory.
+</aside>
+ENTERPRISE-->
 
 # Permissions
 
@@ -296,9 +319,6 @@ For security reasons, additional permissions has to be assigned to the API key w
 
 *List of API key permissions with default values selected*
 
-
-
-
 # Overview
 
 The Geocodio API supports three different methods for processing your data. The method you choose will largely depend on your workflow and the amount of addresses or coordinates that you are looking to process.
@@ -312,7 +332,6 @@ Name                                  | Batch size         | Type         | Form
 [List geocoding](#geocoding-lists)    | Up to 10,000,000+  | Asynchronous | CSV/TSV/Excel    | <i class="fa fa-check"></i> | <i class="fa fa-check"></i>
 
 If in doubt, [single geocoding](#geocoding) is the simplest choice for many use cases.
-
 
 # Geocoding
 
@@ -1323,7 +1342,6 @@ Parameter | Description
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
 
 
-
 # Geocoding lists
 
 The lists API lets you upload and process spreadsheet with addresses or coordinates. Similar to the [spreadsheet feature](https://www.geocod.io/upload/) in the dashboard, the spreadsheet will be processed as a job on Geocodio's infrastructure and can be downloaded at a later time. While a spreadsheet is being processed it is possible to query the status and progress.
@@ -1332,9 +1350,21 @@ The lists API lets you upload and process spreadsheet with addresses or coordina
 Data for spreadsheets processed through the lists API are automatically deleted 72 hours after they have finished processing. In addition to a 1GB file size limit, we recommend a maximum of 10M lookups per list batch. Larger batches should be split up into multiple list jobs.
 </aside>
 
+<!--ENTERPRISE
+<aside class="warning">
+When using the List API with Geocodio Enterprise you must send the API key as a Bearer token in the Authorization header.
+
+<br /><br />
+<code>
+Authorization: Bearer YOUR_API_KEY
+</code>
+</aside>
+ENTERPRISE-->
+
 ## Create a new list
 
 > Create a new list from a file called "[sample_list.csv](https://www.geocod.io/sample_list.csv)"
+
 
 ```shell
 curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
@@ -1343,6 +1373,17 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
   -F "format"="{{A}} {{B}} {{C}} {{D}}" \
   -F "callback"="https://example.com/my-callback"
 ```
+
+<!--ENTERPRISE
+```shell
+curl "https://api.geocod.io/v1.7/lists \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file"="@sample_list.csv" \
+  -F "direction"="forward" \
+  -F "format"="{{A}} {{B}} {{C}} {{D}}" \
+  -F "callback"="https://example.com/my-callback"
+```
+ENTERPRISE-->
 
 ```ruby
   require 'geocodio/gem'
@@ -1385,6 +1426,7 @@ $response = $geocoder->uploadList(
 
 > Create a new list from inline data
 
+
 ```shell
 curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
   -F "file"=$'Zip\n20003\n20001' \
@@ -1393,6 +1435,18 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
   -F "format"="{{A}}" \
   -F "callback"="https://example.com/my-callback"
 ```
+
+<!--ENTERPRISE
+```shell
+curl "https://api.geocod.io/v1.7/lists" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file"=$'Zip\n20003\n20001' \
+  -F "filename"="file.csv" \
+  -F "direction"="forward" \
+  -F "format"="{{A}}" \
+  -F "callback"="https://example.com/my-callback"
+```
+ENTERPRISE-->
 
 ```php
 <?php
@@ -1440,10 +1494,17 @@ Creates a new spreadsheet list job and starts processing the list in the backgro
 
 ### URL Parameters
 
+
 Parameter | Description
 --------- | -----------
 `api_key` | Your Geocodio API key
 `fields`  | Optional parameter to request [additional field appends](#fields)
+
+<!--ENTERPRISE
+Parameter | Description
+--------- | -----------
+`fields`  | Optional parameter to request [additional field appends](#fields)
+ENTERPRISE-->
 
 ### Data Parameters
 
@@ -1493,9 +1554,17 @@ A total of 3 attempts are made to delivery the webhook.
 
 > Show status for list id 42
 
+
 ```shell
 curl "https://api.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
 ```
+
+<!--ENTERPRISE
+```shell
+curl "https://api.geocod.io/v1.7/lists/42" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+ENTERPRISE-->
 
 ```ruby
   require 'geocodio/gem'
@@ -1603,18 +1672,33 @@ View the metadata and status for a single uploaded list.
 
 ### URL Parameters
 
+
 Parameter | Description
 --------- | -----------
 `api_key` | Your Geocodio API key
 `page`    | The page number to show
 
+<!--ENTERPRISE
+Parameter | Description
+--------- | -----------
+`page`    | The page number to show
+ENTERPRISE-->
+
 ## Show all lists
 
 > Show all lists
 
+
 ```shell
 curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
 ```
+
+<!--ENTERPRISE
+```shell
+curl "https://api.geocod.io/v1.7/lists" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+ENTERPRISE-->
 
 ```ruby
   require 'geocodio/gem'
@@ -1692,15 +1776,25 @@ Show all lists that have been created. The endpoint is paginated, showing 15 lis
 
 ### URL Parameters
 
+
 Parameter | Description
 --------- | -----------
 `api_key` | Your Geocodio API key
 
+
 ## Download a list
+
 
 ```shell
 curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_API_KEY"
 ```
+
+<!--ENTERPRISE
+```shell
+curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+ENTERPRISE-->
 
 ```ruby
   require 'geocodio/gem'
@@ -1784,15 +1878,25 @@ See our [spreadsheet output guide](/guides/data-matching-overview/) for a refere
 
 ### URL Parameters
 
+
 Parameter | Description
 --------- | -----------
 `api_key` | Your Geocodio API key
 
+
 ## Delete a list
+
 
 ```shell
 curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_KEY"
 ```
+
+<!--ENTERPRISE
+```shell
+curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+ENTERPRISE-->
 
 ```ruby
   require 'geocodio/gem'
@@ -1843,6 +1947,7 @@ The spreadsheet data will always be deleted automatically after 72 hours if it i
 `DELETE https://api.geocod.io/v1.7/lists/LIST_ID`
 
 ### URL Parameters
+
 
 Parameter | Description
 --------- | -----------
@@ -2135,10 +2240,7 @@ Parameter name                                                                  
 [timezone](#timezone)                                                                                                                                                                                                              | Timezone                                               | <i class="fa fa-globe"></i> |
 
 <aside class="success">
-This feature is available for both single and batch geocoding requests
-
-as well as the lists API
-
+This feature is available for both single and batch geocoding requests as well as the lists API
 </aside>
 
 ## Congressional Districts
@@ -6125,6 +6227,11 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+
+*Released on March 10, 2025*
+
+* Added the ability to use the `Authorization` header for [API authentication](#authentication)
+* [List geocoding](#geocoding-lists) is now available for Geocodio Enterprise
 
 *Released on February 27, 2025*
 
