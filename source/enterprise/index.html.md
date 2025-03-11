@@ -72,7 +72,7 @@ Some of the libraries are featured here with basic examples, but please make sur
 
 
   <aside class="warning">
-    Please consult the individual library documentation to ensure that you are using the <strong>api.enterprise.geocod.io</strong> hostname instead of the regular <strong>api.enterprise.geocod.io</strong> hostname.
+    Please consult the individual library documentation to ensure that you are using the <strong>api.enterprise.geocod.io</strong> hostname instead of the regular hostname.
   </aside>
 
 
