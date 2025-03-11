@@ -1331,7 +1331,9 @@ Data for spreadsheets processed through the lists API are automatically deleted 
 When using the List API with Geocodio Enterprise you must send the API key as a Bearer token in the Authorization header.
 
 <br /><br />
+<code>
 Authorization: Bearer YOUR_API_KEY
+</code>
 </aside>
 
 
