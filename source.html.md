@@ -204,8 +204,12 @@ compile "rodeo:rodeo:2.0.1"
 > To set the `API_KEY`:
 
 ```shell
-# With curl, you can just pass the query parameter with each request
+# With curl, you can pass the query parameter with each request
 curl "https://api.geocod.io/v1.7/api_endpoint_here?api_key=YOUR_API_KEY"
+
+# or use the Authorization header
+curl "https://api.geocod.io/v1.7/api_endpoint_here" \
+  -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
 ```ruby
@@ -267,15 +271,35 @@ ENTERPRISE-->
 
 All requests require an API key. You can [register here](https://dash.geocod.io) to get your own API key.
 
-The API key must be included in all requests using the `?api_key=YOUR_API_KEY` query parameter.
+The API key must be included in all requests using the `api_key` query parameter. It is also possible to supply the API key via the `Authorization` header.
 
 Accounts can have multiple API keys. This can be useful if you're working on several projects and want to be able to revoke access using the API key for a single project in the future or if you want to keep track of usage per API key.
 
-You can also download a CSV of usage and fees per API key.
+You can also download a CSV of usage and fees per API key [in the dashboard](https://dash.geocod.io/usage).
 
 <aside class="warning">
 Make sure to replace YOUR_API_KEY with your personal API key found on the <a href="https://dash.geocod.io" target="_blank">Geocodio dashboard</a>.
 </aside>
+
+## Using query parameter
+
+The simplest way to authenticatio is using the `api_key` query parameter. The API key must be included in all requests using the `&api_key=YOUR_API_KEY` query parameter.
+
+## Using Authorization header
+
+Alternatively, the API key can be supplied via an HTTP request header, like so:
+
+<aside>
+  <code>
+  Authorization: Bearer YOUR_API_KEY
+  </code>
+</aside>
+
+<!--ENTERPRISE
+<aside class="warning">
+When using the List API with Geocodio Enterprise this type of authentication is mandatory.
+</aside>
+ENTERPRISE-->
 
 # Permissions
 
