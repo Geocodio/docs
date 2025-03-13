@@ -2573,13 +2573,13 @@ The field will return both the *house* and *senate* state legislative district (
 
 Where available, the state legislative district returned will be based on newly redistricted boundaries.
 
+<!--
 The following states are affected. Redistricted boundaries will be returned with the `stateleg` data append, after the noted cut-off date. Until then, `stateleg-next` is needed to retrieve districts based on redistricted boundaries.
 
 * **Minnesota:** 1/14 2025
-* **Kansas (senate only):** 1/15 2025
-* **New Mexico (senate only):** 1/21 2025
 
 If new boundaries are not available, the current boundaries are used instead (effectively returning the same data as when the `stateleg` field append is used). The `is_upcoming_state_legislative_district` indicates whether redistricted data is returned.
+-->
 
 > To get `stateleg-next` field appends for an address or a coordinate:
 
