@@ -2234,7 +2234,7 @@ Parameter name                                                                  
 [acs-housing](#housing-census)                                                                                                                                                                                                     | Housing (Census)                                       | US-only                     |
 [acs-social](#social-education-amp-veteran-status-census)                                                                                                                                                                          | Social: Education & Veteran Status (Census)            | US-only                     |
 [zip4](#usps-zip-4)                                                                                                                                                                                                                | USPS Zip+4 code and delivery information               | US-only                     |
-[riding, riding-next](#riding-canadian-federal-electoral-district)                                                                                                                                                                              | Riding: Canadian Federal Electoral District            | Canada-only                 |
+[riding](#riding-canadian-federal-electoral-district)                                                                                                                                                                              | Riding: Canadian Federal Electoral District            | Canada-only                 |
 [provriding, provriding-next](#riding-canadian-provincial-electoral-district)                                                                                                                                                                       | Riding: Canadian Provincial/Territorial Electoral District         | Canada-only                 |
 [statcan](#canadian-statistical-boundaries-from-statistics-canada)                                                                                                                                                                 | Canadian statistical boundaries from Statistics Canada | Canada-only                 |
 [timezone](#timezone)                                                                                                                                                                                                              | Timezone                                               | <i class="fa fa-globe"></i> |
@@ -5306,7 +5306,7 @@ If no ZIP+4 data is available for the given query, the `zip4` field is omitted f
 </aside>
 
 ## Riding: Canadian Federal Electoral District
-**Field name: `riding` or `riding-next`**
+**Field name: `riding`**
 
 > To get `riding` field appends for an address or a coordinate:
 
@@ -5376,12 +5376,12 @@ geocoder.reverse('46.225866,-79.36316', ['riding'])
 ...
 "fields": {
   "riding": {
-    "year": 2013,
-    "code": "35070",
-    "ocd_id": "ocd-division/country:ca/ed:35070-2013",
-    "name_french": "Nipissing--Timiskaming",
-    "name_english": "Nipissing--Timiskaming",
-    "source": "Statistics Canada"
+    "year": 2023,
+    "code": "35104",
+    "ocd_id": "ocd-division/country:ca/ed:35104-2023",
+    "name_french": "Sudbury-Est—Manitoulin—Nickel Belt",
+    "name_english": "Sudbury East—Manitoulin—Nickel Belt",
+    "source": "Federal Redistribution"
   }
 }
 ...
@@ -5391,89 +5391,6 @@ Look up the [riding](https://en.wikipedia.org/wiki/List_of_Canadian_federal_elec
 The OCD-ID can be used to uniquely identify the district, using the [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) project.
 
 In some cases the French and English names will be the same.
-
-### Using `riding-next`
-
-`riding-next` is a preview of upcoming, redistricted ridings. The redistricted ridings were established in 2023 and will be in effect for a federal general election called any time after April 22, 2024.
-
-> To get `riding-next` field appends for an address or a coordinate:
-
-```shell
-curl "https://api.enterprise.geocod.io/v1.7/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=riding-next&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.7/reverse?q=46.225866,-79.36316&fields=riding-next&api_key=YOUR_API_KEY"
-```
-
-```ruby
-require 'geocodio/gem'
-
-geocodio = Geocodio::Gem.new('YOUR_API_KEY')
-
-location = geocodio.geocode(['300 King St, Sturgeon Falls, ON P2B 3A1, Canada'], ['riding-next'])
-location = geocodio.reverse(['46.225866,-79.36316'], ['riding-next'])
-```
-
-```python
-from geocodio import GeocodioClient
-
-client = GeocodioClient(YOUR_API_KEY)
-
-location = client.geocode("300 King St, Sturgeon Falls, ON P2B 3A1, Canada", fields=["riding-next"])
-location = client.reverse((46.225866, -79.36316), fields=["riding-next"])
-```
-
-```php
-<?php
-$response = $geocoder->geocode('300 King St, Sturgeon Falls, ON P2B 3A1, Canada', ['riding-next']);
-$response = $geocoder->reverse('46.225866,-79.36316', ['riding-next']);
-```
-
-```javascript
-const Geocodio = require('geocodio-library-node');
-const geocodio = new Geocodio('YOUR_API_KEY');
-
-geocoder.geocode('300 King St, Sturgeon Falls, ON P2B 3A1, Canada', ['riding-next'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-
-geocoder.reverse('46.225866,-79.36316', ['riding-next'])
-  .then(response => {
-    console.log(response);
-  })
-  .catch(err => {
-    console.error(err);
-  }
-);
-```
-
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "300 King St, Sturgeon Falls, ON P2B 3A1, Canada" :api_key "YOUR_API_KEY" :fields ["riding-next"])
-(single-reverse "46.225866,-79.36316" :api_key "YOUR_API_KEY" :fields ["riding-next"])
-```
-
-> Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada"
-
-```json
-...
-"fields": {
-  "riding": {
-    "year": 2023,
-    "code": "35073",
-    "ocd_id": "ocd-division/country:ca/ed:35073-2023",
-    "name_french": "Nipissing—Timiskaming",
-    "name_english": "Nipissing—Timiskaming",
-    "source": "Federal Redistribution"
-  }
-}
-...
-```
 
 ## Riding: Canadian Provincial Electoral District
 **Field name: `provriding` or `provriding-next`**
@@ -6227,6 +6144,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+
+*Released on March 24, 2025*
+
+* The Canadian elections have been called! [`riding`](#riding-canadian-federal-electoral-district) is now returning the new, redistricted ridings. `riding-next` continues to return the redistricted ridings as well, but is otherwise no longer in use.
 
 *Released on March 10, 2025*
 
