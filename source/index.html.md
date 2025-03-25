@@ -6260,6 +6260,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 ## v1.7
 
+*Released on March 25, 2025*
+
+* Added new [`ffiec`](#ffiec-fair-lending) field append
+
 *Released on March 24, 2025*
 
 * The Canadian elections have been called! [`riding`](#riding-canadian-federal-electoral-district) is now returning the new, redistricted ridings. `riding-next` continues to return the redistricted ridings as well, but is otherwise no longer in use.
