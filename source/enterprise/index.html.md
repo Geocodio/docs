@@ -2222,22 +2222,23 @@ Go ahead, <a href="https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highla
 
 Some fields are specific to the US and cannot be queried for other countries.
 
-Parameter name                                                                                                                                                                                                                     | Description                                            | Coverage                    |
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | --------------------------- |
-[cd, cd113, cd114, cd115, cd116, cd117, cd118, cd119](#congressional-districts)                                                                                                                                                           | Congressional District & Legislator information        | US-only                     |
-[stateleg, stateleg-next](#state-legislative-districts)                                                                                                                                                                            | State Legislative District (House & Senate)            | US-only                     |
-[school](#school-districts)                                                                                                                                                                                                        | School District (elementary/secondary or unified)      | US-only                     |
-[census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021, census2022, census2023, census2024](#census-block-tract-fips-codes-amp-msa-csa-codes)             | Census Block/Tract, FIPS codes & MSA/CSA codes         | US-only                     |
-[acs-demographics](#demographics-census)                                                                                                                                                                                           | Demographics (Census)                                  | US-only                     |
-[acs-economics](#economics-income-data-census)                                                                                                                                                                                     | Economics: Income Data (Census)                        | US-only                     |
-[acs-families](#families-census)                                                                                                                                                                                                   | Families (Census)                                      | US-only                     |
-[acs-housing](#housing-census)                                                                                                                                                                                                     | Housing (Census)                                       | US-only                     |
-[acs-social](#social-education-amp-veteran-status-census)                                                                                                                                                                          | Social: Education & Veteran Status (Census)            | US-only                     |
-[zip4](#usps-zip-4)                                                                                                                                                                                                                | USPS Zip+4 code and delivery information               | US-only                     |
-[riding](#riding-canadian-federal-electoral-district)                                                                                                                                                                              | Riding: Canadian Federal Electoral District            | Canada-only                 |
-[provriding, provriding-next](#riding-canadian-provincial-electoral-district)                                                                                                                                                                       | Riding: Canadian Provincial/Territorial Electoral District         | Canada-only                 |
-[statcan](#canadian-statistical-boundaries-from-statistics-canada)                                                                                                                                                                 | Canadian statistical boundaries from Statistics Canada | Canada-only                 |
-[timezone](#timezone)                                                                                                                                                                                                              | Timezone                                               | <i class="fa fa-globe"></i> |
+| Parameter name                                                                                                                                                                                                                                             | Description                                                | Coverage                    |
+|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:----------------------------|
+| [cd, cd113, cd114, cd115, cd116, cd117, cd118, cd119](#congressional-districts)                                                                                                                                                                            | Congressional District & Legislator information            | US-only                     |
+| [stateleg, stateleg-next](#state-legislative-districts)                                                                                                                                                                                                    | State Legislative District (House & Senate)                | US-only                     |
+| [school](#school-districts)                                                                                                                                                                                                                                | School District (elementary/secondary or unified)          | US-only                     |
+| [census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021, census2022, census2023, census2024](#census-block-tract-fips-codes-amp-msa-csa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes             | US-only                     |
+| [acs-demographics](#demographics-census)                                                                                                                                                                                                                   | Demographics (Census)                                      | US-only                     |
+| [acs-economics](#economics-income-data-census)                                                                                                                                                                                                             | Economics: Income Data (Census)                            | US-only                     |
+| [acs-families](#families-census)                                                                                                                                                                                                                           | Families (Census)                                          | US-only                     |
+| [acs-housing](#housing-census)                                                                                                                                                                                                                             | Housing (Census)                                           | US-only                     |
+| [acs-social](#social-education-amp-veteran-status-census)                                                                                                                                                                                                  | Social: Education & Veteran Status (Census)                | US-only                     |
+| [zip4](#usps-zip-4)                                                                                                                                                                                                                                        | USPS Zip+4 code and delivery information                   | US-only                     |
+| [ffiec](#ffiec-fair-lending)                                                                                                                                                                                                                               | (Beta) FFIEC CRA/HMDA Data                                 | US-only                     |
+| [riding](#riding-canadian-federal-electoral-district)                                                                                                                                                                                                      | Riding: Canadian Federal Electoral District                | Canada-only                 |
+| [provriding, provriding-next](#riding-canadian-provincial-electoral-district)                                                                                                                                                                              | Riding: Canadian Provincial/Territorial Electoral District | Canada-only                 |
+| [statcan](#canadian-statistical-boundaries-from-statistics-canada)                                                                                                                                                                                         | Canadian statistical boundaries from Statistics Canada     | Canada-only                 |
+| [timezone](#timezone)                                                                                                                                                                                                                                      | Timezone                                                   | <i class="fa fa-globe"></i> |
 
 <aside class="success">
 This feature is available for both single and batch geocoding requests as well as the lists API
@@ -5304,6 +5305,120 @@ In these cases it is not possible to determine an accurate ZIP+4 code without su
 <aside class="warning">
 If no ZIP+4 data is available for the given query, the `zip4` field is omitted from the JSON output (and the field lookup does not count against your usage)
 </aside>
+
+## FFIEC (Fair Lending)
+**Field name: `ffiec`**
+
+> To get `ffiec` field appends for an address or a coordinate:
+
+```shell
+curl "https://api.enterprise.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=ffiec&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.7/reverse?q=38.886672,-77.094735&fields=ffiec&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['1109 N Highland St, Arlington VA'], ['ffiec'])
+location = geocodio.reverse(['38.886672,-77.094735'], ['ffiec'])
+```
+
+```python
+from geocodio import GeocodioClient
+
+client = GeocodioClient(YOUR_API_KEY)
+
+location = client.geocode("1109 N Highland St, Arlington VA", fields=["ffiec"])
+location = client.reverse((38.886672, -77.094735), fields=["ffiec"])
+```
+
+```php
+<?php
+$response = $geocoder->geocode('1109 N Highland St, Arlington VA', ['ffiec']);
+$response = $geocoder->reverse('38.886672,-77.094735', ['ffiec']);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocodio = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('1109 N Highland St, Arlington VA', ['ffiec'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+geocoder.reverse('38.886672,-77.094735', ['ffiec'])
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+```clojure
+(ns my.ns
+  (:require [rodeo.core :refer :all]))
+ 
+(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["ffiec"])
+(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["ffiec"])
+```
+
+```json
+...
+"fields": {
+  "ffiec": {
+    "collection_year": 2024,
+    "msa_md_code": "11694",
+    "fips_state_code": "51",
+    "fips_county_code": "013",
+    "census_tract": "101801",
+    "principal_city": true,
+    "small_county": {
+      "flag": "T",
+      "description": "Tract record"
+    },
+    "split_tract": {
+      "flag": "N",
+      "description": "Tract number occurs within one MA"
+    },
+    "demographic_data": {
+      "flag": "D",
+      "description": "Total persons/population and median family income are not 0"
+    },
+    "urban_rural_flag": {
+      "flag": "U",
+      "description": "Urban"
+    },
+    "msa_md_median_family_income": 135790,
+    "msa_md_median_household_income": 115805,
+    "tract_median_family_income_percentage": 133.95,
+    "ffiec_estimated_msa_md_median_family_income": 164200,
+    "income_indicator": "Upper",
+    "cra_poverty_criteria": false,
+    "cra_unemployment_criteria": false,
+    "cra_distressed_criteria": false,
+    "cra_remote_rural_low_density_criteria": false,
+    "previous_year_cra_distressed_criteria": false,
+    "previous_year_cra_underserved_criterion": false,
+    "meets_current_previous_criteria": false
+  }
+}
+...
+```
+
+The FFIEC field append allows you to get key data points, commonly used by financial institutions, lenders, and organizations that need to comply
+with fair lending regulations like HMDA and CRA. The data returned is for the 2024 data release. (The 2025 data will not be available until later this year.)
+
+You can read more about the individual values in the [FFIEC Documentation](https://www.ffiec.gov/Census/doc/FFIEC_Geocoder_Technical_Information_2024-01-10.pdf).
+
 
 ## Riding: Canadian Federal Electoral District
 **Field name: `riding`**
