@@ -5417,7 +5417,7 @@ geocoder.reverse('38.886672,-77.094735', ['ffiec'])
 The FFIEC field append allows you to get key data points, commonly used by financial institutions, lenders, and organizations that need to comply
 with fair lending regulations like HMDA and CRA. The data returned is for the 2024 data release. (The 2025 data will not be available until later this year.)
 
-You can read more about the individual values in the [FFIEC Documentation](https://www.ffiec.gov/Census/doc/FFIEC_Geocoder_Technical_Information_2024-01-10.pdf).
+You can read more about the individual values in the [FFIEC Documentation](https://www.ffiec.gov/sites/default/files/data/census/cen2024_16JLUY24.pdf).
 
 
 ## Riding: Canadian Federal Electoral District
