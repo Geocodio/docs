@@ -315,7 +315,7 @@ Per default, an API key can only access the single and batch geocoding API endpo
 
 For security reasons, additional permissions has to be assigned to the API key when using the [lists API](#geocoding-lists). This can be done in the [Geocodio dashboard](https://dash.enterprise.geocod.io/apikey). We recommend creating separate API keys for geocoding endpoints and for `GET`/`DELETE` access to lists.
 
-[![List of API key permissions with default values selected](./images/permissions-4de4e690.png)](https://dash.enterprise.geocod.io/apikey)
+[![List of API key permissions with default values selected](https://www.geocod.io/docs/images/permissions-4de4e690.png)](https://dash.enterprise.geocod.io/apikey)
 
 *List of API key permissions with default values selected*
 
