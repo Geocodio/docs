@@ -439,6 +439,11 @@ geocoder.geocode('1109 N Highland St, Arlington VA')
         "zip": "22201",
         "country": "US"
       },
+      "address_lines": [
+        "1109 N Highland St",
+        "",
+        "Arlington, VA 22201"
+      ],
       "formatted_address": "1109 N Highland St, Arlington, VA 22201",
       "location": {
         "lat": 38.886665,
@@ -614,6 +619,11 @@ ENTERPRISE-->
         "zip": "22201",
         "country": "US"
       },
+      "address_lines": [
+        "2800 Clarendon Blvd",
+        "Ste R500",
+        "Arlington, VA 22201"
+      ],
       "formatted_address": "2800 Clarendon Blvd, Ste R500, Arlington, VA 22201",
       "location": {
         "lat": 38.887455,
@@ -753,6 +763,11 @@ geocoder.geocode(addresses)
               "zip": "22201",
               "country": "US"
             },
+            "address_lines": [
+              "1109 N Highland St",
+              "",
+              "Arlington, VA 22201"
+            ],
             "formatted_address": "1109 N Highland St, Arlington, VA 22201",
             "location": {
               "lat": 38.886672,
@@ -775,6 +790,11 @@ geocoder.geocode(addresses)
               "zip": "22201",
               "country": "US"
             },
+            "address_lines": [
+              "1109 N Highland St",
+              "",
+              "Arlington, VA 22201"
+            ],
             "formatted_address": "1109 N Highland St, Arlington, VA 22201",
             "location": {
               "lat": 38.886665,
@@ -813,6 +833,11 @@ geocoder.geocode(addresses)
               "state": "ON",
               "country": "CA"
             },
+            "address_lines": [
+              "525 University Ave",
+              "",
+              "Toronto, ON M5G"
+            ],
             "formatted_address": "525 University Ave, Toronto, ON",
             "location": {
               "lat": 43.656258,
@@ -905,6 +930,11 @@ Here's a couple of examples of what the `POST` body can look like:
               "zip": "22201",
               "country": "US"
             },
+            "address_lines": [
+              "1109 N Highland St",
+              "",
+              "Arlington, VA 22201"
+            ],
             "formatted_address": "1109 N Highland St, Arlington, VA 22201",
             "location": {
               "lat": 38.886672,
@@ -1057,6 +1087,11 @@ geocoder.reverse('38.9002898,-76.9990361')
         "zip": "20002",
         "country": "US"
       },
+      "address_lines": [
+        "508 H St NE",
+        "",
+        "Washington, DC 20002"
+      ],
       "formatted_address": "508 H St NE, Washington, DC 20002",
       "location": {
         "lat": 38.900432,
@@ -1079,6 +1114,11 @@ geocoder.reverse('38.9002898,-76.9990361')
         "zip": "20002",
         "country": "US"
       },
+      "address_lines": [
+        "510 H St NE",
+        "",
+        "Washington, DC 20002"
+      ],
       "formatted_address": "510 H St NE, Washington, DC 20002",
       "location": {
         "lat": 38.900429,
@@ -1251,6 +1291,11 @@ geocoder.reverse(coordinates)
               "zip": "27856",
               "country": "US"
             },
+            "address_lines": [
+              "101 W Washington St",
+              "",
+              "Nashville, NC 27856"
+            ],
             "formatted_address": "101 W Washington St, Nashville, NC 27856",
             "location": {
               "lat": 35.974357,
@@ -1259,30 +1304,7 @@ geocoder.reverse(coordinates)
             "accuracy": 1,
             "accuracy_type": "rooftop",
             "source": "NC Geographic Information Coordinating Council"
-          },
-          {
-            "address_components": {
-              "number": "100",
-              "predirectional": "E",
-              "street": "Washington",
-              "suffix": "St",
-              "formatted_street": "E Washington St",
-              "city": "Nashville",
-              "county": "Nash County",
-              "state": "NC",
-              "zip": "27856",
-              "country": "US"
-            },
-            "formatted_address": "100 E Washington St, Nashville, NC 27856",
-            "location": {
-              "lat": 35.974786,
-              "lng": -77.965387
-            },
-            "accuracy": 0.9,
-            "accuracy_type": "rooftop",
-            "source": "NC Geographic Information Coordinating Council"
-          },
-          ...
+          }
         ]
       }
     },
@@ -1303,6 +1325,11 @@ geocoder.reverse(coordinates)
               "zip": "75041",
               "country": "US"
             },
+            "address_lines": [
+              "3034 S 1st St",
+              "",
+              "Garland, TX 75041"
+            ],
             "formatted_address": "3034 S 1st St, Garland, TX 75041",
             "location": {
               "lat": 32.879386,
@@ -1989,6 +2016,11 @@ DEFAULT-->
         "zip": "22201",
         "country": "US"
       },
+      "address_lines": [
+        "1109 N Highland St",
+        "",
+        "Arlington, VA 22201"
+      ],
       "formatted_address": "1109 N Highland St, Arlington, VA 22201",
       "location": {
         "lat": 38.886672,
@@ -5059,6 +5091,11 @@ An extra `address_components_secondary` property will be exposed for intersectio
         "state": "CA",
         "zip": "94103"
       },
+      [
+        "4th St and Market St",
+        "",
+        "San Francisco, CA 94103"
+      ],
       "formatted_address": "4th St and Market St, San Francisco, CA 94103",
       "location": {
         "lat": 37.785725,
@@ -5179,6 +5216,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.7
+
+*Released on May 7 25, 2025*
+
+* Added [`address_lines`](#single-address) along with each geocoding result.
 
 *Released on March 25, 2025*
 
