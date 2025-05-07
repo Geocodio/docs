@@ -6297,7 +6297,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 ## v1.7
 
-*Released on May 7 25, 2025*
+*Released on May 6, 2025*
 
 * Added [`address_lines`](#single-address) along with each geocoding result.
 
