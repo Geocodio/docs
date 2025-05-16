@@ -3092,6 +3092,8 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 ## v1.8
 
+*Released on May 16, 2025*
+
 * **Breaking:** 2023 data is now returned for all [Census ACS appends](/#census-acs-american-community-survey). Changes include:
   * 2023 Census boundaries and ACS data are returned instead of 2021
   * The [`acs-families`](#families-census) field append has certain table titles renamed ("wife" or "husband" replaced with "spouse") &mdash; no other ACS field appends has renamed tables
