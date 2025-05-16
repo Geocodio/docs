@@ -115,7 +115,7 @@ function getApiResponse(string $address, array $fields) {
 	if (getenv('DISABLE_API')) {
 		$apiContent = file_get_contents($stubFile);
 	} else {	
-		$url = "https://api.geocodio.dev/v1.8/geocode?q=". urlencode($address) ."&fields=". implode(',', $fields) ."&api_key=$apiKey";
+		$url = "https://api.geocod.io/v1.8/geocode?q=". urlencode($address) ."&fields=". implode(',', $fields) ."&api_key=$apiKey";
 
 		$sslVerify = !str_contains($url, 'dev');
 		
