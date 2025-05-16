@@ -25,7 +25,7 @@ Geocodio's RESTful API allows you to perform forward and reverse geocoding looku
 
 You can also optionally ask for data appends such as timezone, Congressional districts or similar things of that nature.
 
-The base API url is `https://api.geocod.io/v1.7/`.
+The base API url is `https://api.geocod.io/v1.8/`.
 
 All HTTP responses (including errors) are returned with [JSON-formatted](http://www.json.org) output.
 
@@ -205,10 +205,10 @@ compile "rodeo:rodeo:2.0.1"
 
 ```shell
 # With curl, you can pass the query parameter with each request
-curl "https://api.geocod.io/v1.7/api_endpoint_here?api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.8/api_endpoint_here?api_key=YOUR_API_KEY"
 
 # or use the Authorization header
-curl "https://api.geocod.io/v1.7/api_endpoint_here" \
+curl "https://api.geocod.io/v1.8/api_endpoint_here" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
@@ -349,7 +349,7 @@ Whenever possible, batch requests are recommended since they are significantly f
 
 ## Single address
 
-A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api.geocod.io/v1.8/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 <aside class="success">
 The <code>results</code> are always ordered with the most accurate locations first. It is therefore always safe to pick the first result in the list.
@@ -359,10 +359,10 @@ The <code>results</code> are always ordered with the most accurate locations fir
 
 ```shell
 # Using q parameter
-curl "https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.8/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
 
 # Using individual address components
-curl "https://api.geocod.io/v1.7/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.8/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -459,7 +459,7 @@ geocoder.geocode('1109 N Highland St, Arlington VA')
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.7/geocode`
+`GET https://api.geocod.io/v1.8/geocode`
 
 ### URL Parameters
 
@@ -582,7 +582,7 @@ ENTERPRISE-->
 > To geocode an address with a Unit Number
 
 ```shell
-  curl "https://api.geocod.io/v1.7/geocode?q=2800+Clarendon+Blvd+Suite+R500+Arlington+VA+22201&api_key=YOUR_API_KEY"
+  curl "https://api.geocod.io/v1.8/geocode?q=2800+Clarendon+Blvd+Suite+R500+Arlington+VA+22201&api_key=YOUR_API_KEY"
 ```
 
 > Example response with Unit Number
@@ -659,7 +659,7 @@ As such, if we aren't able to identify the exact address location in `results`, 
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["1109 N Highland St, Arlington VA", "525 University Ave, Toronto, ON, Canada", "4410 S Highway 17 92, Casselberry FL", "15000 NE 24th Street, Redmond WA", "17015 Walnut Grove Drive, Morgan Hill CA"]' \
-  https://api.geocod.io/v1.7/geocode?api_key=YOUR_API_KEY
+  https://api.geocod.io/v1.8/geocode?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -865,7 +865,7 @@ You can process up to 10,000 lookups at the time. Field appends count as lookups
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.7/geocode`
+`POST https://api.geocod.io/v1.8/geocode`
 
 ### URL Parameters
 
@@ -1024,7 +1024,7 @@ A geographic coordinate consists of latitude followed by longitude separated by 
 > To reverse geocode a single coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.7/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.8/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1133,11 +1133,11 @@ geocoder.reverse('38.9002898,-76.9990361')
 }
 ```
 
-A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api.geocod.io/v1.7/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api.geocod.io/v1.8/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.7/reverse`
+`GET https://api.geocod.io/v1.8/reverse`
 
 ### URL Parameters
 
@@ -1206,7 +1206,7 @@ The `fields` parameter is still supported when the `simple` output format is sel
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["35.9746000,-77.9658000","32.8793700,-96.6303900","33.8337100,-117.8362320","35.4171240,-80.6784760"]' \
-  https://api.geocod.io/v1.7/reverse?api_key=YOUR_API_KEY
+  https://api.geocod.io/v1.8/reverse?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -1358,7 +1358,7 @@ You can batch reverse geocode up to 10,000 coordinates at a time. Field appends 
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.7/reverse`
+`POST https://api.geocod.io/v1.8/reverse`
 
 ### URL Parameters
 
@@ -1394,7 +1394,7 @@ ENTERPRISE-->
 
 <!--DEFAULT
 ```shell
-curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
+curl "https://api.geocod.io/v1.8/lists?api_key=YOUR_API_KEY" \
   -F "file"="@sample_list.csv" \
   -F "direction"="forward" \
   -F "format"="{{A}} {{B}} {{C}} {{D}}" \
@@ -1403,7 +1403,7 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
 DEFAULT-->
 <!--ENTERPRISE
 ```shell
-curl "https://api.geocod.io/v1.7/lists \
+curl "https://api.geocod.io/v1.8/lists \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -F "file"="@sample_list.csv" \
   -F "direction"="forward" \
@@ -1455,7 +1455,7 @@ $response = $geocoder->uploadList(
 
 <!--DEFAULT
 ```shell
-curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
+curl "https://api.geocod.io/v1.8/lists?api_key=YOUR_API_KEY" \
   -F "file"=$'Zip\n20003\n20001' \
   -F "filename"="file.csv" \
   -F "direction"="forward" \
@@ -1465,7 +1465,7 @@ curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY" \
 DEFAULT-->
 <!--ENTERPRISE
 ```shell
-curl "https://api.geocod.io/v1.7/lists" \
+curl "https://api.geocod.io/v1.8/lists" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -F "file"=$'Zip\n20003\n20001' \
   -F "filename"="file.csv" \
@@ -1517,7 +1517,7 @@ Creates a new spreadsheet list job and starts processing the list in the backgro
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.7/lists`
+`POST https://api.geocod.io/v1.8/lists`
 
 ### URL Parameters
 
@@ -1568,7 +1568,7 @@ The `format` parameter uses a simple templating syntax that is used to construct
         "geocoded_rows_count": 39809,
         "filename": "sample_list.csv"
     },
-    "download_url": "https://api.geocod.io/v1.7/lists/49/download"
+    "download_url": "https://api.geocod.io/v1.8/lists/49/download"
 }
 ```
 
@@ -1583,12 +1583,12 @@ A total of 3 attempts are made to delivery the webhook.
 
 <!--DEFAULT
 ```shell
-curl "https://api.geocod.io/v1.7/lists/42?api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.8/lists/42?api_key=YOUR_API_KEY"
 ```
 DEFAULT-->
 <!--ENTERPRISE
 ```shell
-curl "https://api.geocod.io/v1.7/lists/42" \
+curl "https://api.geocod.io/v1.8/lists/42" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 ENTERPRISE-->
@@ -1686,7 +1686,7 @@ $response = $geocoder->listStatus(42);
         "time_left_description": null,
         "time_left_seconds": null
     },
-    "download_url": "https://api.geocod.io/v1.7/lists/42/download",
+    "download_url": "https://api.geocod.io/v1.8/lists/42/download",
     "expires_at": "2021-09-23T18:23:29.000000Z"
 }
 ```
@@ -1695,7 +1695,7 @@ View the metadata and status for a single uploaded list.
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.7/lists/LIST_ID`
+`GET https://api.geocod.io/v1.8/lists/LIST_ID`
 
 ### URL Parameters
 
@@ -1717,12 +1717,12 @@ ENTERPRISE-->
 
 <!--DEFAULT
 ```shell
-curl "https://api.geocod.io/v1.7/lists?api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.8/lists?api_key=YOUR_API_KEY"
 ```
 DEFAULT-->
 <!--ENTERPRISE
 ```shell
-curl "https://api.geocod.io/v1.7/lists" \
+curl "https://api.geocod.io/v1.8/lists" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 ENTERPRISE-->
@@ -1780,15 +1780,15 @@ $response = $geocoder->lists();
                 "time_left_description": null,
                 "time_left_seconds": null
             },
-            "download_url": "https://api.geocod.io/v1.7/lists/48/download",
+            "download_url": "https://api.geocod.io/v1.8/lists/48/download",
             "expires_at": "2021-09-23T12:09:09.000000Z"
         },
         ...
     ],
-    "first_page_url": "https://api.geocod.io/v1.7/lists?page=1",
+    "first_page_url": "https://api.geocod.io/v1.8/lists?page=1",
     "from": 1,
-    "next_page_url": "https://api.geocod.io/v1.7/lists?page=2",
-    "path": "https://api.geocod.io/v1.7/lists",
+    "next_page_url": "https://api.geocod.io/v1.8/lists?page=2",
+    "path": "https://api.geocod.io/v1.8/lists",
     "per_page": 15,
     "prev_page_url": null,
     "to": 15
@@ -1799,7 +1799,7 @@ Show all lists that have been created. The endpoint is paginated, showing 15 lis
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.7/lists`
+`GET https://api.geocod.io/v1.8/lists`
 
 ### URL Parameters
 
@@ -1813,12 +1813,12 @@ DEFAULT-->
 
 <!--DEFAULT
 ```shell
-curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download?api_key=YOUR_API_KEY"
+curl -L "https://api.geocod.io/v1.8/lists/LIST_ID/download?api_key=YOUR_API_KEY"
 ```
 DEFAULT-->
 <!--ENTERPRISE
 ```shell
-curl -L "https://api.geocod.io/v1.7/lists/LIST_ID/download" \
+curl -L "https://api.geocod.io/v1.8/lists/LIST_ID/download" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 ENTERPRISE-->
@@ -1901,7 +1901,7 @@ See our [spreadsheet output guide](/guides/data-matching-overview/) for a refere
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.7/lists/LIST_ID/download`
+`GET https://api.geocod.io/v1.8/lists/LIST_ID/download`
 
 ### URL Parameters
 
@@ -1915,12 +1915,12 @@ DEFAULT-->
 
 <!--DEFAULT
 ```shell
-curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID?api_key=YOUR_API_KEY"
+curl -X DELETE "https://api.geocod.io/v1.8/lists/LIST_ID?api_key=YOUR_API_KEY"
 ```
 DEFAULT-->
 <!--ENTERPRISE
 ```shell
-curl -X DELETE "https://api.geocod.io/v1.7/lists/LIST_ID" \
+curl -X DELETE "https://api.geocod.io/v1.8/lists/LIST_ID" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 ENTERPRISE-->
@@ -1971,7 +1971,7 @@ The spreadsheet data will always be deleted automatically after 72 hours if it i
 
 ### HTTP Request
 
-`DELETE https://api.geocod.io/v1.7/lists/LIST_ID`
+`DELETE https://api.geocod.io/v1.8/lists/LIST_ID`
 
 ### URL Parameters
 
@@ -1985,203 +1985,6 @@ DEFAULT-->
 
 <!--FIELD:us:cd,stateleg-->
 
-> Example response:
-
-```json
-{
-  "input": {
-    "address_components": {
-      "number": "1109",
-      "predirectional": "N",
-      "street": "Highland",
-      "suffix": "St",
-      "formatted_street": "N Highland St",
-      "city": "Arlington",
-      "state": "VA",
-      "country": "US"
-    },
-    "formatted_address": "1109 N Highland St, Arlington, VA"
-  },
-  "results": [
-    {
-      "address_components": {
-        "number": "1109",
-        "predirectional": "N",
-        "street": "Highland",
-        "suffix": "St",
-        "formatted_street": "N Highland St",
-        "city": "Arlington",
-        "county": "Arlington County",
-        "state": "VA",
-        "zip": "22201",
-        "country": "US"
-      },
-      "address_lines": [
-        "1109 N Highland St",
-        "",
-        "Arlington, VA 22201"
-      ],
-      "formatted_address": "1109 N Highland St, Arlington, VA 22201",
-      "location": {
-        "lat": 38.886672,
-        "lng": -77.094735
-      },
-      "accuracy": 1,
-      "accuracy_type": "rooftop",
-      "source": "Arlington",
-      "fields": {
-        "congressional_districts": [
-          {
-            "name": "Congressional District 8",
-            "district_number": 8,
-            "ocd_id": "ocd-division/country:us/state:va/cd:8",
-            "congress_number": "119th",
-            "congress_years": "2025-2027",
-            "proportion": 1,
-            "current_legislators": [
-              {
-                "type": "representative",
-                "seniority": null,
-                "bio": {
-                  "last_name": "Beyer",
-                  "first_name": "Donald",
-                  "birthday": "1950-06-20",
-                  "gender": "M",
-                  "party": "Democrat"
-                },
-                "contact": {
-                  "url": "https://beyer.house.gov",
-                  "address": "1226 Longworth House Office Building Washington DC 20515-4608",
-                  "phone": "202-225-4376",
-                  "contact_form": null
-                },
-                "social": {
-                  "rss_url": null,
-                  "twitter": "RepDonBeyer",
-                  "facebook": "RepDonBeyer",
-                  "youtube": null,
-                  "youtube_id": "UCPJGVbOVcAVGiBwq8qr_T9w"
-                },
-                "references": {
-                  "bioguide_id": "B001292",
-                  "thomas_id": "02272",
-                  "opensecrets_id": "N00036018",
-                  "lis_id": null,
-                  "cspan_id": "21141",
-                  "govtrack_id": "412657",
-                  "votesmart_id": "1707",
-                  "ballotpedia_id": "Don Beyer",
-                  "washington_post_id": null,
-                  "icpsr_id": "21554",
-                  "wikipedia_id": "Don Beyer"
-                },
-                "source": "Legislator data collected by https://github.com/unitedstates/"
-              },
-              {
-                "type": "senator",
-                "seniority": "senior",
-                "bio": {
-                  "last_name": "Warner",
-                  "first_name": "Mark",
-                  "birthday": "1954-12-15",
-                  "gender": "M",
-                  "party": "Democrat"
-                },
-                "contact": {
-                  "url": "https://www.warner.senate.gov",
-                  "address": "703 Hart Senate Office Building Washington DC 20510",
-                  "phone": "202-224-2023",
-                  "contact_form": "https://www.warner.senate.gov/public/index.cfm?p=Contact"
-                },
-                "social": {
-                  "rss_url": "http://www.warner.senate.gov/public/?a=rss.feed",
-                  "twitter": "MarkWarner",
-                  "facebook": "MarkRWarner",
-                  "youtube": "SenatorMarkWarner",
-                  "youtube_id": "UCwyivNlEGf4sGd1oDLfY5jw"
-                },
-                "references": {
-                  "bioguide_id": "W000805",
-                  "thomas_id": "01897",
-                  "opensecrets_id": "N00002097",
-                  "lis_id": "S327",
-                  "cspan_id": "7630",
-                  "govtrack_id": "412321",
-                  "votesmart_id": "535",
-                  "ballotpedia_id": "Mark Warner",
-                  "washington_post_id": null,
-                  "icpsr_id": "40909",
-                  "wikipedia_id": "Mark Warner"
-                },
-                "source": "Legislator data collected by https://github.com/unitedstates/"
-              },
-              {
-                "type": "senator",
-                "seniority": "junior",
-                "bio": {
-                  "last_name": "Kaine",
-                  "first_name": "Timothy",
-                  "birthday": "1958-02-26",
-                  "gender": "M",
-                  "party": "Democrat"
-                },
-                "contact": {
-                  "url": "https://www.kaine.senate.gov",
-                  "address": "231 Russell Senate Office Building Washington DC 20510",
-                  "phone": "202-224-4024",
-                  "contact_form": "https://www.kaine.senate.gov/contact"
-                },
-                "social": {
-                  "rss_url": "http://www.kaine.senate.gov/rss/feeds/?type=all",
-                  "twitter": null,
-                  "facebook": "SenatorKaine",
-                  "youtube": "SenatorTimKaine",
-                  "youtube_id": "UC27LgTZlUnBQoNEQFZdn9LA"
-                },
-                "references": {
-                  "bioguide_id": "K000384",
-                  "thomas_id": "02176",
-                  "opensecrets_id": "N00033177",
-                  "lis_id": "S362",
-                  "cspan_id": "49219",
-                  "govtrack_id": "412582",
-                  "votesmart_id": "50772",
-                  "ballotpedia_id": "Tim Kaine",
-                  "washington_post_id": null,
-                  "icpsr_id": "41305",
-                  "wikipedia_id": "Tim Kaine"
-                },
-                "source": "Legislator data collected by https://github.com/unitedstates/"
-              }
-            ]
-          }
-        ],
-        "state_legislative_districts": {
-          "house": [
-            {
-              "name": "State House District 2",
-              "district_number": "2",
-              "ocd_id": "ocd-division/country:us/state:va/sldl:2",
-              "is_upcoming_state_legislative_district": false,
-              "proportion": 1
-            }
-          ],
-          "senate": [
-            {
-              "name": "State Senate District 40",
-              "district_number": "40",
-              "ocd_id": "ocd-division/country:us/state:va/sldu:40",
-              "is_upcoming_state_legislative_district": false,
-              "proportion": 1
-            }
-          ]
-        }
-      }
-    }
-  ]
-}
-```
-
 <aside class="warning">
 <strong>Note:</strong> Fields count as an additional lookup each. Please consult our <a href="/pricing/">pricing calculator</a>.
 </aside>
@@ -2190,7 +1993,7 @@ Geocodio allows you to request additional data with forward and reverse geocodin
 
 To request additional data, just add a `fields` parameter to your query string and set the value according to the table below. You can request multiple data fields at the same time by separating them with a comma. If the `fields` parameter has been specified, a new `fields` key is exposed with each geocoding result containing all necessary data for each field.
 
-Go ahead, <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+Go ahead, <a href="https://api.geocod.io/v1.8/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 Some fields are specific to the US and cannot be queried for other countries.
 
@@ -2221,138 +2024,6 @@ This feature is available for both single and batch geocoding requests as well a
 
 <!--FIELD:us:cd-->
 
-```json
-...
-"fields": {
-  "congressional_districts": [
-    {
-      "name": "Congressional District 8",
-      "district_number": 8,
-      "ocd_id": "ocd-division/country:us/state:va/cd:8",
-      "congress_number": "119th",
-      "congress_years": "2025-2027",
-      "proportion": 1,
-      "current_legislators": [
-        {
-          "type": "representative",
-          "seniority": null,
-          "bio": {
-            "last_name": "Beyer",
-            "first_name": "Donald",
-            "birthday": "1950-06-20",
-            "gender": "M",
-            "party": "Democrat"
-          },
-          "contact": {
-            "url": "https://beyer.house.gov",
-            "address": "1226 Longworth House Office Building Washington DC 20515-4608",
-            "phone": "202-225-4376",
-            "contact_form": null
-          },
-          "social": {
-            "rss_url": null,
-            "twitter": "RepDonBeyer",
-            "facebook": "RepDonBeyer",
-            "youtube": null,
-            "youtube_id": "UCPJGVbOVcAVGiBwq8qr_T9w"
-          },
-          "references": {
-            "bioguide_id": "B001292",
-            "thomas_id": "02272",
-            "opensecrets_id": "N00036018",
-            "lis_id": null,
-            "cspan_id": "21141",
-            "govtrack_id": "412657",
-            "votesmart_id": "1707",
-            "ballotpedia_id": "Don Beyer",
-            "washington_post_id": null,
-            "icpsr_id": "21554",
-            "wikipedia_id": "Don Beyer"
-          },
-          "source": "Legislator data collected by https://github.com/unitedstates/"
-        },
-        {
-          "type": "senator",
-          "seniority": "senior",
-          "bio": {
-            "last_name": "Warner",
-            "first_name": "Mark",
-            "birthday": "1954-12-15",
-            "gender": "M",
-            "party": "Democrat"
-          },
-          "contact": {
-            "url": "https://www.warner.senate.gov",
-            "address": "703 Hart Senate Office Building Washington DC 20510",
-            "phone": "202-224-2023",
-            "contact_form": "https://www.warner.senate.gov/public/index.cfm?p=Contact"
-          },
-          "social": {
-            "rss_url": "http://www.warner.senate.gov/public/?a=rss.feed",
-            "twitter": "MarkWarner",
-            "facebook": "MarkRWarner",
-            "youtube": "SenatorMarkWarner",
-            "youtube_id": "UCwyivNlEGf4sGd1oDLfY5jw"
-          },
-          "references": {
-            "bioguide_id": "W000805",
-            "thomas_id": "01897",
-            "opensecrets_id": "N00002097",
-            "lis_id": "S327",
-            "cspan_id": "7630",
-            "govtrack_id": "412321",
-            "votesmart_id": "535",
-            "ballotpedia_id": "Mark Warner",
-            "washington_post_id": null,
-            "icpsr_id": "40909",
-            "wikipedia_id": "Mark Warner"
-          },
-          "source": "Legislator data collected by https://github.com/unitedstates/"
-        },
-        {
-          "type": "senator",
-          "seniority": "junior",
-          "bio": {
-            "last_name": "Kaine",
-            "first_name": "Timothy",
-            "birthday": "1958-02-26",
-            "gender": "M",
-            "party": "Democrat"
-          },
-          "contact": {
-            "url": "https://www.kaine.senate.gov",
-            "address": "231 Russell Senate Office Building Washington DC 20510",
-            "phone": "202-224-4024",
-            "contact_form": "https://www.kaine.senate.gov/contact"
-          },
-          "social": {
-            "rss_url": "http://www.kaine.senate.gov/rss/feeds/?type=all",
-            "twitter": null,
-            "facebook": "SenatorKaine",
-            "youtube": "SenatorTimKaine",
-            "youtube_id": "UC27LgTZlUnBQoNEQFZdn9LA"
-          },
-          "references": {
-            "bioguide_id": "K000384",
-            "thomas_id": "02176",
-            "opensecrets_id": "N00033177",
-            "lis_id": "S362",
-            "cspan_id": "49219",
-            "govtrack_id": "412582",
-            "votesmart_id": "50772",
-            "ballotpedia_id": "Tim Kaine",
-            "washington_post_id": null,
-            "icpsr_id": "41305",
-            "wikipedia_id": "Tim Kaine"
-          },
-          "source": "Legislator data collected by https://github.com/unitedstates/"
-        }
-      ]
-    }
-  ]
-},
-...
-```
 You can retrieve the Congressional district for an address or coordinate pair using any one of the valid parameter names in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
 
 The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd119`) is specified, we will also return detailed information about the current legislators.
@@ -2388,34 +2059,6 @@ Districts are always sorted by the `proportion` value in descending order (large
 
 <!--FIELD:us:stateleg-->
 
-> Example lookup using a full address with `stateleg`
-
-```json
-...
-"fields": {
-  "state_legislative_districts": {
-    "house": [
-      {
-        "name": "State House District 47",
-        "district_number": "47",
-        "ocd_id": "ocd-division/country:us/state:va/sldl:47",
-        "is_upcoming_state_legislative_district": false,
-        "proportion": 1
-      }
-    ],
-    "senate": [
-      {
-        "name": "State Senate District 31",
-        "district_number": "31",
-        "ocd_id": "ocd-division/country:us/state:va/sldu:31",
-        "is_upcoming_state_legislative_district": false,
-        "proportion": 1
-      }
-    ]
-  }
-}
-...
-```
 You can retrieve the state legislative districts for an address or coordinate using `stateleg` in the `fields` query parameter. The `stateleg-next` can be used to retrieve state legislative districts based on upcoming district changes.
 
 The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district number for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington, DC or Nebraska), the `house` and `senate` keys return the same district.
@@ -2435,35 +2078,6 @@ If new boundaries are not available, the current boundaries are used instead (ef
 -->
 
 <!--FIELD:us:stateleg-next-->
-
-> Example lookup using a full address with `stateleg-next`
-
-```json
-...
-"fields": {
-  "state_legislative_districts": {
-    "house": [
-      {
-        "name": "State House District 2",
-        "district_number": "2",
-        "ocd_id": "ocd-division/country:us/state:va/sldl:2",
-        "is_upcoming_state_legislative_district": true,
-        "proportion": 1
-      }
-    ],
-    "senate": [
-      {
-        "name": "State Senate District 40",
-        "district_number": "40",
-        "ocd_id": "ocd-division/country:us/state:va/sldu:40",
-        "is_upcoming_state_legislative_district": true,
-        "proportion": 1
-      }
-    ]
-  }
-}
-...
-```
 
 ### OCD Identifiers
 
@@ -2527,7 +2141,7 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 ## School Districts
 **Field name: `school`**
 
-<!--FIELD:us:school-->
+<!--FIELD_SIMPLE:us:school-->
 
 > Unified school district example
 
@@ -2579,84 +2193,6 @@ The field will return either a *unified* school district or separate *elementary
 
 <!--FIELD:us:census2010,census-->
 
-```json
-...
-"fields": {
-  "census": {
-    "2010": {
-      "census_year": 2010,
-      "state_fips": "51",
-      "county_fips": "51013",
-      "tract_code": "101801",
-      "block_code": "1004",
-      "block_group": "1",
-      "full_fips": "510131018011004",
-      "place": {
-        "name": "Arlington",
-        "fips": "5103000"
-      },
-      "metro_micro_statistical_area": {
-        "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
-        "area_code": "47900",
-        "type": "metropolitan"
-      },
-      "combined_statistical_area": {
-        "name": "Washington-Baltimore-Northern Virginia, DC-MD-VA-WV",
-        "area_code": "51548"
-      },
-      "metropolitan_division": {
-        "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
-        "area_code": "47894"
-      },
-      "county_subdivision": {
-        "name": "Arlington",
-        "fips": "90072",
-        "fips_class": {
-          "class_code": "Z7",
-          "description": "A county subdivision that is coextensive with a county or equivalent feature or all or part of an incorporated place that the Census Bureau recognizes separately"
-        }
-      },
-      "source": "US Census Bureau"
-    },
-    "2024": {
-      "census_year": 2024,
-      "state_fips": "51",
-      "county_fips": "51013",
-      "tract_code": "101801",
-      "block_code": "2004",
-      "block_group": "2",
-      "full_fips": "510131018012004",
-      "place": {
-        "name": "Arlington",
-        "fips": "5103000"
-      },
-      "metro_micro_statistical_area": {
-        "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
-        "area_code": "47900",
-        "type": "metropolitan"
-      },
-      "combined_statistical_area": {
-        "name": "Washington-Baltimore-Arlington, DC-MD-VA-WV-PA",
-        "area_code": "548"
-      },
-      "metropolitan_division": {
-        "name": "Arlington-Alexandria-Reston, VA-WV",
-        "area_code": "11694"
-      },
-      "county_subdivision": {
-        "name": "Arlington",
-        "fips": "90072",
-        "fips_class": {
-          "class_code": "Z7",
-          "description": "A county subdivision that is coextensive with a county or equivalent feature or all or part of an incorporated place that the Census Bureau recognizes separately"
-        }
-      },
-      "source": "US Census Bureau"
-    }
-  }
-}
-...
-```
 This will append various US Census-designated codes to your address.
 
 <aside class="notice">
@@ -2744,29 +2280,41 @@ fips_class   | The `class_code` and `description` for the given [class code](htt
 
 ## Census ACS (American Community Survey)
 
-Geocodio can return results from the American Community Survey, for any given address in the US. This is performed by looking up 5-year estimates for the *census block group* associated with the address.
+Geocodio helps you retrieve valuable statistics from the American Community Survey for any US address you provide.
 
-Please note that a single census block group can cover hundreds of households. As such, the returned data is not specific to the given location only.
-
-We have divided ACS results into 5 categories: Demographics, Economics (Income Data), Families, Housing and Social (Education & Veteran Status).
+We've organized the ACS results into 5 helpful categories: [Demographics](/#demographics-census), [Economics (Income Data)](/#economics-income-data-census), [Families](/#families-census), [Housing](#housing-census) and [Social (Education & Veteran Status)](#social-education-amp-veteran-status-census).
 
 ### Pricing
 
-For billing purposes, each category counts as an additional lookup. Do however note that the `census` field is always included with any `acs-` field lookups *at no additional cost*.
+When planning your project, each category counts as an additional lookup for billing purposes. As a bonus, the basic `census` field comes included with any `acs-` field lookups *at no additional cost*.
 
+### Geographies
 
-### Address formats
+<!--FIELD:us:acs-demographics-county-->
 
-ACS field results are only returned for the following [accuracy types](#accuracy-score):
+<!--FIELD:us:acs-demographics-tract-->
 
-* `rooftop`
-* `range_interpolation`
-* `nearest_street`
-* `point`
-* `nearest_rooftop_match`
-* `street_center`
+You can request ACS data at several geographic levels:
 
-As such, it is not possible to get ACS results for city or zip code results. Lookups are not counted towards account usage when ACS field appends are requested for these less accurate results.
+| Name               | API Name             |
+|--------------------|----------------------|
+| Census Block Group | `block_group`        |
+| Census Tract       | `tract`              |
+| Census Place       | `place`              |
+| County             | `county`             |
+| County Subdivision | `county_subdivision` |
+| State              | `state`              |
+
+To request ACS data for a specific geography, simply append the ACS field name with the **API Name** for the geography. For example, to get ACS demographic data for an address at the County level, you would request `acs-demographics-county`.
+
+If you request an ACS field without specifying a geography, we'll select the most appropriate geography based on your geocoding result:
+
+| Census Geography   | [Accuracy Type](#accuracy-score)                                                                                      |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------|
+| Census Block Group | `rooftop`, `range_interpolation`, `nearest_street`, `point`, `nearest_rooftop_match`, `street_center`, `intersection` |
+| Census Place       | `nearest_place`, `place`                                                                                              |
+| County             | `county`                                                                                                              |
+| State              | `state`                                                                                                               |
 
 ### Metadata
 
@@ -2778,15 +2326,15 @@ As such, it is not possible to get ACS results for city or zip code results. Loo
   "acs": {
     "meta": {
       "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2017-2021",
+      "survey_years": "2019-2023",
       "survey_duration_years": "5"
-    }
+    },
     ...
   }
 }
 ```
 
-> Individual ACS result metadata:
+> Individual ACS table result metadata:
 
 ```json
 ...
@@ -2797,15 +2345,28 @@ As such, it is not possible to get ACS results for city or zip code results. Loo
    },
    ...
 }
+
+> Individual ACS field metadata:
+
+```json
+"fields": {
+  "acs": {
+    "housing": {
+      ...
+      "meta": {
+        "geography": "block_group"
+      }
+    },
+    ...
+  }
+}
 ```
 
-A `meta` field with high level data information is returned for all `acs` results in general as well as individual ACS values.
+A `meta` field with high level data information is returned for all `acs` results in general as well as individual ACS appends and individual ACS values.
 
-This contains information about the exact ACS results we are using, including the years they are covering. We always use 5-year estimates, and always use the most recent data that is available.
+This contains information about the exact ACS results we are using, including the years they are covering and the geography the values were returned at. We always use 5-year estimates, and always use the most recent data that is available.
 
-When our ACS results are updated to a newer version, it is not considering a breaking change. This is done as soon as newer Census data is fully available and verified.
-
-For each individual result, we return the [official ACS table id](https://www.census.gov/content/dam/Census/library/publications/2021/acs/acs_summary_file_handbook_2021.pdf) as well as the "universe" that the values covers.
+For each individual result, we return the [official ACS table id](https://www.census.gov/programs-surveys/acs/library/handbooks/summary-file.html) as well as the "universe" that the values covers.
 
 The universe can be values such as `Households`, `Population 15 Years and Older`, `Total population`, etc.
 
@@ -2813,421 +2374,6 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
 **Field name: `acs-demographics`**
 
 <!--FIELD:us:acs-demographics-->
-
-```json
-...
-"fields": {
-  "census": {...},
-  "acs": {
-    "meta": {
-      "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2017-2021",
-      "survey_duration_years": "5"
-    },
-    "demographics": {
-      "Median age": {
-        "meta": {
-          "table_id": "B01002",
-          "universe": "Total population"
-        },
-        "Total": {
-          "value": 29.8,
-          "margin_of_error": 2.9
-        },
-        "Male": {
-          "value": 29.8,
-          "margin_of_error": 2.1
-        },
-        "Female": {
-          "value": 29.9,
-          "margin_of_error": 4.3
-        }
-      },
-      "Population by age range": {
-        "meta": {
-          "table_id": "B01001",
-          "universe": "Total population"
-        },
-        "Total": {
-          "value": 1585,
-          "margin_of_error": 287
-        },
-        "Male": {
-          "value": 808,
-          "margin_of_error": 200,
-          "percentage": 0.51
-        },
-        "Male: Under 5 years": {
-          "value": 23,
-          "margin_of_error": 20,
-          "percentage": 0.028
-        },
-        "Male: 5 to 9 years": {
-          "value": 13,
-          "margin_of_error": 18,
-          "percentage": 0.016
-        },
-        "Male: 10 to 14 years": {
-          "value": 20,
-          "margin_of_error": 26,
-          "percentage": 0.025
-        },
-        "Male: 15 to 17 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 18 and 19 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 20 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 21 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 22 to 24 years": {
-          "value": 96,
-          "margin_of_error": 78,
-          "percentage": 0.119
-        },
-        "Male: 25 to 29 years": {
-          "value": 268,
-          "margin_of_error": 122,
-          "percentage": 0.332
-        },
-        "Male: 30 to 34 years": {
-          "value": 124,
-          "margin_of_error": 65,
-          "percentage": 0.153
-        },
-        "Male: 35 to 39 years": {
-          "value": 56,
-          "margin_of_error": 35,
-          "percentage": 0.069
-        },
-        "Male: 40 to 44 years": {
-          "value": 84,
-          "margin_of_error": 48,
-          "percentage": 0.104
-        },
-        "Male: 45 to 49 years": {
-          "value": 30,
-          "margin_of_error": 30,
-          "percentage": 0.037
-        },
-        "Male: 50 to 54 years": {
-          "value": 33,
-          "margin_of_error": 28,
-          "percentage": 0.041
-        },
-        "Male: 55 to 59 years": {
-          "value": 29,
-          "margin_of_error": 27,
-          "percentage": 0.036
-        },
-        "Male: 60 and 61 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 62 to 64 years": {
-          "value": 12,
-          "margin_of_error": 19,
-          "percentage": 0.015
-        },
-        "Male: 65 and 66 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 67 to 69 years": {
-          "value": 11,
-          "margin_of_error": 18,
-          "percentage": 0.014
-        },
-        "Male: 70 to 74 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 75 to 79 years": {
-          "value": 9,
-          "margin_of_error": 17,
-          "percentage": 0.011
-        },
-        "Male: 80 to 84 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 85 years and over": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female": {
-          "value": 777,
-          "margin_of_error": 139,
-          "percentage": 0.49
-        },
-        "Female: Under 5 years": {
-          "value": 30,
-          "margin_of_error": 27,
-          "percentage": 0.039
-        },
-        "Female: 5 to 9 years": {
-          "value": 7,
-          "margin_of_error": 11,
-          "percentage": 0.009
-        },
-        "Female: 10 to 14 years": {
-          "value": 21,
-          "margin_of_error": 24,
-          "percentage": 0.027
-        },
-        "Female: 15 to 17 years": {
-          "value": 25,
-          "margin_of_error": 33,
-          "percentage": 0.032
-        },
-        "Female: 18 and 19 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 20 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 21 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 22 to 24 years": {
-          "value": 113,
-          "margin_of_error": 106,
-          "percentage": 0.145
-        },
-        "Female: 25 to 29 years": {
-          "value": 195,
-          "margin_of_error": 63,
-          "percentage": 0.251
-        },
-        "Female: 30 to 34 years": {
-          "value": 119,
-          "margin_of_error": 52,
-          "percentage": 0.153
-        },
-        "Female: 35 to 39 years": {
-          "value": 63,
-          "margin_of_error": 48,
-          "percentage": 0.081
-        },
-        "Female: 40 to 44 years": {
-          "value": 44,
-          "margin_of_error": 30,
-          "percentage": 0.057
-        },
-        "Female: 45 to 49 years": {
-          "value": 54,
-          "margin_of_error": 39,
-          "percentage": 0.069
-        },
-        "Female: 50 to 54 years": {
-          "value": 24,
-          "margin_of_error": 21,
-          "percentage": 0.031
-        },
-        "Female: 55 to 59 years": {
-          "value": 7,
-          "margin_of_error": 13,
-          "percentage": 0.009
-        },
-        "Female: 60 and 61 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 62 to 64 years": {
-          "value": 30,
-          "margin_of_error": 31,
-          "percentage": 0.039
-        },
-        "Female: 65 and 66 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 67 to 69 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 70 to 74 years": {
-          "value": 14,
-          "margin_of_error": 21,
-          "percentage": 0.018
-        },
-        "Female: 75 to 79 years": {
-          "value": 31,
-          "margin_of_error": 37,
-          "percentage": 0.04
-        },
-        "Female: 80 to 84 years": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 85 years and over": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        }
-      },
-      "Sex": {
-        "meta": {
-          "table_id": "B01001",
-          "universe": "Total population"
-        },
-        "Total": {
-          "value": 1585,
-          "margin_of_error": 287
-        },
-        "Male": {
-          "value": 808,
-          "margin_of_error": 200,
-          "percentage": 0.51
-        },
-        "Female": {
-          "value": 777,
-          "margin_of_error": 139,
-          "percentage": 0.49
-        }
-      },
-      "Race and ethnicity": {
-        "meta": {
-          "table_id": "B03002",
-          "universe": "Total population"
-        },
-        "Total": {
-          "value": 1585,
-          "margin_of_error": 287
-        },
-        "Not Hispanic or Latino": {
-          "value": 1522,
-          "margin_of_error": 289,
-          "percentage": 0.96
-        },
-        "Not Hispanic or Latino: White alone": {
-          "value": 1175,
-          "margin_of_error": 257,
-          "percentage": 0.772
-        },
-        "Not Hispanic or Latino: Black or African American alone": {
-          "value": 36,
-          "margin_of_error": 31,
-          "percentage": 0.024
-        },
-        "Not Hispanic or Latino: American Indian and Alaska Native alone": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Not Hispanic or Latino: Asian alone": {
-          "value": 206,
-          "margin_of_error": 108,
-          "percentage": 0.135
-        },
-        "Not Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Not Hispanic or Latino: Some other race alone": {
-          "value": 23,
-          "margin_of_error": 25,
-          "percentage": 0.015
-        },
-        "Not Hispanic or Latino: Two or more races": {
-          "value": 82,
-          "margin_of_error": 62,
-          "percentage": 0.054
-        },
-        "Not Hispanic or Latino: Two or more races: Two races including Some other race": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Not Hispanic or Latino: Two or more races: Two races excluding Some other race, and three or more races": {
-          "value": 82,
-          "margin_of_error": 62,
-          "percentage": 1
-        },
-        "Hispanic or Latino": {
-          "value": 63,
-          "margin_of_error": 43,
-          "percentage": 0.04
-        },
-        "Hispanic or Latino: White alone": {
-          "value": 36,
-          "margin_of_error": 30,
-          "percentage": 0.571
-        },
-        "Hispanic or Latino: Black or African American alone": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Hispanic or Latino: American Indian and Alaska Native alone": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Hispanic or Latino: Asian alone": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Hispanic or Latino: Some other race alone": {
-          "value": 10,
-          "margin_of_error": 16,
-          "percentage": 0.159
-        },
-        "Hispanic or Latino: Two or more races": {
-          "value": 17,
-          "margin_of_error": 25,
-          "percentage": 0.27
-        },
-        "Hispanic or Latino: Two or more races: Two races including Some other race": {
-          "value": 17,
-          "margin_of_error": 25,
-          "percentage": 1
-        },
-        "Hispanic or Latino: Two or more races: Two races excluding Some other race, and three or more races": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        }
-      }
-    }
-  }
-}
-...
-```
 
 We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
 
@@ -3253,128 +2399,6 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
 
 <!--FIELD:us:acs-economics-->
 
-```json
-...
-"fields": {
-  "census": {...},
-  "acs": {
-    "meta": {
-      "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2017-2021",
-      "survey_duration_years": "5"
-    },
-    "economics": {
-      "Number of households": {
-        "meta": {
-          "table_id": "B19001",
-          "universe": "Households"
-        },
-        "Total": {
-          "value": 856,
-          "margin_of_error": 119
-        }
-      },
-      "Median household income": {
-        "meta": {
-          "table_id": "B19013",
-          "universe": "Households"
-        },
-        "Total": {
-          "value": 163646,
-          "margin_of_error": 9443
-        }
-      },
-      "Household income": {
-        "meta": {
-          "table_id": "B19001",
-          "universe": "Households"
-        },
-        "Less than $10,000": {
-          "value": 7,
-          "margin_of_error": 11,
-          "percentage": 0.008
-        },
-        "$10,000 to $14,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$15,000 to $19,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$20,000 to $24,999": {
-          "value": 23,
-          "margin_of_error": 34,
-          "percentage": 0.027
-        },
-        "$25,000 to $29,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$30,000 to $34,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$35,000 to $39,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$40,000 to $44,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$45,000 to $49,999": {
-          "value": 9,
-          "margin_of_error": 13,
-          "percentage": 0.011
-        },
-        "$50,000 to $59,999": {
-          "value": 8,
-          "margin_of_error": 13,
-          "percentage": 0.009
-        },
-        "$60,000 to $74,999": {
-          "value": 23,
-          "margin_of_error": 20,
-          "percentage": 0.027
-        },
-        "$75,000 to $99,999": {
-          "value": 93,
-          "margin_of_error": 55,
-          "percentage": 0.109
-        },
-        "$100,000 to $124,999": {
-          "value": 97,
-          "margin_of_error": 50,
-          "percentage": 0.113
-        },
-        "$125,000 to $149,999": {
-          "value": 101,
-          "margin_of_error": 53,
-          "percentage": 0.118
-        },
-        "$150,000 to $199,999": {
-          "value": 200,
-          "margin_of_error": 97,
-          "percentage": 0.234
-        },
-        "$200,000 or more": {
-          "value": 295,
-          "margin_of_error": 86,
-          "percentage": 0.345
-        }
-      }
-    }
-  }
-}
-...
-```
 
 We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
 
@@ -3383,240 +2407,12 @@ The data returned includes the following data points. For each data point, the d
 * Median household income (Table #B19013)
 * Household income (Table #B19001)
   * less than $10,000; $10,000-$14,999; $15,000-$19,999; $20,000-$24,999; $25,000-$29,999; $30,000-$34,999; $40,000-$44,999; $45,000-$49,999; $50,000-$59,000; $60,000-$74,999; $75,000-$99,999; $100,000-$124,999; $125,000-$149,000; $150,000-$199,999; $200,000 or more
+* Per capita income (Table #B19301)
 
 ## Families (Census)
 **Field name: `acs-families`**
 
 <!--FIELD:us:acs-families-->
-
-```json
-...
-"fields": {
-  "census": {...},
-  "acs": {
-    "meta": {
-      "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2017-2021",
-      "survey_duration_years": "5"
-    },
-    "families": {
-      "Household type by household": {
-        "meta": {
-          "table_id": "B11001",
-          "universe": "Households"
-        },
-        "Total": {
-          "value": 856,
-          "margin_of_error": 119
-        },
-        "Family households": {
-          "value": 272,
-          "margin_of_error": 70,
-          "percentage": 0.318
-        },
-        "Family households: Married-couple family": {
-          "value": 234,
-          "margin_of_error": 66,
-          "percentage": 0.86
-        },
-        "Family households: Other family": {
-          "value": 38,
-          "margin_of_error": 30,
-          "percentage": 0.14
-        },
-        "Family households: Other family: Male householder, no spouse present": {
-          "value": 6,
-          "margin_of_error": 9,
-          "percentage": 0.158
-        },
-        "Family households: Other family: Female householder, no spouse present": {
-          "value": 32,
-          "margin_of_error": 28,
-          "percentage": 0.842
-        },
-        "Nonfamily households": {
-          "value": 584,
-          "margin_of_error": 123,
-          "percentage": 0.682
-        },
-        "Nonfamily households: Householder living alone": {
-          "value": 320,
-          "margin_of_error": 91,
-          "percentage": 0.548
-        },
-        "Nonfamily households: Householder not living alone": {
-          "value": 264,
-          "margin_of_error": 114,
-          "percentage": 0.452
-        }
-      },
-      "Household type by population": {
-        "meta": {
-          "table_id": "B11002",
-          "universe": "Population in Households"
-        },
-        "Total": {
-          "value": 1585,
-          "margin_of_error": 287
-        },
-        "In family households": {
-          "value": 663,
-          "margin_of_error": 169,
-          "percentage": 0.418
-        },
-        "In family households: In married-couple family": {
-          "value": 550,
-          "margin_of_error": 159,
-          "percentage": 0.83
-        },
-        "In family households: In married-couple family: Relatives": {
-          "value": 550,
-          "margin_of_error": 159,
-          "percentage": 1
-        },
-        "In family households: In married-couple family: Nonrelatives": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "In family households: In male householder, no spouse present, family": {
-          "value": 16,
-          "margin_of_error": 27,
-          "percentage": 0.024
-        },
-        "In family households: In male householder, no spouse present, family: Relatives": {
-          "value": 11,
-          "margin_of_error": 18,
-          "percentage": 0.688
-        },
-        "In family households: In male householder, no spouse present, family: Nonrelatives": {
-          "value": 5,
-          "margin_of_error": 9,
-          "percentage": 0.313
-        },
-        "In family households: In female householder, no spouse present, family": {
-          "value": 97,
-          "margin_of_error": 83,
-          "percentage": 0.146
-        },
-        "In family households: In female householder, no spouse present, family: Relatives": {
-          "value": 90,
-          "margin_of_error": 76,
-          "percentage": 0.928
-        },
-        "In family households: In female householder, no spouse present, family: Nonrelatives": {
-          "value": 7,
-          "margin_of_error": 11,
-          "percentage": 0.072
-        },
-        "In nonfamily households": {
-          "value": 922,
-          "margin_of_error": 277,
-          "percentage": 0.582
-        }
-      },
-      "Marital status": {
-        "meta": {
-          "table_id": "B12001",
-          "universe": "Population 15 Years And Older"
-        },
-        "Male": {
-          "value": 752,
-          "margin_of_error": 196,
-          "percentage": 0.511
-        },
-        "Male: Never married": {
-          "value": 437,
-          "margin_of_error": 187,
-          "percentage": 0.581
-        },
-        "Male: Now married": {
-          "value": 308,
-          "margin_of_error": 71,
-          "percentage": 0.41
-        },
-        "Male: Now married: Married, spouse present": {
-          "value": 243,
-          "margin_of_error": 72,
-          "percentage": 0.789
-        },
-        "Male: Now married: Married, spouse absent": {
-          "value": 65,
-          "margin_of_error": 53,
-          "percentage": 0.211
-        },
-        "Male: Now married: Married, spouse absent: Separated": {
-          "value": 32,
-          "margin_of_error": 41,
-          "percentage": 0.492
-        },
-        "Male: Now married: Married, spouse absent: Other": {
-          "value": 33,
-          "margin_of_error": 30,
-          "percentage": 0.508
-        },
-        "Male: Widowed": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: Divorced": {
-          "value": 7,
-          "margin_of_error": 11,
-          "percentage": 0.009
-        },
-        "Female": {
-          "value": 719,
-          "margin_of_error": 139,
-          "percentage": 0.489
-        },
-        "Female: Never married": {
-          "value": 339,
-          "margin_of_error": 127,
-          "percentage": 0.471
-        },
-        "Female: Now married": {
-          "value": 229,
-          "margin_of_error": 66,
-          "percentage": 0.318
-        },
-        "Female: Now married: Married, spouse present": {
-          "value": 226,
-          "margin_of_error": 66,
-          "percentage": 0.987
-        },
-        "Female: Now married: Married, spouse absent": {
-          "value": 3,
-          "margin_of_error": 5,
-          "percentage": 0.013
-        },
-        "Female: Now married: Married, spouse absent: Separated": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: Now married: Married, spouse absent: Other": {
-          "value": 3,
-          "margin_of_error": 5,
-          "percentage": 1
-        },
-        "Female: Widowed": {
-          "value": 43,
-          "margin_of_error": 41,
-          "percentage": 0.06
-        },
-        "Female: Divorced": {
-          "value": 108,
-          "margin_of_error": 52,
-          "percentage": 0.15
-        }
-      }
-    }
-  }
-}
-
-...
-```
 
 We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
 
@@ -3625,9 +2421,16 @@ The data returned includes the following data points. For each data point, the d
 * Family households (Table #B11001)
   * total; married-couple family; other family; other family: male householder, no wife present; other family: female householder, no husband present; non-family households; non-family households -- householder living alone; non-family households -- householder not living alone
 * Household type by population (Table #B11002)
-  * total; in family households; in married-couple family; in married-couple family: relatives; in married-couple family: non-relatives; in male householder, no wife present, family; in male householder, no wife present, family: relatives; in male householder, no wife present, family: nonrelatives; in female householder, no husband present, family; in female householder, no husband present, family: relatives; in female householder, no husband present, family: in nonfamily households
+  * total; in family households; in married-couple family; in married-couple family: relatives; in married-couple family: non-relatives; in male householder, no spouse present, family; in male householder, no spouse present, family: relatives; in male householder, no spouse present, family: nonrelatives; in female householder, no spouse present, family; in female householder, no spouse present, family: relatives; in female householder, no spouse present, family: in nonfamily households
 * Marital status (Table #B12001)
   * never married; now married; now married: married, spouse present; married, spouse absent; married, spouse absent: separated; married, spouse absent: other; married, spouse absent, widowed; married, spouse absent, divorced; male never married; female never married
+* Family Type by Presence and Age of Own Children Under 18 Years (Table #B11003)
+  * total; married-couple family; married-couple family: with own children of the householder under 18 years; married-couple family: with own children of the householder under 18 years: under 6 years only; married-couple family: with own children of the householder under 18 years: under 6 years and 6 to 17 years; married-couple family: with own children of the householder under 18 years: 6 to 17 years only; married-couple family: no own children of the householder under 18 years; other family; other family: male householder, no spouse present; other family: male householder, no spouse present: with own children of the householder under 18 years; other family: male householder, no spouse present: with own children of the householder under 18 years: under 6 years only; other family: male householder, no spouse present: with own children of the householder under 18 years: under 6 years and 6 to 17 years; other family: male householder, no spouse present: with own children of the householder under 18 years: 6 to 17 years only; other family: male householder, no spouse present: no own children of the householder under 18 years; other family: female householder, no spouse present; other family: female householder, no spouse present: with own children of the householder under 18 years; other family: female householder, no spouse present: with own children of the householder under 18 years: under 6 years only; other family: female householder, no spouse present: with own children of the householder under 18 years: under 6 years and 6 to 17 years; other family: female householder, no spouse present: with own children of the householder under 18 years: 6 to 17 years only; other family: female householder, no spouse present: no own children of the householder under 18 years
+* Average Household Size of Occupied Housing Units by Tenure (Table #B25010)
+  * total; owner occupied; renter occupied
+* Own Children Under 18 Years by Family Type and Age (Table #B09002)
+  * total; in married-couple families; in married-couple families: under 3 years; in married-couple families: 3 and 4 years; in married-couple families: 5 years; in married-couple families: 6 to 11 years; in married-couple families: 12 to 17 years; in other families; in other families: male householder, no spouse present; in other families: male householder, no spouse present: under 3 years; in other families: male householder, no spouse present: 3 and 4 years; in other families: male householder, no spouse present: 5 years; in other families: male householder, no spouse present: 6 to 11 years; in other families: male householder, no spouse present: 12 to 17 years; in other families: female householder, no spouse present; in other families: female householder, no spouse present: under 3 years; in other families: female householder, no spouse present: 3 and 4 years; in other families: female householder, no spouse present: 5 years; in other families: female householder, no spouse present: 6 to 11 years; in other families: female householder, no spouse present: 12 to 17 years
+
 
 <aside class="notice">
 We recognize that household composition is a sensitive subject. Accordingly, we report the categories exactly as the Census Bureau provides. We recognize that the categories listed may not be all-inclusive or use preferred terminology.
@@ -3637,267 +2440,6 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
 **Field name: `acs-housing`**
 
 <!--FIELD:us:acs-housing-->
-
-```json
-...
-"fields": {
-  "census": {...},
-  "acs": {
-    "meta": {
-      "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2017-2021",
-      "survey_duration_years": "5"
-    },
-    "housing": {
-      "Number of housing units": {
-        "meta": {
-          "table_id": "B25002",
-          "universe": "Housing Units"
-        },
-        "Total": {
-          "value": 936,
-          "margin_of_error": 128
-        }
-      },
-      "Occupancy status": {
-        "meta": {
-          "table_id": "B25002",
-          "universe": "Housing Units"
-        },
-        "Occupied": {
-          "value": 856,
-          "margin_of_error": 119,
-          "percentage": 0.915
-        },
-        "Vacant": {
-          "value": 80,
-          "margin_of_error": 68,
-          "percentage": 0.085
-        }
-      },
-      "Ownership of occupied units": {
-        "meta": {
-          "table_id": "B25003",
-          "universe": "Occupied Housing Units"
-        },
-        "Owner occupied": {
-          "value": 212,
-          "margin_of_error": 67,
-          "percentage": 0.248
-        },
-        "Renter occupied": {
-          "value": 644,
-          "margin_of_error": 127,
-          "percentage": 0.752
-        }
-      },
-      "Units in structure": {
-        "meta": {
-          "table_id": "B25024",
-          "universe": "Housing Units"
-        },
-        "1, detached unit": {
-          "value": 5,
-          "margin_of_error": 10,
-          "percentage": 0.005
-        },
-        "1, attached unit": {
-          "value": 43,
-          "margin_of_error": 24,
-          "percentage": 0.046
-        },
-        "2 units": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "3 or 4 units": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "5 to 9 units": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "10 to 19 unit": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "20 to 49 units": {
-          "value": 34,
-          "margin_of_error": 28,
-          "percentage": 0.036
-        },
-        "50 or more units": {
-          "value": 854,
-          "margin_of_error": 124,
-          "percentage": 0.912
-        },
-        "Mobile home units": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Boat, RV, van, etc. units": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        }
-      },
-      "Median value of owner-occupied housing units": {
-        "meta": {
-          "table_id": "B25077",
-          "universe": "Owner-Occupied Housing Units"
-        },
-        "Total": {
-          "value": 665900,
-          "margin_of_error": 58612
-        }
-      },
-      "Value of owner-occupied housing units": {
-        "meta": {
-          "table_id": "B25075",
-          "universe": "Owner-Occupied Housing Units"
-        },
-        "Less than $10,000": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$10,000 to $14,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$15,000 to $19,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$20,000 to $24,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$25,000 to $29,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$30,000 to $34,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$35,000 to $39,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$40,000 to $49,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$50,000 to $59,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$60,000 to $69,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$70,000 to $79,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$80,000 to $89,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$90,000 to $99,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$100,000 to $124,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$125,000 to $149,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$150,000 to $174,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$175,000 to $199,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$200,000 to $249,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$250,000 to $299,999": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "$300,000 to $399,999": {
-          "value": 5,
-          "margin_of_error": 10,
-          "percentage": 0.024
-        },
-        "$400,000 to $499,999": {
-          "value": 28,
-          "margin_of_error": 28,
-          "percentage": 0.132
-        },
-        "$500,000 to $749,999": {
-          "value": 110,
-          "margin_of_error": 58,
-          "percentage": 0.519
-        },
-        "$750,000 to $999,999": {
-          "value": 12,
-          "margin_of_error": 14,
-          "percentage": 0.057
-        },
-        "$1,000,000 to $1,499,999": {
-          "value": 48,
-          "margin_of_error": 34,
-          "percentage": 0.226
-        },
-        "$1,500,000 to $1,999,999": {
-          "value": 9,
-          "margin_of_error": 13,
-          "percentage": 0.042
-        },
-        "$2,000,000 or more": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        }
-      }
-    }
-  }
-}
-...
-```
 
 We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
 
@@ -3921,488 +2463,6 @@ Data points returned are:
 **Field name: `acs-social`**
 
 <!--FIELD:us:acs-social-->
-
-```json
-...
-"fields": {
-  "census": {...},
-  "acs": {
-    "meta": {
-      "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2017-2021",
-      "survey_duration_years": "5"
-    },
-    "social": {
-      "Population by minimum level of education": {
-        "meta": {
-          "table_id": "B15002",
-          "universe": "Population 25 Years And Over"
-        },
-        "Total": {
-          "value": 1237,
-          "margin_of_error": 168
-        },
-        "Male": {
-          "value": 656,
-          "margin_of_error": 151,
-          "percentage": 0.53
-        },
-        "Male: No schooling completed": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: Nursery to 4th grade": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 5th and 6th grade": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 7th and 8th grade": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 9th grade": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 10th grade": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 11th grade": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 12th grade, no diploma": {
-          "value": 6,
-          "margin_of_error": 10,
-          "percentage": 0.009
-        },
-        "Male: High school graduate (includes equivalency)": {
-          "value": 6,
-          "margin_of_error": 9,
-          "percentage": 0.009
-        },
-        "Male: Some college, less than 1 year": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: Some college, 1 or more years, no degree": {
-          "value": 27,
-          "margin_of_error": 30,
-          "percentage": 0.041
-        },
-        "Male: Associate's degree": {
-          "value": 15,
-          "margin_of_error": 17,
-          "percentage": 0.023
-        },
-        "Male: Bachelor's degree": {
-          "value": 251,
-          "margin_of_error": 110,
-          "percentage": 0.383
-        },
-        "Male: Master's degree": {
-          "value": 216,
-          "margin_of_error": 99,
-          "percentage": 0.329
-        },
-        "Male: Professional school degree": {
-          "value": 118,
-          "margin_of_error": 55,
-          "percentage": 0.18
-        },
-        "Male: Doctorate degree": {
-          "value": 17,
-          "margin_of_error": 22,
-          "percentage": 0.026
-        },
-        "Female": {
-          "value": 581,
-          "margin_of_error": 99,
-          "percentage": 0.47
-        },
-        "Female: No schooling completed": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: Nursery to 4th grade": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 5th and 6th grade": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 7th and 8th grade": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 9th grade": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 10th grade": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 11th grade": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 12th grade, no diploma": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: High school graduate (includes equivalency)": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: Some college, less than 1 year": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: Some college, 1 or more years, no degree": {
-          "value": 28,
-          "margin_of_error": 25,
-          "percentage": 0.048
-        },
-        "Female: Associate's degree": {
-          "value": 13,
-          "margin_of_error": 18,
-          "percentage": 0.022
-        },
-        "Female: Bachelor's degree": {
-          "value": 228,
-          "margin_of_error": 84,
-          "percentage": 0.392
-        },
-        "Female: Master's degree": {
-          "value": 207,
-          "margin_of_error": 70,
-          "percentage": 0.356
-        },
-        "Female: Professional school degree": {
-          "value": 80,
-          "margin_of_error": 40,
-          "percentage": 0.138
-        },
-        "Female: Doctorate degree": {
-          "value": 25,
-          "margin_of_error": 32,
-          "percentage": 0.043
-        }
-      },
-      "Population with veteran status": {
-        "meta": {
-          "table_id": "B21001",
-          "universe": "Civilian Population 18 Years And Over"
-        },
-        "Total": {
-          "value": 1412,
-          "margin_of_error": 286
-        },
-        "Veteran": {
-          "value": 57,
-          "margin_of_error": 39,
-          "percentage": 0.04
-        },
-        "Nonveteran": {
-          "value": 1355,
-          "margin_of_error": 286,
-          "percentage": 0.96
-        },
-        "Male": {
-          "value": 747,
-          "margin_of_error": 196,
-          "percentage": 0.529
-        },
-        "Male: Veteran": {
-          "value": 57,
-          "margin_of_error": 39,
-          "percentage": 0.076
-        },
-        "Male: Nonveteran": {
-          "value": 690,
-          "margin_of_error": 198,
-          "percentage": 0.924
-        },
-        "Male: 18 to 34 years": {
-          "value": 488,
-          "margin_of_error": 189,
-          "percentage": 0.653
-        },
-        "Male: 18 to 34 years: Veteran": {
-          "value": 13,
-          "margin_of_error": 21,
-          "percentage": 0.027
-        },
-        "Male: 18 to 34 years: Nonveteran": {
-          "value": 475,
-          "margin_of_error": 190,
-          "percentage": 0.973
-        },
-        "Male: 35 to 54 years": {
-          "value": 198,
-          "margin_of_error": 63,
-          "percentage": 0.265
-        },
-        "Male: 35 to 54 years: Veteran": {
-          "value": 33,
-          "margin_of_error": 28,
-          "percentage": 0.167
-        },
-        "Male: 35 to 54 years: Nonveteran": {
-          "value": 165,
-          "margin_of_error": 60,
-          "percentage": 0.833
-        },
-        "Male: 55 to 64 years": {
-          "value": 41,
-          "margin_of_error": 32,
-          "percentage": 0.055
-        },
-        "Male: 55 to 64 years: Veteran": {
-          "value": 11,
-          "margin_of_error": 16,
-          "percentage": 0.268
-        },
-        "Male: 55 to 64 years: Nonveteran": {
-          "value": 30,
-          "margin_of_error": 29,
-          "percentage": 0.732
-        },
-        "Male: 65 to 74 years": {
-          "value": 11,
-          "margin_of_error": 18,
-          "percentage": 0.015
-        },
-        "Male: 65 to 74 years: Veteran": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 65 to 74 years: Nonveteran": {
-          "value": 11,
-          "margin_of_error": 18,
-          "percentage": 1
-        },
-        "Male: 75 years and over": {
-          "value": 9,
-          "margin_of_error": 17,
-          "percentage": 0.012
-        },
-        "Male: 75 years and over: Veteran": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Male: 75 years and over: Nonveteran": {
-          "value": 9,
-          "margin_of_error": 17,
-          "percentage": 1
-        },
-        "Female": {
-          "value": 665,
-          "margin_of_error": 130,
-          "percentage": 0.471
-        },
-        "Female: Veteran": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: Nonveteran": {
-          "value": 665,
-          "margin_of_error": 130,
-          "percentage": 1
-        },
-        "Female: 18 to 34 years": {
-          "value": 427,
-          "margin_of_error": 126,
-          "percentage": 0.642
-        },
-        "Female: 18 to 34 years: Veteran": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 18 to 34 years: Nonveteran": {
-          "value": 427,
-          "margin_of_error": 126,
-          "percentage": 1
-        },
-        "Female: 35 to 54 years": {
-          "value": 156,
-          "margin_of_error": 60,
-          "percentage": 0.235
-        },
-        "Female: 35 to 54 years: Veteran": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 35 to 54 years: Nonveteran": {
-          "value": 156,
-          "margin_of_error": 60,
-          "percentage": 1
-        },
-        "Female: 55 to 64 years": {
-          "value": 37,
-          "margin_of_error": 32,
-          "percentage": 0.056
-        },
-        "Female: 55 to 64 years: Veteran": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 55 to 64 years: Nonveteran": {
-          "value": 37,
-          "margin_of_error": 32,
-          "percentage": 1
-        },
-        "Female: 65 to 74 years": {
-          "value": 14,
-          "margin_of_error": 21,
-          "percentage": 0.021
-        },
-        "Female: 65 to 74 years: Veteran": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 65 to 74 years: Nonveteran": {
-          "value": 14,
-          "margin_of_error": 21,
-          "percentage": 1
-        },
-        "Female: 75 years and over": {
-          "value": 31,
-          "margin_of_error": 37,
-          "percentage": 0.047
-        },
-        "Female: 75 years and over: Veteran": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Female: 75 years and over: Nonveteran": {
-          "value": 31,
-          "margin_of_error": 37,
-          "percentage": 1
-        }
-      },
-      "Period of military service for veterans": {
-        "meta": {
-          "table_id": "B21002",
-          "universe": "Civilian Veterans 18 Years And Over"
-        },
-        "Total": {
-          "value": 57,
-          "margin_of_error": 39
-        },
-        "Gulf War (9/2001 or later), no Gulf War (8/1990 to 8/2001), no Vietnam Era": {
-          "value": 34,
-          "margin_of_error": 34,
-          "percentage": 0.596
-        },
-        "Gulf War (9/2001 or later) and Gulf War (8/1990 to 8/2001), no Vietnam Era": {
-          "value": 18,
-          "margin_of_error": 20,
-          "percentage": 0.316
-        },
-        "Gulf War (9/2001 or later), and Gulf War (8/1990 to 8/2001), and Vietnam Era": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Gulf War (8/1990 to 8/2001), no Vietnam Era": {
-          "value": 3,
-          "margin_of_error": 6,
-          "percentage": 0.053
-        },
-        "Gulf War (8/1990 to 8/2001) and Vietnam Era": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Vietnam Era, no Korean War, no World War II": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Vietnam Era and Korean War, no World War II": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Vietnam Era and Korean War and World War II": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Korean War, no Vietnam Era, no World War II": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Korean War and World War II, no Vietnam Era": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "World War II, no Korean War, no Vietnam Era": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Between Gulf War and Vietnam Era only": {
-          "value": 2,
-          "margin_of_error": 8,
-          "percentage": 0.035
-        },
-        "Between Vietnam Era and Korean War only": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Between Korean War and World War II only": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        },
-        "Pre-World War II only": {
-          "value": 0,
-          "margin_of_error": 13,
-          "percentage": 0
-        }
-      }
-    }
-  }
-}
-...
-```
 
 We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
 
@@ -4435,38 +2495,6 @@ The data returned includes the following data points. For each data point, the d
 
 <!--FIELD:us:zip4-->
 
-```json
-...
-"fields": {
-  "zip4": {
-    "record_type": {
-      "code": "S",
-      "description": "Street"
-    },
-    "residential": false,
-    "carrier_route": {
-      "id": "C007",
-      "description": "City Delivery"
-    },
-    "building_or_firm_name": null,
-    "plus4": [
-      "2890"
-    ],
-    "zip9": [
-      "22201-2890"
-    ],
-    "government_building": null,
-    "facility_code": {
-      "code": "P",
-      "description": "Post Office"
-    },
-    "city_delivery": true,
-    "valid_delivery_area": true,
-    "exact_match": true
-  }
-}
-...
-```
 <aside class="notice">
 The <code>zip4</code> data append requires using <code>v1.5</code> of the Geocodio API or newer.
 </aside>
@@ -4601,7 +2629,6 @@ Possible values are:
 
 Indicates whether our not the local post office has a city delivery carrier route.
 
-
 ### Valid delivery area
 
 In some cases an address exists but it is not a valid delivery point for postal purposes. This could for example be because it is an undeveloped lot.
@@ -4623,49 +2650,6 @@ If no ZIP+4 data is available for the given query, the `zip4` field is omitted f
 
 <!--FIELD:us:ffiec-->
 
-```json
-...
-"fields": {
-  "ffiec": {
-    "collection_year": 2024,
-    "msa_md_code": "11694",
-    "fips_state_code": "51",
-    "fips_county_code": "013",
-    "census_tract": "101801",
-    "principal_city": true,
-    "small_county": {
-      "flag": "T",
-      "description": "Tract record"
-    },
-    "split_tract": {
-      "flag": "N",
-      "description": "Tract number occurs within one MA"
-    },
-    "demographic_data": {
-      "flag": "D",
-      "description": "Total persons/population and median family income are not 0"
-    },
-    "urban_rural_flag": {
-      "flag": "U",
-      "description": "Urban"
-    },
-    "msa_md_median_family_income": 135790,
-    "msa_md_median_household_income": 115805,
-    "tract_median_family_income_percentage": 133.95,
-    "ffiec_estimated_msa_md_median_family_income": 164200,
-    "income_indicator": "Upper",
-    "cra_poverty_criteria": false,
-    "cra_unemployment_criteria": false,
-    "cra_distressed_criteria": false,
-    "cra_remote_rural_low_density_criteria": false,
-    "previous_year_cra_distressed_criteria": false,
-    "previous_year_cra_underserved_criterion": false,
-    "meets_current_previous_criteria": false
-  }
-}
-...
-```
-
 The FFIEC field append allows you to get key data points, commonly used by financial institutions, lenders, and organizations that need to comply
 with fair lending regulations like HMDA and CRA. The data returned is for the 2024 data release. (The 2025 data will not be available until later this year.)
 
@@ -4677,22 +2661,6 @@ You can read more about the individual values in the [FFIEC Documentation](https
 
 <!--FIELD:ca:riding-->
 
-> Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada"
-
-```json
-...
-"fields": {
-  "riding": {
-    "year": 2023,
-    "code": "35104",
-    "ocd_id": "ocd-division/country:ca/ed:35104-2023",
-    "name_french": "Sudbury-Est—Manitoulin—Nickel Belt",
-    "name_english": "Sudbury East—Manitoulin—Nickel Belt",
-    "source": "Federal Redistribution"
-  }
-}
-...
-```
 Look up the [riding](https://en.wikipedia.org/wiki/List_of_Canadian_federal_electoral_districts) for the specified address in Canada. The riding code and OCD-ID is returned along with the French and English name for the riding.
 
 The OCD-ID can be used to uniquely identify the district, using the [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) project.
@@ -4704,21 +2672,6 @@ In some cases the French and English names will be the same.
 
 <!--FIELD:ca:provriding-->
 
-> Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada"
-
-```json
-...
-"fields": {
-  "provincial_riding": {
-    "ocd_id": "ocd-division/country:ca/province:on/ed:72-2015",
-    "name_french": "Nipissing",
-    "name_english": "Nipissing",
-    "is_upcoming_district": false,
-    "source": "Elections Ontario"
-  }
-}
-...
-```
 Look up the [provincial or territorial electoral district](https://en.wikipedia.org/wiki/Canadian_provincial_electoral_districts) for the specified address in Canada. The OCD-ID is returned along with the French and English name for the riding.
 
 The OCD-ID can be used to uniquely identify the district, using the [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) project.
@@ -4731,84 +2684,11 @@ In some cases the French and English names will be the same.
 
 <!--FIELD:ca-alt:provriding-next-->
 
-> Example for "203 Laycoe Crescent, Saskatoon, SK, Canada"
-
-```json
-...
-"fields": {
-  "provincial_riding": {
-    "ocd_id": "ocd-division/country:ca/province:sk/ed:52-2022",
-    "name_french": "Saskatoon University-Sutherland",
-    "name_english": "Saskatoon University-Sutherland",
-    "is_upcoming_district": true,
-    "source": "Elections Saskatchewan"
-  }
-}
-...
-```
-
 ## Canadian statistical boundaries from Statistics Canada
 **Field name: `statcan`**
 
 <!--FIELD:ca:statcan-->
 
-> Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada"
-
-```json
-...
-"fields": {
-  "statcan": {
-    "division": {
-      "id": "3549",
-      "name": "Parry Sound",
-      "type": "DIS",
-      "type_description": "District"
-    },
-    "consolidated_subdivision": {
-      "id": "3549066",
-      "name": "Callander"
-    },
-    "subdivision": {
-      "id": "3549066",
-      "name": "Callander",
-      "type": "MU",
-      "type_description": "Municipality"
-    },
-    "economic_region": "Northeast / Nord-est",
-    "statistical_area": {
-      "code": "575",
-      "code_description": "CMA or CA",
-      "type": "2",
-      "type_description": "Census subdivision within census agglomeration with at least one census tract"
-    },
-    "cma_ca": {
-      "id": "575",
-      "name": "North Bay",
-      "type": "K",
-      "type_description": "Census agglomeration (CA) that is tracted"
-    },
-    "tract": "5750100.00",
-    "designated_place": null,
-    "population_centre": {
-      "id": "350595",
-      "name": "North Bay",
-      "type": "1",
-      "type_description": "Core inside of a census metropolitan area or census agglomeration",
-      "class": "3",
-      "class_description": "Medium population centre (30,000 to 99,999)"
-    },
-    "dissemination_area": {
-      "id": "35490146"
-    },
-    "dissemination_block": {
-      "id": "35490146015",
-      "population": "155"
-    },
-    "census_year": 2021
-  }
-}
-...
-```
 Retrieve the [Statistics Canada boundaries](https://en.wikipedia.org/wiki/Census_geographic_units_of_Canada) that the given query is within.
 These boundaries can be matched with data from [Statistics Canada](https://www.statcan.gc.ca) to get demographic information about the area the query is within.
 
@@ -4925,19 +2805,6 @@ The dissemination area is geographically one step lower than census tracts. Diss
 
 <!--FIELD:us:timezone-->
 
-```json
-...
-"fields": {
-  "timezone": {
-    "name": "America/New_York",
-    "utc_offset": -5,
-    "observes_dst": true,
-    "abbreviation": "EST",
-    "source": "© OpenStreetMap contributors"
-  }
-}
-...
-```
 You can retrieve the timezone for an address or coordinate using `timezone` in the `fields` query parameter.
 
 The field will return the standardized name of the timezone as well as an abbreviation (see table below for examples), the UTC/GMT offset, and whether the location observes Daylight Saving Time (DST).
@@ -5032,39 +2899,39 @@ If a city is provided without a state, Geocodio will automatically guess and add
 
 Geocoding queries can be formatted in various ways:
 
-* <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=PO+Box+4735,+Tulsa+OK&api_key=YOUR_API_KEY" target="_blank">PO Box 4735, Tulsa OK</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">Santa Clara County</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">Santa Clara County, CA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, CA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20Cupertino%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, Cupertino CA</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=PO+Box+4735,+Tulsa+OK&api_key=YOUR_API_KEY" target="_blank">PO Box 4735, Tulsa OK</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">Santa Clara County</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">Santa Clara County, CA</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, CA</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20Cupertino%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, Cupertino CA</a>
 
 If a country is not specified in the query, the Geocodio engine will assume the country to be USA.
 
 Examples of Canadian lookups:
 
-* <a href="https://api.geocod.io/v1.7/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
 
 ## Intersections
 
 You can also geocode intersections. Just specify the two streets that you want to geocode in your query. We support various formats:
 
-* <a href="https://api.geocod.io/v1.7/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
-* <a href="https://api.geocod.io/v1.7/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
+* <a href="https://api.geocod.io/v1.8/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
 
 An extra `address_components_secondary` property will be exposed for intersection results, but otherwise, the schema format is the same.
 
@@ -5163,7 +3030,7 @@ If no warnings have been triggered, the `_warnings` key will not be part of the 
 }
 ```
 
-> Warnings can also be triggered for individual results, such as when an ACS field append was specified for a city-level query:
+> Warnings can also be triggered for individual results, such as when an FFIEC field append was specified for a city-level query:
 
 ```json
 {
@@ -5174,33 +3041,41 @@ If no warnings have been triggered, the `_warnings` key will not be part of the 
     {
       ...
       "_warnings": [
-        "acs-demographics was skipped since result is not street-level"
+        "ffiec field was skipped since result is not street-level"
       ]
     }
   ]
 }
 ```
 
-# Client-side access
-> To Geocode an address using a jQuery AJAX call.
+# CORS
+> To Geocode an address using the JavaScript `fetch` API:
 
 ```html
 <script>
-var address = '1109 N Highland St, Arlington VA',
-    apiKey = 'YOUR_API_KEY';
+const address = '1109 N Highland St, Arlington VA';
+const apiKey = 'YOUR_API_KEY';
+const url = `https://api.geocod.io/v1.8/geocode?q=${encodeURIComponent(address)}&api_key=${encodeURIComponent(apiKey)}`;
 
-$.get('https://api.geocod.io/v1.7/geocode?q='+ encodeURIComponent(address) +'&api_key=' + encodeURIComponent(apiKey), function (response) {
-  console.log(response.results);
-});
+fetch(url)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.results);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 </script>
 ```
 
-The Geocodio API supports `CORS` using the `Access-Control-Allow-Origin` *HTTP* header. This means that you will be able to make requests directly to the API using JavaScript.
+The Geocodio API supports `CORS` using the `Access-Control-Allow-Origin` *HTTP* header.
+
+This means that you will be able to make requests directly to the API using JavaScript in the browser.
 
 (See an example to the right.)
 
 <aside class="notice">
-<strong>Note:</strong> This will expose your API Key publicly, make sure that you understand and accept the implications of this approach.
+<strong>Note:</strong> This will expose your API Key publicly, make sure that you understand and accept the implications of this approach, and consider setting <a href="https://dash.geocod.io/billing#limits">usage limits</a> on your account if applicable.
 </aside>
 
 # Changelog
@@ -5214,6 +3089,17 @@ Major changes, that are not breaking are also documented here.
 <aside class="notice">
 Breaking changes are defined as changes that remove or rename properties in the JSON output of any API endpoint. Your API client should be able to gracefully support addition of new JSON properties, as this is not considered a breaking change.
 </aside>
+
+## v1.8
+
+* **Breaking:** 2023 data is now returned for all [Census ACS appends](/#census-acs-american-community-survey). Changes include:
+  * 2023 Census boundaries and ACS data are returned instead of 2021
+  * The [`acs-families`](#families-census) field append has certain table titles renamed ("wife" or "husband" replaced with "spouse") &mdash; no other ACS field appends has renamed tables
+  * Support for additional Census Geographies (prior to v1.8 all ACS data was returned at the Census Block Group level). The geography is now automatically selected based on the `accuracy_type` of the result and [can be explicitly specified](/#census-acs-american-community-survey)
+* ACS Table #B19301 was added for the [`acs-economics`](#economics-income-data-census) field append
+* ACS Tables #B11003, #B25010, and #B09002 was added for the [`acs-families`](#families-census) field append
+
+  There are no other breaking changes for *v1.8*.
 
 ## v1.7
 

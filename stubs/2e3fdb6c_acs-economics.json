@@ -1,0 +1,211 @@
+{
+    "input": {
+        "address_components": {
+            "number": "1109",
+            "predirectional": "N",
+            "street": "Highland",
+            "suffix": "St",
+            "formatted_street": "N Highland St",
+            "city": "Arlington",
+            "state": "VA",
+            "country": "US"
+        },
+        "formatted_address": "1109 N Highland St, Arlington, VA"
+    },
+    "results": [
+        {
+            "address_components": {
+                "number": "1109",
+                "predirectional": "N",
+                "street": "Highland",
+                "suffix": "St",
+                "formatted_street": "N Highland St",
+                "city": "Arlington",
+                "county": "Arlington County",
+                "state": "VA",
+                "zip": "22201",
+                "country": "US"
+            },
+            "address_lines": [
+                "1109 N Highland St",
+                "",
+                "Arlington, VA 22201"
+            ],
+            "formatted_address": "1109 N Highland St, Arlington, VA 22201",
+            "location": {
+                "lat": 38.886672,
+                "lng": -77.094735
+            },
+            "accuracy": 1,
+            "accuracy_type": "rooftop",
+            "source": "Arlington",
+            "fields": {
+                "census": {
+                    "2023": {
+                        "census_year": 2023,
+                        "state_fips": "51",
+                        "county_fips": "51013",
+                        "tract_code": "101801",
+                        "block_code": "2004",
+                        "block_group": "2",
+                        "full_fips": "510131018012004",
+                        "place": {
+                            "name": "Arlington",
+                            "fips": "5103000"
+                        },
+                        "metro_micro_statistical_area": {
+                            "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
+                            "area_code": "47900",
+                            "type": "metropolitan"
+                        },
+                        "combined_statistical_area": {
+                            "name": "Washington-Baltimore-Arlington, DC-MD-VA-WV-PA",
+                            "area_code": "548"
+                        },
+                        "metropolitan_division": {
+                            "name": "Arlington-Alexandria-Reston, VA-WV",
+                            "area_code": "11694"
+                        },
+                        "county_subdivision": {
+                            "name": "Arlington",
+                            "fips": "90072",
+                            "fips_class": {
+                                "class_code": "Z7",
+                                "description": "A county subdivision that is coextensive with a county or equivalent feature or all or part of an incorporated place that the Census Bureau recognizes separately"
+                            }
+                        },
+                        "source": "US Census Bureau"
+                    }
+                },
+                "acs": {
+                    "meta": {
+                        "source": "American Community Survey from the US Census Bureau",
+                        "survey_years": "2019-2023",
+                        "survey_duration_years": "5"
+                    },
+                    "economics": {
+                        "Number of households": {
+                            "meta": {
+                                "table_id": "B19001",
+                                "universe": "Households"
+                            },
+                            "Total": {
+                                "value": 904,
+                                "margin_of_error": 136
+                            }
+                        },
+                        "Median household income": {
+                            "meta": {
+                                "table_id": "B19013",
+                                "universe": "Households"
+                            },
+                            "Total": {
+                                "value": 204063,
+                                "margin_of_error": 32217
+                            }
+                        },
+                        "Household income": {
+                            "meta": {
+                                "table_id": "B19001",
+                                "universe": "Households"
+                            },
+                            "Less than $10,000": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "$10,000 to $14,999": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "$15,000 to $19,999": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "$20,000 to $24,999": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "$25,000 to $29,999": {
+                                "value": 32,
+                                "margin_of_error": 48,
+                                "percentage": 0.035
+                            },
+                            "$30,000 to $34,999": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "$35,000 to $39,999": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "$40,000 to $44,999": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "$45,000 to $49,999": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "$50,000 to $59,999": {
+                                "value": 8,
+                                "margin_of_error": 13,
+                                "percentage": 0.009
+                            },
+                            "$60,000 to $74,999": {
+                                "value": 12,
+                                "margin_of_error": 16,
+                                "percentage": 0.013
+                            },
+                            "$75,000 to $99,999": {
+                                "value": 71,
+                                "margin_of_error": 46,
+                                "percentage": 0.079
+                            },
+                            "$100,000 to $124,999": {
+                                "value": 81,
+                                "margin_of_error": 44,
+                                "percentage": 0.09
+                            },
+                            "$125,000 to $149,999": {
+                                "value": 78,
+                                "margin_of_error": 61,
+                                "percentage": 0.086
+                            },
+                            "$150,000 to $199,999": {
+                                "value": 165,
+                                "margin_of_error": 89,
+                                "percentage": 0.183
+                            },
+                            "$200,000 or more": {
+                                "value": 457,
+                                "margin_of_error": 119,
+                                "percentage": 0.506
+                            }
+                        },
+                        "Per capita income": {
+                            "meta": {
+                                "table_id": "B19301",
+                                "universe": "Total population"
+                            },
+                            "Total": {
+                                "value": 122016,
+                                "margin_of_error": 14991
+                            }
+                        },
+                        "meta": {
+                            "geography": "block_group"
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

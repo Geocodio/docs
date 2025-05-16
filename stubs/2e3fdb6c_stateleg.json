@@ -1,0 +1,66 @@
+{
+    "input": {
+        "address_components": {
+            "number": "1109",
+            "predirectional": "N",
+            "street": "Highland",
+            "suffix": "St",
+            "formatted_street": "N Highland St",
+            "city": "Arlington",
+            "state": "VA",
+            "country": "US"
+        },
+        "formatted_address": "1109 N Highland St, Arlington, VA"
+    },
+    "results": [
+        {
+            "address_components": {
+                "number": "1109",
+                "predirectional": "N",
+                "street": "Highland",
+                "suffix": "St",
+                "formatted_street": "N Highland St",
+                "city": "Arlington",
+                "county": "Arlington County",
+                "state": "VA",
+                "zip": "22201",
+                "country": "US"
+            },
+            "address_lines": [
+                "1109 N Highland St",
+                "",
+                "Arlington, VA 22201"
+            ],
+            "formatted_address": "1109 N Highland St, Arlington, VA 22201",
+            "location": {
+                "lat": 38.886672,
+                "lng": -77.094735
+            },
+            "accuracy": 1,
+            "accuracy_type": "rooftop",
+            "source": "Arlington",
+            "fields": {
+                "state_legislative_districts": {
+                    "house": [
+                        {
+                            "name": "State House District 2",
+                            "district_number": "2",
+                            "ocd_id": "ocd-division/country:us/state:va/sldl:2",
+                            "is_upcoming_state_legislative_district": false,
+                            "proportion": 1
+                        }
+                    ],
+                    "senate": [
+                        {
+                            "name": "State Senate District 40",
+                            "district_number": "40",
+                            "ocd_id": "ocd-division/country:us/state:va/sldu:40",
+                            "is_upcoming_state_legislative_district": false,
+                            "proportion": 1
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

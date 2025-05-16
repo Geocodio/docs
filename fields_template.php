@@ -1,5 +1,5 @@
 <?php
-function template($country, $fields) {
+function template($country, $fields, $includeResponse) {
 	switch ($country) {
 		case 'us':
 			$address = '1109 N Highland St, Arlington VA';
@@ -34,12 +34,17 @@ function template($country, $fields) {
 	$singleQuotedCommaSeparated = implode(', ', array_map(function ($f) { return "'" . $f . "'"; }, $fields));
 	$doubleQuotedSpaceSeparated = implode(' ', array_map(function ($f) { return '"' . $f . '"'; }, $fields));
 
-	return <<<TEMPLATE
+
+	$responseSnippet = $includeResponse
+		? getApiResponse($address, $fields)
+		: '';
+
+	$template = <<<TEMPLATE
 	> To get $fieldAppendsDescription field appends for an address or a coordinate:
 
 	```shell
-	curl "https://api.geocod.io/v1.7/geocode?q=$addressUrlEncoded&fields=$commaSeparated&api_key=YOUR_API_KEY"
-	curl "https://api.geocod.io/v1.7/reverse?q=$coordinate&fields=$commaSeparated&api_key=YOUR_API_KEY"
+	curl "https://api.geocod.io/v1.8/geocode?q=$addressUrlEncoded&fields=$commaSeparated&api_key=YOUR_API_KEY"
+	curl "https://api.geocod.io/v1.8/reverse?q=$coordinate&fields=$commaSeparated&api_key=YOUR_API_KEY"
 	```
 
 	```ruby
@@ -97,11 +102,104 @@ function template($country, $fields) {
 	(single-reverse "$coordinate" :api_key "YOUR_API_KEY" :fields [$doubleQuotedSpaceSeparated])
 	```
 	TEMPLATE;
+
+	return $template . PHP_EOL . $responseSnippet;
 }
 
-echo preg_replace_callback('/<!--FIELD:([A-Z-]+):([A-Z0-9-,]+)-->/i', function($match) {
+function getApiResponse(string $address, array $fields) {
+	// Get API key from environment if available
+	$apiKey = getenv('GEOCODIO_API_KEY') ?: 'DEMO';
+
+	$stubFile = 'stubs/' . hash('xxh32', $address) . '_' . implode('-', $fields) . '.json';
+
+	if (getenv('DISABLE_API')) {
+		$apiContent = file_get_contents($stubFile);
+	} else {	
+		$url = "https://api.geocodio.dev/v1.8/geocode?q=". urlencode($address) ."&fields=". implode(',', $fields) ."&api_key=$apiKey";
+
+		$sslVerify = !str_contains($url, 'dev');
+		
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $sslVerify);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, $sslVerify ? 2 : 0);
+		
+		$apiContent = curl_exec($ch);
+		$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$error = curl_error($ch);
+		$errorNo = curl_errno($ch);
+		
+		curl_close($ch);
+		
+		if ($apiContent === false || $errorNo !== 0) {
+			fwrite(STDERR, "ERROR: Failed to fetch API data from $url" . PHP_EOL);
+			fwrite(STDERR, "CURL Error ($errorNo): $error" . PHP_EOL);
+			exit(1);
+		}
+		
+		if ($httpCode >= 400) {
+			fwrite(STDERR, "ERROR: HTTP status $httpCode when fetching $url" . PHP_EOL);
+			fwrite(STDERR, "Response body: $apiContent" . PHP_EOL);
+			exit(1);
+		}
+	}
+	
+	$json = json_decode($apiContent);
+	if ($json === null) {
+		fwrite(STDERR, "ERROR: Failed to parse API response as JSON" . PHP_EOL);
+		exit(1);
+	}
+	
+	if (empty($json->results)) {
+		fwrite(STDERR, "ERROR: API response did not contain any results" . PHP_EOL);
+		fwrite(STDERR, "Response: " . json_encode($json) . PHP_EOL);
+		exit(1);
+	}
+	
+	$firstResult = $json->results[0];
+	if (!isset($firstResult->fields)) {
+		fwrite(STDERR, "ERROR: API response did not contain fields data" . PHP_EOL);
+		fwrite(STDERR, "First result: " . json_encode($firstResult) . PHP_EOL);
+		exit(1);
+	}
+
+	file_put_contents($stubFile, json_encode($json, JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT));
+
+	$jsonSnippet = json_encode([
+		'fields' => $firstResult->fields
+	], JSON_UNESCAPED_SLASHES|JSON_PRETTY_PRINT);
+
+	// Indent with 2 spaces instead of 4
+	$formattedJsonSnippet = preg_replace('/^(  +?)\\1(?=[^ ])/m', '$1', $jsonSnippet);
+	$formattedJsonSnippet = trim(trim($formattedJsonSnippet, '{}'));
+
+	return <<<TEMPLATE
+	> Example for "$address":
+
+	```json
+	...
+	  $formattedJsonSnippet
+	...
+	```
+	TEMPLATE;
+}
+
+$source = file_get_contents('source.html.md');
+
+$source = preg_replace_callback('/<!--FIELD:([A-Z-]+):([A-Z0-9-,]+)-->/i', function($match) {
 	list(,$country, $fields) = $match;
 
 	$fields = explode(',', $fields);
-	return template($country, $fields);
-}, file_get_contents('source.html.md'));
+	return template($country, $fields, true);
+}, $source);
+
+$source = preg_replace_callback('/<!--FIELD_SIMPLE:([A-Z-]+):([A-Z0-9-,]+)-->/i', function($match) {
+	list(,$country, $fields) = $match;
+
+	$fields = explode(',', $fields);
+	return template($country, $fields, false);
+}, $source);
+
+echo $source;

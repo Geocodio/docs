@@ -1,0 +1,493 @@
+{
+    "input": {
+        "address_components": {
+            "number": "1109",
+            "predirectional": "N",
+            "street": "Highland",
+            "suffix": "St",
+            "formatted_street": "N Highland St",
+            "city": "Arlington",
+            "state": "VA",
+            "country": "US"
+        },
+        "formatted_address": "1109 N Highland St, Arlington, VA"
+    },
+    "results": [
+        {
+            "address_components": {
+                "number": "1109",
+                "predirectional": "N",
+                "street": "Highland",
+                "suffix": "St",
+                "formatted_street": "N Highland St",
+                "city": "Arlington",
+                "county": "Arlington County",
+                "state": "VA",
+                "zip": "22201",
+                "country": "US"
+            },
+            "address_lines": [
+                "1109 N Highland St",
+                "",
+                "Arlington, VA 22201"
+            ],
+            "formatted_address": "1109 N Highland St, Arlington, VA 22201",
+            "location": {
+                "lat": 38.886672,
+                "lng": -77.094735
+            },
+            "accuracy": 1,
+            "accuracy_type": "rooftop",
+            "source": "Arlington",
+            "fields": {
+                "census": {
+                    "2023": {
+                        "census_year": 2023,
+                        "state_fips": "51",
+                        "county_fips": "51013",
+                        "tract_code": "101801",
+                        "block_code": "2004",
+                        "block_group": "2",
+                        "full_fips": "510131018012004",
+                        "place": {
+                            "name": "Arlington",
+                            "fips": "5103000"
+                        },
+                        "metro_micro_statistical_area": {
+                            "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
+                            "area_code": "47900",
+                            "type": "metropolitan"
+                        },
+                        "combined_statistical_area": {
+                            "name": "Washington-Baltimore-Arlington, DC-MD-VA-WV-PA",
+                            "area_code": "548"
+                        },
+                        "metropolitan_division": {
+                            "name": "Arlington-Alexandria-Reston, VA-WV",
+                            "area_code": "11694"
+                        },
+                        "county_subdivision": {
+                            "name": "Arlington",
+                            "fips": "90072",
+                            "fips_class": {
+                                "class_code": "Z7",
+                                "description": "A county subdivision that is coextensive with a county or equivalent feature or all or part of an incorporated place that the Census Bureau recognizes separately"
+                            }
+                        },
+                        "source": "US Census Bureau"
+                    }
+                },
+                "acs": {
+                    "meta": {
+                        "source": "American Community Survey from the US Census Bureau",
+                        "survey_years": "2019-2023",
+                        "survey_duration_years": "5"
+                    },
+                    "demographics": {
+                        "Median age": {
+                            "meta": {
+                                "table_id": "B01002",
+                                "universe": "Total population"
+                            },
+                            "Total": {
+                                "value": 32.1,
+                                "margin_of_error": 2.5
+                            },
+                            "Male": {
+                                "value": 31.8,
+                                "margin_of_error": 3.5
+                            },
+                            "Female": {
+                                "value": 32.4,
+                                "margin_of_error": 2.6
+                            }
+                        },
+                        "Population by age range": {
+                            "meta": {
+                                "table_id": "B01001",
+                                "universe": "Total population"
+                            },
+                            "Total": {
+                                "value": 2992,
+                                "margin_of_error": 373
+                            },
+                            "Male": {
+                                "value": 1587,
+                                "margin_of_error": 220,
+                                "percentage": 0.53
+                            },
+                            "Male: Under 5 years": {
+                                "value": 46,
+                                "margin_of_error": 34,
+                                "percentage": 0.029
+                            },
+                            "Male: 5 to 9 years": {
+                                "value": 3,
+                                "margin_of_error": 6,
+                                "percentage": 0.002
+                            },
+                            "Male: 10 to 14 years": {
+                                "value": 31,
+                                "margin_of_error": 28,
+                                "percentage": 0.02
+                            },
+                            "Male: 15 to 17 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Male: 18 and 19 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Male: 20 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Male: 21 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Male: 22 to 24 years": {
+                                "value": 250,
+                                "margin_of_error": 117,
+                                "percentage": 0.158
+                            },
+                            "Male: 25 to 29 years": {
+                                "value": 384,
+                                "margin_of_error": 130,
+                                "percentage": 0.242
+                            },
+                            "Male: 30 to 34 years": {
+                                "value": 212,
+                                "margin_of_error": 76,
+                                "percentage": 0.134
+                            },
+                            "Male: 35 to 39 years": {
+                                "value": 156,
+                                "margin_of_error": 66,
+                                "percentage": 0.098
+                            },
+                            "Male: 40 to 44 years": {
+                                "value": 94,
+                                "margin_of_error": 54,
+                                "percentage": 0.059
+                            },
+                            "Male: 45 to 49 years": {
+                                "value": 96,
+                                "margin_of_error": 71,
+                                "percentage": 0.06
+                            },
+                            "Male: 50 to 54 years": {
+                                "value": 104,
+                                "margin_of_error": 59,
+                                "percentage": 0.066
+                            },
+                            "Male: 55 to 59 years": {
+                                "value": 94,
+                                "margin_of_error": 84,
+                                "percentage": 0.059
+                            },
+                            "Male: 60 and 61 years": {
+                                "value": 16,
+                                "margin_of_error": 20,
+                                "percentage": 0.01
+                            },
+                            "Male: 62 to 64 years": {
+                                "value": 20,
+                                "margin_of_error": 23,
+                                "percentage": 0.013
+                            },
+                            "Male: 65 and 66 years": {
+                                "value": 28,
+                                "margin_of_error": 27,
+                                "percentage": 0.018
+                            },
+                            "Male: 67 to 69 years": {
+                                "value": 8,
+                                "margin_of_error": 12,
+                                "percentage": 0.005
+                            },
+                            "Male: 70 to 74 years": {
+                                "value": 35,
+                                "margin_of_error": 27,
+                                "percentage": 0.022
+                            },
+                            "Male: 75 to 79 years": {
+                                "value": 10,
+                                "margin_of_error": 16,
+                                "percentage": 0.006
+                            },
+                            "Male: 80 to 84 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Male: 85 years and over": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Female": {
+                                "value": 1405,
+                                "margin_of_error": 219,
+                                "percentage": 0.47
+                            },
+                            "Female: Under 5 years": {
+                                "value": 10,
+                                "margin_of_error": 18,
+                                "percentage": 0.007
+                            },
+                            "Female: 5 to 9 years": {
+                                "value": 45,
+                                "margin_of_error": 50,
+                                "percentage": 0.032
+                            },
+                            "Female: 10 to 14 years": {
+                                "value": 72,
+                                "margin_of_error": 60,
+                                "percentage": 0.051
+                            },
+                            "Female: 15 to 17 years": {
+                                "value": 19,
+                                "margin_of_error": 34,
+                                "percentage": 0.014
+                            },
+                            "Female: 18 and 19 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Female: 20 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Female: 21 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Female: 22 to 24 years": {
+                                "value": 175,
+                                "margin_of_error": 120,
+                                "percentage": 0.125
+                            },
+                            "Female: 25 to 29 years": {
+                                "value": 309,
+                                "margin_of_error": 76,
+                                "percentage": 0.22
+                            },
+                            "Female: 30 to 34 years": {
+                                "value": 252,
+                                "margin_of_error": 86,
+                                "percentage": 0.179
+                            },
+                            "Female: 35 to 39 years": {
+                                "value": 160,
+                                "margin_of_error": 71,
+                                "percentage": 0.114
+                            },
+                            "Female: 40 to 44 years": {
+                                "value": 16,
+                                "margin_of_error": 15,
+                                "percentage": 0.011
+                            },
+                            "Female: 45 to 49 years": {
+                                "value": 159,
+                                "margin_of_error": 59,
+                                "percentage": 0.113
+                            },
+                            "Female: 50 to 54 years": {
+                                "value": 87,
+                                "margin_of_error": 64,
+                                "percentage": 0.062
+                            },
+                            "Female: 55 to 59 years": {
+                                "value": 32,
+                                "margin_of_error": 29,
+                                "percentage": 0.023
+                            },
+                            "Female: 60 and 61 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Female: 62 to 64 years": {
+                                "value": 9,
+                                "margin_of_error": 13,
+                                "percentage": 0.006
+                            },
+                            "Female: 65 and 66 years": {
+                                "value": 14,
+                                "margin_of_error": 19,
+                                "percentage": 0.01
+                            },
+                            "Female: 67 to 69 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Female: 70 to 74 years": {
+                                "value": 31,
+                                "margin_of_error": 27,
+                                "percentage": 0.022
+                            },
+                            "Female: 75 to 79 years": {
+                                "value": 15,
+                                "margin_of_error": 21,
+                                "percentage": 0.011
+                            },
+                            "Female: 80 to 84 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Female: 85 years and over": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            }
+                        },
+                        "Sex": {
+                            "meta": {
+                                "table_id": "B01001",
+                                "universe": "Total population"
+                            },
+                            "Total": {
+                                "value": 2992,
+                                "margin_of_error": 373
+                            },
+                            "Male": {
+                                "value": 1587,
+                                "margin_of_error": 220,
+                                "percentage": 0.53
+                            },
+                            "Female": {
+                                "value": 1405,
+                                "margin_of_error": 219,
+                                "percentage": 0.47
+                            }
+                        },
+                        "Race and ethnicity": {
+                            "meta": {
+                                "table_id": "B03002",
+                                "universe": "Total population"
+                            },
+                            "Total": {
+                                "value": 2992,
+                                "margin_of_error": 373
+                            },
+                            "Not Hispanic or Latino": {
+                                "value": 2849,
+                                "margin_of_error": 383,
+                                "percentage": 0.952
+                            },
+                            "Not Hispanic or Latino: White alone": {
+                                "value": 2226,
+                                "margin_of_error": 287,
+                                "percentage": 0.781
+                            },
+                            "Not Hispanic or Latino: Black or African American alone": {
+                                "value": 55,
+                                "margin_of_error": 52,
+                                "percentage": 0.019
+                            },
+                            "Not Hispanic or Latino: American Indian and Alaska Native alone": {
+                                "value": 9,
+                                "margin_of_error": 13,
+                                "percentage": 0.003
+                            },
+                            "Not Hispanic or Latino: Asian alone": {
+                                "value": 367,
+                                "margin_of_error": 176,
+                                "percentage": 0.129
+                            },
+                            "Not Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Not Hispanic or Latino: Some other race alone": {
+                                "value": 38,
+                                "margin_of_error": 34,
+                                "percentage": 0.013
+                            },
+                            "Not Hispanic or Latino: Two or more races": {
+                                "value": 154,
+                                "margin_of_error": 80,
+                                "percentage": 0.054
+                            },
+                            "Not Hispanic or Latino: Two or more races: Two races including Some other race": {
+                                "value": 17,
+                                "margin_of_error": 16,
+                                "percentage": 0.11
+                            },
+                            "Not Hispanic or Latino: Two or more races: Two races excluding Some other race, and three or more races": {
+                                "value": 137,
+                                "margin_of_error": 77,
+                                "percentage": 0.89
+                            },
+                            "Hispanic or Latino": {
+                                "value": 143,
+                                "margin_of_error": 69,
+                                "percentage": 0.048
+                            },
+                            "Hispanic or Latino: White alone": {
+                                "value": 45,
+                                "margin_of_error": 29,
+                                "percentage": 0.315
+                            },
+                            "Hispanic or Latino: Black or African American alone": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Hispanic or Latino: American Indian and Alaska Native alone": {
+                                "value": 7,
+                                "margin_of_error": 12,
+                                "percentage": 0.049
+                            },
+                            "Hispanic or Latino: Asian alone": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Hispanic or Latino: Some other race alone": {
+                                "value": 38,
+                                "margin_of_error": 29,
+                                "percentage": 0.266
+                            },
+                            "Hispanic or Latino: Two or more races": {
+                                "value": 53,
+                                "margin_of_error": 40,
+                                "percentage": 0.371
+                            },
+                            "Hispanic or Latino: Two or more races: Two races including Some other race": {
+                                "value": 53,
+                                "margin_of_error": 40,
+                                "percentage": 1
+                            },
+                            "Hispanic or Latino: Two or more races: Two races excluding Some other race, and three or more races": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            }
+                        },
+                        "meta": {
+                            "geography": "tract"
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

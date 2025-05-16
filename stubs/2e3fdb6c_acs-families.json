@@ -1,0 +1,534 @@
+{
+    "input": {
+        "address_components": {
+            "number": "1109",
+            "predirectional": "N",
+            "street": "Highland",
+            "suffix": "St",
+            "formatted_street": "N Highland St",
+            "city": "Arlington",
+            "state": "VA",
+            "country": "US"
+        },
+        "formatted_address": "1109 N Highland St, Arlington, VA"
+    },
+    "results": [
+        {
+            "address_components": {
+                "number": "1109",
+                "predirectional": "N",
+                "street": "Highland",
+                "suffix": "St",
+                "formatted_street": "N Highland St",
+                "city": "Arlington",
+                "county": "Arlington County",
+                "state": "VA",
+                "zip": "22201",
+                "country": "US"
+            },
+            "address_lines": [
+                "1109 N Highland St",
+                "",
+                "Arlington, VA 22201"
+            ],
+            "formatted_address": "1109 N Highland St, Arlington, VA 22201",
+            "location": {
+                "lat": 38.886672,
+                "lng": -77.094735
+            },
+            "accuracy": 1,
+            "accuracy_type": "rooftop",
+            "source": "Arlington",
+            "fields": {
+                "census": {
+                    "2023": {
+                        "census_year": 2023,
+                        "state_fips": "51",
+                        "county_fips": "51013",
+                        "tract_code": "101801",
+                        "block_code": "2004",
+                        "block_group": "2",
+                        "full_fips": "510131018012004",
+                        "place": {
+                            "name": "Arlington",
+                            "fips": "5103000"
+                        },
+                        "metro_micro_statistical_area": {
+                            "name": "Washington-Arlington-Alexandria, DC-VA-MD-WV",
+                            "area_code": "47900",
+                            "type": "metropolitan"
+                        },
+                        "combined_statistical_area": {
+                            "name": "Washington-Baltimore-Arlington, DC-MD-VA-WV-PA",
+                            "area_code": "548"
+                        },
+                        "metropolitan_division": {
+                            "name": "Arlington-Alexandria-Reston, VA-WV",
+                            "area_code": "11694"
+                        },
+                        "county_subdivision": {
+                            "name": "Arlington",
+                            "fips": "90072",
+                            "fips_class": {
+                                "class_code": "Z7",
+                                "description": "A county subdivision that is coextensive with a county or equivalent feature or all or part of an incorporated place that the Census Bureau recognizes separately"
+                            }
+                        },
+                        "source": "US Census Bureau"
+                    }
+                },
+                "acs": {
+                    "meta": {
+                        "source": "American Community Survey from the US Census Bureau",
+                        "survey_years": "2019-2023",
+                        "survey_duration_years": "5"
+                    },
+                    "families": {
+                        "Household type by household": {
+                            "meta": {
+                                "table_id": "B11001",
+                                "universe": "Households"
+                            },
+                            "Total": {
+                                "value": 904,
+                                "margin_of_error": 136
+                            },
+                            "Family households": {
+                                "value": 414,
+                                "margin_of_error": 107,
+                                "percentage": 0.458
+                            },
+                            "Family households: Married-couple family": {
+                                "value": 389,
+                                "margin_of_error": 108,
+                                "percentage": 0.94
+                            },
+                            "Family households: Other family": {
+                                "value": 25,
+                                "margin_of_error": 24,
+                                "percentage": 0.06
+                            },
+                            "Family households: Other family: Male householder, no spouse present": {
+                                "value": 13,
+                                "margin_of_error": 20,
+                                "percentage": 0.52
+                            },
+                            "Family households: Other family: Female householder, no spouse present": {
+                                "value": 12,
+                                "margin_of_error": 16,
+                                "percentage": 0.48
+                            },
+                            "Nonfamily households": {
+                                "value": 490,
+                                "margin_of_error": 118,
+                                "percentage": 0.542
+                            },
+                            "Nonfamily households: Householder living alone": {
+                                "value": 269,
+                                "margin_of_error": 78,
+                                "percentage": 0.549
+                            },
+                            "Nonfamily households: Householder not living alone": {
+                                "value": 221,
+                                "margin_of_error": 114,
+                                "percentage": 0.451
+                            }
+                        },
+                        "Household type by population": {
+                            "meta": {
+                                "table_id": "B11002",
+                                "universe": "Population in Households"
+                            },
+                            "Total": {
+                                "value": 1739,
+                                "margin_of_error": 350
+                            },
+                            "In family households": {
+                                "value": 949,
+                                "margin_of_error": 231,
+                                "percentage": 0.546
+                            },
+                            "In family households: In married-couple family": {
+                                "value": 861,
+                                "margin_of_error": 232,
+                                "percentage": 0.907
+                            },
+                            "In family households: In married-couple family: Relatives": {
+                                "value": 861,
+                                "margin_of_error": 232,
+                                "percentage": 1
+                            },
+                            "In family households: In married-couple family: Nonrelatives": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "In family households: In male householder, no spouse present, family": {
+                                "value": 38,
+                                "margin_of_error": 57,
+                                "percentage": 0.04
+                            },
+                            "In family households: In male householder, no spouse present, family: Relatives": {
+                                "value": 26,
+                                "margin_of_error": 40,
+                                "percentage": 0.684
+                            },
+                            "In family households: In male householder, no spouse present, family: Nonrelatives": {
+                                "value": 12,
+                                "margin_of_error": 17,
+                                "percentage": 0.316
+                            },
+                            "In family households: In female householder, no spouse present, family": {
+                                "value": 50,
+                                "margin_of_error": 64,
+                                "percentage": 0.053
+                            },
+                            "In family households: In female householder, no spouse present, family: Relatives": {
+                                "value": 40,
+                                "margin_of_error": 51,
+                                "percentage": 0.8
+                            },
+                            "In family households: In female householder, no spouse present, family: Nonrelatives": {
+                                "value": 10,
+                                "margin_of_error": 14,
+                                "percentage": 0.2
+                            },
+                            "In nonfamily households": {
+                                "value": 790,
+                                "margin_of_error": 294,
+                                "percentage": 0.454
+                            }
+                        },
+                        "Marital status": {
+                            "meta": {
+                                "table_id": "B12001",
+                                "universe": "Population 15 Years And Older"
+                            },
+                            "Male": {
+                                "value": 823,
+                                "margin_of_error": 209,
+                                "percentage": 0.508
+                            },
+                            "Male: Never married": {
+                                "value": 404,
+                                "margin_of_error": 182,
+                                "percentage": 0.491
+                            },
+                            "Male: Now married": {
+                                "value": 413,
+                                "margin_of_error": 113,
+                                "percentage": 0.502
+                            },
+                            "Male: Now married: Married, spouse present": {
+                                "value": 397,
+                                "margin_of_error": 110,
+                                "percentage": 0.961
+                            },
+                            "Male: Now married: Married, spouse absent": {
+                                "value": 16,
+                                "margin_of_error": 18,
+                                "percentage": 0.039
+                            },
+                            "Male: Now married: Married, spouse absent: Separated": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Male: Now married: Married, spouse absent: Other": {
+                                "value": 16,
+                                "margin_of_error": 18,
+                                "percentage": 1
+                            },
+                            "Male: Widowed": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Male: Divorced": {
+                                "value": 6,
+                                "margin_of_error": 10,
+                                "percentage": 0.007
+                            },
+                            "Female": {
+                                "value": 796,
+                                "margin_of_error": 156,
+                                "percentage": 0.492
+                            },
+                            "Female: Never married": {
+                                "value": 357,
+                                "margin_of_error": 134,
+                                "percentage": 0.448
+                            },
+                            "Female: Now married": {
+                                "value": 375,
+                                "margin_of_error": 98,
+                                "percentage": 0.471
+                            },
+                            "Female: Now married: Married, spouse present": {
+                                "value": 372,
+                                "margin_of_error": 98,
+                                "percentage": 0.992
+                            },
+                            "Female: Now married: Married, spouse absent": {
+                                "value": 3,
+                                "margin_of_error": 5,
+                                "percentage": 0.008
+                            },
+                            "Female: Now married: Married, spouse absent: Separated": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Female: Now married: Married, spouse absent: Other": {
+                                "value": 3,
+                                "margin_of_error": 5,
+                                "percentage": 1
+                            },
+                            "Female: Widowed": {
+                                "value": 9,
+                                "margin_of_error": 13,
+                                "percentage": 0.011
+                            },
+                            "Female: Divorced": {
+                                "value": 55,
+                                "margin_of_error": 36,
+                                "percentage": 0.069
+                            }
+                        },
+                        "Family Type by Presence and Age of Own Children Under 18 Years": {
+                            "meta": {
+                                "table_id": "B11003",
+                                "universe": "Families"
+                            },
+                            "Total": {
+                                "value": 414,
+                                "margin_of_error": 107
+                            },
+                            "Married-couple family": {
+                                "value": 389,
+                                "margin_of_error": 108,
+                                "percentage": 0.94
+                            },
+                            "Married-couple family: With own children of the householder under 18 years": {
+                                "value": 93,
+                                "margin_of_error": 65,
+                                "percentage": 0.239
+                            },
+                            "Married-couple family: With own children of the householder under 18 years: Under 6 years only": {
+                                "value": 44,
+                                "margin_of_error": 35,
+                                "percentage": 0.473
+                            },
+                            "Married-couple family: With own children of the householder under 18 years: Under 6 years and 6 to 17 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Married-couple family: With own children of the householder under 18 years: 6 to 17 years only": {
+                                "value": 49,
+                                "margin_of_error": 55,
+                                "percentage": 0.527
+                            },
+                            "Married-couple family: No own children of the householder under 18 years": {
+                                "value": 296,
+                                "margin_of_error": 114,
+                                "percentage": 0.761
+                            },
+                            "Other family": {
+                                "value": 25,
+                                "margin_of_error": 24,
+                                "percentage": 0.06
+                            },
+                            "Other family: Male householder, no spouse present": {
+                                "value": 13,
+                                "margin_of_error": 20,
+                                "percentage": 0.52
+                            },
+                            "Other family: Male householder, no spouse present: With own children of the householder under 18 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Other family: Male householder, no spouse present: With own children of the householder under 18 years: Under 6 years only": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Other family: Male householder, no spouse present: With own children of the householder under 18 years: Under 6 years and 6 to 17 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Other family: Male householder, no spouse present: With own children of the householder under 18 years: 6 to 17 years only": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Other family: Male householder, no spouse present: No own children of the householder under 18 years": {
+                                "value": 13,
+                                "margin_of_error": 20,
+                                "percentage": 1
+                            },
+                            "Other family: Female householder, no spouse present": {
+                                "value": 12,
+                                "margin_of_error": 16,
+                                "percentage": 0.48
+                            },
+                            "Other family: Female householder, no spouse present: With own children of the householder under 18 years": {
+                                "value": 12,
+                                "margin_of_error": 16,
+                                "percentage": 1
+                            },
+                            "Other family: Female householder, no spouse present: With own children of the householder under 18 years: Under 6 years only": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Other family: Female householder, no spouse present: With own children of the householder under 18 years: Under 6 years and 6 to 17 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "Other family: Female householder, no spouse present: With own children of the householder under 18 years: 6 to 17 years only": {
+                                "value": 12,
+                                "margin_of_error": 16,
+                                "percentage": 1
+                            },
+                            "Other family: Female householder, no spouse present: No own children of the householder under 18 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            }
+                        },
+                        "Average Household Size of Occupied Housing Units by Tenure": {
+                            "meta": {
+                                "table_id": "B25010",
+                                "universe": "Occupied housing units"
+                            },
+                            "Total": {
+                                "value": 1.92,
+                                "margin_of_error": 0.18
+                            },
+                            "Owner occupied": {
+                                "value": 1.89,
+                                "margin_of_error": 0.25
+                            },
+                            "Renter occupied": {
+                                "value": 1.94,
+                                "margin_of_error": 0.22
+                            }
+                        },
+                        "Own Children Under 18 Years by Family Type and Age": {
+                            "meta": {
+                                "table_id": "B09002",
+                                "universe": "Own children under 18 years"
+                            },
+                            "Total": {
+                                "value": 120,
+                                "margin_of_error": 76
+                            },
+                            "In married-couple families": {
+                                "value": 92,
+                                "margin_of_error": 70,
+                                "percentage": 0.767
+                            },
+                            "In married-couple families: Under 3 years": {
+                                "value": 29,
+                                "margin_of_error": 26,
+                                "percentage": 0.315
+                            },
+                            "In married-couple families: 3 and 4 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "In married-couple families: 5 years": {
+                                "value": 16,
+                                "margin_of_error": 24,
+                                "percentage": 0.174
+                            },
+                            "In married-couple families: 6 to 11 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "In married-couple families: 12 to 17 years": {
+                                "value": 47,
+                                "margin_of_error": 59,
+                                "percentage": 0.511
+                            },
+                            "In other families": {
+                                "value": 28,
+                                "margin_of_error": 36,
+                                "percentage": 0.233
+                            },
+                            "In other families: Male householder, no spouse present": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "In other families: Male householder, no spouse present: Under 3 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "In other families: Male householder, no spouse present: 3 and 4 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "In other families: Male householder, no spouse present: 5 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "In other families: Male householder, no spouse present: 6 to 11 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "In other families: Male householder, no spouse present: 12 to 17 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "In other families: Female householder, no spouse present": {
+                                "value": 28,
+                                "margin_of_error": 36,
+                                "percentage": 1
+                            },
+                            "In other families: Female householder, no spouse present: Under 3 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "In other families: Female householder, no spouse present: 3 and 4 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "In other families: Female householder, no spouse present: 5 years": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
+                            },
+                            "In other families: Female householder, no spouse present: 6 to 11 years": {
+                                "value": 13,
+                                "margin_of_error": 17,
+                                "percentage": 0.464
+                            },
+                            "In other families: Female householder, no spouse present: 12 to 17 years": {
+                                "value": 15,
+                                "margin_of_error": 19,
+                                "percentage": 0.536
+                            }
+                        },
+                        "meta": {
+                            "geography": "block_group"
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

@@ -1,0 +1,82 @@
+{
+    "input": {
+        "address_components": {
+            "number": "1109",
+            "predirectional": "N",
+            "street": "Highland",
+            "suffix": "St",
+            "formatted_street": "N Highland St",
+            "city": "Arlington",
+            "state": "VA",
+            "country": "US"
+        },
+        "formatted_address": "1109 N Highland St, Arlington, VA"
+    },
+    "results": [
+        {
+            "address_components": {
+                "number": "1109",
+                "predirectional": "N",
+                "street": "Highland",
+                "suffix": "St",
+                "formatted_street": "N Highland St",
+                "city": "Arlington",
+                "county": "Arlington County",
+                "state": "VA",
+                "zip": "22201",
+                "country": "US"
+            },
+            "address_lines": [
+                "1109 N Highland St",
+                "",
+                "Arlington, VA 22201"
+            ],
+            "formatted_address": "1109 N Highland St, Arlington, VA 22201",
+            "location": {
+                "lat": 38.886672,
+                "lng": -77.094735
+            },
+            "accuracy": 1,
+            "accuracy_type": "rooftop",
+            "source": "Arlington",
+            "fields": {
+                "ffiec": {
+                    "collection_year": 2024,
+                    "msa_md_code": "11694",
+                    "fips_state_code": "51",
+                    "fips_county_code": "013",
+                    "census_tract": "101801",
+                    "principal_city": true,
+                    "small_county": {
+                        "flag": "T",
+                        "description": "Tract record"
+                    },
+                    "split_tract": {
+                        "flag": "N",
+                        "description": "Tract number occurs within one MA"
+                    },
+                    "demographic_data": {
+                        "flag": "D",
+                        "description": "Total persons/population and median family income are not 0"
+                    },
+                    "urban_rural_flag": {
+                        "flag": "U",
+                        "description": "Urban"
+                    },
+                    "msa_md_median_family_income": 135790,
+                    "msa_md_median_household_income": 115805,
+                    "tract_median_family_income_percentage": 133.95,
+                    "ffiec_estimated_msa_md_median_family_income": 164200,
+                    "income_indicator": "Upper",
+                    "cra_poverty_criteria": false,
+                    "cra_unemployment_criteria": false,
+                    "cra_distressed_criteria": false,
+                    "cra_remote_rural_low_density_criteria": false,
+                    "previous_year_cra_distressed_criteria": false,
+                    "previous_year_cra_underserved_criterion": false,
+                    "meets_current_previous_criteria": false
+                }
+            }
+        }
+    ]
+}
