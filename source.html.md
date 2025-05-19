@@ -3099,7 +3099,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
   * The [`acs-families`](#families-census) field append has certain table titles renamed ("wife" or "husband" replaced with "spouse") &mdash; no other ACS field appends has renamed tables
   * Support for additional Census Geographies (prior to v1.8 all ACS data was returned at the Census Block Group level). The geography is now automatically selected based on the `accuracy_type` of the result and [can be explicitly specified](/#census-acs-american-community-survey)
 * ACS Table #B19301 was added for the [`acs-economics`](#economics-income-data-census) field append
-* ACS Tables #B11003, #B25010, and #B09002 was added for the [`acs-families`](#families-census) field append
+* ACS Tables #B11003, #B25010, and #B09002 were added for the [`acs-families`](#families-census) field append
 
   There are no other breaking changes for *v1.8*.
 
