@@ -3094,6 +3094,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 ## v1.8
 
+*Released on June 2, 2025*
+
+* Updated [state legislative districts](#state-legislative-districts) for North Dakota
+
 *Released on May 16, 2025*
 
 * **Breaking:** 2023 data is now returned for all [Census ACS appends](/#census-acs-american-community-survey). Changes include:
