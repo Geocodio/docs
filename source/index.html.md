@@ -2066,7 +2066,8 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
               "first_name": "Donald",
               "birthday": "1950-06-20",
               "gender": "M",
-              "party": "Democrat"
+              "party": "Democrat",
+              "photo_url": null
             },
             "contact": {
               "url": "https://beyer.house.gov",
@@ -2094,7 +2095,7 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
               "icpsr_id": "21554",
               "wikipedia_id": "Don Beyer"
             },
-            "source": "Legislator data collected by https://github.com/unitedstates/"
+            "source": "Legislator data collected by the @unitedstates project (https://github.com/unitedstates/)"
           },
           {
             "type": "senator",
@@ -2104,7 +2105,8 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
               "first_name": "Mark",
               "birthday": "1954-12-15",
               "gender": "M",
-              "party": "Democrat"
+              "party": "Democrat",
+              "photo_url": null
             },
             "contact": {
               "url": "https://www.warner.senate.gov",
@@ -2132,7 +2134,7 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
               "icpsr_id": "40909",
               "wikipedia_id": "Mark Warner"
             },
-            "source": "Legislator data collected by https://github.com/unitedstates/"
+            "source": "Legislator data collected by the @unitedstates project (https://github.com/unitedstates/)"
           },
           {
             "type": "senator",
@@ -2142,7 +2144,8 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
               "first_name": "Timothy",
               "birthday": "1958-02-26",
               "gender": "M",
-              "party": "Democrat"
+              "party": "Democrat",
+              "photo_url": null
             },
             "contact": {
               "url": "https://www.kaine.senate.gov",
@@ -2170,7 +2173,7 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
               "icpsr_id": "41305",
               "wikipedia_id": "Tim Kaine"
             },
-            "source": "Legislator data collected by https://github.com/unitedstates/"
+            "source": "Legislator data collected by the @unitedstates project (https://github.com/unitedstates/)"
           }
         ]
       }
@@ -2182,7 +2185,40 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
           "district_number": "2",
           "ocd_id": "ocd-division/country:us/state:va/sldl:2",
           "is_upcoming_state_legislative_district": false,
-          "proportion": 1
+          "proportion": 1,
+          "current_legislators": [
+            {
+              "type": "representative",
+              "bio": {
+                "last_name": "McClure",
+                "first_name": "Adele",
+                "birthday": null,
+                "gender": "F",
+                "party": "Democrat",
+                "photo_url": "https://memdata.virginiageneralassembly.gov/images/display_image/H0375"
+              },
+              "contact": {
+                "url": "https://virginiageneralassembly.gov/house/members/members.php?id=H0375",
+                "address": "Room 1102, General Assembly Building 201 N. 9th St., Richmond, VA 23219",
+                "phone": "804-698-1002",
+                "contact_form": null
+              },
+              "social": {
+                "rss_url": null,
+                "twitter": null,
+                "facebook": null,
+                "youtube": null,
+                "youtube_id": null
+              },
+              "references": {
+                "votesmart_id": null,
+                "ballotpedia_id": "Adele_McClure",
+                "wikipedia_id": null,
+                "openstates_id": "ocd-person/d0de7acb-ce8d-4bb2-b6e5-99cefe5e76a6"
+              },
+              "source": "Legislator data collected by Open States (https://github.com/openstates/)"
+            }
+          ]
         }
       ],
       "senate": [
@@ -2191,7 +2227,40 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
           "district_number": "40",
           "ocd_id": "ocd-division/country:us/state:va/sldu:40",
           "is_upcoming_state_legislative_district": false,
-          "proportion": 1
+          "proportion": 1,
+          "current_legislators": [
+            {
+              "type": "senator",
+              "bio": {
+                "last_name": "Favola",
+                "first_name": "Barbara",
+                "birthday": "1955-06-21",
+                "gender": "F",
+                "party": "Democrat",
+                "photo_url": "https://apps.senate.virginia.gov/Senator/images/member_photos/Favola40"
+              },
+              "contact": {
+                "url": "https://apps.senate.virginia.gov/Senator/memberpage.php?id=S86",
+                "address": "Room 509, General Assembly Building P.O. Box 396, Richmond, VA 23218",
+                "phone": "804-698-7540",
+                "contact_form": null
+              },
+              "social": {
+                "rss_url": null,
+                "twitter": "BarbaraFavola",
+                "facebook": "BarbaraFavola",
+                "youtube": null,
+                "youtube_id": null
+              },
+              "references": {
+                "votesmart_id": "94043",
+                "ballotpedia_id": "Barbara_Favola",
+                "wikipedia_id": "Barbara_Favola",
+                "openstates_id": "ocd-person/72ecc30c-7175-4aef-9762-fda3ba5b451e"
+              },
+              "source": "Legislator data collected by Open States (https://github.com/openstates/)"
+            }
+          ]
         }
       ]
     }
@@ -2214,7 +2283,7 @@ Some fields are specific to the US and cannot be queried for other countries.
 | Parameter name                                                                                                                                                                                                                                             | Description                                                | Coverage                    |
 |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:----------------------------|
 | [cd, cd113, cd114, cd115, cd116, cd117, cd118, cd119](#congressional-districts)                                                                                                                                                                            | Congressional District & Legislator information            | US-only                     |
-| [stateleg, stateleg-next](#state-legislative-districts)                                                                                                                                                                                                    | State Legislative District (House & Senate)                | US-only                     |
+| [stateleg, stateleg-next](#state-legislative-districts)                                                                                                                                                                                                    | State Legislative District (House & Senate) & Legislator information                | US-only                     |
 | [school](#school-districts)                                                                                                                                                                                                                                | School District (elementary/secondary or unified)          | US-only                     |
 | [census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021, census2022, census2023, census2024](#census-block-tract-fips-codes-amp-msa-csa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes             | US-only                     |
 | [acs-demographics](#demographics-census)                                                                                                                                                                                                                   | Demographics (Census)                                      | US-only                     |
@@ -2319,7 +2388,8 @@ geocoder.reverse('38.886672,-77.094735', ['cd'])
               "first_name": "Donald",
               "birthday": "1950-06-20",
               "gender": "M",
-              "party": "Democrat"
+              "party": "Democrat",
+              "photo_url": null
             },
             "contact": {
               "url": "https://beyer.house.gov",
@@ -2347,7 +2417,7 @@ geocoder.reverse('38.886672,-77.094735', ['cd'])
               "icpsr_id": "21554",
               "wikipedia_id": "Don Beyer"
             },
-            "source": "Legislator data collected by https://github.com/unitedstates/"
+            "source": "Legislator data collected by the @unitedstates project (https://github.com/unitedstates/)"
           },
           {
             "type": "senator",
@@ -2357,7 +2427,8 @@ geocoder.reverse('38.886672,-77.094735', ['cd'])
               "first_name": "Mark",
               "birthday": "1954-12-15",
               "gender": "M",
-              "party": "Democrat"
+              "party": "Democrat",
+              "photo_url": null
             },
             "contact": {
               "url": "https://www.warner.senate.gov",
@@ -2385,7 +2456,7 @@ geocoder.reverse('38.886672,-77.094735', ['cd'])
               "icpsr_id": "40909",
               "wikipedia_id": "Mark Warner"
             },
-            "source": "Legislator data collected by https://github.com/unitedstates/"
+            "source": "Legislator data collected by the @unitedstates project (https://github.com/unitedstates/)"
           },
           {
             "type": "senator",
@@ -2395,7 +2466,8 @@ geocoder.reverse('38.886672,-77.094735', ['cd'])
               "first_name": "Timothy",
               "birthday": "1958-02-26",
               "gender": "M",
-              "party": "Democrat"
+              "party": "Democrat",
+              "photo_url": null
             },
             "contact": {
               "url": "https://www.kaine.senate.gov",
@@ -2423,7 +2495,7 @@ geocoder.reverse('38.886672,-77.094735', ['cd'])
               "icpsr_id": "41305",
               "wikipedia_id": "Tim Kaine"
             },
-            "source": "Legislator data collected by https://github.com/unitedstates/"
+            "source": "Legislator data collected by the @unitedstates project (https://github.com/unitedstates/)"
           }
         ]
       }
@@ -2538,7 +2610,40 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg'])
           "district_number": "2",
           "ocd_id": "ocd-division/country:us/state:va/sldl:2",
           "is_upcoming_state_legislative_district": false,
-          "proportion": 1
+          "proportion": 1,
+          "current_legislators": [
+            {
+              "type": "representative",
+              "bio": {
+                "last_name": "McClure",
+                "first_name": "Adele",
+                "birthday": null,
+                "gender": "F",
+                "party": "Democrat",
+                "photo_url": "https://memdata.virginiageneralassembly.gov/images/display_image/H0375"
+              },
+              "contact": {
+                "url": "https://virginiageneralassembly.gov/house/members/members.php?id=H0375",
+                "address": "Room 1102, General Assembly Building 201 N. 9th St., Richmond, VA 23219",
+                "phone": "804-698-1002",
+                "contact_form": null
+              },
+              "social": {
+                "rss_url": null,
+                "twitter": null,
+                "facebook": null,
+                "youtube": null,
+                "youtube_id": null
+              },
+              "references": {
+                "votesmart_id": null,
+                "ballotpedia_id": "Adele_McClure",
+                "wikipedia_id": null,
+                "openstates_id": "ocd-person/d0de7acb-ce8d-4bb2-b6e5-99cefe5e76a6"
+              },
+              "source": "Legislator data collected by Open States (https://github.com/openstates/)"
+            }
+          ]
         }
       ],
       "senate": [
@@ -2547,7 +2652,40 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg'])
           "district_number": "40",
           "ocd_id": "ocd-division/country:us/state:va/sldu:40",
           "is_upcoming_state_legislative_district": false,
-          "proportion": 1
+          "proportion": 1,
+          "current_legislators": [
+            {
+              "type": "senator",
+              "bio": {
+                "last_name": "Favola",
+                "first_name": "Barbara",
+                "birthday": "1955-06-21",
+                "gender": "F",
+                "party": "Democrat",
+                "photo_url": "https://apps.senate.virginia.gov/Senator/images/member_photos/Favola40"
+              },
+              "contact": {
+                "url": "https://apps.senate.virginia.gov/Senator/memberpage.php?id=S86",
+                "address": "Room 509, General Assembly Building P.O. Box 396, Richmond, VA 23218",
+                "phone": "804-698-7540",
+                "contact_form": null
+              },
+              "social": {
+                "rss_url": null,
+                "twitter": "BarbaraFavola",
+                "facebook": "BarbaraFavola",
+                "youtube": null,
+                "youtube_id": null
+              },
+              "references": {
+                "votesmart_id": "94043",
+                "ballotpedia_id": "Barbara_Favola",
+                "wikipedia_id": "Barbara_Favola",
+                "openstates_id": "ocd-person/72ecc30c-7175-4aef-9762-fda3ba5b451e"
+              },
+              "source": "Legislator data collected by Open States (https://github.com/openstates/)"
+            }
+          ]
         }
       ]
     }
@@ -2558,6 +2696,8 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg'])
 You can retrieve the state legislative districts for an address or coordinate using `stateleg` in the `fields` query parameter. The `stateleg-next` can be used to retrieve state legislative districts based on upcoming district changes.
 
 The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district number for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington, DC or Nebraska), the `house` and `senate` keys return the same district.
+
+We will also return detailed information about the current legislators. For districts or states with at-large legislature (such as Washington DC and Puerto Rico), the at-large legislators are returned for all districts they are however returned last.
 
 ### Using `stateleg-next`
 
@@ -2646,7 +2786,40 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg-next'])
           "district_number": "2",
           "ocd_id": "ocd-division/country:us/state:va/sldl:2",
           "is_upcoming_state_legislative_district": false,
-          "proportion": 1
+          "proportion": 1,
+          "current_legislators": [
+            {
+              "type": "representative",
+              "bio": {
+                "last_name": "McClure",
+                "first_name": "Adele",
+                "birthday": null,
+                "gender": "F",
+                "party": "Democrat",
+                "photo_url": "https://memdata.virginiageneralassembly.gov/images/display_image/H0375"
+              },
+              "contact": {
+                "url": "https://virginiageneralassembly.gov/house/members/members.php?id=H0375",
+                "address": "Room 1102, General Assembly Building 201 N. 9th St., Richmond, VA 23219",
+                "phone": "804-698-1002",
+                "contact_form": null
+              },
+              "social": {
+                "rss_url": null,
+                "twitter": null,
+                "facebook": null,
+                "youtube": null,
+                "youtube_id": null
+              },
+              "references": {
+                "votesmart_id": null,
+                "ballotpedia_id": "Adele_McClure",
+                "wikipedia_id": null,
+                "openstates_id": "ocd-person/d0de7acb-ce8d-4bb2-b6e5-99cefe5e76a6"
+              },
+              "source": "Legislator data collected by Open States (https://github.com/openstates/)"
+            }
+          ]
         }
       ],
       "senate": [
@@ -2655,7 +2828,40 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg-next'])
           "district_number": "40",
           "ocd_id": "ocd-division/country:us/state:va/sldu:40",
           "is_upcoming_state_legislative_district": false,
-          "proportion": 1
+          "proportion": 1,
+          "current_legislators": [
+            {
+              "type": "senator",
+              "bio": {
+                "last_name": "Favola",
+                "first_name": "Barbara",
+                "birthday": "1955-06-21",
+                "gender": "F",
+                "party": "Democrat",
+                "photo_url": "https://apps.senate.virginia.gov/Senator/images/member_photos/Favola40"
+              },
+              "contact": {
+                "url": "https://apps.senate.virginia.gov/Senator/memberpage.php?id=S86",
+                "address": "Room 509, General Assembly Building P.O. Box 396, Richmond, VA 23218",
+                "phone": "804-698-7540",
+                "contact_form": null
+              },
+              "social": {
+                "rss_url": null,
+                "twitter": "BarbaraFavola",
+                "facebook": "BarbaraFavola",
+                "youtube": null,
+                "youtube_id": null
+              },
+              "references": {
+                "votesmart_id": "94043",
+                "ballotpedia_id": "Barbara_Favola",
+                "wikipedia_id": "Barbara_Favola",
+                "openstates_id": "ocd-person/72ecc30c-7175-4aef-9762-fda3ba5b451e"
+              },
+              "source": "Legislator data collected by Open States (https://github.com/openstates/)"
+            }
+          ]
         }
       ]
     }
@@ -7771,6 +7977,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.8
+
+*Released on June 6, 2025*
+
+* The [state legislative districts](#state-legislative-districts) field append now return the current legislators for the district
 
 *Released on June 2, 2025*
 

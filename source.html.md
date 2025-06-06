@@ -2000,7 +2000,7 @@ Some fields are specific to the US and cannot be queried for other countries.
 | Parameter name                                                                                                                                                                                                                                             | Description                                                | Coverage                    |
 |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|:----------------------------|
 | [cd, cd113, cd114, cd115, cd116, cd117, cd118, cd119](#congressional-districts)                                                                                                                                                                            | Congressional District & Legislator information            | US-only                     |
-| [stateleg, stateleg-next](#state-legislative-districts)                                                                                                                                                                                                    | State Legislative District (House & Senate)                | US-only                     |
+| [stateleg, stateleg-next](#state-legislative-districts)                                                                                                                                                                                                    | State Legislative District (House & Senate) & Legislator information                | US-only                     |
 | [school](#school-districts)                                                                                                                                                                                                                                | School District (elementary/secondary or unified)          | US-only                     |
 | [census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021, census2022, census2023, census2024](#census-block-tract-fips-codes-amp-msa-csa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes             | US-only                     |
 | [acs-demographics](#demographics-census)                                                                                                                                                                                                                   | Demographics (Census)                                      | US-only                     |
@@ -2062,6 +2062,8 @@ Districts are always sorted by the `proportion` value in descending order (large
 You can retrieve the state legislative districts for an address or coordinate using `stateleg` in the `fields` query parameter. The `stateleg-next` can be used to retrieve state legislative districts based on upcoming district changes.
 
 The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district number for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington, DC or Nebraska), the `house` and `senate` keys return the same district.
+
+We will also return detailed information about the current legislators. For districts or states with at-large legislature (such as Washington DC and Puerto Rico), the at-large legislators are returned for all districts they are however returned last.
 
 ### Using `stateleg-next`
 
@@ -3093,6 +3095,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.8
+
+*Released on June 6, 2025*
+
+* The [state legislative districts](#state-legislative-districts) field append now return the current legislators for the district
 
 *Released on June 2, 2025*
 

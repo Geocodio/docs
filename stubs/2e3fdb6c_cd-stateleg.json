@@ -57,7 +57,8 @@
                                     "first_name": "Donald",
                                     "birthday": "1950-06-20",
                                     "gender": "M",
-                                    "party": "Democrat"
+                                    "party": "Democrat",
+                                    "photo_url": null
                                 },
                                 "contact": {
                                     "url": "https://beyer.house.gov",
@@ -85,7 +86,7 @@
                                     "icpsr_id": "21554",
                                     "wikipedia_id": "Don Beyer"
                                 },
-                                "source": "Legislator data collected by https://github.com/unitedstates/"
+                                "source": "Legislator data collected by the @unitedstates project (https://github.com/unitedstates/)"
                             },
                             {
                                 "type": "senator",
@@ -95,7 +96,8 @@
                                     "first_name": "Mark",
                                     "birthday": "1954-12-15",
                                     "gender": "M",
-                                    "party": "Democrat"
+                                    "party": "Democrat",
+                                    "photo_url": null
                                 },
                                 "contact": {
                                     "url": "https://www.warner.senate.gov",
@@ -123,7 +125,7 @@
                                     "icpsr_id": "40909",
                                     "wikipedia_id": "Mark Warner"
                                 },
-                                "source": "Legislator data collected by https://github.com/unitedstates/"
+                                "source": "Legislator data collected by the @unitedstates project (https://github.com/unitedstates/)"
                             },
                             {
                                 "type": "senator",
@@ -133,7 +135,8 @@
                                     "first_name": "Timothy",
                                     "birthday": "1958-02-26",
                                     "gender": "M",
-                                    "party": "Democrat"
+                                    "party": "Democrat",
+                                    "photo_url": null
                                 },
                                 "contact": {
                                     "url": "https://www.kaine.senate.gov",
@@ -161,7 +164,7 @@
                                     "icpsr_id": "41305",
                                     "wikipedia_id": "Tim Kaine"
                                 },
-                                "source": "Legislator data collected by https://github.com/unitedstates/"
+                                "source": "Legislator data collected by the @unitedstates project (https://github.com/unitedstates/)"
                             }
                         ]
                     }
@@ -173,7 +176,40 @@
                             "district_number": "2",
                             "ocd_id": "ocd-division/country:us/state:va/sldl:2",
                             "is_upcoming_state_legislative_district": false,
-                            "proportion": 1
+                            "proportion": 1,
+                            "current_legislators": [
+                                {
+                                    "type": "representative",
+                                    "bio": {
+                                        "last_name": "McClure",
+                                        "first_name": "Adele",
+                                        "birthday": null,
+                                        "gender": "F",
+                                        "party": "Democrat",
+                                        "photo_url": "https://memdata.virginiageneralassembly.gov/images/display_image/H0375"
+                                    },
+                                    "contact": {
+                                        "url": "https://virginiageneralassembly.gov/house/members/members.php?id=H0375",
+                                        "address": "Room 1102, General Assembly Building 201 N. 9th St., Richmond, VA 23219",
+                                        "phone": "804-698-1002",
+                                        "contact_form": null
+                                    },
+                                    "social": {
+                                        "rss_url": null,
+                                        "twitter": null,
+                                        "facebook": null,
+                                        "youtube": null,
+                                        "youtube_id": null
+                                    },
+                                    "references": {
+                                        "votesmart_id": null,
+                                        "ballotpedia_id": "Adele_McClure",
+                                        "wikipedia_id": null,
+                                        "openstates_id": "ocd-person/d0de7acb-ce8d-4bb2-b6e5-99cefe5e76a6"
+                                    },
+                                    "source": "Legislator data collected by Open States (https://github.com/openstates/)"
+                                }
+                            ]
                         }
                     ],
                     "senate": [
@@ -182,7 +218,40 @@
                             "district_number": "40",
                             "ocd_id": "ocd-division/country:us/state:va/sldu:40",
                             "is_upcoming_state_legislative_district": false,
-                            "proportion": 1
+                            "proportion": 1,
+                            "current_legislators": [
+                                {
+                                    "type": "senator",
+                                    "bio": {
+                                        "last_name": "Favola",
+                                        "first_name": "Barbara",
+                                        "birthday": "1955-06-21",
+                                        "gender": "F",
+                                        "party": "Democrat",
+                                        "photo_url": "https://apps.senate.virginia.gov/Senator/images/member_photos/Favola40"
+                                    },
+                                    "contact": {
+                                        "url": "https://apps.senate.virginia.gov/Senator/memberpage.php?id=S86",
+                                        "address": "Room 509, General Assembly Building P.O. Box 396, Richmond, VA 23218",
+                                        "phone": "804-698-7540",
+                                        "contact_form": null
+                                    },
+                                    "social": {
+                                        "rss_url": null,
+                                        "twitter": "BarbaraFavola",
+                                        "facebook": "BarbaraFavola",
+                                        "youtube": null,
+                                        "youtube_id": null
+                                    },
+                                    "references": {
+                                        "votesmart_id": "94043",
+                                        "ballotpedia_id": "Barbara_Favola",
+                                        "wikipedia_id": "Barbara_Favola",
+                                        "openstates_id": "ocd-person/72ecc30c-7175-4aef-9762-fda3ba5b451e"
+                                    },
+                                    "source": "Legislator data collected by Open States (https://github.com/openstates/)"
+                                }
+                            ]
                         }
                     ]
                 }
