@@ -3099,6 +3099,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 *Released on June 6, 2025*
 
 * The [state legislative districts](#state-legislative-districts) field append now return the current legislators for the district
+* The [congressional districts](#congressional-districts) field append now return a `photo_url` along with each legislator
 
 *Released on June 2, 2025*
 

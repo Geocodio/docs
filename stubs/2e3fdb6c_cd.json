@@ -58,7 +58,8 @@
                                     "birthday": "1950-06-20",
                                     "gender": "M",
                                     "party": "Democrat",
-                                    "photo_url": null
+                                    "photo_url": "https://www.congress.gov/img/member/b001292_200.jpg",
+                                    "photo_attribution": "Image courtesy of the Member"
                                 },
                                 "contact": {
                                     "url": "https://beyer.house.gov",
@@ -97,7 +98,8 @@
                                     "birthday": "1954-12-15",
                                     "gender": "M",
                                     "party": "Democrat",
-                                    "photo_url": null
+                                    "photo_url": "https://www.congress.gov/img/member/w000805_200.jpg",
+                                    "photo_attribution": "Courtesy U.S. Senate Historical Office (http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm)"
                                 },
                                 "contact": {
                                     "url": "https://www.warner.senate.gov",
@@ -136,7 +138,8 @@
                                     "birthday": "1958-02-26",
                                     "gender": "M",
                                     "party": "Democrat",
-                                    "photo_url": null
+                                    "photo_url": "https://www.congress.gov/img/member/k000384_200.jpg",
+                                    "photo_attribution": "Courtesy U.S. Senate Historical Office (http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm)"
                                 },
                                 "contact": {
                                     "url": "https://www.kaine.senate.gov",

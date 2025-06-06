@@ -2067,7 +2067,8 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
               "birthday": "1950-06-20",
               "gender": "M",
               "party": "Democrat",
-              "photo_url": null
+              "photo_url": "https://www.congress.gov/img/member/b001292_200.jpg",
+              "photo_attribution": "Image courtesy of the Member"
             },
             "contact": {
               "url": "https://beyer.house.gov",
@@ -2106,7 +2107,8 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
               "birthday": "1954-12-15",
               "gender": "M",
               "party": "Democrat",
-              "photo_url": null
+              "photo_url": "https://www.congress.gov/img/member/w000805_200.jpg",
+              "photo_attribution": "Courtesy U.S. Senate Historical Office (http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm)"
             },
             "contact": {
               "url": "https://www.warner.senate.gov",
@@ -2145,7 +2147,8 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
               "birthday": "1958-02-26",
               "gender": "M",
               "party": "Democrat",
-              "photo_url": null
+              "photo_url": "https://www.congress.gov/img/member/k000384_200.jpg",
+              "photo_attribution": "Courtesy U.S. Senate Historical Office (http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm)"
             },
             "contact": {
               "url": "https://www.kaine.senate.gov",
@@ -2201,6 +2204,7 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
                 "url": "https://virginiageneralassembly.gov/house/members/members.php?id=H0375",
                 "address": "Room 1102, General Assembly Building 201 N. 9th St., Richmond, VA 23219",
                 "phone": "804-698-1002",
+                "email": "delamcclure@house.virginia.gov",
                 "contact_form": null
               },
               "social": {
@@ -2243,6 +2247,7 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
                 "url": "https://apps.senate.virginia.gov/Senator/memberpage.php?id=S86",
                 "address": "Room 509, General Assembly Building P.O. Box 396, Richmond, VA 23218",
                 "phone": "804-698-7540",
+                "email": "senatorfavola@senate.virginia.gov",
                 "contact_form": null
               },
               "social": {
@@ -2389,7 +2394,8 @@ geocoder.reverse('38.886672,-77.094735', ['cd'])
               "birthday": "1950-06-20",
               "gender": "M",
               "party": "Democrat",
-              "photo_url": null
+              "photo_url": "https://www.congress.gov/img/member/b001292_200.jpg",
+              "photo_attribution": "Image courtesy of the Member"
             },
             "contact": {
               "url": "https://beyer.house.gov",
@@ -2428,7 +2434,8 @@ geocoder.reverse('38.886672,-77.094735', ['cd'])
               "birthday": "1954-12-15",
               "gender": "M",
               "party": "Democrat",
-              "photo_url": null
+              "photo_url": "https://www.congress.gov/img/member/w000805_200.jpg",
+              "photo_attribution": "Courtesy U.S. Senate Historical Office (http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm)"
             },
             "contact": {
               "url": "https://www.warner.senate.gov",
@@ -2467,7 +2474,8 @@ geocoder.reverse('38.886672,-77.094735', ['cd'])
               "birthday": "1958-02-26",
               "gender": "M",
               "party": "Democrat",
-              "photo_url": null
+              "photo_url": "https://www.congress.gov/img/member/k000384_200.jpg",
+              "photo_attribution": "Courtesy U.S. Senate Historical Office (http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm)"
             },
             "contact": {
               "url": "https://www.kaine.senate.gov",
@@ -2626,6 +2634,7 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg'])
                 "url": "https://virginiageneralassembly.gov/house/members/members.php?id=H0375",
                 "address": "Room 1102, General Assembly Building 201 N. 9th St., Richmond, VA 23219",
                 "phone": "804-698-1002",
+                "email": "delamcclure@house.virginia.gov",
                 "contact_form": null
               },
               "social": {
@@ -2668,6 +2677,7 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg'])
                 "url": "https://apps.senate.virginia.gov/Senator/memberpage.php?id=S86",
                 "address": "Room 509, General Assembly Building P.O. Box 396, Richmond, VA 23218",
                 "phone": "804-698-7540",
+                "email": "senatorfavola@senate.virginia.gov",
                 "contact_form": null
               },
               "social": {
@@ -2802,6 +2812,7 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg-next'])
                 "url": "https://virginiageneralassembly.gov/house/members/members.php?id=H0375",
                 "address": "Room 1102, General Assembly Building 201 N. 9th St., Richmond, VA 23219",
                 "phone": "804-698-1002",
+                "email": "delamcclure@house.virginia.gov",
                 "contact_form": null
               },
               "social": {
@@ -2844,6 +2855,7 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg-next'])
                 "url": "https://apps.senate.virginia.gov/Senator/memberpage.php?id=S86",
                 "address": "Room 509, General Assembly Building P.O. Box 396, Richmond, VA 23218",
                 "phone": "804-698-7540",
+                "email": "senatorfavola@senate.virginia.gov",
                 "contact_form": null
               },
               "social": {
@@ -7981,6 +7993,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 *Released on June 6, 2025*
 
 * The [state legislative districts](#state-legislative-districts) field append now return the current legislators for the district
+* The [congressional districts](#congressional-districts) field append now return a `photo_url` along with each legislator
 
 *Released on June 2, 2025*
 
