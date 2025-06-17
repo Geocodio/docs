@@ -48,10 +48,10 @@ Geocodio supports geocoding for the United States and Canada only.
 ### Explicit `country` Parameter
 ```shell
 # US address (explicit)
-curl "https://api.geocod.io/v1.8/geocode?q=1109+N+Highland+St,+Arlington+VA&country=USA&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.9/geocode?q=1109+N+Highland+St,+Arlington+VA&country=USA&api_key=YOUR_API_KEY"
 
 # Canadian address (explicit)
-curl "https://api.geocod.io/v1.8/geocode?q=525+University+Ave,+Toronto+ON&country=Canada&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.9/geocode?q=525+University+Ave,+Toronto+ON&country=Canada&api_key=YOUR_API_KEY"
 ```
 
 **Supported Country Values:** USA or Canada
