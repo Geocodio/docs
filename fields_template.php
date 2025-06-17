@@ -43,8 +43,8 @@ function template($country, $fields, $includeResponse) {
 	> To get $fieldAppendsDescription field appends for an address or a coordinate:
 
 	```shell
-	curl "https://api.geocod.io/v1.8/geocode?q=$addressUrlEncoded&fields=$commaSeparated&api_key=YOUR_API_KEY"
-	curl "https://api.geocod.io/v1.8/reverse?q=$coordinate&fields=$commaSeparated&api_key=YOUR_API_KEY"
+	curl "https://api.geocod.io/v1.9/geocode?q=$addressUrlEncoded&fields=$commaSeparated&api_key=YOUR_API_KEY"
+	curl "https://api.geocod.io/v1.9/reverse?q=$coordinate&fields=$commaSeparated&api_key=YOUR_API_KEY"
 	```
 
 	```ruby
@@ -115,7 +115,7 @@ function getApiResponse(string $address, array $fields) {
 	if (getenv('DISABLE_API')) {
 		$apiContent = file_get_contents($stubFile);
 	} else {	
-		$url = "https://api.geocod.io/v1.8/geocode?q=". urlencode($address) ."&fields=". implode(',', $fields) ."&api_key=$apiKey";
+		$url = "https://api.geocod.io/v1.9/geocode?q=". urlencode($address) ."&fields=". implode(',', $fields) ."&api_key=$apiKey";
 
 		$sslVerify = !str_contains($url, 'dev');
 		
