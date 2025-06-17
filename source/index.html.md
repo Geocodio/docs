@@ -7988,6 +7988,13 @@ Major changes, that are not breaking are also documented here.
 Breaking changes are defined as changes that remove or rename properties in the JSON output of any API endpoint. Your API client should be able to gracefully support addition of new JSON properties, as this is not considered a breaking change.
 </aside>
 
+## v1.9
+
+*Released on June 17, 2025*
+
+* **Breaking:** We've done a bit of "spring" cleaning to better standardize state legislative district names and numbers. The changes does not apply to API version below v1.9 and OCD ids are not affected. To compare the differences, you can compare the following URLs: [https://api.geocod.io/v1.8/ocd-ids/stateleg](https://api.geocod.io/v1.8/ocd-ids/stateleg) and [https://api.geocod.io/v1.9/ocd-ids/stateleg](https://api.geocod.io/v1.9/ocd-ids/stateleg)
+* The lists API endpoint now includes the updated header names recently introduced to the spreadsheet geocoding tool as well as state legislator data
+
 ## v1.8
 
 *Released on June 6, 2025*
