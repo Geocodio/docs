@@ -283,7 +283,7 @@ Make sure to replace YOUR_API_KEY with your personal API key found on the <a hre
 
 ## Using query parameter
 
-The simplest way to authenticatio is using the `api_key` query parameter. The API key must be included in all requests using the `&api_key=YOUR_API_KEY` query parameter.
+The simplest way to authenticate is using the `api_key` query parameter. The API key must be included in all requests using the `&api_key=YOUR_API_KEY` query parameter.
 
 ## Using Authorization header
 
@@ -311,7 +311,7 @@ When using the List API with Geocodio Enterprise this type of authentication is 
 }
 ```
 
-Per default, an API key can only access the single and batch geocoding API endpoints. These endpoints are write-only which means that a lost API key can not be used to retreive geocoded data from your account.
+Per default, an API key can only access the single and batch geocoding API endpoints. These endpoints are write-only which means that a lost API key can not be used to retrieve geocoded data from your account.
 
 For security reasons, additional permissions has to be assigned to the API key when using the [lists API](#geocoding-lists). This can be done in the [Geocodio dashboard](https://dash.enterprise.geocod.io/apikey). We recommend creating separate API keys for geocoding endpoints and for `GET`/`DELETE` access to lists.
 
@@ -335,7 +335,7 @@ If in doubt, [single geocoding](#geocoding) is the simplest choice for many use 
 
 # Geocoding
 
-Geocoding (also known as forward geocoding) allows you to convert one or more addresses into geographic coordinates (i.e. latitude and longitude). Geocoding will also parse the address and append additional information (e.g. if you specify a zip code, Geocodio will return the city and state corresponding the zip code as well)
+Geocoding (also known as forward geocoding) allows you to convert one or more addresses into geographic coordinates (i.e. latitude and longitude). Geocoding will also parse the address and append additional information (e.g. if you specify a zip code, Geocodio will return the city and state corresponding to the zip code as well)
 
 Geocodio supports geocoding of addresses, cities and zip codes in various formats.
 
@@ -540,7 +540,7 @@ In most cases, the standard output format would be used. In certain situations, 
 
 **`simple` format**
 
-When `format` is set to `simple`, a very simple JSON structure is outputted, with only basic information for the best matched results. This makes it much easier to work with the JSON document in situtations where extra verbosity is not needed.
+When `format` is set to `simple`, a very simple JSON structure is outputted, with only basic information for the best matched results. This makes it much easier to work with the JSON document in situations where extra verbosity is not needed.
 
 The `fields` parameter is still supported when the `simple` output format is selected, but the `limit` parameter has no effect.
 
@@ -857,7 +857,7 @@ geocoder.geocode(addresses)
 
 If you have several addresses that you need to geocode, batch geocoding is a much faster option since it removes the overhead of having to perform multiple `HTTP` requests.
 
-Batch geocoding requests are performed by making a `POST` request to the *geocode* endpoint, suppliying a `JSON` array or `JSON` object in the body with any key of your choosing.
+Batch geocoding requests are performed by making a `POST` request to the *geocode* endpoint, supplying a `JSON` array or `JSON` object in the body with any key of your choosing.
 
 <aside class="warning">
 You can process up to 10,000 lookups at the time. Field appends count as lookups, so geocoding 5,000 addresses with the `census` field append would be a total of 10,000 lookups. Geocoding 10,000 lookups takes about 600 seconds, so please make sure to adjust your timeout value accordingly.
@@ -991,7 +991,7 @@ Here's a couple of examples of what the `POST` body can look like:
 
 ### Accepted Address Components
 
-When suppplying an address as individual components (instead of a single string) you can use a combination of `street`, `street2`, `city`, `county`, `state` `postal_code`, and/or `country`.
+When supplying an address as individual components (instead of a single string) you can use a combination of `street`, `street2`, `city`, `county`, `state` `postal_code`, and/or `country`.
 
 This is recommended if the address is already stored as separate fields on your end.
 
@@ -1193,7 +1193,7 @@ In most cases, the standard output format would be used. In certain situations, 
 
 **`simple` format**
 
-When `format` is set to `simple`, a very simple JSON structure is outputted, with only basic information for the best matched results. This makes it much easier to work with the JSON document in situtations where extra verbosity is not needed.
+When `format` is set to `simple`, a very simple JSON structure is outputted, with only basic information for the best matched results. This makes it much easier to work with the JSON document in situations where extra verbosity is not needed.
 
 The `fields` parameter is still supported when the `simple` output format is selected, but the `limit` parameter has no effect.
 
@@ -1247,8 +1247,8 @@ const geocoder = new Geocodio('YOUR_API_KEY');
 
 const coordinates = [
   '35.9746000,-77.9658000',
-  '32.8793700,96.6303900',
-  '33.8337100,117.8362320',
+  '32.8793700,-96.6303900',
+  '33.8337100,-117.8362320',
   '35.4171240,-80.6784760'
 ];
 
@@ -1350,7 +1350,7 @@ geocoder.reverse(coordinates)
 
 If you have several coordinates that you need to reverse geocode, batch reverse geocoding is a much faster option since it removes the overhead of having to perform multiple `HTTP` requests.
 
-Batch reverse geocoding requests are performed by making a `POST` request to the *reverse* endpoint, suppliying a `JSON` array in the body.
+Batch reverse geocoding requests are performed by making a `POST` request to the *reverse* endpoint, supplying a `JSON` array in the body.
 
 <aside class="warning">
 You can batch reverse geocode up to 10,000 coordinates at a time. Field appends count as lookups as well, make sure to keep the overall number of lookups at 10,000 or below.
