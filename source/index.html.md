@@ -35,6 +35,37 @@ We may add additional properties to the output in the future, but existing prope
 Note the versioning prefix in the base url, which is required for all requests.
 </aside>
 
+# Supported Countries
+
+Geocodio supports geocoding for the United States and Canada only.
+
+## Specifying Country
+
+### Default Behavior
+* Individual lookups: Inferred from address format
+* Fallback: United States
+
+### Explicit `country` Parameter
+```shell
+# US address (explicit)
+curl "https://api.geocod.io/v1.8/geocode?q=1109+N+Highland+St,+Arlington+VA&country=USA&api_key=YOUR_API_KEY"
+
+# Canadian address (explicit)
+curl "https://api.geocod.io/v1.8/geocode?q=525+University+Ave,+Toronto+ON&country=Canada&api_key=YOUR_API_KEY"
+```
+
+**Supported Country Values:** USA or Canada
+
+## Address Format Differences
+
+### United States
+* State: 2-letter abbreviation (e.g., `VA`, `CA`)
+* ZIP Code: 5 or 9 digits (e.g., `22201` or `22201-1234`)
+
+### Canada
+* Province: 2-letter abbreviation (e.g., `ON`, `BC`)
+* Postal Code FSA: 3 characters with space (e.g., `M5G`)
+
 # Libraries
 
 ## Official libraries
@@ -861,6 +892,31 @@ Batch geocoding requests are performed by making a `POST` request to the *geocod
 
 <aside class="warning">
 You can process up to 10,000 lookups at the time. Field appends count as lookups, so geocoding 5,000 addresses with the `census` field append would be a total of 10,000 lookups. Geocoding 10,000 lookups takes about 600 seconds, so please make sure to adjust your timeout value accordingly.
+</aside>
+
+### Understanding Lookup Counts
+
+Each address counts as one lookup, and each field append counts as an additional lookup per address.
+
+**Lookup Calculation Formula:**
+```
+Total Lookups = Number of Addresses × (1 + Number of Fields)
+```
+
+**Examples within the 10,000 limit:**
+
+* ✅ 10,000 addresses, no fields = 10,000 lookups
+* ✅ 5,000 addresses, 1 field = 10,000 lookups (5,000 × 2)
+* ✅ 2,500 addresses, 3 fields = 10,000 lookups (2,500 × 4)
+* ✅ 2,000 addresses, 4 fields = 10,000 lookups (2,000 × 5)
+
+**Examples exceeding the limit:**
+
+* ❌ 10,000 addresses, 1 field = 20,000 lookups (exceeds limit)
+* ❌ 6,000 addresses, 2 fields = 18,000 lookups (exceeds limit)
+
+<aside class="warning">
+Plan your batch requests carefully when using field appends. If you need to process more than 10,000 lookups, split your request into multiple batches or use the <a href="#geocoding-lists">lists API</a> isntead.
 </aside>
 
 ### HTTP Request
