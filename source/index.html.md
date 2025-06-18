@@ -1421,7 +1421,7 @@ Parameter | Description
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
 
 
-# Geocoding CSV lists
+# Geocoding lists
 
 Geocodio's lists API lets you upload and process CSV spreadsheets with addresses or coordinates. Similar to the [spreadsheet geocoding tool](https://www.geocod.io/upload/), the spreadsheet will be processed as a job on Geocodio's infrastructure and can be downloaded later. While a spreadsheet is being, processed it is possible to query the status and progress.
 
