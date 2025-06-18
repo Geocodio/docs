@@ -21,7 +21,7 @@ code_clipboard: true
 
 # Introduction
 
-Geocodio's RESTful API allows you to perform forward and reverse geocoding lookups as well as simultaneously enrich your address data with Census data, political districts, and more (called `fields`). Geocodio's API supports individual, batch, and CSV list geocoding.
+Geocodio's RESTful API allows you to perform forward and reverse geocoding lookups as well as simultaneously enrich your address data with Census data, political districts, and more (called `fields`). Geocodio's API supports individual, batch, and list geocoding.
 
 The base API url is `https://api.geocod.io/v1.9/`.
 
@@ -2033,7 +2033,7 @@ Parameter | Description
 `api_key` | Your Geocodio API key
 
 
-# Data Appends (`Fields`)
+# Data Appends (fields)
 
 > To get `cd` and `stateleg` field appends for an address or a coordinate:
 
@@ -2359,7 +2359,7 @@ Some fields are specific to the US and cannot be queried for other countries.
 This feature is available for both single and batch geocoding requests as well as the lists API.
 </aside>
 
-## Congressional Districts and Representative/Senator Information
+## Congressional Districts
 **Field name: `cd`, `cd113`, `cd114`, `cd115`, `cd116`, `cd117`, `cd118`, `cd119`**
 
 > To get `cd` field appends for an address or a coordinate:
@@ -2594,7 +2594,7 @@ Districts are always sorted by the `proportion` value in descending order (large
   Where possible, we recommend looking up Congressional districts with full addresses rather than ZIP codes. This will result in more accurate results, as ZIP codes are postal routes rather than geographic areas and may not be as accurate.
 </aside>
 
-## State Legislative Districts and Legislator Information
+## State Legislative Districts
 **Field name: `stateleg` or `stateleg-next`**
 
 > To get `stateleg` field appends for an address or a coordinate:
