@@ -670,7 +670,7 @@ If you include an Apartment or Suite number along as a suffix to the street name
 
 E.g. if the unit number is inputted as `#R500`, the outputted value will be `Ste R500`.
 
-In order to verify that the unit number is valid per USPS, you can request the [`zip4`](#usps-zip-4) field append and check the `exact_match` value. If it is set to `true,` it means that the unit number is recognized by USPS.
+In order to verify that the unit number is valid per USPS, you can request the [`zip4`](#usps-zip-4) field append and check the `exact_match` value. If it is set to `true`, it means that the unit number is recognized by USPS.
 
 ### The `input` Object
 
