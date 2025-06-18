@@ -21,9 +21,9 @@ code_clipboard: true
 
 # Introduction
 
-Geocodio's RESTful API allows you to perform forward and reverse geocoding lookups. We support both batch requests as well as individual lookups.
+Geocodio's RESTful API allows you to perform forward and reverse geocoding lookups. Geocodio's API supports individual (real time), batch, and CSV list geocoding. 
 
-You can also optionally ask for data appends such as timezone, Congressional districts or similar things of that nature.
+You can also optionally ask for data appends such as timezones, Congressional districts, Census data, and more, called `fields`.
 
 The base API url is `https://api.geocod.io/v1.9/`.
 
@@ -499,7 +499,7 @@ Parameter | Description
 `q`       | The query (i.e. address) to geocode
 `api_key` | Your Geocodio API key
 `country` | Optional parameter. The country to geocode the address in. The default is to infer from the query, with a fallback to USA.
-`fields`  | Optional parameter to request [additional field appends](#fields).
+`fields`  | Optional parameter to request [additional data appends](#fields).
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
 `format`  | Optional parameter to change the JSON output format to a different pre-defined structure. Currently, "simple" is the only valid value. If not set, the default full JSON output structure is used.
 
@@ -2037,7 +2037,7 @@ Parameter | Description
 `api_key` | Your Geocodio API key
 
 
-# Fields
+# Data Appends ("Fields")
 
 > To get `cd` and `stateleg` field appends for an address or a coordinate:
 
