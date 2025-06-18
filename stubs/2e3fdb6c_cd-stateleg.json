@@ -175,7 +175,7 @@
                 "state_legislative_districts": {
                     "house": [
                         {
-                            "name": "State House District 2",
+                            "name": "2nd District",
                             "district_number": "2",
                             "ocd_id": "ocd-division/country:us/state:va/sldl:2",
                             "is_upcoming_state_legislative_district": false,
@@ -218,7 +218,7 @@
                     ],
                     "senate": [
                         {
-                            "name": "State Senate District 40",
+                            "name": "District 40",
                             "district_number": "40",
                             "ocd_id": "ocd-division/country:us/state:va/sldu:40",
                             "is_upcoming_state_legislative_district": false,
