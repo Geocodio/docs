@@ -1423,7 +1423,7 @@ Parameter | Description
 
 # Geocoding lists
 
-Geocodio's lists API lets you upload and process CSV spreadsheets with addresses or coordinates. Similar to the [spreadsheet geocoding tool](https://www.geocod.io/upload/), the spreadsheet will be processed as a job on Geocodio's infrastructure and can be downloaded later. While a spreadsheet is being, processed it is possible to query the status and progress.
+Geocodio's lists API lets you upload and process CSV and Excel spreadsheets with addresses or coordinates. Similar to the [spreadsheet geocoding tool](https://www.geocod.io/upload/), the spreadsheet will be processed as a job on Geocodio's infrastructure and can be downloaded later. While a spreadsheet is being, processed it is possible to query the status and progress.
 
 <aside class="warning">
 Data for spreadsheets processed through the lists API is automatically deleted 72 hours after processing completes. In addition to a 1GB file size limit, we recommend a maximum of 10M lookups per list batch. Larger batches should be split up into multiple list jobs.
