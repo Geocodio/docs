@@ -21,9 +21,9 @@ code_clipboard: true
 
 # Introduction
 
-Geocodio's RESTful API allows you to perform forward and reverse geocoding lookups. We support both batch requests as well as individual lookups.
+Geocodio's RESTful API allows you to perform forward and reverse geocoding lookups as well as simultaneously enrich your address data. Geocodio's API supports individual, batch, and list geocoding.
 
-You can also optionally ask for data appends such as timezone, Congressional districts or similar things of that nature.
+Data appends (`fields`) include Census geographies and data, electoral districts, timezones, school districts, and more.
 
 The base API url is `https://api.geocod.io/v1.9/`.
 
@@ -70,9 +70,9 @@ curl "https://api.geocod.io/v1.9/geocode?q=525+University+Ave,+Toronto+ON&countr
 
 ## Official libraries
 
-These libraries are officially written and maintained by Geocodio. Have an issue? We will in most cases be able to help via online chat or email.
+These libraries are officially written and maintained by Geocodio. Have an issue? Please email us at support@geocod.io.
 
-GitHub pull requests and issues are also more than welcome!
+GitHub pull requests and issues are also more than welcome.
 
 <table class="table">
   <tbody><tr>
@@ -174,7 +174,7 @@ ENTERPRISE-->
     <td><i class="fa fa-minus"></i></td>
   </tr>
   <tr>
-    <td colspan="3">Are you the author of an awesome library that you would like to get featured here? Just <a href="mailto:hello@geocod.io">let us know</a> or <a href="https://github.com/geocodio/docs" target="_blank">create a pull request</a>.</td>
+    <td colspan="3">Are you the author of a library that you would like to get featured here? Just <a href="mailto:hello@geocod.io">let us know</a> or <a href="https://github.com/geocodio/docs" target="_blank">create a pull request</a>.</td>
   </tr>
 </tbody></table>
 
@@ -306,7 +306,7 @@ The API key must be included in all requests using the `api_key` query parameter
 
 Accounts can have multiple API keys. This can be useful if you're working on several projects and want to be able to revoke access using the API key for a single project in the future or if you want to keep track of usage per API key.
 
-You can also download a CSV of usage and fees per API key [in the dashboard](https://dash.geocod.io/usage).
+You can also download a CSV of usage and fees per API key [on the dashboard](https://dash.geocod.io/usage).
 
 <aside class="warning">
 Make sure to replace YOUR_API_KEY with your personal API key found on the <a href="https://dash.geocod.io" target="_blank">Geocodio dashboard</a>.
@@ -318,7 +318,7 @@ The simplest way to authenticate is using the `api_key` query parameter. The API
 
 ## Using Authorization header
 
-Alternatively, the API key can be supplied via an HTTP request header, like so:
+Alternatively, the API key can be supplied via an HTTP request header:
 
 <aside>
   <code>
@@ -344,7 +344,7 @@ ENTERPRISE-->
 
 Per default, an API key can only access the single and batch geocoding API endpoints. These endpoints are write-only which means that a lost API key can not be used to retrieve geocoded data from your account.
 
-For security reasons, additional permissions has to be assigned to the API key when using the [lists API](#geocoding-lists). This can be done in the [Geocodio dashboard](https://dash.geocod.io/apikey). We recommend creating separate API keys for geocoding endpoints and for `GET`/`DELETE` access to lists.
+For security reasons, you must specifically enable the [lists API](#geocoding-lists) permissions for your API keys. This can be done on the [Geocodio dashboard](https://dash.geocod.io/apikey). We recommend creating separate API keys for geocoding endpoints and for `GET`/`DELETE` access to lists.
 
 [![List of API key permissions with default values selected](https://www.geocod.io/docs/images/permissions-88aabfa9.png)](https://dash.geocod.io/apikey)
 
@@ -352,9 +352,9 @@ For security reasons, additional permissions has to be assigned to the API key w
 
 # Overview
 
-The Geocodio API supports three different methods for processing your data. The method you choose will largely depend on your workflow and the amount of addresses or coordinates that you are looking to process.
+The Geocodio API supports three different methods for processing your data. Geocodio is designed to make high-volume geocoding and data enrichment easier, yet we also support real-time single requests. The method you choose will largely depend on your workflow and the amount of addresses or coordinates that you are looking to process.
 
-Single and batch geocoding methods are synchronous, meaning that you have to wait for the data to be fully processed and will receive it directly in your API response. The [list geocoding](#geocoding-lists) method is however asynchronous and requires a second request to be made to download the data once it is ready.
+Single and batch geocoding methods are synchronous, meaning that you have to wait for the data to be fully processed and will receive it directly in your API response. The [list geocoding](#geocoding-lists) method is asynchronous and requires a second request to be made to download the data once it is ready.
 
 Name                                  | Batch size         | Type         | Format           | Supports fields             | Supports forward & reverse geocoding
 ------------------------------------- | ------------------ | ------------ | ---------------- | --------------------------- | --------------------------------------
@@ -366,21 +366,19 @@ If in doubt, [single geocoding](#geocoding) is the simplest choice for many use 
 
 # Geocoding
 
-Geocoding (also known as forward geocoding) allows you to convert one or more addresses into geographic coordinates (i.e. latitude and longitude). Geocoding will also parse the address and append additional information (e.g. if you specify a zip code, Geocodio will return the city and state corresponding to the zip code as well)
+Geocoding (also known as forward geocoding) allows you to convert one or more addresses into geographic coordinates (i.e. latitude and longitude). Geocoding will also parse the address and append additional information (e.g. if you specify a ZIP code, Geocodio will return the city and state corresponding to the zip code as well)
 
-Geocodio supports geocoding of addresses, cities and zip codes in various formats.
+Geocodio supports geocoding of addresses, cities and ZIP codes in various formats.
 
 <aside class="notice">
 Make sure to check the <a href="#address-formats">address formats</a> section for more information on the different address formats supported.
 </aside>
 
-You can either geocode a single address at a time or collect multiple addresses in batches in order to geocode up to 10,000 addresses at the time.
-
-Whenever possible, batch requests are recommended since they are significantly faster due to reduced network overhead.
+Whenever possible, batch requests via the batch or lists endpoints is encouraged since they are significantly faster due to reduced network overhead.
 
 ## Single address
 
-A single address can be geocoded by making a simple `GET` request to the *geocode* endpoint, you can <a href="https://api.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+Geocodio can geocode a single address by making a `GET` request to the *geocode* endpoint. You can <a href="https://api.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a> after creating an API key or via our <a href="https://www.geocod.io/geocode-an-address">demo tool</a>.
 
 <aside class="success">
 The <code>results</code> are always ordered with the most accurate locations first. It is therefore always safe to pick the first result in the list.
@@ -499,7 +497,7 @@ Parameter | Description
 `q`       | The query (i.e. address) to geocode
 `api_key` | Your Geocodio API key
 `country` | Optional parameter. The country to geocode the address in. The default is to infer from the query, with a fallback to USA.
-`fields`  | Optional parameter to request [additional field appends](#fields).
+`fields`  | Optional parameter to request [additional data appends](#fields).
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
 `format`  | Optional parameter to change the JSON output format to a different pre-defined structure. Currently, "simple" is the only valid value. If not set, the default full JSON output structure is used.
 
@@ -515,7 +513,7 @@ ENTERPRISE-->
 
 Instead of using the *q* parameter, you can use a combination of `street`, `street2`, `city`, `county`, `state`, `postal_code`, and/or `country`.
 
-This is recommended if the address is already stored as separate fields on your end.
+This is recommended if the address is already parsed into separate fields in your database.
 
 Parameter     | Description
 ------------- | -----------
@@ -580,11 +578,11 @@ The `fields` parameter is still supported when the `simple` output format is sel
 
 When including the `verbose` query parameter in your API request, a breakdown of the accuracy score will be returned with each geocoding result. This can be found in the `accuracy_breakdown` JSON key.
 
-This feature is only available for enterprise and on-premise customers.
+This feature is only available for enterprise and on-premises customers.
 
 The accuracy breakdown lists all of the factors used to compute the accuracy score. Each factor has a short description along with a designated category. The following categories are available: `MISC`, `SCORING`, `STATE`, `POSTAL_CODE`, `POSTAL_SERVICE`, `HOUSE_NUMBER`, `ENGINE_CASCADE`, `POINT_GEOCODING_ENGINE`, `RANGE_GEOCODING_ENGINE`, `INTERSECTION_GEOCODING_ENGINE`, `PLACE_GEOCODING_ENGINE`.
 
-Accuracy breakdown descriptions and scores are subject to change and should not be programatically relied upon. Categories can however be expected to be consistent.
+Accuracy breakdown descriptions and scores are subject to change and should not be programatically relied upon. Categories can, however, be expected to be consistent.
 
 > Example response with the following query: "1109 Highland St, Arlington, VA 22201" (Directional is missing)
 
@@ -674,7 +672,7 @@ If you include an Apartment or Suite number along as a suffix to the street name
 
 E.g. if the unit number is inputted as `#R500`, the outputted value will be `Ste R500`.
 
-In order to verify that the unit number is valid per USPS, you can request the [`zip4`](#usps-zip-4) field append and check the `exact_match` value. If it is set to `true` it means that the unit number is accepted by USPS.
+In order to verify that the unit number is valid per USPS, you can request the [`zip4`](#usps-zip-4) field append and check the `exact_match` value. If it is set to `true`, it means that the unit number is recognized by USPS.
 
 ### The `input` Object
 
@@ -886,12 +884,12 @@ geocoder.geocode(addresses)
 }
 ```
 
-If you have several addresses that you need to geocode, batch geocoding is a much faster option since it removes the overhead of having to perform multiple `HTTP` requests.
+If you have multiple addresses that you need to geocode, we recommend using Geocodio's batch geocoding endpoints. This will save you time as it removes the overhead of having to perform multiple `HTTP` requests.
 
-Batch geocoding requests are performed by making a `POST` request to the *geocode* endpoint, supplying a `JSON` array or `JSON` object in the body with any key of your choosing.
+Batch geocoding requests can be performed by making a `POST` request to the *geocode* endpoint, supplying a `JSON` array, or a `JSON` object in the body with any key of your choosing.
 
 <aside class="warning">
-You can process up to 10,000 lookups at the time. Field appends count as lookups, so geocoding 5,000 addresses with the `census` field append would be a total of 10,000 lookups. Geocoding 10,000 lookups takes about 600 seconds, so please make sure to adjust your timeout value accordingly.
+You can process up to 10,000 lookups at a time with the batch endpoint. Field appends count as lookups, so geocoding 5,000 addresses with the `census` field append would be a total of 10,000 lookups. Geocoding 10,000 lookups takes about 600 seconds, so please make sure to adjust your timeout value accordingly. For large lists, consider using the lists API.
 </aside>
 
 ### Understanding Lookup Counts
@@ -916,7 +914,7 @@ Total Lookups = Number of Addresses × (1 + Number of Fields)
 * ❌ 6,000 addresses, 2 fields = 18,000 lookups (exceeds limit)
 
 <aside class="warning">
-Plan your batch requests carefully when using field appends. If you need to process more than 10,000 lookups, split your request into multiple batches or use the <a href="#geocoding-lists">lists API</a> isntead.
+Plan your batch requests carefully when using field appends. If you need to process more than 10,000 lookups, split your request into multiple batches or use the <a href="#geocoding-lists">lists API</a> instead.
 </aside>
 
 ### HTTP Request
@@ -1427,15 +1425,15 @@ Parameter | Description
 
 # Geocoding lists
 
-The lists API lets you upload and process spreadsheet with addresses or coordinates. Similar to the [spreadsheet feature](https://www.geocod.io/upload/) in the dashboard, the spreadsheet will be processed as a job on Geocodio's infrastructure and can be downloaded at a later time. While a spreadsheet is being processed it is possible to query the status and progress.
+Geocodio's lists API lets you geocode CSV, TSV, Excel, and other forms of spreadsheets with addresses or coordinates. Similar to the [spreadsheet geocoding tool](https://www.geocod.io/upload/), the spreadsheet will be processed as a job on Geocodio's infrastructure and can be downloaded later. While a spreadsheet is being, processed it is possible to query the status and progress.
 
 <aside class="warning">
-Data for spreadsheets processed through the lists API are automatically deleted 72 hours after they have finished processing. In addition to a 1GB file size limit, we recommend a maximum of 10M lookups per list batch. Larger batches should be split up into multiple list jobs.
+Data for spreadsheets processed through the lists API is automatically deleted 72 hours after processing completes. In addition to a 1GB file size limit, we recommend a maximum of 10M lookups per list batch. Larger batches should be split up into multiple list jobs.
 </aside>
 
 <!--ENTERPRISE
 <aside class="warning">
-When using the List API with Geocodio Enterprise you must send the API key as a Bearer token in the Authorization header.
+When using the List API with Geocodio Enterprise, you must send the API key as a Bearer token in the Authorization header.
 
 <br /><br />
 <code>
@@ -2037,7 +2035,7 @@ Parameter | Description
 `api_key` | Your Geocodio API key
 DEFAULT-->
 
-# Fields
+# Data Appends (fields)
 
 <!--FIELD:us:cd,stateleg-->
 
@@ -2058,12 +2056,12 @@ Some fields are specific to the US and cannot be queried for other countries.
 | [cd, cd113, cd114, cd115, cd116, cd117, cd118, cd119](#congressional-districts)                                                                                                                                                                            | Congressional District & Legislator information            | US-only                     |
 | [stateleg, stateleg-next](#state-legislative-districts)                                                                                                                                                                                                    | State Legislative District (House & Senate) & Legislator information                | US-only                     |
 | [school](#school-districts)                                                                                                                                                                                                                                | School District (elementary/secondary or unified)          | US-only                     |
-| [census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021, census2022, census2023, census2024](#census-block-tract-fips-codes-amp-msa-csa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes             | US-only                     |
-| [acs-demographics](#demographics-census)                                                                                                                                                                                                                   | Demographics (Census)                                      | US-only                     |
-| [acs-economics](#economics-income-data-census)                                                                                                                                                                                                             | Economics: Income Data (Census)                            | US-only                     |
-| [acs-families](#families-census)                                                                                                                                                                                                                           | Families (Census)                                          | US-only                     |
-| [acs-housing](#housing-census)                                                                                                                                                                                                                             | Housing (Census)                                           | US-only                     |
-| [acs-social](#social-education-amp-veteran-status-census)                                                                                                                                                                                                  | Social: Education & Veteran Status (Census)                | US-only                     |
+| [census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021, census2022, census2023, census2024](#census-blocktract-fips-codes-msacsa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes             | US-only                     |
+| [acs-demographics](#census-demographics)                                                                                                                                                                                                                   | Demographics (Census)                                      | US-only                     |
+| [acs-economics](#census-income)                                                                                                                                                                                                             | Economics: Income Data (Census)                            | US-only                     |
+| [acs-families](#census-households)                                                                                                                                                                                                                           | Families (Census)                                          | US-only                     |
+| [acs-housing](#census-housing)                                                                                                                                                                                                                             | Housing (Census)                                           | US-only                     |
+| [acs-social](#social-education-veteran-status-census)                                                                                                                                                                                                  | Social: Education & Veteran Status (Census)                | US-only                     |
 | [zip4](#usps-zip-4)                                                                                                                                                                                                                                        | USPS Zip+4 code and delivery information                   | US-only                     |
 | [ffiec](#ffiec-fair-lending)                                                                                                                                                                                                                               | (Beta) FFIEC CRA/HMDA Data                                 | US-only                     |
 | [riding](#riding-canadian-federal-electoral-district)                                                                                                                                                                                                      | Riding: Canadian Federal Electoral District                | Canada-only                 |
@@ -2080,29 +2078,31 @@ This feature is available for both single and batch geocoding requests as well a
 
 <!--FIELD:us:cd-->
 
-You can retrieve the Congressional district for an address or coordinate pair using any one of the valid parameter names in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
+Geocodio can return the Congressional district and Representative/Senator information for an address or coordinate pair via any one of the valid parameter names in the `fields` query parameter. `cd` will always return the Congressional district for the current Congress, while e.g. `cd113` will continue to show the Congressional district for the 113th Congress.
 
-The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current congress (i.e. `cd` or `cd119`) is specified, we will also return detailed information about the current legislators.
+The field returns the full name of the Congressional district, the district number, the Congress number, and the year range. If the current Congress (i.e. `cd` or `cd119`) is specified, Geocodio will also return detailed information about the current legislators.
 
 <aside class="success">
-The list of legislators is always ordered with Representative first then Senators.
+The list of legislators is always ordered with the Representative first then Senators.
 </aside>
 
 <aside class="notice">
 Per U.S. Census Bureau specifications, the following rules apply:<br />
-States with a single congressional district, will return a special "district_number" of 0 (i.e. Vermont).<br />
-Districts with non-voting delegates will return a special "district_number" of 98 (i.e. Washington DC).
+States with a single Congressional district return a special "district_number" of 0 (i.e. Vermont).<br />
+Districts with non-voting delegates return a special "district_number" of 98 (i.e. Washington DC).
 </aside>
 
 ### OCD Identifiers
 
 [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) (OCD-IDs) are returned for each district when using `cd119`.
 
+This ID can be used as a unique identifier for each district. You can see the full list of districts returned by Geocodio and their corresponding OCD-IDs [here.](https://www.geocod.io/guides/ocd-ids/)
+
 When requesting boundaries for other congressional periods, the `ocd_id` property is still present, but set to `null`.
 
-### Appending Congressional districts for ZIP codes
+### Look up Congressional districts with ZIP codes
 
-Geocodio can return the most likely Congressional districts given a ZIP code. In cases where there may be multiple possible Congressional districts for a postal code, we will return multiple Congressional districts, and rank them each using a `proportion` key. This key is a decimal percentage representation of how much of the district boundary that intersect with the zip code boundary (i.e. bigger number = more likely to be the correct district for citizens in that zip code).
+Geocodio can return the most likely Congressional districts given a ZIP code. In cases where there may be multiple possible Congressional districts for a ZIP code, we will return multiple Congressional districts, and rank them each using a `proportion` key. This key is a decimal percentage representation of how much of the district boundary that intersect with the ZIP code boundary (i.e., a bigger number means it's more likely to be the correct district for citizens in that ZIP code).
 
 Districts are always sorted by the `proportion` value in descending order (largest first).
 
@@ -2115,11 +2115,13 @@ Districts are always sorted by the `proportion` value in descending order (large
 
 <!--FIELD:us:stateleg-->
 
-You can retrieve the state legislative districts for an address or coordinate using `stateleg` in the `fields` query parameter. The `stateleg-next` can be used to retrieve state legislative districts based on upcoming district changes.
+Geocodio can return the state legislative districts and legislator information for an address or coordinate pair via `stateleg` in the `fields` query parameter. 
 
-The field will return both the *house* and *senate* state legislative district (also known as *lower* and *upper*) with the full name and district number for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism) (such as Washington, DC or Nebraska), the `house` and `senate` keys return the same district.
+The `stateleg-next` append can be used to retrieve state legislative districts based on upcoming district changes due to redistricting.
 
-We will also return detailed information about the current legislators. For districts or states with at-large legislature (such as Washington DC and Puerto Rico), the at-large legislators are returned for all districts they are however returned last.
+The field will return both the *house* and *senate* state legislative districts (also known as *lower* and *upper*) with the full name and district number for each. For areas with a [unicameral legislature](http://en.wikipedia.org/wiki/Unicameralism), such as Washington DC and Nebraska, the `house` and `senate` keys return the same district.
+
+Geocodio will also return current state legislator names, contact information, and more. For districts or states with at-large legislature (such as Washington DC and Puerto Rico), the at-large legislators are returned for all districts, but they are returned last. See more details on the legislator biographical and contact information Geocodio returns [here.](https://www.geocod.io/guides/state-legislative-districts/)
 
 ### Using `stateleg-next`
 
@@ -2130,8 +2132,6 @@ Where available, the state legislative district returned will be based on newly 
 <!--
 The following states are affected. Redistricted boundaries will be returned with the `stateleg` data append, after the noted cut-off date. Until then, `stateleg-next` is needed to retrieve districts based on redistricted boundaries.
 
-* **Minnesota:** 1/14 2025
-
 If new boundaries are not available, the current boundaries are used instead (effectively returning the same data as when the `stateleg` field append is used). The `is_upcoming_state_legislative_district` indicates whether redistricted data is returned.
 -->
 
@@ -2141,7 +2141,7 @@ If new boundaries are not available, the current boundaries are used instead (ef
 
 [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) (OCD-IDs) are returned for all legislative districts.
 
-This id can be used as a unique identifier for each district.
+This ID can be used as a unique identifier for each district. You can see the full list of districts returned by Geocodio and their corresponding OCD-IDs [here.](https://www.geocod.io/guides/ocd-ids/)
 
 > Example lookup using the `22206` zip code instead of a full address
 
@@ -2186,9 +2186,9 @@ This id can be used as a unique identifier for each district.
 ...
 ```
 
-### Appending state legislative districts for ZIP codes
+### Look up state legislative districts with ZIP codes
 
-Geocodio can return the most likely state legislative districts given a ZIP code. In cases where there may be multiple possible state legislative districts for a postal code, we will return multiple state legislative districts, and rank them each using a `proportion` key. This key is a decimal percentage representation of how much of the district boundary that intersect with the zip code boundary (i.e. bigger number = more likely to be the correct district for citizens in that zip code).
+Geocodio can return the most likely state legislative districts given a ZIP code. In cases where there may be multiple possible state legislative districts for a ZIP code, we will return multiple state legislative districts, and rank them each using a `proportion` key. This key is a decimal percentage representation of how much of the district boundary that intersect with the ZIP code boundary (i.e., bigger number = more likely to be the correct district for citizens in that ZIP code).
 
 Districts are always sorted by the `proportion` in descending order (largest first).
 
@@ -2241,9 +2241,9 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 }
 ...
 ```
-You can retrieve the school district for an address or coordinate using `school` in the `fields` query parameter.
+Geocodio can return the school district for an address or coordinate using `school` in the `fields` query parameter.
 
-The field will return either a *unified* school district or separate *elementary* and *secondary* fields depending on the area. Each school district is returned with its full name, the LEA (Local Education Agency) code, as well as the grades supported. Kindergarden is abbreviated as *KG* and pre-kindergarten is abbreviated as *PK*.
+The field will return either a *unified* school district or separate *elementary* and *secondary* fields depending on the area. Each school district is returned with its full name, the LEA (Local Education Agency) code, and the grades supported. Kindergarden is abbreviated as *KG* and pre-kindergarten is abbreviated as *PK*.
 
 
 ## Census Block/Tract, FIPS codes & MSA/CSA codes
@@ -2251,18 +2251,18 @@ The field will return either a *unified* school district or separate *elementary
 
 <!--FIELD:us:census2010,census-->
 
-This will append various US Census-designated codes to your address.
+Geocodio can append various US Census-designated geographies to an address or coordinate pair, including Census Tract, Census Block, FIPS codes, MSAs/CSAs, and more. Geographies are available back to 2010 as well as 2000.
 
 <aside class="notice">
 Looking for Canadian Census data? See the <a href="#canadian-statistical-boundaries-from-statistics-canada"><code>statcan</code></a> field append.
 </aside>
 
-You can request vintage data for every year back to the 2010 Census. This is done by specifying the year together with the field name, e.g. `census2015` for 2015 data. It is also possible to request multiple years at the same time, e.g. `census2010,census` (as shown in the example response).
+Geocodio can provide vintage Census geographies for every year back to the 2010 Census. You can do this by specifying the year together with the field name, such as `census2015` for 2015 data. It is also possible to request multiple years at the same time, such as `census2010,census` (as shown in the example response).
 
-Data for the 2000 census is available as well, using the `census2000` field append. Only County, Place, Tract and Block FIPS codes are returned for this Census year.
+Geographies for the 2000 Census are available as well using the `census2000` field append. Note that only County, Place, Tract and Block FIPS codes are returned for year 2000.
 
 <aside class="warning">
-If no year is specified, the API will default to the most recent census. I.e. currently, 2024 data is returned when appending the census field.
+If no year is specified, the API will default to the most recent Census. Currently, 2024 data is returned when appending the cCnsus field.
 </aside>
 
 Field        | Description
@@ -2277,11 +2277,11 @@ full_fips  | The full 15-digit fips code, consisting of the county fips, tract c
 
 The U.S. Census Bureau also provides a more [detailed guide](https://www.census.gov/geo/reference/gtc/gtc_ct.html) for the above terms.
 
-Using Census tracts and blocks, you can match addresses and latitude/longitude pairs with statistical data from the U.S. Census Bureau. For example, appending Census tracts and blocks to addresses enables you to utilize the [American Community Survey (ACS) data](https://www.census.gov/programs-surveys/acs/data.html).
+Using Census tracts and blocks, you can match addresses and latitude/longitude pairs with statistical data from the U.S. Census Bureau. For example, appending Census tracts and blocks enables you to utilize the [American Community Survey (ACS) data](https://www.census.gov/programs-surveys/acs/data.html).
 
 ### Place
 
-This field is returned for locations that are within a census designated place. If the location is not in a census designated place, the API will return `null` instead of the individual fields.
+This field is returned for locations that are within a Census-designated place. If the location is not in a Census-designated place, the API will return `null` instead of the individual fields.
 
 You can read more about [Census-designated places on Wikipedia](https://en.wikipedia.org/wiki/Census-designated_place).
 
@@ -2338,9 +2338,9 @@ fips_class   | The `class_code` and `description` for the given [class code](htt
 
 ## Census ACS (American Community Survey)
 
-Geocodio helps you retrieve valuable statistics from the American Community Survey for any US address you provide.
+Geocodio helps you retrieve statistics from the American Community Survey for any US address or coordinate pair.
 
-We've organized the ACS results into 5 helpful categories: [Demographics](/#demographics-census), [Economics (Income Data)](/#economics-income-data-census), [Families](/#families-census), [Housing](#housing-census) and [Social (Education & Veteran Status)](#social-education-amp-veteran-status-census).
+We've organized the ACS results into 5 helpful categories: [Demographics](/#census-demographics), [Economics (Income Data)](/#census-income), [Families](/#census-households), [Housing](#census-housing) and [Social (Education & Veteran Status)](#social-education-veteran-status-census).
 
 ### Pricing
 
@@ -2352,7 +2352,7 @@ When planning your project, each category counts as an additional lookup for bil
 
 <!--FIELD:us:acs-demographics-tract-->
 
-You can request ACS data at several geographic levels:
+Geocodio can return ACS data at several geographic levels:
 
 | Name                                       | API Name             |
 |--------------------------------------------|----------------------|
@@ -2364,10 +2364,9 @@ You can request ACS data at several geographic levels:
 | Census Metropolitan Statistical Area (MSA) | `msa`                |
 | State                                      | `state`              |
 
-
 To request ACS data for a specific geography, simply append the ACS field name with the **API Name** for the geography. For example, to get ACS demographic data for an address at the County level, you would request `acs-demographics-county`.
 
-If you request an ACS field without specifying a geography, we'll select the most appropriate geography based on your geocoding result:
+If you request an ACS field without specifying a geography, Geocodio will select the most appropriate geography based on your geocoding result:
 
 | Census Geography   | [Accuracy Type](#accuracy-score)                                                                                      |
 |--------------------|-----------------------------------------------------------------------------------------------------------------------|
@@ -2424,18 +2423,18 @@ If you request an ACS field without specifying a geography, we'll select the mos
 
 A `meta` field with high level data information is returned for all `acs` results in general as well as individual ACS appends and individual ACS values.
 
-This contains information about the exact ACS results we are using, including the years they are covering and the geography the values were returned at. We always use 5-year estimates, and always use the most recent data that is available.
+This contains information about the exact ACS results Geocodio is returning, including the Census years covered and the corresponding geography level. Geocodio always uses 5-year estimates, and always uses the most recent data that is available.
 
-For each individual result, we return the [official ACS table id](https://www.census.gov/programs-surveys/acs/library/handbooks/summary-file.html) as well as the "universe" that the values covers.
+For each individual result, Geocodio returns the [official ACS table id](https://www.census.gov/programs-surveys/acs/library/handbooks/summary-file.html) as well as the "universe" that the values covers.
 
 The universe can be values such as `Households`, `Population 15 Years and Older`, `Total population`, etc.
 
-## Demographics (Census)
+## Census: Demographics
 **Field name: `acs-demographics`**
 
 <!--FIELD:us:acs-demographics-->
 
-We provide the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
+Geocodio provides the data exactly as it is packaged by the Census Bureau in the breakouts it gives. The only change we have made is to add a "percentage" calculation to aid ease of use.
 
 The data returned includes the following data points. For each data point, the data returned includes the value, margin of error, and percentage.
 
@@ -2454,7 +2453,7 @@ The data returned includes the following data points. For each data point, the d
 We recognize that age, sex, gender, race and ethnicity are sensitive subjects. Accordingly, we return the categories exactly as the Census Bureau provides. We recognize that the categories listed may not be all-inclusive or use preferred terminology.
 </aside>
 
-## Economics: Income Data (Census)
+## Census: Income
 **Field name: `acs-economics`**
 
 <!--FIELD:us:acs-economics-->
@@ -2469,7 +2468,7 @@ The data returned includes the following data points. For each data point, the d
   * less than $10,000; $10,000-$14,999; $15,000-$19,999; $20,000-$24,999; $25,000-$29,999; $30,000-$34,999; $40,000-$44,999; $45,000-$49,999; $50,000-$59,000; $60,000-$74,999; $75,000-$99,999; $100,000-$124,999; $125,000-$149,000; $150,000-$199,999; $200,000 or more
 * Per capita income (Table #B19301)
 
-## Families (Census)
+## Census: Households
 **Field name: `acs-families`**
 
 <!--FIELD:us:acs-families-->
@@ -2496,7 +2495,7 @@ The data returned includes the following data points. For each data point, the d
 We recognize that household composition is a sensitive subject. Accordingly, we report the categories exactly as the Census Bureau provides. We recognize that the categories listed may not be all-inclusive or use preferred terminology.
 </aside>
 
-## Housing (Census)
+## Census: Housing
 **Field name: `acs-housing`**
 
 <!--FIELD:us:acs-housing-->
@@ -2615,9 +2614,9 @@ The <code>zip4</code> data append requires using <code>v1.5</code> of the Geocod
 ...
 ```
 
-This performs a lookup to determine the USPS ZIP+4 code for a given US location, this lets you retrieve the full 9-digit ZIP Code&trade;, by combining the 5-digit ZIP code with the ZIP+4 code.
+Geocodio can return the USPS ZIP+4 code for a given US address or coordinate pair, which lets you retrieve the full 9-digit ZIP Code&trade;, by combining the 5-digit ZIP code with the ZIP+4 code. Additional USPS delivery data is also returned.
 
-Additional USPS delivery data is also returned.
+Geocodio also returns additional USPS delivery data, including Carrier Route ID and RDI.
 
 ### Record Type
 The type of ZIP+4 result. Possible values are:
@@ -2632,7 +2631,7 @@ The type of ZIP+4 result. Possible values are:
 
 ### Residential Delivery Indicator (RDI)
 
-`residential` will be set to `true` for residential addreses and `false` for commercial addresses.
+`residential` will be set to `true` for residential addresses and `false` for commercial addresses.
 
 The value can also be `null` if there are no records that indicate the residential status of this property.
 
@@ -2687,7 +2686,7 @@ Possible values are:
 
 ### City Delivery Indicator
 
-Indicates whether our not the local post office has a city delivery carrier route.
+Indicates whether or not the local post office has a city delivery carrier route.
 
 ### Valid delivery area
 
@@ -2710,8 +2709,7 @@ If no ZIP+4 data is available for the given query, the `zip4` field is omitted f
 
 <!--FIELD:us:ffiec-->
 
-The FFIEC field append allows you to get key data points, commonly used by financial institutions, lenders, and organizations that need to comply
-with fair lending regulations like HMDA and CRA. The data returned is for the 2024 data release. (The 2025 data will not be available until later this year.)
+Geocodio's FFIEC field append allows you to get key data points, commonly used by financial institutions, lenders, and organizations that need to comply with Fair Lending regulations like HMDA and CRA. The data returned is for the 2024 data release. (The 2025 data will not be available until later this year.)
 
 You can read more about the individual values in the [FFIEC Documentation](https://www.ffiec.gov/sites/default/files/data/census/cen2024_16JLUY24.pdf).
 
@@ -2721,22 +2719,22 @@ You can read more about the individual values in the [FFIEC Documentation](https
 
 <!--FIELD:ca:riding-->
 
-Look up the [riding](https://en.wikipedia.org/wiki/List_of_Canadian_federal_electoral_districts) for the specified address in Canada. The riding code and OCD-ID is returned along with the French and English name for the riding.
+Geocodio can return Canadian electoral districts ([ridings](https://en.wikipedia.org/wiki/List_of_Canadian_federal_electoral_districts) ) for an address or coordinate pair. The riding code and OCD-ID is returned along with the French and English name for the riding.
 
-The OCD-ID can be used to uniquely identify the district, using the [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) project.
+The OCD-ID can be used to uniquely identify the district using the [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) project.
 
-In some cases the French and English names will be the same.
+In some cases, the French and English names will be the same.
 
 ## Riding: Canadian Provincial Electoral District
 **Field name: `provriding` or `provriding-next`**
 
 <!--FIELD:ca:provriding-->
 
-Look up the [provincial or territorial electoral district](https://en.wikipedia.org/wiki/Canadian_provincial_electoral_districts) for the specified address in Canada. The OCD-ID is returned along with the French and English name for the riding.
+Geocodio can return the [provincial or territorial electoral district (riding)](https://en.wikipedia.org/wiki/Canadian_provincial_electoral_districts) for the specified address in Canada. The OCD-ID is returned along with the French and English name for the riding.
 
-The OCD-ID can be used to uniquely identify the district, using the [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) project.
+The OCD-ID can be used to uniquely identify the district using the [Open Civic Data Division Identifiers](https://github.com/opencivicdata/ocd-division-ids) project.
 
-In some cases the French and English names will be the same.
+In some cases, the French and English names will be the same.
 
 ### Using `provriding-next`
 
@@ -2749,8 +2747,7 @@ In some cases the French and English names will be the same.
 
 <!--FIELD:ca:statcan-->
 
-Retrieve the [Statistics Canada boundaries](https://en.wikipedia.org/wiki/Census_geographic_units_of_Canada) that the given query is within.
-These boundaries can be matched with data from [Statistics Canada](https://www.statcan.gc.ca) to get demographic information about the area the query is within.
+Geocodio can return the [Statistics Canada geographies](https://en.wikipedia.org/wiki/Census_geographic_units_of_Canada) for an address or coordinate, such as dissemination areas, tracts, and economic regions. These boundaries can be matched with data from [Statistics Canada](https://www.statcan.gc.ca) to get further Census information, such as demographics.
 
 <aside class="notice">
 Looking for US Census data? See the <a href="#census-block-tract-fips-codes-amp-msa-csa-codes"><code>census</code></a> field append.
@@ -2865,7 +2862,7 @@ The dissemination area is geographically one step lower than census tracts. Diss
 
 <!--FIELD:us:timezone-->
 
-You can retrieve the timezone for an address or coordinate using `timezone` in the `fields` query parameter.
+Geocodio can return the timezone for an address or coordinate using `timezone` in the `fields` query parameter.
 
 The field will return the standardized name of the timezone as well as an abbreviation (see table below for examples), the UTC/GMT offset, and whether the location observes Daylight Saving Time (DST).
 
@@ -2885,15 +2882,15 @@ SST          | Samoa Standard Time
 
 # Address components
 
-All results come with an `address_components` dictionary. This is an overview of all of the possible keys that you may find.
+Geocodio parses and standardizes all address results, and all results come with an `address_components` dictionary. This is an overview of all of the possible keys that you may find.
 
-The key will not be present if there is no valid value for it. E.g. if the address does not have a `predirectional`, this key will not be present.
+The key will not be present if there is no valid value for it. For example, if the address does not have a `predirectional`, this key will not be present.
 
 Name               | Notes
 ------------------ | ---------------------------
 number             | House number, e.g. "2100" or "250 1/2"
 predirectional     | Directional that comes before the street name, 1-2 characters, e.g. N or NE
-prefix             | Abbreviated street prefix, particularily common in the case of French addresse e.g. Rue, Boulevard, Impasse
+prefix             | Abbreviated street prefix, particularly common in the case of French addresses e.g. Rue, Boulevard, Impasse
 street             | Name of the street without number, prefix or suffix, e.g. "Main"
 suffix             | Abbreviated street suffix, e.g. St., Ave. Rd.
 postdirectional    | Directional that comes after the street name, 1-2 characters, e.g. N or NE
@@ -2907,7 +2904,7 @@ country            |
 formatted_street   | Fully formatted street, including all directionals, suffix/prefix but not house number
 
 # Accuracy score
-Each geocoded result is returned with an accuracy score, which is a decimal number ranging from 0.00 to 1.00. This score is generated by the internal Geocodio engine based on how accurate the result is believed to be. The higher the score, the better the result. Results are always returned ordered by accuracy score.
+Each geocoded result from Geocodio is returned with an accuracy score, which is a decimal number ranging from 0.00 to 1.00. This score is generated by the internal Geocodio engine based on how accurate the result is believed to be. The higher the score, the better the result. Results are always returned ordered by accuracy score.
 
 For example, if against all odds an address simply can't be found, instead of returning no results, Geocodio will return a geocoded point based on the postal code or city but with a much lower accuracy score and accuracy type set to "place".
 
@@ -3172,10 +3169,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 * **Breaking:** 2023 data is now returned for all [Census ACS appends](/#census-acs-american-community-survey). Changes include:
   * 2023 Census boundaries and ACS data are returned instead of 2021
-  * The [`acs-families`](#families-census) field append has certain table titles renamed ("wife" or "husband" replaced with "spouse") &mdash; no other ACS field appends has renamed tables
+  * The [`acs-families`](#census-households) field append has certain table titles renamed ("wife" or "husband" replaced with "spouse") &mdash; no other ACS field appends has renamed tables
   * Support for additional Census Geographies (prior to v1.8 all ACS data was returned at the Census Block Group level). The geography is now automatically selected based on the `accuracy_type` of the result and [can be explicitly specified](/#census-acs-american-community-survey)
-* ACS Table #B19301 was added for the [`acs-economics`](#economics-income-data-census) field append
-* ACS Tables #B11003, #B25010, and #B09002 were added for the [`acs-families`](#families-census) field append
+* ACS Table #B19301 was added for the [`acs-economics`](#census-income) field append
+* ACS Tables #B11003, #B25010, and #B09002 were added for the [`acs-families`](#census-households) field append
 
   There are no other breaking changes for *v1.8*.
 
@@ -3208,7 +3205,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 *Released on January 9, 2025*
 
-* The [`census2024`](#census-block-tract-fips-codes-amp-msa-csa-codes) field append is now available (the `census` data append will now default to `census2024`)
+* The [`census2024`](#census-blocktract-fips-codes-msacsa-codes) field append is now available (the `census` data append will now default to `census2024`)
 * The senate districts for California has been updated with new post-election boundaries
 
 *Released on December 16, 2024*
@@ -3233,7 +3230,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 *Released on April 24, 2024*
 
-* Added Census County Subdivisions to the [`census`](#census-block-tract-fips-codes-amp-msa-csa-codes) field append
+* Added Census County Subdivisions to the [`census`](#census-blocktract-fips-codes-msacsa-codes) field append
 
 *Released on April 16, 2024*
 
