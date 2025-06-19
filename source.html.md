@@ -2056,12 +2056,12 @@ Some fields are specific to the US and cannot be queried for other countries.
 | [cd, cd113, cd114, cd115, cd116, cd117, cd118, cd119](#congressional-districts)                                                                                                                                                                            | Congressional District & Legislator information            | US-only                     |
 | [stateleg, stateleg-next](#state-legislative-districts)                                                                                                                                                                                                    | State Legislative District (House & Senate) & Legislator information                | US-only                     |
 | [school](#school-districts)                                                                                                                                                                                                                                | School District (elementary/secondary or unified)          | US-only                     |
-| [census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021, census2022, census2023, census2024](#census-block-tract-fips-codes-amp-msa-csa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes             | US-only                     |
-| [acs-demographics](#demographics-census)                                                                                                                                                                                                                   | Demographics (Census)                                      | US-only                     |
-| [acs-economics](#economics-income-data-census)                                                                                                                                                                                                             | Economics: Income Data (Census)                            | US-only                     |
-| [acs-families](#families-census)                                                                                                                                                                                                                           | Families (Census)                                          | US-only                     |
-| [acs-housing](#housing-census)                                                                                                                                                                                                                             | Housing (Census)                                           | US-only                     |
-| [acs-social](#social-education-amp-veteran-status-census)                                                                                                                                                                                                  | Social: Education & Veteran Status (Census)                | US-only                     |
+| [census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021, census2022, census2023, census2024](#census-blocktract-fips-codes-msacsa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes             | US-only                     |
+| [acs-demographics](#census-demographics)                                                                                                                                                                                                                   | Demographics (Census)                                      | US-only                     |
+| [acs-economics](#census-income)                                                                                                                                                                                                             | Economics: Income Data (Census)                            | US-only                     |
+| [acs-families](#census-households)                                                                                                                                                                                                                           | Families (Census)                                          | US-only                     |
+| [acs-housing](#census-housing)                                                                                                                                                                                                                             | Housing (Census)                                           | US-only                     |
+| [acs-social](#social-education-veteran-status-census)                                                                                                                                                                                                  | Social: Education & Veteran Status (Census)                | US-only                     |
 | [zip4](#usps-zip-4)                                                                                                                                                                                                                                        | USPS Zip+4 code and delivery information                   | US-only                     |
 | [ffiec](#ffiec-fair-lending)                                                                                                                                                                                                                               | (Beta) FFIEC CRA/HMDA Data                                 | US-only                     |
 | [riding](#riding-canadian-federal-electoral-district)                                                                                                                                                                                                      | Riding: Canadian Federal Electoral District                | Canada-only                 |
@@ -2340,7 +2340,7 @@ fips_class   | The `class_code` and `description` for the given [class code](htt
 
 Geocodio helps you retrieve statistics from the American Community Survey for any US address or coordinate pair.
 
-We've organized the ACS results into 5 helpful categories: [Demographics](/#demographics-census), [Economics (Income Data)](/#economics-income-data-census), [Families](/#families-census), [Housing](#housing-census) and [Social (Education & Veteran Status)](#social-education-amp-veteran-status-census).
+We've organized the ACS results into 5 helpful categories: [Demographics](/#census-demographics), [Economics (Income Data)](/#census-income), [Families](/#census-households), [Housing](#census-housing) and [Social (Education & Veteran Status)](#social-education-veteran-status-census).
 
 ### Pricing
 
@@ -3169,10 +3169,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 * **Breaking:** 2023 data is now returned for all [Census ACS appends](/#census-acs-american-community-survey). Changes include:
   * 2023 Census boundaries and ACS data are returned instead of 2021
-  * The [`acs-families`](#families-census) field append has certain table titles renamed ("wife" or "husband" replaced with "spouse") &mdash; no other ACS field appends has renamed tables
+  * The [`acs-families`](#census-households) field append has certain table titles renamed ("wife" or "husband" replaced with "spouse") &mdash; no other ACS field appends has renamed tables
   * Support for additional Census Geographies (prior to v1.8 all ACS data was returned at the Census Block Group level). The geography is now automatically selected based on the `accuracy_type` of the result and [can be explicitly specified](/#census-acs-american-community-survey)
-* ACS Table #B19301 was added for the [`acs-economics`](#economics-income-data-census) field append
-* ACS Tables #B11003, #B25010, and #B09002 were added for the [`acs-families`](#families-census) field append
+* ACS Table #B19301 was added for the [`acs-economics`](#census-income) field append
+* ACS Tables #B11003, #B25010, and #B09002 were added for the [`acs-families`](#census-households) field append
 
   There are no other breaking changes for *v1.8*.
 
@@ -3205,7 +3205,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 *Released on January 9, 2025*
 
-* The [`census2024`](#census-block-tract-fips-codes-amp-msa-csa-codes) field append is now available (the `census` data append will now default to `census2024`)
+* The [`census2024`](#census-blocktract-fips-codes-msacsa-codes) field append is now available (the `census` data append will now default to `census2024`)
 * The senate districts for California has been updated with new post-election boundaries
 
 *Released on December 16, 2024*
@@ -3230,7 +3230,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 *Released on April 24, 2024*
 
-* Added Census County Subdivisions to the [`census`](#census-block-tract-fips-codes-amp-msa-csa-codes) field append
+* Added Census County Subdivisions to the [`census`](#census-blocktract-fips-codes-msacsa-codes) field append
 
 *Released on April 16, 2024*
 
