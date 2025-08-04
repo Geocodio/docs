@@ -2590,7 +2590,7 @@ When requesting boundaries for other congressional periods, the `ocd_id` propert
 
 ### Look up Congressional districts with ZIP codes
 
-Geocodio can return the most likely Congressional districts given a ZIP code. In cases where there may be multiple possible Congressional districts for a ZIP code, we will return multiple Congressional districts, and rank them each using a `proportion` key. This key is a decimal percentage representation of how much of the district boundary that intersect with the ZIP code boundary (i.e., a bigger number means it's more likely to be the correct district for citizens in that ZIP code).
+Geocodio can return the most likely Congressional districts given a ZIP code. In cases where there may be multiple possible Congressional districts for a ZIP code, we will return multiple Congressional districts, and rank them each using a `proportion` key. This key is a decimal percentage representation of how much of the district boundary that intersect with the ZIP code boundary (i.e., a bigger number means it's more likely to be the correct district for residents in that ZIP code).
 
 Districts are always sorted by the `proportion` value in descending order (largest first).
 
@@ -2988,7 +2988,7 @@ This ID can be used as a unique identifier for each district. You can see the fu
 
 ### Look up state legislative districts with ZIP codes
 
-Geocodio can return the most likely state legislative districts given a ZIP code. In cases where there may be multiple possible state legislative districts for a ZIP code, we will return multiple state legislative districts, and rank them each using a `proportion` key. This key is a decimal percentage representation of how much of the district boundary that intersect with the ZIP code boundary (i.e., bigger number = more likely to be the correct district for citizens in that ZIP code).
+Geocodio can return the most likely state legislative districts given a ZIP code. In cases where there may be multiple possible state legislative districts for a ZIP code, we will return multiple state legislative districts, and rank them each using a `proportion` key. This key is a decimal percentage representation of how much of the district boundary that intersect with the ZIP code boundary (i.e., bigger number = more likely to be the correct district for residents in that ZIP code).
 
 Districts are always sorted by the `proportion` in descending order (largest first).
 
