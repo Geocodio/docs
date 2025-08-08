@@ -94,13 +94,6 @@ function template($country, $fields, $includeResponse) {
 	);
 	```
 
-	```clojure
-	(ns my.ns
-	  (:require [rodeo.core :refer :all]))
-	 
-	(single "$address" :api_key "YOUR_API_KEY" :fields [$doubleQuotedSpaceSeparated])
-	(single-reverse "$coordinate" :api_key "YOUR_API_KEY" :fields [$doubleQuotedSpaceSeparated])
-	```
 	TEMPLATE;
 
 	return $template . PHP_EOL . $responseSnippet;

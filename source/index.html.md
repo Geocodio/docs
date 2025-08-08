@@ -7,7 +7,6 @@ language_tabs:
   - python: Python
   - php: PHP
   - javascript: Node
-  - clojure: Clojure
 
 toc_footers:
  - <a href="https://dash.geocod.io">Sign Up for an API Key</a>
@@ -219,20 +218,6 @@ $ npm install --save geocodio-library-node
 $ yarn add geocodio-library-node
 ```
 
-```clojure
-# Leiningen
-[rodeo "2.0.1"]
-
-# Maven
-<dependency>
-  <groupId>rodeo</groupId>
-  <artifactId>rodeo</artifactId>
-  <version>2.0.1</version>
-</dependency>
-
-# Gradle
-compile "rodeo:rodeo:2.0.1"
-```
 
 # Authentication
 
@@ -296,13 +281,6 @@ const geocoder = new Geocodio('YOUR_API_KEY', 'api.enterprise.geocod.io');
 ```
 ENTERPRISE-->
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
-
-;; You can set the API key in the GEOCODIO_API_KEY environment variable
-;; or with each request using the :api_key parameter
-```
 
 All requests require an API key. You can [register here](https://dash.geocod.io) to get your own API key.
 
@@ -437,12 +415,6 @@ geocoder.geocode('1109 N Highland St, Arlington VA')
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
-
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY")
-```
 
 > Example response:
 
@@ -762,14 +734,6 @@ geocoder.geocode(addresses)
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
-
-;; You can set the API key in the GEOCODIO_API_KEY environment variable
-
-(batch ["1109 N Highland St, Arlington VA" "525 University Ave, Toronto, ON, Canada" "4410 S Highway 17 92, Casselberry FL" "15000 NE 24th Street, Redmond WA" "17015 Walnut Grove Drive, Morgan Hill CA"] :api_key "YOUR_API_KEY")
-```
 
 > Example response:
 
@@ -1135,12 +1099,6 @@ geocoder.reverse('38.9002898,-76.9990361')
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
-
-(single-reverse "38.9002898,-76.9990361" :api_key "YOUR_API_KEY")
-```
 
 > Example response:
 
@@ -1348,12 +1306,6 @@ geocoder.reverse(coordinates)
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
-
-(batch-reverse ["35.9746000,-77.9658000" "32.8793700,-96.6303900" "33.8337100,-117.8362320" "35.4171240,-80.6784760"] :api-key "YOUR_API_KEY")
-```
 
 > Example response (shortened for brevity):
 
@@ -1534,9 +1486,6 @@ $response = $geocoder->uploadList(
 );
 ```
 
-```clojure
-  The third-party Clojure library does not support the Lists API.
-```
 
 ```javascript
   const Geocodio = require('geocodio-library-node');
@@ -1736,9 +1685,6 @@ print(response.status.progress)  # Progress percentage
 $response = $geocoder->listStatus(42);
 ```
 
-```clojure
-  The third-party Clojure library does not support the Lists API.
-```
 
 ```javascript
   const Geocodio = require('geocodio-library-node');
@@ -1877,9 +1823,6 @@ for list_item in response.data:
 $response = $geocoder->lists();
 ```
 
-```clojure
-  The third-party Clojure library does not support the Lists API.
-```
 
 ```javascript
   const Geocodio = require('geocodio-library-node');
@@ -1981,9 +1924,6 @@ with open('geocoded_results.csv', 'w') as f:
 $response = $geocoder->downloadList(42, 'path/to/file.csv');
 ```
 
-```clojure
-  The third-party Clojure library does not support the Lists API.
-```
 
 ```javascript
   const Geocodio = require('geocodio-library-node');
@@ -2089,9 +2029,6 @@ print(response.success)  # True if successful
 $response = $geocoder->deleteList(42);
 ```
 
-```clojure
-  The third-party Clojure library does not support the Lists API.
-```
 
 ```javascript
   const Geocodio = require('geocodio-library-node');
@@ -2184,13 +2121,6 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["cd" "stateleg"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["cd" "stateleg"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
@@ -2511,13 +2441,6 @@ geocoder.reverse('38.886672,-77.094735', ['cd'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["cd"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["cd"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
@@ -2748,13 +2671,6 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["stateleg"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["stateleg"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
@@ -2926,13 +2842,6 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg-next'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["stateleg-next"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["stateleg-next"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
@@ -3146,13 +3055,6 @@ geocoder.reverse('38.886672,-77.094735', ['school'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["school"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["school"])
-```
 
 
 > Unified school district example
@@ -3257,13 +3159,6 @@ geocoder.reverse('38.886672,-77.094735', ['census2010', 'census'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["census2010" "census"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["census2010" "census"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
@@ -3496,13 +3391,6 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-county'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-demographics-county"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-demographics-county"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
@@ -4013,13 +3901,6 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-demographics-tract"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-demographics-tract"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
@@ -4610,13 +4491,6 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-demographics"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-demographics"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
@@ -5149,13 +5023,6 @@ geocoder.reverse('38.886672,-77.094735', ['acs-economics'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-economics"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-economics"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
@@ -5397,13 +5264,6 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-families"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-families"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
@@ -5980,13 +5840,6 @@ geocoder.reverse('38.886672,-77.094735', ['acs-housing'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-housing"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-housing"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
@@ -6364,13 +6217,6 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["acs-social"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["acs-social"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
@@ -6977,13 +6823,6 @@ geocoder.reverse('38.886672,-77.094735', ['zip4'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["zip4"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["zip4"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
@@ -7226,13 +7065,6 @@ geocoder.reverse('38.886672,-77.094735', ['ffiec'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["ffiec"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["ffiec"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
@@ -7340,13 +7172,6 @@ geocoder.reverse('46.225866,-79.36316', ['riding'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "300 King St, Sturgeon Falls, ON P2B 3A1, Canada" :api_key "YOUR_API_KEY" :fields ["riding"])
-(single-reverse "46.225866,-79.36316" :api_key "YOUR_API_KEY" :fields ["riding"])
-```
 > Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada":
 
 ```json
@@ -7427,13 +7252,6 @@ geocoder.reverse('46.225866,-79.36316', ['provriding'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "300 King St, Sturgeon Falls, ON P2B 3A1, Canada" :api_key "YOUR_API_KEY" :fields ["provriding"])
-(single-reverse "46.225866,-79.36316" :api_key "YOUR_API_KEY" :fields ["provriding"])
-```
 > Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada":
 
 ```json
@@ -7514,13 +7332,6 @@ geocoder.reverse('52.155106,-106.589896', ['provriding-next'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "203 Laycoe Crescent, Saskatoon, SK, Canada" :api_key "YOUR_API_KEY" :fields ["provriding-next"])
-(single-reverse "52.155106,-106.589896" :api_key "YOUR_API_KEY" :fields ["provriding-next"])
-```
 > Example for "203 Laycoe Crescent, Saskatoon, SK, Canada":
 
 ```json
@@ -7594,13 +7405,6 @@ geocoder.reverse('46.225866,-79.36316', ['statcan'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "300 King St, Sturgeon Falls, ON P2B 3A1, Canada" :api_key "YOUR_API_KEY" :fields ["statcan"])
-(single-reverse "46.225866,-79.36316" :api_key "YOUR_API_KEY" :fields ["statcan"])
-```
 > Example for "300 King St, Sturgeon Falls, ON P2B 3A1, Canada":
 
 ```json
@@ -7826,13 +7630,6 @@ geocoder.reverse('38.886672,-77.094735', ['timezone'])
 );
 ```
 
-```clojure
-(ns my.ns
-  (:require [rodeo.core :refer :all]))
- 
-(single "1109 N Highland St, Arlington VA" :api_key "YOUR_API_KEY" :fields ["timezone"])
-(single-reverse "38.886672,-77.094735" :api_key "YOUR_API_KEY" :fields ["timezone"])
-```
 > Example for "1109 N Highland St, Arlington VA":
 
 ```json
