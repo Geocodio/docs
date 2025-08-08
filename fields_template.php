@@ -57,12 +57,12 @@ function template($country, $fields, $includeResponse) {
 	```
 
 	```python
-	from geocodio import GeocodioClient
+	from geocodio import Geocodio
 
-	client = GeocodioClient(YOUR_API_KEY)
+	client = Geocodio("YOUR_API_KEY")
 
-	location = client.geocode("$address", fields=[$doubleQuotedCommaSeparated])
-	location = client.reverse(($coordinateWithSpace), fields=[$doubleQuotedCommaSeparated])
+	response = client.geocode("$address", fields=[$doubleQuotedCommaSeparated])
+	response = client.reverse("$coordinate", fields=[$doubleQuotedCommaSeparated])
 	```
 
 	```php

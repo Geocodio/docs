@@ -91,6 +91,10 @@ GitHub pull requests and issues are also more than welcome.
     <td><strong>Ruby</strong></td>
     <td><a href="https://github.com/Geocodio/geocodio-gem" target="_blank">Geocodio/geocodio-gem</a></td>
   </tr>
+  <tr>
+    <td><strong>Python</strong></td>
+    <td><a href="https://github.com/Geocodio/geocodio-library-python" target="_blank">Geocodio/geocodio-library-python</a></td>
+  </tr>
 </tbody></table>
 
 ## Third-party libraries
@@ -193,7 +197,7 @@ bundle install
 ```
 
 ```python
-pip install pygeocodio
+pip install geocodio-library-python
 ```
 
 ```php
@@ -250,9 +254,9 @@ geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 ```
 
 
@@ -403,11 +407,15 @@ location = geocodio.geocode(['1109 N Highland St, Arlington VA'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA")
+response = client.geocode("1109 N Highland St, Arlington VA")
+# Access the first result
+print(response.results[0].formatted_address)
+print(response.results[0].location.lat)
+print(response.results[0].location.lng)
 ```
 
 ```php
@@ -701,17 +709,23 @@ locations = geocodio.geocode(['1109 N Highland St, Arlington VA', '525 Universit
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-locations = client.batch_geocode([
+addresses = [
   '1109 N Highland St, Arlington VA',
   '525 University Ave, Toronto, ON, Canada',
   '4410 S Highway 17 92, Casselberry FL',
   '15000 NE 24th Street, Redmond WA',
   '17015 Walnut Grove Drive, Morgan Hill CA'
-])
+]
+
+response = client.geocode(addresses)
+# Results are returned in the same order as the input
+for result in response.results:
+    if result.response.results:
+        print(result.response.results[0].formatted_address)
 ```
 
 ```php
@@ -1090,11 +1104,16 @@ addresses = geocodio.reverse(['38.9002898,-76.9990361'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-addresses = client.reverse((38.9002898, -76.9990361))
+response = client.reverse("38.9002898,-76.9990361")
+# Or using a tuple
+# response = client.reverse((38.9002898, -76.9990361))
+
+# Access the first result
+print(response.results[0].formatted_address)
 ```
 
 ```php
@@ -1272,16 +1291,29 @@ address_sets = geocodio.reverse(['35.9746000,-77.9658000', '32.8793700,-96.63039
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-address_sets = client.reverse([
-  (35.9746000, -77.9658000),
-  (32.8793700, -96.6303900),
-  (33.8337100, -117.8362320),
-  (35.4171240, -80.6784760),
-])
+coordinates = [
+  "35.9746000,-77.9658000",
+  "32.8793700,-96.6303900",
+  "33.8337100,-117.8362320",
+  "35.4171240,-80.6784760"
+]
+# Or using tuples
+# coordinates = [
+#   (35.9746000, -77.9658000),
+#   (32.8793700, -96.6303900),
+#   (33.8337100, -117.8362320),
+#   (35.4171240, -80.6784760),
+# ]
+
+response = client.reverse(coordinates)
+# Results are returned in the same order as the input
+for result in response.results:
+    if result.response.results:
+        print(result.response.results[0].formatted_address)
 ```
 
 ```php
@@ -1475,7 +1507,20 @@ curl "https://api.enterprise.geocod.io/v1.9/lists \
 ```
 
 ```python
-  The third-party Python library does not support the Lists API.
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Create a list from a CSV file
+with open('sample_list.csv', 'rb') as file:
+    response = client.create_list(
+        file=file,
+        filename='sample_list.csv',
+        direction='forward',
+        format='{{A}} {{B}} {{C}} {{D}}',
+        callback='https://example.com/my-callback'  # Optional
+    )
+    list_id = response.id
 ```
 
 ```php
@@ -1528,6 +1573,26 @@ curl "https://api.enterprise.geocod.io/v1.9/lists" \
   -F "callback"="https://example.com/my-callback"
 ```
 
+
+```python
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Upload a list from inline data
+csv_data = """Zip
+20003
+20001"""
+
+response = client.create_list(
+    file=csv_data.encode('utf-8'),
+    filename='file.csv',
+    direction='forward',
+    format='{{A}}',
+    callback='https://example.com/my-callback'  # Optional
+)
+list_id = response.id
+```
 
 ```php
 <?php
@@ -1655,7 +1720,14 @@ curl "https://api.enterprise.geocod.io/v1.9/lists/42" \
 ```
 
 ```python
-  The third-party Python library does not support the Lists API.
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Get status of a list
+response = client.get_list(42)
+print(response.status.state)  # 'PROCESSING' or 'COMPLETED'
+print(response.status.progress)  # Progress percentage
 ```
 
 ```php
@@ -1789,7 +1861,14 @@ curl "https://api.enterprise.geocod.io/v1.9/lists" \
 ```
 
 ```python
-  The third-party Python library does not support the Lists API.
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Get all lists
+response = client.get_all_lists()
+for list_item in response.data:
+    print(f"List {list_item.id}: {list_item.file.filename} - {list_item.status.state}")
 ```
 
 ```php
@@ -1885,7 +1964,15 @@ curl -L "https://api.enterprise.geocod.io/v1.9/lists/LIST_ID/download" \
 ```
 
 ```python
-  The third-party Python library does not support the Lists API.
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Download a completed list
+csv_content = client.download_list(42)
+# Save to file
+with open('geocoded_results.csv', 'w') as f:
+    f.write(csv_content)
 ```
 
 ```php
@@ -1987,7 +2074,13 @@ curl -X DELETE "https://api.enterprise.geocod.io/v1.9/lists/LIST_ID" \
 ```
 
 ```python
-  The third-party Python library does not support the Lists API.
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Delete a list
+response = client.delete_list(42)
+print(response.success)  # True if successful
 ```
 
 ```php
@@ -2054,12 +2147,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['cd', 'stateleg'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["cd", "stateleg"])
-location = client.reverse((38.886672, -77.094735), fields=["cd", "stateleg"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["cd", "stateleg"])
+response = client.reverse("38.886672,-77.094735", fields=["cd", "stateleg"])
 ```
 
 ```php
@@ -2381,12 +2474,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['cd'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["cd"])
-location = client.reverse((38.886672, -77.094735), fields=["cd"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["cd"])
+response = client.reverse("38.886672,-77.094735", fields=["cd"])
 ```
 
 ```php
@@ -2618,12 +2711,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['stateleg'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["stateleg"])
-location = client.reverse((38.886672, -77.094735), fields=["stateleg"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["stateleg"])
+response = client.reverse("38.886672,-77.094735", fields=["stateleg"])
 ```
 
 ```php
@@ -2796,12 +2889,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['stateleg-next'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["stateleg-next"])
-location = client.reverse((38.886672, -77.094735), fields=["stateleg-next"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["stateleg-next"])
+response = client.reverse("38.886672,-77.094735", fields=["stateleg-next"])
 ```
 
 ```php
@@ -3016,12 +3109,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['school'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["school"])
-location = client.reverse((38.886672, -77.094735), fields=["school"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["school"])
+response = client.reverse("38.886672,-77.094735", fields=["school"])
 ```
 
 ```php
@@ -3127,12 +3220,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['census2010', 'census'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["census2010", "census"])
-location = client.reverse((38.886672, -77.094735), fields=["census2010", "census"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["census2010", "census"])
+response = client.reverse("38.886672,-77.094735", fields=["census2010", "census"])
 ```
 
 ```php
@@ -3366,12 +3459,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['acs-demographics-county'
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-demographics-county"])
-location = client.reverse((38.886672, -77.094735), fields=["acs-demographics-county"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-demographics-county"])
+response = client.reverse("38.886672,-77.094735", fields=["acs-demographics-county"])
 ```
 
 ```php
@@ -3883,12 +3976,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['acs-demographics-tract']
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-demographics-tract"])
-location = client.reverse((38.886672, -77.094735), fields=["acs-demographics-tract"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-demographics-tract"])
+response = client.reverse("38.886672,-77.094735", fields=["acs-demographics-tract"])
 ```
 
 ```php
@@ -4480,12 +4573,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['acs-demographics'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-demographics"])
-location = client.reverse((38.886672, -77.094735), fields=["acs-demographics"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-demographics"])
+response = client.reverse("38.886672,-77.094735", fields=["acs-demographics"])
 ```
 
 ```php
@@ -5019,12 +5112,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['acs-economics'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-economics"])
-location = client.reverse((38.886672, -77.094735), fields=["acs-economics"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-economics"])
+response = client.reverse("38.886672,-77.094735", fields=["acs-economics"])
 ```
 
 ```php
@@ -5267,12 +5360,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['acs-families'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-families"])
-location = client.reverse((38.886672, -77.094735), fields=["acs-families"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-families"])
+response = client.reverse("38.886672,-77.094735", fields=["acs-families"])
 ```
 
 ```php
@@ -5850,12 +5943,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['acs-housing'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-housing"])
-location = client.reverse((38.886672, -77.094735), fields=["acs-housing"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-housing"])
+response = client.reverse("38.886672,-77.094735", fields=["acs-housing"])
 ```
 
 ```php
@@ -6234,12 +6327,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['acs-social'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-social"])
-location = client.reverse((38.886672, -77.094735), fields=["acs-social"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["acs-social"])
+response = client.reverse("38.886672,-77.094735", fields=["acs-social"])
 ```
 
 ```php
@@ -6847,12 +6940,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['zip4'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["zip4"])
-location = client.reverse((38.886672, -77.094735), fields=["zip4"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["zip4"])
+response = client.reverse("38.886672,-77.094735", fields=["zip4"])
 ```
 
 ```php
@@ -7096,12 +7189,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['ffiec'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["ffiec"])
-location = client.reverse((38.886672, -77.094735), fields=["ffiec"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["ffiec"])
+response = client.reverse("38.886672,-77.094735", fields=["ffiec"])
 ```
 
 ```php
@@ -7210,12 +7303,12 @@ location = geocodio.reverse(['46.225866,-79.36316'], ['riding'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("300 King St, Sturgeon Falls, ON P2B 3A1, Canada", fields=["riding"])
-location = client.reverse((46.225866, -79.36316), fields=["riding"])
+response = client.geocode("300 King St, Sturgeon Falls, ON P2B 3A1, Canada", fields=["riding"])
+response = client.reverse("46.225866,-79.36316", fields=["riding"])
 ```
 
 ```php
@@ -7297,12 +7390,12 @@ location = geocodio.reverse(['46.225866,-79.36316'], ['provriding'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("300 King St, Sturgeon Falls, ON P2B 3A1, Canada", fields=["provriding"])
-location = client.reverse((46.225866, -79.36316), fields=["provriding"])
+response = client.geocode("300 King St, Sturgeon Falls, ON P2B 3A1, Canada", fields=["provriding"])
+response = client.reverse("46.225866,-79.36316", fields=["provriding"])
 ```
 
 ```php
@@ -7384,12 +7477,12 @@ location = geocodio.reverse(['52.155106,-106.589896'], ['provriding-next'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("203 Laycoe Crescent, Saskatoon, SK, Canada", fields=["provriding-next"])
-location = client.reverse((52.155106, -106.589896), fields=["provriding-next"])
+response = client.geocode("203 Laycoe Crescent, Saskatoon, SK, Canada", fields=["provriding-next"])
+response = client.reverse("52.155106,-106.589896", fields=["provriding-next"])
 ```
 
 ```php
@@ -7464,12 +7557,12 @@ location = geocodio.reverse(['46.225866,-79.36316'], ['statcan'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("300 King St, Sturgeon Falls, ON P2B 3A1, Canada", fields=["statcan"])
-location = client.reverse((46.225866, -79.36316), fields=["statcan"])
+response = client.geocode("300 King St, Sturgeon Falls, ON P2B 3A1, Canada", fields=["statcan"])
+response = client.reverse("46.225866,-79.36316", fields=["statcan"])
 ```
 
 ```php
@@ -7696,12 +7789,12 @@ location = geocodio.reverse(['38.886672,-77.094735'], ['timezone'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA", fields=["timezone"])
-location = client.reverse((38.886672, -77.094735), fields=["timezone"])
+response = client.geocode("1109 N Highland St, Arlington VA", fields=["timezone"])
+response = client.reverse("38.886672,-77.094735", fields=["timezone"])
 ```
 
 ```php

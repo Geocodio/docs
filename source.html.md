@@ -91,6 +91,10 @@ GitHub pull requests and issues are also more than welcome.
     <td><strong>Ruby</strong></td>
     <td><a href="https://github.com/Geocodio/geocodio-gem" target="_blank">Geocodio/geocodio-gem</a></td>
   </tr>
+  <tr>
+    <td><strong>Python</strong></td>
+    <td><a href="https://github.com/Geocodio/geocodio-library-python" target="_blank">Geocodio/geocodio-library-python</a></td>
+  </tr>
 </tbody></table>
 
 ## Third-party libraries
@@ -193,7 +197,7 @@ bundle install
 ```
 
 ```python
-pip install pygeocodio
+pip install geocodio-library-python
 ```
 
 ```php
@@ -250,9 +254,9 @@ geocodio = Geocodio::Gem.new('YOUR_API_KEY')
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 ```
 
 <!--ENTERPRISE
@@ -403,11 +407,15 @@ location = geocodio.geocode(['1109 N Highland St, Arlington VA'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-location = client.geocode("1109 N Highland St, Arlington VA")
+response = client.geocode("1109 N Highland St, Arlington VA")
+# Access the first result
+print(response.results[0].formatted_address)
+print(response.results[0].location.lat)
+print(response.results[0].location.lng)
 ```
 
 ```php
@@ -701,17 +709,23 @@ locations = geocodio.geocode(['1109 N Highland St, Arlington VA', '525 Universit
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-locations = client.batch_geocode([
+addresses = [
   '1109 N Highland St, Arlington VA',
   '525 University Ave, Toronto, ON, Canada',
   '4410 S Highway 17 92, Casselberry FL',
   '15000 NE 24th Street, Redmond WA',
   '17015 Walnut Grove Drive, Morgan Hill CA'
-])
+]
+
+response = client.geocode(addresses)
+# Results are returned in the same order as the input
+for result in response.results:
+    if result.response.results:
+        print(result.response.results[0].formatted_address)
 ```
 
 ```php
@@ -1090,11 +1104,16 @@ addresses = geocodio.reverse(['38.9002898,-76.9990361'])
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-addresses = client.reverse((38.9002898, -76.9990361))
+response = client.reverse("38.9002898,-76.9990361")
+# Or using a tuple
+# response = client.reverse((38.9002898, -76.9990361))
+
+# Access the first result
+print(response.results[0].formatted_address)
 ```
 
 ```php
@@ -1272,16 +1291,29 @@ address_sets = geocodio.reverse(['35.9746000,-77.9658000', '32.8793700,-96.63039
 ```
 
 ```python
-from geocodio import GeocodioClient
+from geocodio import Geocodio
 
-client = GeocodioClient(YOUR_API_KEY)
+client = Geocodio("YOUR_API_KEY")
 
-address_sets = client.reverse([
-  (35.9746000, -77.9658000),
-  (32.8793700, -96.6303900),
-  (33.8337100, -117.8362320),
-  (35.4171240, -80.6784760),
-])
+coordinates = [
+  "35.9746000,-77.9658000",
+  "32.8793700,-96.6303900",
+  "33.8337100,-117.8362320",
+  "35.4171240,-80.6784760"
+]
+# Or using tuples
+# coordinates = [
+#   (35.9746000, -77.9658000),
+#   (32.8793700, -96.6303900),
+#   (33.8337100, -117.8362320),
+#   (35.4171240, -80.6784760),
+# ]
+
+response = client.reverse(coordinates)
+# Results are returned in the same order as the input
+for result in response.results:
+    if result.response.results:
+        print(result.response.results[0].formatted_address)
 ```
 
 ```php
@@ -1475,7 +1507,20 @@ ENTERPRISE-->
 ```
 
 ```python
-  The third-party Python library does not support the Lists API.
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Create a list from a CSV file
+with open('sample_list.csv', 'rb') as file:
+    response = client.create_list(
+        file=file,
+        filename='sample_list.csv',
+        direction='forward',
+        format='{{A}} {{B}} {{C}} {{D}}',
+        callback='https://example.com/my-callback'  # Optional
+    )
+    list_id = response.id
 ```
 
 ```php
@@ -1528,6 +1573,26 @@ curl "https://api.geocod.io/v1.9/lists" \
   -F "callback"="https://example.com/my-callback"
 ```
 ENTERPRISE-->
+
+```python
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Upload a list from inline data
+csv_data = """Zip
+20003
+20001"""
+
+response = client.create_list(
+    file=csv_data.encode('utf-8'),
+    filename='file.csv',
+    direction='forward',
+    format='{{A}}',
+    callback='https://example.com/my-callback'  # Optional
+)
+list_id = response.id
+```
 
 ```php
 <?php
@@ -1655,7 +1720,14 @@ ENTERPRISE-->
 ```
 
 ```python
-  The third-party Python library does not support the Lists API.
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Get status of a list
+response = client.get_list(42)
+print(response.status.state)  # 'PROCESSING' or 'COMPLETED'
+print(response.status.progress)  # Progress percentage
 ```
 
 ```php
@@ -1789,7 +1861,14 @@ ENTERPRISE-->
 ```
 
 ```python
-  The third-party Python library does not support the Lists API.
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Get all lists
+response = client.get_all_lists()
+for list_item in response.data:
+    print(f"List {list_item.id}: {list_item.file.filename} - {list_item.status.state}")
 ```
 
 ```php
@@ -1885,7 +1964,15 @@ ENTERPRISE-->
 ```
 
 ```python
-  The third-party Python library does not support the Lists API.
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Download a completed list
+csv_content = client.download_list(42)
+# Save to file
+with open('geocoded_results.csv', 'w') as f:
+    f.write(csv_content)
 ```
 
 ```php
@@ -1987,7 +2074,13 @@ ENTERPRISE-->
 ```
 
 ```python
-  The third-party Python library does not support the Lists API.
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Delete a list
+response = client.delete_list(42)
+print(response.success)  # True if successful
 ```
 
 ```php
