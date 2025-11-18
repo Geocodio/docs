@@ -3179,7 +3179,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 ## v1.9
 
-*Released on November 18, 2024*
+*Released on November 18, 2025*
 
 * The [`cd120`](#congressional-districts) field has been added for the 120th Congress. It remains in preview until finalized. cd119 continues to be the default.
 
