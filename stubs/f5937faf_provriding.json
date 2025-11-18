@@ -15,7 +15,7 @@
     "results": [
         {
             "address_components": {
-                "number": "314",
+                "number": "300",
                 "street": "King",
                 "suffix": "St",
                 "formatted_street": "King St",
@@ -25,86 +25,18 @@
                 "country": "CA"
             },
             "address_lines": [
-                "314 King St",
+                "300 King St",
                 "",
                 "Sturgeon Falls, ON P2B"
             ],
-            "formatted_address": "314 King St, Sturgeon Falls, ON P2B",
+            "formatted_address": "300 King St, Sturgeon Falls, ON P2B",
             "location": {
-                "lat": 46.361772,
-                "lng": -79.929491
+                "lat": 46.36185,
+                "lng": -79.92963
             },
-            "accuracy": 0.89,
-            "accuracy_type": "nearest_rooftop_match",
-            "source": "Countrywide (Adapted from Statistics Canada, National Address Register, 2024-05-11. This does not constitute an endorsement by Statistics Canada of this product.)",
-            "fields": {
-                "provincial_riding": {
-                    "ocd_id": "ocd-division/country:ca/province:on/ed:timiskaming-cochrane",
-                    "name_french": "Timiskaming - Cochrane",
-                    "name_english": "Timiskaming - Cochrane",
-                    "is_upcoming_district": false,
-                    "source": "Elections Ontario"
-                }
-            }
-        },
-        {
-            "address_components": {
-                "number": "324",
-                "street": "King",
-                "suffix": "St",
-                "formatted_street": "King St",
-                "city": "Sturgeon Falls",
-                "state": "ON",
-                "zip": "P2B",
-                "country": "CA"
-            },
-            "address_lines": [
-                "324 King St",
-                "",
-                "Sturgeon Falls, ON P2B"
-            ],
-            "formatted_address": "324 King St, Sturgeon Falls, ON P2B",
-            "location": {
-                "lat": 46.361355,
-                "lng": -79.9295
-            },
-            "accuracy": 0.88,
-            "accuracy_type": "nearest_rooftop_match",
-            "source": "Countrywide (Adapted from Statistics Canada, National Address Register, 2024-05-11. This does not constitute an endorsement by Statistics Canada of this product.)",
-            "fields": {
-                "provincial_riding": {
-                    "ocd_id": "ocd-division/country:ca/province:on/ed:timiskaming-cochrane",
-                    "name_french": "Timiskaming - Cochrane",
-                    "name_english": "Timiskaming - Cochrane",
-                    "is_upcoming_district": false,
-                    "source": "Elections Ontario"
-                }
-            }
-        },
-        {
-            "address_components": {
-                "number": "328",
-                "street": "King",
-                "suffix": "St",
-                "formatted_street": "King St",
-                "city": "Sturgeon Falls",
-                "state": "ON",
-                "zip": "P2B",
-                "country": "CA"
-            },
-            "address_lines": [
-                "328 King St",
-                "",
-                "Sturgeon Falls, ON P2B"
-            ],
-            "formatted_address": "328 King St, Sturgeon Falls, ON P2B",
-            "location": {
-                "lat": 46.360492,
-                "lng": -79.929527
-            },
-            "accuracy": 0.87,
-            "accuracy_type": "nearest_rooftop_match",
-            "source": "Countrywide (Adapted from Statistics Canada, National Address Register, 2024-05-11. This does not constitute an endorsement by Statistics Canada of this product.)",
+            "accuracy": 1,
+            "accuracy_type": "range_interpolation",
+            "source": "Address Ranges",
             "fields": {
                 "provincial_riding": {
                     "ocd_id": "ocd-division/country:ca/province:on/ed:timiskaming-cochrane",
