@@ -3303,7 +3303,7 @@ The endpoint transforms Geocodio's address components into Google Maps format wi
 
 The `components` parameter supports filtering results:
 
-* `country:XX` - Filter by country code (US, CA, MX)
+* `country:XX` - Filter by country code (US, CA)
 * `postal_code:XXXXX` - Filter by postal code
 * Multiple filters can be combined: `components=country:US|postal_code:22201`
 
@@ -3311,7 +3311,6 @@ The `components` parameter supports filtering results:
 
 * 🇺🇸 United States (US)
 * 🇨🇦 Canada (CA) - with proper province expansion (e.g., ON → Ontario, QC → Quebec)
-* 🇲🇽 Mexico (MX)
 
 **Response Format:**
 
@@ -3347,7 +3346,7 @@ The `components` parameter supports filtering results:
 
 **Coverage:**
 
-* ⚠️ **US, Canada, and Mexico** - Geocodio currently supports US, Canadian, and Mexican addresses. Requests for other countries will return `ZERO_RESULTS` status
+* ⚠️ **US and Canada only** - Geocodio currently supports US and Canadian addresses. Requests for other countries will return `ZERO_RESULTS` status
 
 **Error Responses:**
 
