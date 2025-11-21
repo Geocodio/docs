@@ -3165,6 +3165,180 @@ This means that you will be able to make requests directly to the API using Java
 <strong>Note:</strong> This will expose your API Key publicly, make sure that you understand and accept the implications of this approach, and consider setting <a href="https://dash.geocod.io/billing#limits">usage limits</a> on your account if applicable.
 </aside>
 
+# Google Maps Compatibility
+
+Geocodio provides a Google Maps-compatible geocoding endpoint, enabling you to migrate from Google Maps with minimal code changes. Simply point your existing Google Maps SDK to `https://api.geocod.io` and use your Geocodio API key.
+
+The examples to the right show how to configure the official Google Maps SDKs for Python and Node.js to use Geocodio's endpoint. The compatibility layer returns responses in Google Maps' format, so your existing response parsing code continues to work unchanged.
+
+For new integrations or to access Geocodio's full feature set (like data appends and batch geocoding), we recommend using the [native Geocodio API](#geocoding).
+
+> Using Google Maps SDKs with Geocodio:
+
+```shell
+# Direct API call
+curl "https://api.geocod.io/maps/api/geocode/json?address=1109+N+Highland+St,+Arlington+VA&key=YOUR_API_KEY"
+
+# Reverse geocoding
+curl "https://api.geocod.io/maps/api/geocode/json?latlng=38.886665,-77.094733&key=YOUR_API_KEY"
+```
+
+```python
+# Install: pip install googlemaps
+import googlemaps
+
+# Configure client to use Geocodio endpoint
+gmaps = googlemaps.Client(
+    key='YOUR_GEOCODIO_API_KEY',
+    base_url='https://api.geocod.io'
+)
+
+# Forward geocoding - same code as Google Maps!
+geocode_result = gmaps.geocode('1109 N Highland St, Arlington VA')
+location = geocode_result[0]['geometry']['location']
+print(f"Lat: {location['lat']}, Lng: {location['lng']}")
+
+# Reverse geocoding - same code as Google Maps!
+reverse_result = gmaps.reverse_geocode((38.886665, -77.094733))
+print(reverse_result[0]['formatted_address'])
+```
+
+```javascript
+// Install: npm install @googlemaps/google-maps-services-js
+const { Client } = require("@googlemaps/google-maps-services-js");
+
+const client = new Client({});
+
+// Forward geocoding - add 'url' parameter to use Geocodio
+client.geocode({
+  params: {
+    address: "1109 N Highland St, Arlington VA",
+    key: "YOUR_GEOCODIO_API_KEY"
+  },
+  url: "https://api.geocod.io/maps/api/geocode/json"
+})
+.then(response => {
+  const location = response.data.results[0].geometry.location;
+  console.log(`Lat: ${location.lat}, Lng: ${location.lng}`);
+});
+
+// Reverse geocoding - add 'url' parameter to use Geocodio
+client.reverseGeocode({
+  params: {
+    latlng: "38.886665,-77.094733",
+    key: "YOUR_GEOCODIO_API_KEY"
+  },
+  url: "https://api.geocod.io/maps/api/geocode/json"
+})
+.then(response => {
+  console.log(response.data.results[0].formatted_address);
+});
+```
+
+### HTTP Request
+
+`GET https://api.geocod.io/maps/api/geocode/json`
+
+### URL Parameters
+
+Parameter | Description | Required
+--------- | ----------- | --------
+`address` | The address to geocode (for forward geocoding) | Either `address` or `latlng`
+`latlng` | Coordinates in `lat,lng` format (for reverse geocoding) | Either `address` or `latlng`
+`key` | Your Geocodio API key | Yes
+`components` | Address component filters (e.g., `country:US`) | No
+
+## What's Supported
+
+**Request Parameters:**
+
+* ✅ `address` - Forward geocoding
+* ✅ `latlng` - Reverse geocoding
+* ✅ `key` - API authentication
+* ✅ `components` - Address component filtering (see below for details)
+
+**Address Components:**
+
+The endpoint transforms Geocodio's address components into Google Maps format with these component types:
+
+* `street_number` - House/building number
+* `route` - Street name (includes predirectional, prefix, street, suffix, postdirectional)
+* `locality` - City name
+* `administrative_area_level_2` - County
+* `administrative_area_level_1` - State/province (with full name expansion, e.g., VA → Virginia, ON → Ontario)
+* `country` - Country code and full name
+* `postal_code` - ZIP/postal code
+
+**Component Filtering:**
+
+The `components` parameter supports filtering results:
+
+* `country:XX` - Filter by country code (US, CA)
+* `postal_code:XXXXX` - Filter by postal code
+* `locality:CityName` - Filter by city/locality
+* `administrative_area:State` - Filter by state/province
+* `route:StreetName` - Filter by street name
+* Multiple filters can be combined: `components=country:US|postal_code:22201`
+
+**Supported Countries:**
+
+* 🇺🇸 United States (US)
+* 🇨🇦 Canada (CA) - with proper province expansion (e.g., ON → Ontario, QC → Quebec)
+
+**Response Format:**
+
+* ✅ `address_components` - Typed address component arrays with proper component types
+* ✅ `formatted_address` - Full formatted address string
+* ✅ `geometry.location` - Latitude and longitude coordinates
+* ✅ `geometry.location_type` - Accuracy indicator (ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, APPROXIMATE)
+* ✅ `geometry.viewport` - Bounding box for the result
+* ✅ `types` - Result type indicators
+* ✅ `status` - Response status (OK, ZERO_RESULTS, REQUEST_DENIED, etc.)
+* ✅ `partial_match` - Added when accuracy < 1.0
+
+**Additional Features:**
+
+* **State/Province Expansion** - Short codes expanded to full names (VA → Virginia, ON → Ontario, QC → Quebec)
+* **Street Components** - Properly combines predirectional (N, S, E, W), street name, suffix (St, Ave), and postdirectional (NW, SE)
+* **Location Type Mapping** - Maps Geocodio accuracy to Google's location types (ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, APPROXIMATE)
+* **Partial Match Indicator** - Automatically adds `partial_match: true` flag when accuracy is less than 1.0
+
+## What's Different
+
+**Not Included in Responses:**
+
+* ⚠️ `place_id` - Returned but always empty (Google-specific identifiers are not available)
+* ❌ `plus_code` - Google Plus Codes are not provided
+* ⚠️ `geometry.viewport` - Provided but approximated (not based on actual address boundaries)
+
+**Parameter Limitations:**
+
+* ❌ `bounds` - Viewport biasing not supported (parameter ignored if provided)
+* ❌ `region` - Region biasing not supported (parameter ignored if provided)
+* ⚠️ `components` - Supports `country`, `postal_code`, `locality`, `administrative_area`, and `route` filtering (other component types are not supported)
+
+**Coverage:**
+
+* ⚠️ **US and Canada only** - Geocodio currently supports US and Canadian addresses. Requests for other countries will return `ZERO_RESULTS` status
+
+**Error Responses:**
+
+All responses return HTTP 200 with status information in the response body (matching Google's behavior). Possible status values include:
+
+* `OK` - Request successful
+* `ZERO_RESULTS` - No results found
+* `REQUEST_DENIED` - Invalid API key
+* `INVALID_REQUEST` - Missing or invalid parameters
+* `OVER_QUERY_LIMIT` - Rate limit exceeded
+
+<aside class="notice">
+For new integrations, we recommend using the <a href="#geocoding">native Geocodio API</a> for access to advanced features like data appends, batch geocoding, and more detailed address parsing.
+</aside>
+
+<aside class="warning">
+This endpoint supports US and Canada addresses only. Requests for addresses in other countries will return a <code>ZERO_RESULTS</code> status.
+</aside>
+
 # Changelog
 
 The Geocodio API is continuously improved. Most updates require no changes for API users, but in some cases we might have to introduce breaking changes.
@@ -3178,6 +3352,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.9
+
+*Released on November 19, 2025*
+
+* Added [Google Maps API compatibility endpoint](#google-maps-compatibility) at `/maps/api/geocode/json`. This allows developers to migrate from Google Maps by using existing Google Maps SDKs with Geocodio by simply changing the endpoint and API key
 
 *Released on November 18, 2025*
 
