@@ -3275,6 +3275,9 @@ The `components` parameter supports filtering results:
 
 * `country:XX` - Filter by country code (US, CA)
 * `postal_code:XXXXX` - Filter by postal code
+* `locality:CityName` - Filter by city/locality
+* `administrative_area:State` - Filter by state/province
+* `route:StreetName` - Filter by street name
 * Multiple filters can be combined: `components=country:US|postal_code:22201`
 
 **Supported Countries:**
@@ -3304,7 +3307,7 @@ The `components` parameter supports filtering results:
 
 **Not Included in Responses:**
 
-* ❌ `place_id` - Google-specific place identifiers are not provided
+* ⚠️ `place_id` - Returned but always empty (Google-specific identifiers are not available)
 * ❌ `plus_code` - Google Plus Codes are not provided
 * ⚠️ `geometry.viewport` - Provided but approximated (not based on actual address boundaries)
 
@@ -3312,7 +3315,7 @@ The `components` parameter supports filtering results:
 
 * ❌ `bounds` - Viewport biasing not supported (parameter ignored if provided)
 * ❌ `region` - Region biasing not supported (parameter ignored if provided)
-* ⚠️ `components` - Only `country` and `postal_code` filtering are supported (other component types are not supported)
+* ⚠️ `components` - Supports `country`, `postal_code`, `locality`, `administrative_area`, and `route` filtering (other component types are not supported)
 
 **Coverage:**
 
