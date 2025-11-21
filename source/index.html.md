@@ -7921,9 +7921,11 @@ This means that you will be able to make requests directly to the API using Java
 
 # Google Maps Compatibility
 
-Geocodio provides a compatibility endpoint that accepts Google Maps Geocoding API-style requests, making it easy to migrate from Google Maps to Geocodio. If you're using the Google Maps JavaScript SDK, you can continue using it by simply changing the API endpoint and key.
+Geocodio provides a Google Maps-compatible geocoding endpoint, enabling you to migrate from Google Maps with minimal code changes. Simply point your existing Google Maps SDK to `https://api.geocod.io` and use your Geocodio API key.
 
-This endpoint returns responses in Google Maps' format, allowing you to keep your existing response handling code unchanged. For new integrations or access to Geocodio's full feature set (like data appends and batch geocoding), we recommend using the [native Geocodio API](#geocoding).
+The examples to the right show how to configure the official Google Maps SDKs for Python and Node.js to use Geocodio's endpoint. The compatibility layer returns responses in Google Maps' format, so your existing response parsing code continues to work unchanged.
+
+For new integrations or to access Geocodio's full feature set (like data appends and batch geocoding), we recommend using the [native Geocodio API](#geocoding).
 
 > Using Google Maps SDKs with Geocodio:
 
@@ -7935,87 +7937,55 @@ curl "https://api.geocod.io/maps/api/geocode/json?address=1109+N+Highland+St,+Ar
 curl "https://api.geocod.io/maps/api/geocode/json?latlng=38.886665,-77.094733&key=YOUR_API_KEY"
 ```
 
-```ruby
-# Install: gem install google_maps_service
-require 'google_maps_service'
-
-# Create client with Geocodio endpoint
-gmaps = GoogleMapsService::Client.new(
-  key: 'YOUR_GEOCODIO_API_KEY',
-  base_url: 'https://api.geocod.io'
-)
-
-# Forward geocoding
-result = gmaps.geocode('1109 N Highland St, Arlington VA')
-location = result.first[:geometry][:location]
-puts "Lat: #{location[:lat]}, Lng: #{location[:lng]}"
-
-# Reverse geocoding
-reverse_result = gmaps.reverse_geocode([38.886665, -77.094733])
-puts reverse_result.first[:formatted_address]
-```
-
 ```python
 # Install: pip install googlemaps
 import googlemaps
 
-# Create client with Geocodio endpoint
+# Configure client to use Geocodio endpoint
 gmaps = googlemaps.Client(
     key='YOUR_GEOCODIO_API_KEY',
     base_url='https://api.geocod.io'
 )
 
-# Forward geocoding
+# Forward geocoding - same code as Google Maps!
 geocode_result = gmaps.geocode('1109 N Highland St, Arlington VA')
 location = geocode_result[0]['geometry']['location']
 print(f"Lat: {location['lat']}, Lng: {location['lng']}")
 
-# Reverse geocoding
+# Reverse geocoding - same code as Google Maps!
 reverse_result = gmaps.reverse_geocode((38.886665, -77.094733))
 print(reverse_result[0]['formatted_address'])
-```
-
-```php
-<?php
-// Install: composer require googlemaps/googlemaps-services-php
-use GoogleMaps\GoogleMaps;
-
-// Create client with Geocodio endpoint
-$gmaps = new GoogleMaps([
-    'key' => 'YOUR_GEOCODIO_API_KEY',
-    'base_url' => 'https://api.geocod.io'
-]);
-
-// Forward geocoding
-$response = $gmaps->geocode('1109 N Highland St, Arlington VA');
-$location = $response['results'][0]['geometry']['location'];
-echo "Lat: {$location['lat']}, Lng: {$location['lng']}\n";
 ```
 
 ```javascript
 // Install: npm install @googlemaps/google-maps-services-js
 const { Client } = require("@googlemaps/google-maps-services-js");
 
-// Create client with Geocodio endpoint
-const client = new Client({
-  config: {
-    baseURL: "https://api.geocod.io"
-  }
-});
+const client = new Client({});
 
-// Forward geocoding
+// Forward geocoding - add 'url' parameter to use Geocodio
 client.geocode({
   params: {
     address: "1109 N Highland St, Arlington VA",
     key: "YOUR_GEOCODIO_API_KEY"
-  }
+  },
+  url: "https://api.geocod.io/maps/api/geocode/json"
 })
 .then(response => {
   const location = response.data.results[0].geometry.location;
   console.log(`Lat: ${location.lat}, Lng: ${location.lng}`);
+});
+
+// Reverse geocoding - add 'url' parameter to use Geocodio
+client.reverseGeocode({
+  params: {
+    latlng: "38.886665,-77.094733",
+    key: "YOUR_GEOCODIO_API_KEY"
+  },
+  url: "https://api.geocod.io/maps/api/geocode/json"
 })
-.catch(error => {
-  console.error(error);
+.then(response => {
+  console.log(response.data.results[0].formatted_address);
 });
 ```
 
