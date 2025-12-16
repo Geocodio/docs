@@ -11,7 +11,8 @@ language_tabs:
 toc_footers:
  - <a href="https://dash.enterprise.geocod.io">Sign Up for an API Key</a>
  - <a href="https://www.geocod.io/terms-of-use/">Terms of Use</a>
- - <a href="https://github.com/Geocodio/openapi-spec" target="_blank">OpenAPI Spec</a>
+ - <a href="https://api.enterprise.geocod.io/openapi-spec.yml" target="_blank">OpenAPI Spec (YAML)</a>
+ - <a href="https://api.enterprise.geocod.io/openapi-spec.json" target="_blank">OpenAPI Spec (JSON)</a>
 
 search: true
 
