@@ -3353,6 +3353,11 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 ## v1.9
 
+*Released on December 16, 2025*
+
+* The [`census2025`](#census-blocktract-fips-codes-msacsa-codes) field append is now available (the `census` data append will now default to `census2025`)
+
+
 *Released on November 19, 2025*
 
 * Added [Google Maps API compatibility endpoint](#google-maps-compatibility) at `/maps/api/geocode/json`. This allows developers to migrate from Google Maps by using existing Google Maps SDKs with Geocodio by simply changing the endpoint and API key

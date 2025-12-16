@@ -76,8 +76,8 @@
                         },
                         "source": "US Census Bureau"
                     },
-                    "2024": {
-                        "census_year": 2024,
+                    "2025": {
+                        "census_year": 2025,
                         "state_fips": "51",
                         "county_fips": "51013",
                         "tract_code": "101801",

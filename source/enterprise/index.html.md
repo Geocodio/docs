@@ -2367,7 +2367,7 @@ Some fields are specific to the US and cannot be queried for other countries.
 | [cd, cd113, cd114, cd115, cd116, cd117, cd118, cd119, cd120](#congressional-districts)                                                                                                                                                               | Congressional District & Legislator information            | US-only                     |
 | [stateleg, stateleg-next](#state-legislative-districts)                                                                                                                                                                                              | State Legislative District (House & Senate) & Legislator information                | US-only                     |
 | [school](#school-districts)                                                                                                                                                                                                                          | School District (elementary/secondary or unified)          | US-only                     |
-| [census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021, census2022, census2023, census2024](#census-blocktract-fips-codes-msacsa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes             | US-only                     |
+| [census, census2000, census2010, census2011, census2012, census2013, census2014, census2015, census2016, census2017, census2018, census2019, census2020, census2021, census2022, census2023, census2024, census2025](#census-blocktract-fips-codes-msacsa-codes) | Census Block/Tract, FIPS codes & MSA/CSA codes             | US-only                     |
 | [acs-demographics](#census-demographics)                                                                                                                                                                                                             | Demographics (Census)                                      | US-only                     |
 | [acs-economics](#census-income)                                                                                                                                                                                                                      | Economics: Income Data (Census)                            | US-only                     |
 | [acs-families](#census-households)                                                                                                                                                                                                                   | Families (Census)                                          | US-only                     |
@@ -3103,7 +3103,7 @@ The field will return either a *unified* school district or separate *elementary
 
 
 ## Census Block/Tract, FIPS codes & MSA/CSA codes
-**Field name: `census`, `census2000`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`, `census2020`, `census2021`, `census2022`, `census2023`, `census2024`**
+**Field name: `census`, `census2000`, `census2010`, `census2011`, `census2012`, `census2013`, `census2014`, `census2015`, `census2016`, `census2017`, `census2018`, `census2019`, `census2020`, `census2021`, `census2022`, `census2023`, `census2024`, `census2025`**
 
 > To get `census2010` and `census` field appends for an address or a coordinate:
 
@@ -3200,8 +3200,8 @@ geocoder.reverse('38.886672,-77.094735', ['census2010', 'census'])
         },
         "source": "US Census Bureau"
       },
-      "2024": {
-        "census_year": 2024,
+      "2025": {
+        "census_year": 2025,
         "state_fips": "51",
         "county_fips": "51013",
         "tract_code": "101801",
@@ -3251,7 +3251,7 @@ Geocodio can provide vintage Census geographies for every year back to the 2010 
 Geographies for the 2000 Census are available as well using the `census2000` field append. Note that only County, Place, Tract and Block FIPS codes are returned for year 2000.
 
 <aside class="warning">
-If no year is specified, the API will default to the most recent Census. Currently, 2024 data is returned when appending the cCnsus field.
+If no year is specified, the API will default to the most recent Census. Currently, 2025 data is returned when appending the census field.
 </aside>
 
 Field        | Description
@@ -8029,6 +8029,9 @@ The `components` parameter supports filtering results:
 
 * `country:XX` - Filter by country code (US, CA)
 * `postal_code:XXXXX` - Filter by postal code
+* `locality:CityName` - Filter by city/locality
+* `administrative_area:State` - Filter by state/province
+* `route:StreetName` - Filter by street name
 * Multiple filters can be combined: `components=country:US|postal_code:22201`
 
 **Supported Countries:**
@@ -8058,7 +8061,7 @@ The `components` parameter supports filtering results:
 
 **Not Included in Responses:**
 
-* ❌ `place_id` - Google-specific place identifiers are not provided
+* ⚠️ `place_id` - Returned but always empty (Google-specific identifiers are not available)
 * ❌ `plus_code` - Google Plus Codes are not provided
 * ⚠️ `geometry.viewport` - Provided but approximated (not based on actual address boundaries)
 
@@ -8066,7 +8069,7 @@ The `components` parameter supports filtering results:
 
 * ❌ `bounds` - Viewport biasing not supported (parameter ignored if provided)
 * ❌ `region` - Region biasing not supported (parameter ignored if provided)
-* ⚠️ `components` - Only `country` and `postal_code` filtering are supported (other component types are not supported)
+* ⚠️ `components` - Supports `country`, `postal_code`, `locality`, `administrative_area`, and `route` filtering (other component types are not supported)
 
 **Coverage:**
 
@@ -8103,6 +8106,11 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.9
+
+*Released on December 16, 2025*
+
+* The [`census2025`](#census-blocktract-fips-codes-msacsa-codes) field append is now available (the `census` data append will now default to `census2025`)
+
 
 *Released on November 19, 2025*
 
