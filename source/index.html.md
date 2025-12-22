@@ -335,7 +335,13 @@ For security reasons, you must specifically enable the [lists API](#geocoding-li
 
 # Overview
 
-The Geocodio API supports three different methods for processing your data. Geocodio is designed to make high-volume geocoding and data enrichment easier, yet we also support real-time single requests. The method you choose will largely depend on your workflow and the amount of addresses or coordinates that you are looking to process.
+The Geocodio API provides two main capabilities: **geocoding** to convert addresses to coordinates (and vice versa), and **distance calculation** to compute distances and travel times between locations.
+
+Both capabilities offer synchronous endpoints for real-time requests and asynchronous options for high-volume processing. The method you choose will largely depend on your workflow and the volume of data you need to process.
+
+## Geocoding
+
+Geocoding endpoints convert addresses into geographic coordinates (forward geocoding) or coordinates into addresses (reverse geocoding). You can also append additional data fields such as congressional districts, timezones, and census information.
 
 Single and batch geocoding methods are synchronous, meaning that you have to wait for the data to be fully processed and will receive it directly in your API response. The [list geocoding](#geocoding-lists) method is asynchronous and requires a second request to be made to download the data once it is ready.
 
@@ -346,6 +352,18 @@ Name                                  | Batch size         | Type         | Form
 [List geocoding](#geocoding-lists)    | Up to 10,000,000+  | Asynchronous | CSV/TSV/Excel    | <i class="fa fa-check"></i> | <i class="fa fa-check"></i>
 
 If in doubt, [single geocoding](#geocoding) is the simplest choice for many use cases.
+
+## Distance calculation
+
+Distance calculation endpoints compute distances and travel times between locations. You can provide coordinates directly, or supply addresses that will be automatically geocoded. Like geocoding, you can choose synchronous or asynchronous methods depending on your needs.
+
+Name                                              | Max size (origins × destinations) | Type         | Format             | Supports geocoding
+------------------------------------------------- | --------------------------------- | ------------ | ------------------ | ------------------
+[Single origin distance](#single-origin-distance) | 1 × 100                           | Synchronous  | JSON               | <i class="fa fa-check"></i>
+[Distance matrix](#distance-matrix)               | Up to 10,000 calculations         | Synchronous  | JSON               | <i class="fa fa-check"></i>
+[Distance jobs](#distance-jobs-async)             | Up to 50,000 calculations         | Asynchronous | JSON/CSV/TSV/Excel | <i class="fa fa-check"></i>
+
+All distance endpoints support both `straightline` (great-circle) and `driving` (road network) calculation modes.
 
 # Geocoding
 
@@ -481,6 +499,16 @@ Parameter | Description
 `fields`  | Optional parameter to request [additional data appends](#fields).
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
 `format`  | Optional parameter to change the JSON output format to a different pre-defined structure. Currently, "simple" is the only valid value. If not set, the default full JSON output structure is used.
+`destinations[]` | Optional parameter. Array of destination locations for [distance calculation](#distance). Each destination can be a coordinate string (`"lat,lng"` or `"lat,lng,id"`) or a geocodable address. When provided, each result will include a `destinations` array with distance/duration to each destination.
+`distance_mode` | Optional parameter. Distance calculation mode: `driving` (road network, includes duration) or `straightline` (great-circle distance, no duration). Default is `straightline`.
+`distance_units` | Optional parameter. Unit of measurement: `miles` or `km`. Default is `miles`.
+`distance_max_results` | Optional parameter. Maximum number of destinations to return per geocoded result.
+`distance_max_distance` | Optional parameter. Filter out destinations beyond this distance (in specified units).
+`distance_min_distance` | Optional parameter. Filter out destinations closer than this distance (in specified units).
+`distance_max_duration` | Optional parameter. Filter out destinations with travel time exceeding this value in seconds (driving mode only).
+`distance_min_duration` | Optional parameter. Filter out destinations with travel time below this value in seconds (driving mode only).
+`distance_order_by` | Optional parameter. Sort destinations by `distance` or `duration`. Default is `distance`.
+`distance_sort_order` | Optional parameter. Sort order: `asc` or `desc`. Default is `asc`.
 
 <!--ENTERPRISE
 Parameter | Description
@@ -498,12 +526,12 @@ This is recommended if the address is already parsed into separate fields in you
 
 Parameter     | Description
 ------------- | -----------
-`street`      | E.g. 1600 Pennsylvania Ave NW
+`street`      | E.g. 1109 N Highland St
 `street2`     | E.g. Apt 204
-`city`        | E.g. Washington
-`county`      | E.g. Arlington
-`state`       | E.g. DC
-`postal_code` | E.g. 20500
+`city`        | E.g. Arlington
+`county`      | E.g. Arlington County
+`state`       | E.g. VA
+`postal_code` | E.g. 22201
 `country`     | E.g. Canada (Default to USA)
 
 ### The `format` parameter
@@ -660,6 +688,83 @@ In order to verify that the unit number is valid per USPS, you can request the [
 The `input` object that is returned in the API response is not a one-for-one parsing of the initial address that is provided. In order to ensure that the `address_components` returned in `input` are accurate, we cross-reference them with the `address_components` returned in the `results` object.
 
 As such, if we aren't able to identify the exact address location in `results`, this could impact our ability to return a parsed address in `input`. In the vast majority of cases, the data returned will match the original address provided to the Geocodio API, but there may be some instances where we are not able to parse the exact input - especially in responses with lower `accuracy_type` values like `place` or `street_center`.
+
+### Geocoding with distance calculation
+
+> Geocode an address and calculate distances to multiple destinations:
+
+```shell
+curl "https://api.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&destinations[]=38.913274,-77.032266,DowntownDC&destinations[]=38.90948,-77.048527,DupontCircle&distance_mode=driving&api_key=YOUR_API_KEY"
+```
+
+> Example response with distances:
+
+```json
+{
+  "input": {
+    "address_components": {
+      "number": "1109",
+      "predirectional": "N",
+      "street": "Highland",
+      "suffix": "St",
+      "formatted_street": "N Highland St",
+      "city": "Arlington",
+      "state": "VA",
+      "zip": "22201",
+      "country": "US"
+    },
+    "formatted_address": "1109 N Highland St, Arlington, VA 22201"
+  },
+  "results": [
+    {
+      "address_components": {
+        "number": "1109",
+        "predirectional": "N",
+        "street": "Highland",
+        "suffix": "St",
+        "formatted_street": "N Highland St",
+        "city": "Arlington",
+        "county": "Arlington County",
+        "state": "VA",
+        "zip": "22201",
+        "country": "US"
+      },
+      "formatted_address": "1109 N Highland St, Arlington, VA 22201",
+      "location": {
+        "lat": 38.886665,
+        "lng": -77.094733
+      },
+      "accuracy": 1,
+      "accuracy_type": "rooftop",
+      "source": "Virginia GIS Clearinghouse",
+      "destinations": [
+        {
+          "query": "38.913274,-77.032266,DowntownDC",
+          "id": "DowntownDC",
+          "location": [38.913274, -77.032266],
+          "distance_miles": 4.5,
+          "distance_km": 7.2,
+          "duration_seconds": 840
+        },
+        {
+          "query": "38.90948,-77.048527,DupontCircle",
+          "id": "DupontCircle",
+          "location": [38.90948, -77.048527],
+          "distance_miles": 3.6,
+          "distance_km": 5.8,
+          "duration_seconds": 660
+        }
+      ]
+    }
+  ]
+}
+```
+
+When `destinations[]` is provided, each geocoded result will include a `destinations` array containing the distance and duration (if using `driving` mode) to each destination location. This is useful for finding the nearest locations to a geocoded address.
+
+<aside class="notice">
+See the <a href="#distance">Distance</a> section for more details on distance calculation options and dedicated distance endpoints.
+</aside>
 
 ## Batch geocoding
 
@@ -907,6 +1012,16 @@ Parameter | Description
 `api_key` | Your Geocodio API key
 `fields`  | Optional parameter to request [additional field appends](#fields).
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
+`destinations[]` | Optional parameter. Array of destination locations for [distance calculation](#distance). When provided, each result will include a `destinations` array with distance/duration to each destination.
+`distance_mode` | Optional parameter. Distance calculation mode: `driving` or `straightline`. Default is `straightline`.
+`distance_units` | Optional parameter. Unit of measurement: `miles` or `km`. Default is `miles`.
+`distance_max_results` | Optional parameter. Maximum number of destinations to return per geocoded result.
+`distance_max_distance` | Optional parameter. Maximum distance filter (in specified units).
+`distance_min_distance` | Optional parameter. Minimum distance filter (in specified units).
+`distance_max_duration` | Optional parameter. Maximum duration filter in seconds (driving mode only).
+`distance_min_duration` | Optional parameter. Minimum duration filter in seconds (driving mode only).
+`distance_order_by` | Optional parameter. Sort destinations by `distance` or `duration`. Default is `distance`.
+`distance_sort_order` | Optional parameter. Sort order: `asc` or `desc`. Default is `asc`.
 
 ### JSON array/object
 When making a batch geocoding request, you can `POST` queries as either a JSON array or a JSON object. If a JSON object is posted, you can specify a custom key for each element of your choice. This can be useful to match queries up with your existing data after the request is complete.
@@ -1030,12 +1145,12 @@ This is recommended if the address is already stored as separate fields on your 
 
 Parameter     | Description
 ------------- | -----------
-`street`      | E.g. 1600 Pennsylvania Ave NW
+`street`      | E.g. 1109 N Highland St
 `street2`     | E.g. Apt 204
-`city`        | E.g. Washington
-`county`      | E.g. Arlington
-`state`       | E.g. DC
-`postal_code` | E.g. 20500
+`city`        | E.g. Arlington
+`county`      | E.g. Arlington County
+`state`       | E.g. VA
+`postal_code` | E.g. 22201
 `country`     | E.g. Canada (Default to USA)
 
 # Reverse Geocoding
@@ -1180,6 +1295,16 @@ Parameter | Description
 `fields`  | Optional parameter to request [additional field appends](#fields).
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
 `format`  | Optional parameter to change the JSON output format to a different pre-defined structure. Currently, "simple" is the only valid value. If not set, the default full JSON output structure is used.
+`destinations[]` | Optional parameter. Array of destination locations for [distance calculation](#distance). When provided, each result will include a `destinations` array with distance/duration to each destination.
+`distance_mode` | Optional parameter. Distance calculation mode: `driving` or `straightline`. Default is `straightline`.
+`distance_units` | Optional parameter. Unit of measurement: `miles` or `km`. Default is `miles`.
+`distance_max_results` | Optional parameter. Maximum number of destinations to return per result.
+`distance_max_distance` | Optional parameter. Maximum distance filter (in specified units).
+`distance_min_distance` | Optional parameter. Minimum distance filter (in specified units).
+`distance_max_duration` | Optional parameter. Maximum duration filter in seconds (driving mode only).
+`distance_min_duration` | Optional parameter. Minimum duration filter in seconds (driving mode only).
+`distance_order_by` | Optional parameter. Sort destinations by `distance` or `duration`. Default is `distance`.
+`distance_sort_order` | Optional parameter. Sort order: `asc` or `desc`. Default is `asc`.
 
 ### The `format` parameter
 
@@ -1406,6 +1531,16 @@ Parameter | Description
 `api_key` | Your Geocodio API key
 `fields`  | Optional parameter to request [additional field appends](#fields).
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
+`destinations[]` | Optional parameter. Array of destination locations for [distance calculation](#distance). When provided, each result will include a `destinations` array with distance/duration to each destination.
+`distance_mode` | Optional parameter. Distance calculation mode: `driving` or `straightline`. Default is `straightline`.
+`distance_units` | Optional parameter. Unit of measurement: `miles` or `km`. Default is `miles`.
+`distance_max_results` | Optional parameter. Maximum number of destinations to return per result.
+`distance_max_distance` | Optional parameter. Maximum distance filter (in specified units).
+`distance_min_distance` | Optional parameter. Minimum distance filter (in specified units).
+`distance_max_duration` | Optional parameter. Maximum duration filter in seconds (driving mode only).
+`distance_min_duration` | Optional parameter. Minimum duration filter in seconds (driving mode only).
+`distance_order_by` | Optional parameter. Sort destinations by `distance` or `duration`. Default is `distance`.
+`distance_sort_order` | Optional parameter. Sort order: `asc` or `desc`. Default is `asc`.
 
 
 # Geocoding lists
@@ -7665,6 +7800,499 @@ MST          | Mountain Standard Time
 PST          | Pacific Standard Time
 SST          | Samoa Standard Time
 
+# Distance
+
+Geocodio's Distance API allows you to calculate distances and travel times between locations. You can calculate from one origin to many destinations, or create a full distance matrix between multiple origins and destinations.
+
+For large-scale calculations, asynchronous distance jobs can be used similar to the [Lists API](#geocoding-lists).
+
+## Location formats
+
+Locations can be specified in three formats:
+
+Format | Example | Description
+------ | ------- | -----------
+Coordinate string | `"38.886672,-77.094735"` | Latitude and longitude separated by a comma
+Coordinate string with ID | `"38.886672,-77.094735,Arlington"` | Includes a custom identifier that will be returned in the response
+Coordinate object | `{"lat": 38.886672, "lng": -77.094735, "id": "Arlington"}` | JSON object with lat, lng, and optional id properties
+Address string | `"1109 N Highland St, Arlington VA"` | A geocodable address (will be geocoded automatically)
+
+<aside class="notice">
+When addresses are geocoded, the geocoding result will be included in the response under a <code>geocode</code> property, and the lookup will count towards your geocoding credits.
+</aside>
+
+## Calculation modes
+
+Mode         | Description                                           | Duration returned | Credit multiplier
+------------ | ----------------------------------------------------- | ----------------- | -----------------
+`straightline` | Great-circle distance (as the crow flies) using the Haversine formula | No | 1x
+`driving`    | Driving distance and time using road networks         | Yes               | 2x
+
+<aside class="notice">
+The <code>driving</code> mode uses 2x the lookup credits of <code>straightline</code> mode.
+</aside>
+
+## Single origin distance
+
+> Calculate distances from a single origin to multiple destinations:
+
+```shell
+curl "https://api.geocod.io/v1.9/distance?origin=38.886672,-77.094735,Arlington&destinations[]=38.913274,-77.032266,DowntownDC&destinations[]=38.90948,-77.048527,DupontCircle&mode=driving&api_key=YOUR_API_KEY"
+```
+
+> Example response:
+
+```json
+{
+  "mode": "driving",
+  "origin": {
+    "query": "38.886672,-77.094735,Arlington",
+    "id": "Arlington",
+    "location": [38.886672, -77.094735]
+  },
+  "destinations": [
+    {
+      "query": "38.913274,-77.032266,DowntownDC",
+      "id": "DowntownDC",
+      "location": [38.913274, -77.032266],
+      "distance_miles": 4.5,
+      "distance_km": 7.2,
+      "duration_seconds": 840
+    },
+    {
+      "query": "38.90948,-77.048527,DupontCircle",
+      "id": "DupontCircle",
+      "location": [38.90948, -77.048527],
+      "distance_miles": 3.6,
+      "distance_km": 5.8,
+      "duration_seconds": 660
+    }
+  ]
+}
+```
+
+Calculate distances and travel times from a single origin to one or more destinations. This is useful for finding the nearest locations to a given point.
+
+### HTTP Request
+
+`GET https://api.geocod.io/v1.9/distance`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`origin` | **Required.** The origin location (coordinate string, coordinate with ID, or address)
+`destinations[]` | **Required.** Array of destination locations (max 100 per request)
+`api_key` | Your Geocodio API key
+`mode` | Optional. `driving` or `straightline`. Default is `straightline`
+`units` | Optional. `miles` or `km`. Default is `miles`
+`max_results` | Optional. Maximum number of destinations to return
+`max_distance` | Optional. Filter out destinations beyond this distance (in specified units)
+`min_distance` | Optional. Filter out destinations closer than this distance (in specified units)
+`max_duration` | Optional. Filter out destinations with travel time exceeding this value in seconds (driving mode only)
+`min_duration` | Optional. Filter out destinations with travel time below this value in seconds (driving mode only)
+`order_by` | Optional. Sort destinations by `distance` or `duration`. Default is `distance`
+`sort_order` | Optional. Sort order: `asc` or `desc`. Default is `asc`
+
+## Distance matrix
+
+> Calculate distances between multiple origins and multiple destinations:
+
+```shell
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "origins": [
+      "38.886672,-77.094735,Arlington",
+      "40.7128,-74.0060,NYC"
+    ],
+    "destinations": [
+      "39.80,-89.66,Springfield",
+      "41.8781,-87.6298,Chicago"
+    ],
+    "mode": "driving"
+  }' \
+  "https://api.geocod.io/v1.9/distance-matrix?api_key=YOUR_API_KEY"
+```
+
+> Example response:
+
+```json
+{
+  "mode": "driving",
+  "results": [
+    {
+      "origin": {
+        "query": "38.886672,-77.094735,Arlington",
+        "id": "Arlington",
+        "location": [38.886672, -77.094735]
+      },
+      "destinations": [
+        {
+          "query": "39.80,-89.66,Springfield",
+          "id": "Springfield",
+          "location": [39.80, -89.66],
+          "distance_miles": 699.2,
+          "distance_km": 1125.3,
+          "duration_seconds": 36540
+        },
+        {
+          "query": "41.8781,-87.6298,Chicago",
+          "id": "Chicago",
+          "location": [41.8781, -87.6298],
+          "distance_miles": 695.2,
+          "distance_km": 1118.9,
+          "duration_seconds": 36000
+        }
+      ]
+    },
+    {
+      "origin": {
+        "query": "40.7128,-74.0060,NYC",
+        "id": "NYC",
+        "location": [40.7128, -74.0060]
+      },
+      "destinations": [
+        {
+          "query": "39.80,-89.66,Springfield",
+          "id": "Springfield",
+          "location": [39.80, -89.66],
+          "distance_miles": 876.5,
+          "distance_km": 1410.6,
+          "duration_seconds": 45900
+        },
+        {
+          "query": "41.8781,-87.6298,Chicago",
+          "id": "Chicago",
+          "location": [41.8781, -87.6298],
+          "distance_miles": 790.1,
+          "distance_km": 1271.5,
+          "duration_seconds": 41400
+        }
+      ]
+    }
+  ]
+}
+```
+
+Calculate distances and travel times from multiple origins to multiple destinations (distance matrix). This is useful for route optimization, coverage analysis, and logistics planning.
+
+<aside class="warning">
+The matrix size (origins × destinations) is limited to 10,000 calculations per request. For larger matrices, use the <a href="#distance-jobs-async">asynchronous distance jobs</a>.
+</aside>
+
+### HTTP Request
+
+`POST https://api.geocod.io/v1.9/distance-matrix`
+
+### Request Body Parameters
+
+Parameter | Description
+--------- | -----------
+`origins` | **Required.** Array of origin locations
+`destinations` | **Required.** Array of destination locations
+`mode` | Optional. `driving` or `straightline`. Default is `straightline`
+`units` | Optional. `miles` or `km`. Default is `miles`
+`max_results` | Optional. Maximum number of destinations to return per origin
+`max_distance` | Optional. Maximum distance filter (in specified units)
+`min_distance` | Optional. Minimum distance filter (in specified units)
+`max_duration` | Optional. Maximum duration filter in seconds (driving mode only)
+`min_duration` | Optional. Minimum duration filter in seconds (driving mode only)
+`order_by` | Optional. Sort destinations by `distance` or `duration`. Default is `distance`
+`sort_order` | Optional. Sort order: `asc` or `desc`. Default is `asc`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`api_key` | Your Geocodio API key
+
+## Distance jobs (async)
+
+For large-scale distance calculations exceeding the synchronous limits, you can create asynchronous distance matrix jobs. Similar to the [Lists API](#geocoding-lists), jobs are processed in the background and results can be downloaded when complete.
+
+<aside class="warning">
+Distance job results are automatically deleted 72 hours after processing completes. The maximum job size is 50,000 calculations (origins × destinations).
+</aside>
+
+### Create a distance matrix job
+
+> Create a new distance matrix job:
+
+```shell
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Store to Customer Distances",
+    "origins": [
+      {"lat": 38.886672, "lng": -77.094735, "id": "Store1"},
+      {"lat": 40.7128, "lng": -74.0060, "id": "Store2"}
+    ],
+    "destinations": [
+      "39.80,-89.66,Customer1",
+      "41.8781,-87.6298,Customer2",
+      "34.0522,-118.2437,Customer3"
+    ],
+    "distance_mode": "driving",
+    "max_results": 2,
+    "order_by": "distance"
+  }' \
+  "https://api.geocod.io/v1.9/distance-jobs?api_key=YOUR_API_KEY"
+```
+
+> Example response:
+
+```json
+{
+  "id": 123,
+  "identifier": "abc123xyz",
+  "name": "Store to Customer Distances",
+  "status": "ENQUEUED",
+  "created_at": "2026-01-06T10:30:00Z",
+  "updated_at": "2026-01-06T10:30:00Z",
+  "origins_type": "coordinates",
+  "origins_count": 2,
+  "destinations_type": "coordinates",
+  "destinations_count": 3,
+  "distance_mode": "driving",
+  "total_calculations": 6,
+  "calculations_completed": 0,
+  "progress": 0,
+  "is_expired": false
+}
+```
+
+Creates a new distance matrix job and starts processing in the background. The response returns a job identifier that can be used to check the status and download results when complete.
+
+### HTTP Request
+
+`POST https://api.geocod.io/v1.9/distance-jobs`
+
+### Request Body Parameters
+
+Parameter | Description
+--------- | -----------
+`name` | **Required.** A name for this distance matrix job (max 255 characters)
+`origins` | **Required.** Array of origin locations, or an integer list ID from a previously uploaded spreadsheet
+`destinations` | **Required.** Array of destination locations, or an integer list ID from a previously uploaded spreadsheet
+`distance_mode` | Optional. `driving` or `straightline`. Default is `straightline`
+`units` | Optional. `miles` or `km`. Default is `miles`
+`max_results` | Optional. Maximum number of destinations to return per origin
+`max_distance` | Optional. Maximum distance filter (in specified units)
+`min_distance` | Optional. Minimum distance filter (in specified units)
+`max_duration` | Optional. Maximum duration filter in seconds (driving mode only)
+`min_duration` | Optional. Minimum duration filter in seconds (driving mode only)
+`order_by` | Optional. Sort destinations by `distance` or `duration`. Default is `distance`
+`sort_order` | Optional. Sort order: `asc` or `desc`. Default is `asc`
+`fields` | Optional. Comma-separated list of data fields to append to geocoded results
+`callback_url` | Optional. URL to receive a webhook notification when the job completes
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`api_key` | Your Geocodio API key
+
+### Using list IDs
+
+You can reference previously uploaded spreadsheets by their list ID instead of providing inline coordinates:
+
+```shell
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Warehouse Distances",
+    "origins": 123,
+    "destinations": 456,
+    "distance_mode": "driving"
+  }' \
+  "https://api.geocod.io/v1.9/distance-jobs?api_key=YOUR_API_KEY"
+```
+
+### See distance job status
+
+> Get the status of a distance job:
+
+```shell
+curl "https://api.geocod.io/v1.9/distance-jobs/abc123xyz?api_key=YOUR_API_KEY"
+```
+
+> Example response (processing):
+
+```json
+{
+  "id": 123,
+  "identifier": "abc123xyz",
+  "name": "Store to Customer Distances",
+  "status": "PROCESSING",
+  "created_at": "2026-01-06T10:30:00Z",
+  "updated_at": "2026-01-06T10:32:00Z",
+  "last_heartbeat_at": "2026-01-06T10:32:00Z",
+  "origins_type": "coordinates",
+  "origins_count": 2,
+  "destinations_type": "coordinates",
+  "destinations_count": 3,
+  "distance_mode": "driving",
+  "total_calculations": 6,
+  "calculations_completed": 4,
+  "progress": 66.67,
+  "status_message": "Processing distance calculations",
+  "time_left": "1 minute",
+  "is_expired": false
+}
+```
+
+> Example response (completed):
+
+```json
+{
+  "id": 123,
+  "identifier": "abc123xyz",
+  "name": "Store to Customer Distances",
+  "status": "COMPLETED",
+  "created_at": "2026-01-06T10:30:00Z",
+  "updated_at": "2026-01-06T10:35:00Z",
+  "origins_type": "coordinates",
+  "origins_count": 2,
+  "destinations_type": "coordinates",
+  "destinations_count": 3,
+  "distance_mode": "driving",
+  "total_calculations": 6,
+  "calculations_completed": 6,
+  "progress": 100,
+  "download_url": "https://api.geocod.io/v1.9/distance-jobs/abc123xyz/download",
+  "is_expired": false
+}
+```
+
+### HTTP Request
+
+`GET https://api.geocod.io/v1.9/distance-jobs/{identifier}`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`identifier` | The job identifier returned when the job was created
+`api_key` | Your Geocodio API key
+
+### Job status values
+
+Status | Description
+------ | -----------
+`ENQUEUED` | Job is waiting to be processed
+`PROCESSING` | Job is currently being processed
+`COMPLETED` | Job is complete, results available for download
+`FAILED` | Job processing failed
+
+### List all distance jobs
+
+> List all distance jobs:
+
+```shell
+curl "https://api.geocod.io/v1.9/distance-jobs?api_key=YOUR_API_KEY"
+```
+
+> Example response:
+
+```json
+{
+  "data": [
+    {
+      "id": 123,
+      "identifier": "abc123xyz",
+      "name": "Store to Customer Distances",
+      "status": "COMPLETED",
+      "created_at": "2026-01-06T10:30:00Z",
+      "updated_at": "2026-01-06T10:35:00Z",
+      "total_calculations": 6,
+      "progress": 100,
+      "is_expired": false
+    }
+  ],
+  "links": {
+    "first": "https://api.geocod.io/v1.9/distance-jobs?page=1",
+    "last": "https://api.geocod.io/v1.9/distance-jobs?page=1",
+    "prev": null,
+    "next": null
+  },
+  "meta": {
+    "current_page": 1,
+    "last_page": 1,
+    "per_page": 20,
+    "total": 1
+  }
+}
+```
+
+Returns a paginated list of all distance matrix jobs.
+
+### HTTP Request
+
+`GET https://api.geocod.io/v1.9/distance-jobs`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`api_key` | Your Geocodio API key
+`page` | Optional. Page number for pagination (default: 1)
+
+### Download distance job results
+
+> Download results for a completed job:
+
+```shell
+curl "https://api.geocod.io/v1.9/distance-jobs/abc123xyz/download?api_key=YOUR_API_KEY" \
+  -o results.json
+```
+
+Download the results of a completed distance matrix job as a JSON file. The response format is the same as the [distance matrix endpoint](#distance-matrix).
+
+<aside class="warning">
+Results are only available when the job status is <code>COMPLETED</code>. Results expire 72 hours after processing completes.
+</aside>
+
+### HTTP Request
+
+`GET https://api.geocod.io/v1.9/distance-jobs/{identifier}/download`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`identifier` | The job identifier
+`api_key` | Your Geocodio API key
+
+### Delete a distance job
+
+> Delete a distance job:
+
+```shell
+curl -X DELETE "https://api.geocod.io/v1.9/distance-jobs/abc123xyz?api_key=YOUR_API_KEY"
+```
+
+> Example response:
+
+```json
+{
+  "message": "Distance matrix job deleted successfully"
+}
+```
+
+Deletes a distance matrix job and its results.
+
+### HTTP Request
+
+`DELETE https://api.geocod.io/v1.9/distance-jobs/{identifier}`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`identifier` | The job identifier
+`api_key` | Your Geocodio API key
+
 # Address components
 
 Geocodio parses and standardizes all address results, and all results come with an `address_components` dictionary. This is an overview of all of the possible keys that you may find.
@@ -8107,6 +8735,14 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.9
+
+*Released on January 6, 2026*
+
+* Added new [Distance](#distance) endpoints for calculating distances and travel times between locations
+  * New `/distance` endpoint for single origin to multiple destinations
+  * New `/distance-matrix` endpoint for multiple origins to multiple destinations (up to 10,000 calculations)
+  * New `/distance-jobs` endpoints for asynchronous large-scale distance calculations (up to 50,000 calculations)
+  * Distance calculations can also be added to geocoding results via the `destinations[]` parameter on `/geocode` and `/reverse` endpoints
 
 *Released on December 16, 2025*
 
