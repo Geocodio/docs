@@ -679,6 +679,93 @@ As such, if we aren't able to identify the exact address location in `results`, 
 curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&destinations[]=38.8977,-77.0365,WhiteHouse&destinations[]=38.8895,-77.0353,WashingtonMonument&distance_mode=driving&api_key=YOUR_API_KEY"
 ```
 
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+destinations = [
+  '38.8977,-77.0365,WhiteHouse',
+  '38.8895,-77.0353,WashingtonMonument'
+]
+
+response = geocodio.geocode(
+  ['1109 N Highland St, Arlington VA'],
+  [],
+  nil,
+  nil,
+  destinations: destinations,
+  distance_mode: :driving,
+  distance_units: :miles
+)
+```
+
+```python
+from geocodio import Geocodio
+from geocodio.constants import DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
+
+client = Geocodio("YOUR_API_KEY")
+
+destinations = [
+    "38.8977,-77.0365,WhiteHouse",
+    "38.8895,-77.0353,WashingtonMonument"
+]
+
+response = client.geocode(
+    "1109 N Highland St, Arlington VA",
+    destinations=destinations,
+    distance_mode=DISTANCE_MODE_DRIVING,
+    distance_units=DISTANCE_UNITS_MILES
+)
+
+# Access distances from the first result
+for destination in response.results[0].destinations:
+    print(f"{destination.id}: {destination.distance_miles} miles")
+```
+
+```php
+<?php
+use Geocodio\Enums\DistanceMode;
+use Geocodio\Enums\DistanceUnits;
+
+$destinations = [
+    '38.8977,-77.0365,WhiteHouse',
+    '38.8895,-77.0353,WashingtonMonument'
+];
+
+$response = $geocoder->geocode(
+    '1109 N Highland St, Arlington VA',
+    destinations: $destinations,
+    distanceMode: DistanceMode::Driving,
+    distanceUnits: DistanceUnits::Miles
+);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const { DistanceMode, DistanceUnits } = Geocodio;
+
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+const destinations = [
+  '38.8977,-77.0365,WhiteHouse',
+  '38.8895,-77.0353,WashingtonMonument'
+];
+
+geocoder.geocode('1109 N Highland St, Arlington VA', [], null, {
+    destinations: destinations,
+    mode: DistanceMode.Driving,
+    units: DistanceUnits.Miles
+  })
+  .then(response => {
+    console.log(response.results[0].destinations);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
 > Example response with distances:
 
 ```json
@@ -7822,6 +7909,92 @@ The <code>driving</code> mode uses 2x the lookup credits of <code>straightline</
 curl "https://api.enterprise.geocod.io/v1.9/distance?origin=38.8977,-77.0365,WhiteHouse&destinations[]=38.8895,-77.0353,WashingtonMonument&destinations[]=38.9072,-77.0369,DupontCircle&mode=driving&api_key=YOUR_API_KEY"
 ```
 
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+origin = '38.8977,-77.0365,WhiteHouse'
+destinations = [
+  '38.8895,-77.0353,WashingtonMonument',
+  '38.9072,-77.0369,DupontCircle'
+]
+
+response = geocodio.distance(
+  origin,
+  destinations,
+  mode: :driving,
+  units: :miles
+)
+```
+
+```python
+from geocodio import Geocodio
+from geocodio.constants import DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
+
+client = Geocodio("YOUR_API_KEY")
+
+origin = "38.8977,-77.0365,WhiteHouse"
+destinations = [
+    "38.8895,-77.0353,WashingtonMonument",
+    "38.9072,-77.0369,DupontCircle"
+]
+
+response = client.distance(
+    origin,
+    destinations,
+    mode=DISTANCE_MODE_DRIVING,
+    units=DISTANCE_UNITS_MILES
+)
+
+for destination in response.destinations:
+    print(f"{destination.id}: {destination.distance_miles} miles, {destination.duration_seconds} seconds")
+```
+
+```php
+<?php
+use Geocodio\Enums\DistanceMode;
+use Geocodio\Enums\DistanceUnits;
+
+$origin = '38.8977,-77.0365,WhiteHouse';
+$destinations = [
+    '38.8895,-77.0353,WashingtonMonument',
+    '38.9072,-77.0369,DupontCircle'
+];
+
+$response = $geocoder->distance(
+    $origin,
+    $destinations,
+    mode: DistanceMode::Driving,
+    units: DistanceUnits::Miles
+);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const { DistanceMode, DistanceUnits } = Geocodio;
+
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+const origin = '38.8977,-77.0365,WhiteHouse';
+const destinations = [
+  '38.8895,-77.0353,WashingtonMonument',
+  '38.9072,-77.0369,DupontCircle'
+];
+
+geocoder.distance(origin, destinations, {
+    mode: DistanceMode.Driving,
+    units: DistanceUnits.Miles
+  })
+  .then(response => {
+    console.log(response.destinations);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
 > Example response:
 
 ```json
@@ -7902,6 +8075,110 @@ curl -X POST \
     "mode": "driving"
   }' \
   "https://api.enterprise.geocod.io/v1.9/distance-matrix?api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+origins = [
+  '38.8977,-77.0365,DC',
+  '40.7128,-74.0060,NYC'
+]
+
+destinations = [
+  '39.80,-89.66,Springfield',
+  '41.8781,-87.6298,Chicago'
+]
+
+response = geocodio.distanceMatrix(
+  origins,
+  destinations,
+  mode: :driving,
+  units: :miles
+)
+```
+
+```python
+from geocodio import Geocodio
+from geocodio.constants import DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
+
+client = Geocodio("YOUR_API_KEY")
+
+origins = [
+    "38.8977,-77.0365,DC",
+    "40.7128,-74.0060,NYC"
+]
+
+destinations = [
+    "39.80,-89.66,Springfield",
+    "41.8781,-87.6298,Chicago"
+]
+
+response = client.distance_matrix(
+    origins,
+    destinations,
+    mode=DISTANCE_MODE_DRIVING,
+    units=DISTANCE_UNITS_MILES
+)
+
+for result in response.results:
+    print(f"From {result.origin.id}:")
+    for dest in result.destinations:
+        print(f"  to {dest.id}: {dest.distance_miles} miles")
+```
+
+```php
+<?php
+use Geocodio\Enums\DistanceMode;
+use Geocodio\Enums\DistanceUnits;
+
+$origins = [
+    '38.8977,-77.0365,DC',
+    '40.7128,-74.0060,NYC'
+];
+
+$destinations = [
+    '39.80,-89.66,Springfield',
+    '41.8781,-87.6298,Chicago'
+];
+
+$response = $geocoder->distanceMatrix(
+    $origins,
+    $destinations,
+    mode: DistanceMode::Driving,
+    units: DistanceUnits::Miles
+);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const { DistanceMode, DistanceUnits } = Geocodio;
+
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+const origins = [
+  '38.8977,-77.0365,DC',
+  '40.7128,-74.0060,NYC'
+];
+
+const destinations = [
+  '39.80,-89.66,Springfield',
+  '41.8781,-87.6298,Chicago'
+];
+
+geocoder.distanceMatrix(origins, destinations, {
+    mode: DistanceMode.Driving,
+    units: DistanceUnits.Miles
+  })
+  .then(response => {
+    console.log(response.results);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
 ```
 
 > Example response:
@@ -8036,6 +8313,130 @@ curl -X POST \
   "https://api.enterprise.geocod.io/v1.9/distance-jobs?api_key=YOUR_API_KEY"
 ```
 
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+origins = [
+  { lat: 38.8977, lng: -77.0365, id: 'Store1' },
+  { lat: 40.7128, lng: -74.0060, id: 'Store2' }
+]
+
+destinations = [
+  '39.80,-89.66,Customer1',
+  '41.8781,-87.6298,Customer2',
+  '34.0522,-118.2437,Customer3'
+]
+
+job = geocodio.createDistanceMatrixJob(
+  'Store to Customer Distances',
+  origins,
+  destinations,
+  mode: :driving,
+  max_results: 2,
+  order_by: :distance
+)
+
+puts job.identifier
+```
+
+```python
+from geocodio import Geocodio
+from geocodio.constants import (
+    DISTANCE_MODE_DRIVING,
+    DISTANCE_ORDER_BY_DISTANCE
+)
+
+client = Geocodio("YOUR_API_KEY")
+
+origins = [
+    {"lat": 38.8977, "lng": -77.0365, "id": "Store1"},
+    {"lat": 40.7128, "lng": -74.0060, "id": "Store2"}
+]
+
+destinations = [
+    "39.80,-89.66,Customer1",
+    "41.8781,-87.6298,Customer2",
+    "34.0522,-118.2437,Customer3"
+]
+
+job = client.create_distance_matrix_job(
+    name="Store to Customer Distances",
+    origins=origins,
+    destinations=destinations,
+    mode=DISTANCE_MODE_DRIVING,
+    max_results=2,
+    order_by=DISTANCE_ORDER_BY_DISTANCE
+)
+
+print(f"Job created: {job.identifier}")
+```
+
+```php
+<?php
+use Geocodio\Enums\DistanceMode;
+use Geocodio\Enums\DistanceOrderBy;
+
+$origins = [
+    ['lat' => 38.8977, 'lng' => -77.0365, 'id' => 'Store1'],
+    ['lat' => 40.7128, 'lng' => -74.0060, 'id' => 'Store2']
+];
+
+$destinations = [
+    '39.80,-89.66,Customer1',
+    '41.8781,-87.6298,Customer2',
+    '34.0522,-118.2437,Customer3'
+];
+
+$job = $geocoder->createDistanceMatrixJob(
+    name: 'Store to Customer Distances',
+    origins: $origins,
+    destinations: $destinations,
+    mode: DistanceMode::Driving,
+    maxResults: 2,
+    orderBy: DistanceOrderBy::Distance
+);
+
+echo $job->identifier;
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const { DistanceMode, DistanceOrderBy } = Geocodio;
+
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+const origins = [
+  { lat: 38.8977, lng: -77.0365, id: 'Store1' },
+  { lat: 40.7128, lng: -74.0060, id: 'Store2' }
+];
+
+const destinations = [
+  '39.80,-89.66,Customer1',
+  '41.8781,-87.6298,Customer2',
+  '34.0522,-118.2437,Customer3'
+];
+
+geocoder.createDistanceMatrixJob(
+    'Store to Customer Distances',
+    origins,
+    destinations,
+    {
+      mode: DistanceMode.Driving,
+      maxResults: 2,
+      orderBy: DistanceOrderBy.Distance
+    }
+  )
+  .then(job => {
+    console.log(`Job created: ${job.identifier}`);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
 > Example response:
 
 ```json
@@ -8111,6 +8512,51 @@ curl -X POST \
 
 ```shell
 curl "https://api.enterprise.geocod.io/v1.9/distance-jobs/abc123xyz?api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+status = geocodio.distanceMatrixJobStatus('abc123xyz')
+
+puts "Progress: #{status.progress}%"
+puts "Status: #{status.status}"
+```
+
+```python
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+status = client.distance_matrix_job_status("abc123xyz")
+
+print(f"Progress: {status.progress}%")
+print(f"Status: {status.status}")
+```
+
+```php
+<?php
+$status = $geocoder->distanceMatrixJobStatus('abc123xyz');
+
+echo "Progress: {$status->progress}%";
+echo "Status: {$status->status}";
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+geocoder.distanceMatrixJobStatus('abc123xyz')
+  .then(status => {
+    console.log(`Progress: ${status.progress}%`);
+    console.log(`Status: ${status.status}`);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
 ```
 
 > Example response (processing):
@@ -8189,6 +8635,58 @@ Status | Description
 curl "https://api.enterprise.geocod.io/v1.9/distance-jobs?api_key=YOUR_API_KEY"
 ```
 
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+# Get page 1 (default)
+jobs = geocodio.distanceMatrixJobs
+
+jobs.data.each do |job|
+  puts "#{job.name}: #{job.status}"
+end
+```
+
+```python
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Get all jobs (page 1 by default)
+jobs = client.distance_matrix_jobs()
+
+for job in jobs.data:
+    print(f"{job.name}: {job.status}")
+```
+
+```php
+<?php
+// Get page 1 (default)
+$jobs = $geocoder->distanceMatrixJobs();
+
+foreach ($jobs->data as $job) {
+    echo "{$job->name}: {$job->status}";
+}
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+// Get page 1 (default)
+geocoder.distanceMatrixJobs()
+  .then(response => {
+    response.data.forEach(job => {
+      console.log(`${job.name}: ${job.status}`);
+    });
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
 > Example response:
 
 ```json
@@ -8243,6 +8741,74 @@ curl "https://api.enterprise.geocod.io/v1.9/distance-jobs/abc123xyz/download?api
   -o results.json
 ```
 
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+# Get results as parsed JSON
+results = geocodio.getDistanceMatrixJobResults('abc123xyz')
+
+# Or download to a file
+geocodio.downloadDistanceMatrixJob('abc123xyz', 'results.json')
+```
+
+```python
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Get results as parsed JSON
+results = client.get_distance_matrix_job_results("abc123xyz")
+
+for result in results.results:
+    print(f"From {result.origin.id}:")
+    for dest in result.destinations:
+        print(f"  to {dest.id}: {dest.distance_miles} miles")
+
+# Or download to a file
+client.download_distance_matrix_job("abc123xyz", "results.json")
+```
+
+```php
+<?php
+// Get results as parsed JSON
+$results = $geocoder->getDistanceMatrixJobResults('abc123xyz');
+
+foreach ($results->results as $result) {
+    echo "From {$result->origin->id}:";
+    foreach ($result->destinations as $dest) {
+        echo "  to {$dest->id}: {$dest->distance_miles} miles";
+    }
+}
+
+// Or download to a file
+$geocoder->downloadDistanceMatrixJob('abc123xyz', 'results.json');
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+// Get results as parsed JSON
+geocoder.getDistanceMatrixJobResults('abc123xyz')
+  .then(results => {
+    results.results.forEach(result => {
+      console.log(`From ${result.origin.id}:`);
+      result.destinations.forEach(dest => {
+        console.log(`  to ${dest.id}: ${dest.distance_miles} miles`);
+      });
+    });
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+// Or download to a file
+geocoder.downloadDistanceMatrixJob('abc123xyz', 'results.json');
+```
+
 Download the results of a completed distance matrix job as a JSON file. The response format is the same as the [distance matrix endpoint](#distance-matrix).
 
 <aside class="warning">
@@ -8266,6 +8832,41 @@ Parameter | Description
 
 ```shell
 curl -X DELETE "https://api.enterprise.geocod.io/v1.9/distance-jobs/abc123xyz?api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+geocodio.deleteDistanceMatrixJob('abc123xyz')
+```
+
+```python
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+client.delete_distance_matrix_job("abc123xyz")
+```
+
+```php
+<?php
+$geocoder->deleteDistanceMatrixJob('abc123xyz');
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+geocoder.deleteDistanceMatrixJob('abc123xyz')
+  .then(() => {
+    console.log('Job deleted successfully');
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
 ```
 
 > Example response:
