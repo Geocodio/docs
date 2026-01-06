@@ -3687,12 +3687,10 @@ geocoder.createDistanceMatrixJob(
 
 ```json
 {
-  "id": 123,
   "identifier": "abc123xyz",
   "name": "Store to Customer Distances",
   "status": "ENQUEUED",
   "created_at": "2026-01-06T10:30:00Z",
-  "updated_at": "2026-01-06T10:30:00Z",
   "origins_type": "coordinates",
   "origins_count": 2,
   "destinations_type": "coordinates",
@@ -3809,13 +3807,10 @@ geocoder.distanceMatrixJobStatus('abc123xyz')
 
 ```json
 {
-  "id": 123,
   "identifier": "abc123xyz",
   "name": "Store to Customer Distances",
   "status": "PROCESSING",
   "created_at": "2026-01-06T10:30:00Z",
-  "updated_at": "2026-01-06T10:32:00Z",
-  "last_heartbeat_at": "2026-01-06T10:32:00Z",
   "origins_type": "coordinates",
   "origins_count": 2,
   "destinations_type": "coordinates",
@@ -3834,12 +3829,10 @@ geocoder.distanceMatrixJobStatus('abc123xyz')
 
 ```json
 {
-  "id": 123,
   "identifier": "abc123xyz",
   "name": "Store to Customer Distances",
   "status": "COMPLETED",
   "created_at": "2026-01-06T10:30:00Z",
-  "updated_at": "2026-01-06T10:35:00Z",
   "origins_type": "coordinates",
   "origins_count": 2,
   "destinations_type": "coordinates",
@@ -3939,12 +3932,10 @@ geocoder.distanceMatrixJobs()
 {
   "data": [
     {
-      "id": 123,
       "identifier": "abc123xyz",
       "name": "Store to Customer Distances",
       "status": "COMPLETED",
       "created_at": "2026-01-06T10:30:00Z",
-      "updated_at": "2026-01-06T10:35:00Z",
       "total_calculations": 6,
       "progress": 100,
       "is_expired": false
