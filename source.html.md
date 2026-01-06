@@ -481,6 +481,16 @@ Parameter | Description
 `fields`  | Optional parameter to request [additional data appends](#fields).
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
 `format`  | Optional parameter to change the JSON output format to a different pre-defined structure. Currently, "simple" is the only valid value. If not set, the default full JSON output structure is used.
+`destinations[]` | Optional parameter. Array of destination locations for [distance calculation](#distance). Each destination can be a coordinate string (`"lat,lng"` or `"lat,lng,id"`) or a geocodable address. When provided, each result will include a `destinations` array with distance/duration to each destination.
+`distance_mode` | Optional parameter. Distance calculation mode: `driving` (road network, includes duration) or `straightline` (great-circle distance, no duration). Default is `straightline`.
+`distance_units` | Optional parameter. Unit of measurement: `miles` or `km`. Default is `miles`.
+`distance_max_results` | Optional parameter. Maximum number of destinations to return per geocoded result.
+`distance_max_distance` | Optional parameter. Filter out destinations beyond this distance (in specified units).
+`distance_min_distance` | Optional parameter. Filter out destinations closer than this distance (in specified units).
+`distance_max_duration` | Optional parameter. Filter out destinations with travel time exceeding this value in seconds (driving mode only).
+`distance_min_duration` | Optional parameter. Filter out destinations with travel time below this value in seconds (driving mode only).
+`distance_order_by` | Optional parameter. Sort destinations by `distance` or `duration`. Default is `distance`.
+`distance_sort_order` | Optional parameter. Sort order: `asc` or `desc`. Default is `asc`.
 
 <!--ENTERPRISE
 Parameter | Description
@@ -660,6 +670,170 @@ In order to verify that the unit number is valid per USPS, you can request the [
 The `input` object that is returned in the API response is not a one-for-one parsing of the initial address that is provided. In order to ensure that the `address_components` returned in `input` are accurate, we cross-reference them with the `address_components` returned in the `results` object.
 
 As such, if we aren't able to identify the exact address location in `results`, this could impact our ability to return a parsed address in `input`. In the vast majority of cases, the data returned will match the original address provided to the Geocodio API, but there may be some instances where we are not able to parse the exact input - especially in responses with lower `accuracy_type` values like `place` or `street_center`.
+
+### Geocoding with distance calculation
+
+> Geocode an address and calculate distances to multiple destinations:
+
+```shell
+curl "https://api.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&destinations[]=38.8977,-77.0365,WhiteHouse&destinations[]=38.8895,-77.0353,WashingtonMonument&distance_mode=driving&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+destinations = [
+  '38.8977,-77.0365,WhiteHouse',
+  '38.8895,-77.0353,WashingtonMonument'
+]
+
+response = geocodio.geocode(
+  ['1109 N Highland St, Arlington VA'],
+  [],
+  nil,
+  nil,
+  destinations: destinations,
+  distance_mode: :driving,
+  distance_units: :miles
+)
+```
+
+```python
+from geocodio import Geocodio
+from geocodio.constants import DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
+
+client = Geocodio("YOUR_API_KEY")
+
+destinations = [
+    "38.8977,-77.0365,WhiteHouse",
+    "38.8895,-77.0353,WashingtonMonument"
+]
+
+response = client.geocode(
+    "1109 N Highland St, Arlington VA",
+    destinations=destinations,
+    distance_mode=DISTANCE_MODE_DRIVING,
+    distance_units=DISTANCE_UNITS_MILES
+)
+
+# Access distances from the first result
+for destination in response.results[0].destinations:
+    print(f"{destination.id}: {destination.distance_miles} miles")
+```
+
+```php
+<?php
+use Geocodio\Enums\DistanceMode;
+use Geocodio\Enums\DistanceUnits;
+
+$destinations = [
+    '38.8977,-77.0365,WhiteHouse',
+    '38.8895,-77.0353,WashingtonMonument'
+];
+
+$response = $geocoder->geocode(
+    '1109 N Highland St, Arlington VA',
+    destinations: $destinations,
+    distanceMode: DistanceMode::Driving,
+    distanceUnits: DistanceUnits::Miles
+);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const { DistanceMode, DistanceUnits } = Geocodio;
+
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+const destinations = [
+  '38.8977,-77.0365,WhiteHouse',
+  '38.8895,-77.0353,WashingtonMonument'
+];
+
+geocoder.geocode('1109 N Highland St, Arlington VA', [], null, {
+    destinations: destinations,
+    mode: DistanceMode.Driving,
+    units: DistanceUnits.Miles
+  })
+  .then(response => {
+    console.log(response.results[0].destinations);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+> Example response with distances:
+
+```json
+{
+  "input": {
+    "address_components": {
+      "number": "1109",
+      "predirectional": "N",
+      "street": "Highland",
+      "suffix": "St",
+      "formatted_street": "N Highland St",
+      "city": "Arlington",
+      "state": "VA",
+      "zip": "22201",
+      "country": "US"
+    },
+    "formatted_address": "1109 N Highland St, Arlington, VA 22201"
+  },
+  "results": [
+    {
+      "address_components": {
+        "number": "1109",
+        "predirectional": "N",
+        "street": "Highland",
+        "suffix": "St",
+        "formatted_street": "N Highland St",
+        "city": "Arlington",
+        "county": "Arlington County",
+        "state": "VA",
+        "zip": "22201",
+        "country": "US"
+      },
+      "formatted_address": "1109 N Highland St, Arlington, VA 22201",
+      "location": {
+        "lat": 38.886665,
+        "lng": -77.094733
+      },
+      "accuracy": 1,
+      "accuracy_type": "rooftop",
+      "source": "Virginia GIS Clearinghouse",
+      "destinations": [
+        {
+          "query": "38.8977,-77.0365,WhiteHouse",
+          "id": "WhiteHouse",
+          "location": [38.8977, -77.0365],
+          "distance_miles": 3.8,
+          "distance_km": 6.1,
+          "duration_seconds": 720
+        },
+        {
+          "query": "38.8895,-77.0353,WashingtonMonument",
+          "id": "WashingtonMonument",
+          "location": [38.8895, -77.0353],
+          "distance_miles": 4.2,
+          "distance_km": 6.8,
+          "duration_seconds": 780
+        }
+      ]
+    }
+  ]
+}
+```
+
+When `destinations[]` is provided, each geocoded result will include a `destinations` array containing the distance and duration (if using `driving` mode) to each destination location. This is useful for finding the nearest locations to a geocoded address.
+
+<aside class="notice">
+See the <a href="#distance">Distance</a> section for more details on distance calculation options and dedicated distance endpoints.
+</aside>
 
 ## Batch geocoding
 
@@ -907,6 +1081,16 @@ Parameter | Description
 `api_key` | Your Geocodio API key
 `fields`  | Optional parameter to request [additional field appends](#fields).
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
+`destinations[]` | Optional parameter. Array of destination locations for [distance calculation](#distance). When provided, each result will include a `destinations` array with distance/duration to each destination.
+`distance_mode` | Optional parameter. Distance calculation mode: `driving` or `straightline`. Default is `straightline`.
+`distance_units` | Optional parameter. Unit of measurement: `miles` or `km`. Default is `miles`.
+`distance_max_results` | Optional parameter. Maximum number of destinations to return per geocoded result.
+`distance_max_distance` | Optional parameter. Maximum distance filter (in specified units).
+`distance_min_distance` | Optional parameter. Minimum distance filter (in specified units).
+`distance_max_duration` | Optional parameter. Maximum duration filter in seconds (driving mode only).
+`distance_min_duration` | Optional parameter. Minimum duration filter in seconds (driving mode only).
+`distance_order_by` | Optional parameter. Sort destinations by `distance` or `duration`. Default is `distance`.
+`distance_sort_order` | Optional parameter. Sort order: `asc` or `desc`. Default is `asc`.
 
 ### JSON array/object
 When making a batch geocoding request, you can `POST` queries as either a JSON array or a JSON object. If a JSON object is posted, you can specify a custom key for each element of your choice. This can be useful to match queries up with your existing data after the request is complete.
@@ -1180,6 +1364,16 @@ Parameter | Description
 `fields`  | Optional parameter to request [additional field appends](#fields).
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
 `format`  | Optional parameter to change the JSON output format to a different pre-defined structure. Currently, "simple" is the only valid value. If not set, the default full JSON output structure is used.
+`destinations[]` | Optional parameter. Array of destination locations for [distance calculation](#distance). When provided, each result will include a `destinations` array with distance/duration to each destination.
+`distance_mode` | Optional parameter. Distance calculation mode: `driving` or `straightline`. Default is `straightline`.
+`distance_units` | Optional parameter. Unit of measurement: `miles` or `km`. Default is `miles`.
+`distance_max_results` | Optional parameter. Maximum number of destinations to return per result.
+`distance_max_distance` | Optional parameter. Maximum distance filter (in specified units).
+`distance_min_distance` | Optional parameter. Minimum distance filter (in specified units).
+`distance_max_duration` | Optional parameter. Maximum duration filter in seconds (driving mode only).
+`distance_min_duration` | Optional parameter. Minimum duration filter in seconds (driving mode only).
+`distance_order_by` | Optional parameter. Sort destinations by `distance` or `duration`. Default is `distance`.
+`distance_sort_order` | Optional parameter. Sort order: `asc` or `desc`. Default is `asc`.
 
 ### The `format` parameter
 
@@ -1406,6 +1600,16 @@ Parameter | Description
 `api_key` | Your Geocodio API key
 `fields`  | Optional parameter to request [additional field appends](#fields).
 `limit`   | Optional parameter. The maximum number of results to return. The default is no limit. If set to 0, no limit will be applied.
+`destinations[]` | Optional parameter. Array of destination locations for [distance calculation](#distance). When provided, each result will include a `destinations` array with distance/duration to each destination.
+`distance_mode` | Optional parameter. Distance calculation mode: `driving` or `straightline`. Default is `straightline`.
+`distance_units` | Optional parameter. Unit of measurement: `miles` or `km`. Default is `miles`.
+`distance_max_results` | Optional parameter. Maximum number of destinations to return per result.
+`distance_max_distance` | Optional parameter. Maximum distance filter (in specified units).
+`distance_min_distance` | Optional parameter. Minimum distance filter (in specified units).
+`distance_max_duration` | Optional parameter. Maximum duration filter in seconds (driving mode only).
+`distance_min_duration` | Optional parameter. Minimum duration filter in seconds (driving mode only).
+`distance_order_by` | Optional parameter. Sort destinations by `distance` or `duration`. Default is `distance`.
+`distance_sort_order` | Optional parameter. Sort order: `asc` or `desc`. Default is `asc`.
 
 
 # Geocoding lists
@@ -2911,6 +3115,1027 @@ MST          | Mountain Standard Time
 PST          | Pacific Standard Time
 SST          | Samoa Standard Time
 
+# Distance
+
+Geocodio's Distance API allows you to calculate distances and travel times between locations. You can calculate from one origin to many destinations, or create a full distance matrix between multiple origins and destinations.
+
+For large-scale calculations, asynchronous distance jobs can be used similar to the [Lists API](#geocoding-lists).
+
+## Location formats
+
+Locations can be specified in three formats:
+
+Format | Example | Description
+------ | ------- | -----------
+Coordinate string | `"38.8977,-77.0365"` | Latitude and longitude separated by a comma
+Coordinate string with ID | `"38.8977,-77.0365,DC"` | Includes a custom identifier that will be returned in the response
+Coordinate object | `{"lat": 38.8977, "lng": -77.0365, "id": "DC"}` | JSON object with lat, lng, and optional id properties
+Address string | `"1600 Pennsylvania Ave NW, Washington DC"` | A geocodable address (will be geocoded automatically)
+
+<aside class="notice">
+When addresses are geocoded, the geocoding result will be included in the response under a <code>geocode</code> property, and the lookup will count towards your geocoding credits.
+</aside>
+
+## Calculation modes
+
+Mode         | Description                                           | Duration returned | Credit multiplier
+------------ | ----------------------------------------------------- | ----------------- | -----------------
+`straightline` | Great-circle distance (as the crow flies) using the Haversine formula | No | 1x
+`driving`    | Driving distance and time using road networks         | Yes               | 2x
+
+<aside class="notice">
+The <code>driving</code> mode uses 2x the lookup credits of <code>straightline</code> mode.
+</aside>
+
+## Single origin distance
+
+> Calculate distances from a single origin to multiple destinations:
+
+```shell
+curl "https://api.geocod.io/v1.9/distance?origin=38.8977,-77.0365,WhiteHouse&destinations[]=38.8895,-77.0353,WashingtonMonument&destinations[]=38.9072,-77.0369,DupontCircle&mode=driving&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+origin = '38.8977,-77.0365,WhiteHouse'
+destinations = [
+  '38.8895,-77.0353,WashingtonMonument',
+  '38.9072,-77.0369,DupontCircle'
+]
+
+response = geocodio.distance(
+  origin,
+  destinations,
+  mode: :driving,
+  units: :miles
+)
+```
+
+```python
+from geocodio import Geocodio
+from geocodio.constants import DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
+
+client = Geocodio("YOUR_API_KEY")
+
+origin = "38.8977,-77.0365,WhiteHouse"
+destinations = [
+    "38.8895,-77.0353,WashingtonMonument",
+    "38.9072,-77.0369,DupontCircle"
+]
+
+response = client.distance(
+    origin,
+    destinations,
+    mode=DISTANCE_MODE_DRIVING,
+    units=DISTANCE_UNITS_MILES
+)
+
+for destination in response.destinations:
+    print(f"{destination.id}: {destination.distance_miles} miles, {destination.duration_seconds} seconds")
+```
+
+```php
+<?php
+use Geocodio\Enums\DistanceMode;
+use Geocodio\Enums\DistanceUnits;
+
+$origin = '38.8977,-77.0365,WhiteHouse';
+$destinations = [
+    '38.8895,-77.0353,WashingtonMonument',
+    '38.9072,-77.0369,DupontCircle'
+];
+
+$response = $geocoder->distance(
+    $origin,
+    $destinations,
+    mode: DistanceMode::Driving,
+    units: DistanceUnits::Miles
+);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const { DistanceMode, DistanceUnits } = Geocodio;
+
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+const origin = '38.8977,-77.0365,WhiteHouse';
+const destinations = [
+  '38.8895,-77.0353,WashingtonMonument',
+  '38.9072,-77.0369,DupontCircle'
+];
+
+geocoder.distance(origin, destinations, {
+    mode: DistanceMode.Driving,
+    units: DistanceUnits.Miles
+  })
+  .then(response => {
+    console.log(response.destinations);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+> Example response:
+
+```json
+{
+  "mode": "driving",
+  "origin": {
+    "query": "38.8977,-77.0365,WhiteHouse",
+    "id": "WhiteHouse",
+    "location": [38.8977, -77.0365]
+  },
+  "destinations": [
+    {
+      "query": "38.8895,-77.0353,WashingtonMonument",
+      "id": "WashingtonMonument",
+      "location": [38.8895, -77.0353],
+      "distance_miles": 0.6,
+      "distance_km": 1.0,
+      "duration_seconds": 180
+    },
+    {
+      "query": "38.9072,-77.0369,DupontCircle",
+      "id": "DupontCircle",
+      "location": [38.9072, -77.0369],
+      "distance_miles": 1.2,
+      "distance_km": 1.9,
+      "duration_seconds": 420
+    }
+  ]
+}
+```
+
+Calculate distances and travel times from a single origin to one or more destinations. This is useful for finding the nearest locations to a given point.
+
+### HTTP Request
+
+`GET https://api.geocod.io/v1.9/distance`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`origin` | **Required.** The origin location (coordinate string, coordinate with ID, or address)
+`destinations[]` | **Required.** Array of destination locations (max 100 per request)
+`api_key` | Your Geocodio API key
+`mode` | Optional. `driving` or `straightline`. Default is `straightline`
+`units` | Optional. `miles` or `km`. Default is `miles`
+`max_results` | Optional. Maximum number of destinations to return
+`max_distance` | Optional. Filter out destinations beyond this distance (in specified units)
+`min_distance` | Optional. Filter out destinations closer than this distance (in specified units)
+`max_duration` | Optional. Filter out destinations with travel time exceeding this value in seconds (driving mode only)
+`min_duration` | Optional. Filter out destinations with travel time below this value in seconds (driving mode only)
+`order_by` | Optional. Sort destinations by `distance` or `duration`. Default is `distance`
+`sort_order` | Optional. Sort order: `asc` or `desc`. Default is `asc`
+
+### Response headers
+
+Header | Description
+------ | -----------
+`X-BILLABLE-DISTANCE-CALCULATIONS` | Number of distance calculations billed for this request
+`X-BILLABLE-LOOKUPS-COUNT` | Number of geocode lookups performed (only present if addresses were geocoded)
+
+## Distance matrix
+
+> Calculate distances between multiple origins and multiple destinations:
+
+```shell
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "origins": [
+      "38.8977,-77.0365,DC",
+      "40.7128,-74.0060,NYC"
+    ],
+    "destinations": [
+      "39.80,-89.66,Springfield",
+      "41.8781,-87.6298,Chicago"
+    ],
+    "mode": "driving"
+  }' \
+  "https://api.geocod.io/v1.9/distance-matrix?api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+origins = [
+  '38.8977,-77.0365,DC',
+  '40.7128,-74.0060,NYC'
+]
+
+destinations = [
+  '39.80,-89.66,Springfield',
+  '41.8781,-87.6298,Chicago'
+]
+
+response = geocodio.distanceMatrix(
+  origins,
+  destinations,
+  mode: :driving,
+  units: :miles
+)
+```
+
+```python
+from geocodio import Geocodio
+from geocodio.constants import DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
+
+client = Geocodio("YOUR_API_KEY")
+
+origins = [
+    "38.8977,-77.0365,DC",
+    "40.7128,-74.0060,NYC"
+]
+
+destinations = [
+    "39.80,-89.66,Springfield",
+    "41.8781,-87.6298,Chicago"
+]
+
+response = client.distance_matrix(
+    origins,
+    destinations,
+    mode=DISTANCE_MODE_DRIVING,
+    units=DISTANCE_UNITS_MILES
+)
+
+for result in response.results:
+    print(f"From {result.origin.id}:")
+    for dest in result.destinations:
+        print(f"  to {dest.id}: {dest.distance_miles} miles")
+```
+
+```php
+<?php
+use Geocodio\Enums\DistanceMode;
+use Geocodio\Enums\DistanceUnits;
+
+$origins = [
+    '38.8977,-77.0365,DC',
+    '40.7128,-74.0060,NYC'
+];
+
+$destinations = [
+    '39.80,-89.66,Springfield',
+    '41.8781,-87.6298,Chicago'
+];
+
+$response = $geocoder->distanceMatrix(
+    $origins,
+    $destinations,
+    mode: DistanceMode::Driving,
+    units: DistanceUnits::Miles
+);
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const { DistanceMode, DistanceUnits } = Geocodio;
+
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+const origins = [
+  '38.8977,-77.0365,DC',
+  '40.7128,-74.0060,NYC'
+];
+
+const destinations = [
+  '39.80,-89.66,Springfield',
+  '41.8781,-87.6298,Chicago'
+];
+
+geocoder.distanceMatrix(origins, destinations, {
+    mode: DistanceMode.Driving,
+    units: DistanceUnits.Miles
+  })
+  .then(response => {
+    console.log(response.results);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+> Example response:
+
+```json
+{
+  "mode": "driving",
+  "results": [
+    {
+      "origin": {
+        "query": "38.8977,-77.0365,DC",
+        "id": "DC",
+        "location": [38.8977, -77.0365]
+      },
+      "destinations": [
+        {
+          "query": "39.80,-89.66,Springfield",
+          "id": "Springfield",
+          "location": [39.80, -89.66],
+          "distance_miles": 699.2,
+          "distance_km": 1125.3,
+          "duration_seconds": 36540
+        },
+        {
+          "query": "41.8781,-87.6298,Chicago",
+          "id": "Chicago",
+          "location": [41.8781, -87.6298],
+          "distance_miles": 695.2,
+          "distance_km": 1118.9,
+          "duration_seconds": 36000
+        }
+      ]
+    },
+    {
+      "origin": {
+        "query": "40.7128,-74.0060,NYC",
+        "id": "NYC",
+        "location": [40.7128, -74.0060]
+      },
+      "destinations": [
+        {
+          "query": "39.80,-89.66,Springfield",
+          "id": "Springfield",
+          "location": [39.80, -89.66],
+          "distance_miles": 876.5,
+          "distance_km": 1410.6,
+          "duration_seconds": 45900
+        },
+        {
+          "query": "41.8781,-87.6298,Chicago",
+          "id": "Chicago",
+          "location": [41.8781, -87.6298],
+          "distance_miles": 790.1,
+          "distance_km": 1271.5,
+          "duration_seconds": 41400
+        }
+      ]
+    }
+  ]
+}
+```
+
+Calculate distances and travel times from multiple origins to multiple destinations (distance matrix). This is useful for route optimization, coverage analysis, and logistics planning.
+
+<aside class="warning">
+The matrix size (origins × destinations) is limited to 10,000 calculations per request. For larger matrices, use the <a href="#distance-jobs-async">asynchronous distance jobs</a>.
+</aside>
+
+### HTTP Request
+
+`POST https://api.geocod.io/v1.9/distance-matrix`
+
+### Request Body Parameters
+
+Parameter | Description
+--------- | -----------
+`origins` | **Required.** Array of origin locations
+`destinations` | **Required.** Array of destination locations
+`mode` | Optional. `driving` or `straightline`. Default is `straightline`
+`units` | Optional. `miles` or `km`. Default is `miles`
+`max_results` | Optional. Maximum number of destinations to return per origin
+`max_distance` | Optional. Maximum distance filter (in specified units)
+`min_distance` | Optional. Minimum distance filter (in specified units)
+`max_duration` | Optional. Maximum duration filter in seconds (driving mode only)
+`min_duration` | Optional. Minimum duration filter in seconds (driving mode only)
+`order_by` | Optional. Sort destinations by `distance` or `duration`. Default is `distance`
+`sort_order` | Optional. Sort order: `asc` or `desc`. Default is `asc`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`api_key` | Your Geocodio API key
+
+### Response headers
+
+Header | Description
+------ | -----------
+`X-BILLABLE-DISTANCE-CALCULATIONS` | Number of distance calculations billed for this request
+`X-BILLABLE-LOOKUPS-COUNT` | Number of geocode lookups performed (only present if addresses were geocoded)
+
+## Distance jobs (async)
+
+For large-scale distance calculations exceeding the synchronous limits, you can create asynchronous distance matrix jobs. Similar to the [Lists API](#geocoding-lists), jobs are processed in the background and results can be downloaded when complete.
+
+<aside class="warning">
+Distance job results are automatically deleted 72 hours after processing completes. The maximum job size is 50,000 calculations (origins × destinations).
+</aside>
+
+### Create a distance matrix job
+
+> Create a new distance matrix job:
+
+```shell
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Store to Customer Distances",
+    "origins": [
+      {"lat": 38.8977, "lng": -77.0365, "id": "Store1"},
+      {"lat": 40.7128, "lng": -74.0060, "id": "Store2"}
+    ],
+    "destinations": [
+      "39.80,-89.66,Customer1",
+      "41.8781,-87.6298,Customer2",
+      "34.0522,-118.2437,Customer3"
+    ],
+    "distance_mode": "driving",
+    "max_results": 2,
+    "order_by": "distance"
+  }' \
+  "https://api.geocod.io/v1.9/distance-jobs?api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+origins = [
+  { lat: 38.8977, lng: -77.0365, id: 'Store1' },
+  { lat: 40.7128, lng: -74.0060, id: 'Store2' }
+]
+
+destinations = [
+  '39.80,-89.66,Customer1',
+  '41.8781,-87.6298,Customer2',
+  '34.0522,-118.2437,Customer3'
+]
+
+job = geocodio.createDistanceMatrixJob(
+  'Store to Customer Distances',
+  origins,
+  destinations,
+  mode: :driving,
+  max_results: 2,
+  order_by: :distance
+)
+
+puts job.identifier
+```
+
+```python
+from geocodio import Geocodio
+from geocodio.constants import (
+    DISTANCE_MODE_DRIVING,
+    DISTANCE_ORDER_BY_DISTANCE
+)
+
+client = Geocodio("YOUR_API_KEY")
+
+origins = [
+    {"lat": 38.8977, "lng": -77.0365, "id": "Store1"},
+    {"lat": 40.7128, "lng": -74.0060, "id": "Store2"}
+]
+
+destinations = [
+    "39.80,-89.66,Customer1",
+    "41.8781,-87.6298,Customer2",
+    "34.0522,-118.2437,Customer3"
+]
+
+job = client.create_distance_matrix_job(
+    name="Store to Customer Distances",
+    origins=origins,
+    destinations=destinations,
+    mode=DISTANCE_MODE_DRIVING,
+    max_results=2,
+    order_by=DISTANCE_ORDER_BY_DISTANCE
+)
+
+print(f"Job created: {job.identifier}")
+```
+
+```php
+<?php
+use Geocodio\Enums\DistanceMode;
+use Geocodio\Enums\DistanceOrderBy;
+
+$origins = [
+    ['lat' => 38.8977, 'lng' => -77.0365, 'id' => 'Store1'],
+    ['lat' => 40.7128, 'lng' => -74.0060, 'id' => 'Store2']
+];
+
+$destinations = [
+    '39.80,-89.66,Customer1',
+    '41.8781,-87.6298,Customer2',
+    '34.0522,-118.2437,Customer3'
+];
+
+$job = $geocoder->createDistanceMatrixJob(
+    name: 'Store to Customer Distances',
+    origins: $origins,
+    destinations: $destinations,
+    mode: DistanceMode::Driving,
+    maxResults: 2,
+    orderBy: DistanceOrderBy::Distance
+);
+
+echo $job->identifier;
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const { DistanceMode, DistanceOrderBy } = Geocodio;
+
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+const origins = [
+  { lat: 38.8977, lng: -77.0365, id: 'Store1' },
+  { lat: 40.7128, lng: -74.0060, id: 'Store2' }
+];
+
+const destinations = [
+  '39.80,-89.66,Customer1',
+  '41.8781,-87.6298,Customer2',
+  '34.0522,-118.2437,Customer3'
+];
+
+geocoder.createDistanceMatrixJob(
+    'Store to Customer Distances',
+    origins,
+    destinations,
+    {
+      mode: DistanceMode.Driving,
+      maxResults: 2,
+      orderBy: DistanceOrderBy.Distance
+    }
+  )
+  .then(job => {
+    console.log(`Job created: ${job.identifier}`);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+> Example response:
+
+```json
+{
+  "id": 123,
+  "identifier": "abc123xyz",
+  "name": "Store to Customer Distances",
+  "status": "ENQUEUED",
+  "created_at": "2026-01-06T10:30:00Z",
+  "updated_at": "2026-01-06T10:30:00Z",
+  "origins_type": "coordinates",
+  "origins_count": 2,
+  "destinations_type": "coordinates",
+  "destinations_count": 3,
+  "distance_mode": "driving",
+  "total_calculations": 6,
+  "calculations_completed": 0,
+  "progress": 0,
+  "is_expired": false
+}
+```
+
+Creates a new distance matrix job and starts processing in the background. The response returns a job identifier that can be used to check the status and download results when complete.
+
+### HTTP Request
+
+`POST https://api.geocod.io/v1.9/distance-jobs`
+
+### Request Body Parameters
+
+Parameter | Description
+--------- | -----------
+`name` | **Required.** A name for this distance matrix job (max 255 characters)
+`origins` | **Required.** Array of origin locations, or an integer list ID from a previously uploaded spreadsheet
+`destinations` | **Required.** Array of destination locations, or an integer list ID from a previously uploaded spreadsheet
+`distance_mode` | Optional. `driving` or `straightline`. Default is `straightline`
+`units` | Optional. `miles` or `km`. Default is `miles`
+`max_results` | Optional. Maximum number of destinations to return per origin
+`max_distance` | Optional. Maximum distance filter (in specified units)
+`min_distance` | Optional. Minimum distance filter (in specified units)
+`max_duration` | Optional. Maximum duration filter in seconds (driving mode only)
+`min_duration` | Optional. Minimum duration filter in seconds (driving mode only)
+`order_by` | Optional. Sort destinations by `distance` or `duration`. Default is `distance`
+`sort_order` | Optional. Sort order: `asc` or `desc`. Default is `asc`
+`fields` | Optional. Comma-separated list of data fields to append to geocoded results
+`callback_url` | Optional. URL to receive a webhook notification when the job completes
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`api_key` | Your Geocodio API key
+
+### Using list IDs
+
+You can reference previously uploaded spreadsheets by their list ID instead of providing inline coordinates:
+
+```shell
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Warehouse Distances",
+    "origins": 123,
+    "destinations": 456,
+    "distance_mode": "driving"
+  }' \
+  "https://api.geocod.io/v1.9/distance-jobs?api_key=YOUR_API_KEY"
+```
+
+### See distance job status
+
+> Get the status of a distance job:
+
+```shell
+curl "https://api.geocod.io/v1.9/distance-jobs/abc123xyz?api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+status = geocodio.distanceMatrixJobStatus('abc123xyz')
+
+puts "Progress: #{status.progress}%"
+puts "Status: #{status.status}"
+```
+
+```python
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+status = client.distance_matrix_job_status("abc123xyz")
+
+print(f"Progress: {status.progress}%")
+print(f"Status: {status.status}")
+```
+
+```php
+<?php
+$status = $geocoder->distanceMatrixJobStatus('abc123xyz');
+
+echo "Progress: {$status->progress}%";
+echo "Status: {$status->status}";
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+geocoder.distanceMatrixJobStatus('abc123xyz')
+  .then(status => {
+    console.log(`Progress: ${status.progress}%`);
+    console.log(`Status: ${status.status}`);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+> Example response (processing):
+
+```json
+{
+  "id": 123,
+  "identifier": "abc123xyz",
+  "name": "Store to Customer Distances",
+  "status": "PROCESSING",
+  "created_at": "2026-01-06T10:30:00Z",
+  "updated_at": "2026-01-06T10:32:00Z",
+  "last_heartbeat_at": "2026-01-06T10:32:00Z",
+  "origins_type": "coordinates",
+  "origins_count": 2,
+  "destinations_type": "coordinates",
+  "destinations_count": 3,
+  "distance_mode": "driving",
+  "total_calculations": 6,
+  "calculations_completed": 4,
+  "progress": 66.67,
+  "status_message": "Processing distance calculations",
+  "time_left": "1 minute",
+  "is_expired": false
+}
+```
+
+> Example response (completed):
+
+```json
+{
+  "id": 123,
+  "identifier": "abc123xyz",
+  "name": "Store to Customer Distances",
+  "status": "COMPLETED",
+  "created_at": "2026-01-06T10:30:00Z",
+  "updated_at": "2026-01-06T10:35:00Z",
+  "origins_type": "coordinates",
+  "origins_count": 2,
+  "destinations_type": "coordinates",
+  "destinations_count": 3,
+  "distance_mode": "driving",
+  "total_calculations": 6,
+  "calculations_completed": 6,
+  "progress": 100,
+  "download_url": "https://api.geocod.io/v1.9/distance-jobs/abc123xyz/download",
+  "is_expired": false
+}
+```
+
+### HTTP Request
+
+`GET https://api.geocod.io/v1.9/distance-jobs/{identifier}`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`identifier` | The job identifier returned when the job was created
+`api_key` | Your Geocodio API key
+
+### Job status values
+
+Status | Description
+------ | -----------
+`ENQUEUED` | Job is waiting to be processed
+`PROCESSING` | Job is currently being processed
+`COMPLETED` | Job is complete, results available for download
+`FAILED` | Job processing failed
+
+### List all distance jobs
+
+> List all distance jobs:
+
+```shell
+curl "https://api.geocod.io/v1.9/distance-jobs?api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+# Get page 1 (default)
+jobs = geocodio.distanceMatrixJobs
+
+jobs.data.each do |job|
+  puts "#{job.name}: #{job.status}"
+end
+```
+
+```python
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Get all jobs (page 1 by default)
+jobs = client.distance_matrix_jobs()
+
+for job in jobs.data:
+    print(f"{job.name}: {job.status}")
+```
+
+```php
+<?php
+// Get page 1 (default)
+$jobs = $geocoder->distanceMatrixJobs();
+
+foreach ($jobs->data as $job) {
+    echo "{$job->name}: {$job->status}";
+}
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+// Get page 1 (default)
+geocoder.distanceMatrixJobs()
+  .then(response => {
+    response.data.forEach(job => {
+      console.log(`${job.name}: ${job.status}`);
+    });
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+> Example response:
+
+```json
+{
+  "data": [
+    {
+      "id": 123,
+      "identifier": "abc123xyz",
+      "name": "Store to Customer Distances",
+      "status": "COMPLETED",
+      "created_at": "2026-01-06T10:30:00Z",
+      "updated_at": "2026-01-06T10:35:00Z",
+      "total_calculations": 6,
+      "progress": 100,
+      "is_expired": false
+    }
+  ],
+  "links": {
+    "first": "https://api.geocod.io/v1.9/distance-jobs?page=1",
+    "last": "https://api.geocod.io/v1.9/distance-jobs?page=1",
+    "prev": null,
+    "next": null
+  },
+  "meta": {
+    "current_page": 1,
+    "last_page": 1,
+    "per_page": 20,
+    "total": 1
+  }
+}
+```
+
+Returns a paginated list of all distance matrix jobs.
+
+### HTTP Request
+
+`GET https://api.geocod.io/v1.9/distance-jobs`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`api_key` | Your Geocodio API key
+`page` | Optional. Page number for pagination (default: 1)
+
+### Download distance job results
+
+> Download results for a completed job:
+
+```shell
+curl "https://api.geocod.io/v1.9/distance-jobs/abc123xyz/download?api_key=YOUR_API_KEY" \
+  -o results.json
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+# Get results as parsed JSON
+results = geocodio.getDistanceMatrixJobResults('abc123xyz')
+
+# Or download to a file
+geocodio.downloadDistanceMatrixJob('abc123xyz', 'results.json')
+```
+
+```python
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+# Get results as parsed JSON
+results = client.get_distance_matrix_job_results("abc123xyz")
+
+for result in results.results:
+    print(f"From {result.origin.id}:")
+    for dest in result.destinations:
+        print(f"  to {dest.id}: {dest.distance_miles} miles")
+
+# Or download to a file
+client.download_distance_matrix_job("abc123xyz", "results.json")
+```
+
+```php
+<?php
+// Get results as parsed JSON
+$results = $geocoder->getDistanceMatrixJobResults('abc123xyz');
+
+foreach ($results->results as $result) {
+    echo "From {$result->origin->id}:";
+    foreach ($result->destinations as $dest) {
+        echo "  to {$dest->id}: {$dest->distance_miles} miles";
+    }
+}
+
+// Or download to a file
+$geocoder->downloadDistanceMatrixJob('abc123xyz', 'results.json');
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+// Get results as parsed JSON
+geocoder.getDistanceMatrixJobResults('abc123xyz')
+  .then(results => {
+    results.results.forEach(result => {
+      console.log(`From ${result.origin.id}:`);
+      result.destinations.forEach(dest => {
+        console.log(`  to ${dest.id}: ${dest.distance_miles} miles`);
+      });
+    });
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+
+// Or download to a file
+geocoder.downloadDistanceMatrixJob('abc123xyz', 'results.json');
+```
+
+Download the results of a completed distance matrix job as a JSON file. The response format is the same as the [distance matrix endpoint](#distance-matrix).
+
+<aside class="warning">
+Results are only available when the job status is <code>COMPLETED</code>. Results expire 72 hours after processing completes.
+</aside>
+
+### HTTP Request
+
+`GET https://api.geocod.io/v1.9/distance-jobs/{identifier}/download`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`identifier` | The job identifier
+`api_key` | Your Geocodio API key
+
+### Delete a distance job
+
+> Delete a distance job:
+
+```shell
+curl -X DELETE "https://api.geocod.io/v1.9/distance-jobs/abc123xyz?api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+geocodio.deleteDistanceMatrixJob('abc123xyz')
+```
+
+```python
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+client.delete_distance_matrix_job("abc123xyz")
+```
+
+```php
+<?php
+$geocoder->deleteDistanceMatrixJob('abc123xyz');
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+geocoder.deleteDistanceMatrixJob('abc123xyz')
+  .then(() => {
+    console.log('Job deleted successfully');
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+> Example response:
+
+```json
+{
+  "message": "Distance matrix job deleted successfully"
+}
+```
+
+Deletes a distance matrix job and its results.
+
+### HTTP Request
+
+`DELETE https://api.geocod.io/v1.9/distance-jobs/{identifier}`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+`identifier` | The job identifier
+`api_key` | Your Geocodio API key
+
 # Address components
 
 Geocodio parses and standardizes all address results, and all results come with an `address_components` dictionary. This is an overview of all of the possible keys that you may find.
@@ -3353,6 +4578,14 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.9
+
+*Released on January 6, 2026*
+
+* Added new [Distance](#distance) endpoints for calculating distances and travel times between locations
+  * New `/distance` endpoint for single origin to multiple destinations
+  * New `/distance-matrix` endpoint for multiple origins to multiple destinations (up to 10,000 calculations)
+  * New `/distance-jobs` endpoints for asynchronous large-scale distance calculations (up to 50,000 calculations)
+  * Distance calculations can also be added to geocoding results via the `destinations[]` parameter on `/geocode` and `/reverse` endpoints
 
 *Released on December 16, 2025*
 
