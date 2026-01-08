@@ -362,7 +362,7 @@ Name                                  | Batch size (calculations)         | Type
 ------------------------------------- | ------------------ | ------------ | ---------------- | --------------------------- | 
 [Single origin distance](#single-origin-distance)        | 100                  | Synchronous  | JSON             | <i class="fa fa-check"></i> | 
 [Distance matrix](#distance-matrix)   | Up to 10,000       | Synchronous  | JSON             | <i class="fa fa-check"></i> | 
-[Distance jobs](#distance-jobs-async)    | Up to 50,000  | Asynchronous | CSV/TSV/Excel    | <i class="fa fa-check"></i> | 
+[Distance jobs](#distance-jobs-async)    | Up to 50,000  | Asynchronous | JSON    | <i class="fa fa-check"></i> | 
 
 If in doubt, [single geocoding](#geocoding) is the simplest choice for many use cases.
 
@@ -7900,7 +7900,7 @@ Name                                  | Batch size (calculations)         | Type
 ------------------------------------- | ------------------ | ------------ | ---------------- | --------------------------- | 
 [Single origin distance](#single-origin-distance)        | 100                  | Synchronous  | JSON             | <i class="fa fa-check"></i> | 
 [Distance matrix](#distance-matrix)   | Up to 10,000       | Synchronous  | JSON             | <i class="fa fa-check"></i> | 
-[Distance jobs](#distance-jobs-async)    | Up to 50,000  | Asynchronous | CSV/TSV/Excel    | <i class="fa fa-check"></i> | 
+[Distance jobs](#distance-jobs-async)    | Up to 50,000  | Asynchronous | JSON    | <i class="fa fa-check"></i> | 
 
 <aside class="notice">
 To use Geocodio's Distance endpoints, you'll need to enable access on an API key level [via the dashboard](https://dash.geocod.io/apikey).
