@@ -37,7 +37,11 @@ Note the versioning prefix in the base url, which is required for all requests.
 
 # Supported Countries
 
-Geocodio supports geocoding for the United States and Canada only.
+| | Forward geocoding | Reverse geocoding | Distance |
+|---|---|---|---|
+| United States | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| Canada | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
+| Mexico | | <i class="fa fa-check"></i> | |
 
 ## Specifying Country
 
@@ -327,23 +331,38 @@ ENTERPRISE-->
 
 Per default, an API key can only access the single and batch geocoding API endpoints. These endpoints are write-only which means that a lost API key can not be used to retrieve geocoded data from your account.
 
-For security reasons, you must specifically enable the [lists API](#geocoding-lists) permissions for your API keys. This can be done on the [Geocodio dashboard](https://dash.geocod.io/apikey). We recommend creating separate API keys for geocoding endpoints and for `GET`/`DELETE` access to lists.
+You must specifically enable permissions for the [lists API](#geocoding-lists) and the [distance API endpoints](#distance). This can be done on the [Geocodio dashboard](https://dash.geocod.io/apikey). We recommend creating separate API keys for single/batch endpoints and for `GET`/`DELETE` access to lists/jobs.
 
-[![List of API key permissions with default values selected](https://www.geocod.io/docs/images/permissions-88aabfa9.png)](https://dash.geocod.io/apikey)
+[![List of API key permissions with default values selected](img/apikeypermissions.png)](https://dash.geocod.io/apikey)
 
 *List of API key permissions with default values selected*
 
 # Overview
 
-The Geocodio API supports three different methods for processing your data. Geocodio is designed to make high-volume geocoding and data enrichment easier, yet we also support real-time single requests. The method you choose will largely depend on your workflow and the amount of addresses or coordinates that you are looking to process.
+Geocodio's geocoding API supports three different methods for processing your data. Geocodio is designed to make high-volume geocoding and data enrichment easier, yet we also support real-time single requests. 
 
 Single and batch geocoding methods are synchronous, meaning that you have to wait for the data to be fully processed and will receive it directly in your API response. The [list geocoding](#geocoding-lists) method is asynchronous and requires a second request to be made to download the data once it is ready.
 
-Name                                  | Batch size         | Type         | Format           | Supports fields             | Supports forward & reverse geocoding
+The method you choose will largely depend on your workflow and the amount of addresses or coordinates that you are looking to process. If in doubt, [single geocoding](#geocoding) is the simplest choice for many use cases.
+
+
+Name                                  | Batch size         | Type         | Format           | Supports data appends (fields)             | Supports forward & reverse geocoding
 ------------------------------------- | ------------------ | ------------ | ---------------- | --------------------------- | --------------------------------------
 [Single geocoding](#geocoding)        | 1                  | Synchronous  | JSON             | <i class="fa fa-check"></i> | <i class="fa fa-check"></i>
 [Batch geocoding](#batch-geocoding)   | Up to 10,000       | Synchronous  | JSON             | <i class="fa fa-check"></i> | <i class="fa fa-check"></i>
 [List geocoding](#geocoding-lists)    | Up to 10,000,000+  | Asynchronous | CSV/TSV/Excel    | <i class="fa fa-check"></i> | <i class="fa fa-check"></i>
+
+Geocodio's distance APIs allow you to calculate driving time, driving distance, and straight line (as the crow flies/haversine) distance between addresses or coordinates. One-to-one, one-to-many, and many-to-many matrices are supported, and you can limit results to a specified radius. 
+
+Like the geocoding API, the method you choose depends on your use case.
+
+For distance, *batch size* is the total number of calculations (origins × destinations).
+
+Name                                  | Batch size (calculations)         | Type         | Format           | Supports addresses & coordinates | 
+------------------------------------- | ------------------ | ------------ | ---------------- | --------------------------- | 
+[Single origin distance](#single-origin-distance)        | 100                  | Synchronous  | JSON             | <i class="fa fa-check"></i> | 
+[Distance matrix](#distance-matrix)   | Up to 10,000       | Synchronous  | JSON             | <i class="fa fa-check"></i> | 
+[Distance jobs](#distance-jobs-async)    | Up to 50,000  | Asynchronous | JSON    | <i class="fa fa-check"></i> | 
 
 If in doubt, [single geocoding](#geocoding) is the simplest choice for many use cases.
 
@@ -832,7 +851,7 @@ geocoder.geocode('1109 N Highland St, Arlington VA', [], null, {
 When `destinations[]` is provided, each geocoded result will include a `destinations` array containing the distance and duration (if using `driving` mode) to each destination location. This is useful for finding the nearest locations to a geocoded address.
 
 <aside class="notice">
-See the <a href="#distance">Distance</a> section for more details on distance calculation options and dedicated distance endpoints.
+See the <a href="#distance">Distance</a> section for more details on distance calculation options and dedicated distance endpoints. To use Geocodio's Distance endpoints, you'll need to enable access on an API key level [via the dashboard](https://dash.geocod.io/apikey).
 </aside>
 
 ## Batch geocoding
@@ -7871,13 +7890,25 @@ SST          | Samoa Standard Time
 
 # Distance
 
-Geocodio's Distance API allows you to calculate distances and travel times between locations. You can calculate from one origin to many destinations, or create a full distance matrix between multiple origins and destinations.
+Geocodio's distance API endpoints allow you to calculate driving time, driving distance, and straight line (as the crow flies/haversine) distance between addresses or coordinates. One-to-one, one-to-many, and many-to-many matrices are supported, and you can limit results to a specified radius. 
 
-For large-scale calculations, asynchronous distance jobs can be used similar to the [Lists API](#geocoding-lists).
+Like the geocoding API, the method you choose depends on your use case.
+
+For distance, *batch size* is the total number of calculations (origins × destinations).
+
+Name                                  | Batch size (calculations)         | Type         | Format           | Supports addresses & coordinates | 
+------------------------------------- | ------------------ | ------------ | ---------------- | --------------------------- | 
+[Single origin distance](#single-origin-distance)        | 100                  | Synchronous  | JSON             | <i class="fa fa-check"></i> | 
+[Distance matrix](#distance-matrix)   | Up to 10,000       | Synchronous  | JSON             | <i class="fa fa-check"></i> | 
+[Distance jobs](#distance-jobs-async)    | Up to 50,000  | Asynchronous | JSON    | <i class="fa fa-check"></i> | 
+
+<aside class="notice">
+To use Geocodio's Distance endpoints, you'll need to enable access on an API key level [via the dashboard](https://dash.geocod.io/apikey).
+</aside>
 
 ## Location formats
 
-Locations can be specified in three formats:
+Geocodio's Distance API accepts coordinates and addresses in three formats:
 
 Format | Example | Description
 ------ | ------- | -----------
@@ -7887,7 +7918,7 @@ Coordinate object | `{"lat": 38.8977, "lng": -77.0365, "id": "DC"}` | JSON objec
 Address string | `"1600 Pennsylvania Ave NW, Washington DC"` | A geocodable address (will be geocoded automatically)
 
 <aside class="notice">
-When addresses are geocoded, the geocoding result will be included in the response under a <code>geocode</code> property, and the lookup will count towards your geocoding credits.
+When addresses are geocoded, the geocoding result will be included in the response under a <code>geocode</code> property, and the lookup will count towards your geocoding credits. If your source locations are already coordinates, you won't be charged for geocoding.
 </aside>
 
 ## Calculation modes
@@ -7895,15 +7926,15 @@ When addresses are geocoded, the geocoding result will be included in the respon
 Mode         | Description                                           | Duration returned | Credit multiplier
 ------------ | ----------------------------------------------------- | ----------------- | -----------------
 `straightline` | Great-circle distance (as the crow flies) using the Haversine formula | No | 1x
-`driving`    | Driving distance and time using road networks         | Yes               | 2x
+`driving`    | Driving distance and driving time using road networks         | Yes               | 2x
 
 <aside class="notice">
-The <code>driving</code> mode uses 2x the lookup credits of <code>straightline</code> mode.
+The <code>driving</code> distance mode uses 2x the lookup credits of <code>straightline</code> distance mode.
 </aside>
 
 ## Single origin distance
 
-> Calculate distances from a single origin to multiple destinations:
+> Calculate distances from a single origin to one or multiple destinations:
 
 ```shell
 curl "https://api.geocod.io/v1.9/distance?origin=38.8977,-77.0365,WhiteHouse&destinations[]=38.8895,-77.0353,WashingtonMonument&destinations[]=38.9072,-77.0369,DupontCircle&mode=driving&api_key=YOUR_API_KEY"
@@ -8026,7 +8057,7 @@ geocoder.distance(origin, destinations, {
 }
 ```
 
-Calculate distances and travel times from a single origin to one or more destinations. This is useful for finding the nearest locations to a given point.
+Calculate driving and straight line distances and travel times from a single origin to one or more destinations. This is useful for finding the nearest locations to a given point.
 
 ### HTTP Request
 
@@ -8058,7 +8089,7 @@ Header | Description
 
 ## Distance matrix
 
-> Calculate distances between multiple origins and multiple destinations:
+> Calculate driving and straight line distances between multiple origins and multiple destinations:
 
 ```shell
 curl -X POST \
@@ -8241,10 +8272,10 @@ geocoder.distanceMatrix(origins, destinations, {
 }
 ```
 
-Calculate distances and travel times from multiple origins to multiple destinations (distance matrix). This is useful for route optimization, coverage analysis, and logistics planning.
+Calculate driving distance, driving time, and straight line distance from multiple origins to multiple destinations (distance matrix). This is useful for route optimization, coverage analysis, and logistics planning.
 
 <aside class="warning">
-The matrix size (origins × destinations) is limited to 10,000 calculations per request. For larger matrices, use the <a href="#distance-jobs-async">asynchronous distance jobs</a>.
+The matrix size (origins × destinations) is limited to 10,000 calculations per request. For larger matrices, use the <a href="#distance-jobs-async">asynchronous distance jobs</a> endpoint.
 </aside>
 
 ### HTTP Request
