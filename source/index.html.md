@@ -339,7 +339,7 @@ You must specifically enable permissions for the [lists API](#geocoding-lists) a
 
 # Overview
 
-Geocodio's geocoding API supports three different methods for processing your data. Geocodio is designed to make high-volume geocoding and data enrichment easier, yet we also support real-time single requests. 
+Geocodio's geocoding API supports three different methods for processing your data. Geocodio is designed to make high-volume geocoding and data enrichment easier, yet we also support real-time single requests.
 
 Single and batch geocoding methods are synchronous, meaning that you have to wait for the data to be fully processed and will receive it directly in your API response. The [list geocoding](#geocoding-lists) method is asynchronous and requires a second request to be made to download the data once it is ready.
 
@@ -352,17 +352,17 @@ Name                                  | Batch size         | Type         | Form
 [Batch geocoding](#batch-geocoding)   | Up to 10,000       | Synchronous  | JSON             | <i class="fa fa-check"></i> | <i class="fa fa-check"></i>
 [List geocoding](#geocoding-lists)    | Up to 10,000,000+  | Asynchronous | CSV/TSV/Excel    | <i class="fa fa-check"></i> | <i class="fa fa-check"></i>
 
-Geocodio's distance APIs allow you to calculate driving time, driving distance, and straight line (as the crow flies/haversine) distance between addresses or coordinates. One-to-one, one-to-many, and many-to-many matrices are supported, and you can limit results to a specified radius. 
+Geocodio's distance APIs allow you to calculate driving time, driving distance, and straight line (as the crow flies/haversine) distance between addresses or coordinates. One-to-one, one-to-many, and many-to-many matrices are supported, and you can limit results to a specified radius.
 
 Like the geocoding API, the method you choose depends on your use case.
 
 For distance, *batch size* is the total number of calculations (origins × destinations).
 
-Name                                  | Batch size (calculations)         | Type         | Format           | Supports addresses & coordinates | 
-------------------------------------- | ------------------ | ------------ | ---------------- | --------------------------- | 
-[Single origin distance](#single-origin-distance)        | 100                  | Synchronous  | JSON             | <i class="fa fa-check"></i> | 
-[Distance matrix](#distance-matrix)   | Up to 10,000       | Synchronous  | JSON             | <i class="fa fa-check"></i> | 
-[Distance jobs](#distance-jobs-async)    | Up to 50,000  | Asynchronous | JSON    | <i class="fa fa-check"></i> | 
+Name                                  | Batch size (calculations)         | Type         | Format           | Supports addresses & coordinates |
+------------------------------------- | ------------------ | ------------ | ---------------- | --------------------------- |
+[Single origin distance](#single-origin-distance)        | 100                  | Synchronous  | JSON             | <i class="fa fa-check"></i> |
+[Distance matrix](#distance-matrix)   | Up to 10,000       | Synchronous  | JSON             | <i class="fa fa-check"></i> |
+[Distance jobs](#distance-jobs-async)    | Up to 50,000  | Asynchronous | JSON    | <i class="fa fa-check"></i> |
 
 If in doubt, [single geocoding](#geocoding) is the simplest choice for many use cases.
 
@@ -7890,17 +7890,17 @@ SST          | Samoa Standard Time
 
 # Distance
 
-Geocodio's distance API endpoints allow you to calculate driving time, driving distance, and straight line (as the crow flies/haversine) distance between addresses or coordinates. One-to-one, one-to-many, and many-to-many matrices are supported, and you can limit results to a specified radius. 
+Geocodio's distance API endpoints allow you to calculate driving time, driving distance, and straight line (as the crow flies/haversine) distance between addresses or coordinates. One-to-one, one-to-many, and many-to-many matrices are supported, and you can limit results to a specified radius.
 
 Like the geocoding API, the method you choose depends on your use case.
 
 For distance, *batch size* is the total number of calculations (origins × destinations).
 
-Name                                  | Batch size (calculations)         | Type         | Format           | Supports addresses & coordinates | 
-------------------------------------- | ------------------ | ------------ | ---------------- | --------------------------- | 
-[Single origin distance](#single-origin-distance)        | 100                  | Synchronous  | JSON             | <i class="fa fa-check"></i> | 
-[Distance matrix](#distance-matrix)   | Up to 10,000       | Synchronous  | JSON             | <i class="fa fa-check"></i> | 
-[Distance jobs](#distance-jobs-async)    | Up to 50,000  | Asynchronous | JSON    | <i class="fa fa-check"></i> | 
+Name                                  | Batch size (calculations)         | Type         | Format           | Supports addresses & coordinates |
+------------------------------------- | ------------------ | ------------ | ---------------- | --------------------------- |
+[Single origin distance](#single-origin-distance)        | 100                  | Synchronous  | JSON             | <i class="fa fa-check"></i> |
+[Distance matrix](#distance-matrix)   | Up to 10,000       | Synchronous  | JSON             | <i class="fa fa-check"></i> |
+[Distance jobs](#distance-jobs-async)    | Up to 50,000  | Asynchronous | JSON    | <i class="fa fa-check"></i> |
 
 <aside class="notice">
 To use Geocodio's Distance endpoints, you'll need to enable access on an API key level [via the dashboard](https://dash.geocod.io/apikey).
