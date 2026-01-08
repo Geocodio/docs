@@ -21,9 +21,11 @@ code_clipboard: true
 
 # Introduction
 
-Geocodio's RESTful API allows you to perform forward and reverse geocoding lookups as well as simultaneously enrich your address data. Geocodio's API supports individual, batch, and list geocoding.
+Geocodio's RESTful [geocoding API](#geocoding) endpoints allows you to perform forward and reverse geocoding lookups for the US and Canada as well as simultaneously enrich your address data. Geocodio's geocoding API supports individual, batch, and list (CSV) geocoding.
 
 Data appends (`fields`) include Census geographies and data, electoral districts, timezones, school districts, and more.
+
+Geocodio's [distance API](#distance) endpoints allow you to calculate driving time, driving distance, and straight line (as the crow flies/haversine) distance between addresses or coordinates. One-to-one, one-to-many, and many-to-many matrices are supported, and you can limit results to a specified radius.
 
 The base API url is `https://api.geocod.io/v1.9/`.
 
@@ -339,7 +341,7 @@ You must specifically enable permissions for the [lists API](#geocoding-lists) a
 
 # Overview
 
-Geocodio's geocoding API supports three different methods for processing your data. Geocodio is designed to make high-volume geocoding and data enrichment easier, yet we also support real-time single requests.
+Geocodio's **geocoding API** supports three different methods for processing your data. Geocodio is designed to make high-volume geocoding and data enrichment easier, yet we also support real-time single requests.
 
 Single and batch geocoding methods are synchronous, meaning that you have to wait for the data to be fully processed and will receive it directly in your API response. The [list geocoding](#geocoding-lists) method is asynchronous and requires a second request to be made to download the data once it is ready.
 
@@ -352,7 +354,7 @@ Name                                  | Batch size         | Type         | Form
 [Batch geocoding](#batch-geocoding)   | Up to 10,000       | Synchronous  | JSON             | <i class="fa fa-check"></i> | <i class="fa fa-check"></i>
 [List geocoding](#geocoding-lists)    | Up to 10,000,000+  | Asynchronous | CSV/TSV/Excel    | <i class="fa fa-check"></i> | <i class="fa fa-check"></i>
 
-Geocodio's distance APIs allow you to calculate driving time, driving distance, and straight line (as the crow flies/haversine) distance between addresses or coordinates. One-to-one, one-to-many, and many-to-many matrices are supported, and you can limit results to a specified radius.
+Geocodio's **distance API** endpoints allow you to calculate driving time, driving distance, and straight line (as the crow flies/haversine) distance between addresses or coordinates. One-to-one, one-to-many, and many-to-many matrices are supported, and you can limit results to a specified radius.
 
 Like the geocoding API, the method you choose depends on your use case.
 
@@ -363,8 +365,6 @@ Name                                  | Batch size (calculations)         | Type
 [Single origin distance](#single-origin-distance)        | 100                  | Synchronous  | JSON             | <i class="fa fa-check"></i> |
 [Distance matrix](#distance-matrix)   | Up to 10,000       | Synchronous  | JSON             | <i class="fa fa-check"></i> |
 [Distance jobs](#distance-jobs-async)    | Up to 50,000  | Asynchronous | JSON    | <i class="fa fa-check"></i> |
-
-If in doubt, [single geocoding](#geocoding) is the simplest choice for many use cases.
 
 # Geocoding
 
@@ -851,7 +851,7 @@ geocoder.geocode('1109 N Highland St, Arlington VA', [], null, {
 When `destinations[]` is provided, each geocoded result will include a `destinations` array containing the distance and duration (if using `driving` mode) to each destination location. This is useful for finding the nearest locations to a geocoded address.
 
 <aside class="notice">
-See the <a href="#distance">Distance</a> section for more details on distance calculation options and dedicated distance endpoints. To use Geocodio's Distance endpoints, you'll need to enable access on an API key level [via the dashboard](https://dash.geocod.io/apikey).
+See the <a href="#distance">Distance</a> section for more details on distance calculation options and dedicated distance endpoints. To use Geocodio's Distance endpoints, you'll need to enable access on an API key level <a href="https://dash.geocod.io/apikey">via the dashboard</a>.
 </aside>
 
 ## Batch geocoding
@@ -7903,7 +7903,7 @@ Name                                  | Batch size (calculations)         | Type
 [Distance jobs](#distance-jobs-async)    | Up to 50,000  | Asynchronous | JSON    | <i class="fa fa-check"></i> |
 
 <aside class="notice">
-To use Geocodio's Distance endpoints, you'll need to enable access on an API key level [via the dashboard](https://dash.geocod.io/apikey).
+To use Geocodio's Distance API endpoints, you'll need to enable access on an API key level <a href="https://dash.geocod.io/apikey">via the dashboard</a>.
 </aside>
 
 ## Location formats
