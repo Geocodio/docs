@@ -25,9 +25,9 @@ Geocodio's RESTful [geocoding API](#geocoding) endpoints allows you to perform f
 
 Data appends (`fields`) include Census geographies and data, electoral districts, timezones, school districts, and more.
 
-Geocodio's [distance API](#distance) endpoints allow you to calculate driving time, driving distance, and straight line (as the crow flies/haversine) distance between addresses or coordinates. One-to-one, one-to-many, and many-to-many matrices are supported, and you can limit results to a specified radius.
-
 The base API url is `https://api.geocod.io/v1.9/`.
+
+Geocodio's [distance API](#distance) endpoints allow you to calculate driving time, driving distance, and straight line (as the crow flies/haversine) distance between addresses or coordinates. One-to-one, one-to-many, and many-to-many matrices are supported, and you can limit results to a specified radius.
 
 All HTTP responses (including errors) are returned with [JSON-formatted](http://www.json.org) output.
 
@@ -850,9 +850,7 @@ geocoder.geocode('1109 N Highland St, Arlington VA', [], null, {
 
 When `destinations[]` is provided, each geocoded result will include a `destinations` array containing the distance and duration (if using `driving` mode) to each destination location. This is useful for finding the nearest locations to a geocoded address.
 
-<aside class="notice">
 See the <a href="#distance">Distance</a> section for more details on distance calculation options and dedicated distance endpoints. To use Geocodio's Distance endpoints, you'll need to enable access on an API key level <a href="https://dash.geocod.io/apikey">via the dashboard</a>.
-</aside>
 
 ## Batch geocoding
 
@@ -7902,9 +7900,7 @@ Name                                  | Batch size (calculations)         | Type
 [Distance matrix](#distance-matrix)   | Up to 10,000       | Synchronous  | JSON             | <i class="fa fa-check"></i> |
 [Distance jobs](#distance-jobs-async)    | Up to 50,000  | Asynchronous | JSON    | <i class="fa fa-check"></i> |
 
-<aside class="notice">
 To use Geocodio's Distance API endpoints, you'll need to enable access on an API key level <a href="https://dash.geocod.io/apikey">via the dashboard</a>.
-</aside>
 
 ## Location formats
 
@@ -9321,7 +9317,7 @@ The `components` parameter supports filtering results:
 
 **Coverage:**
 
-* ⚠️ **US and Canada only** - Geocodio currently supports US and Canadian addresses. Requests for other countries will return `ZERO_RESULTS` status
+* ⚠️ **US and Canada only** - Geocodio currently supports US and Canadian addresses, and reverse geocoding in US, Canada, and Mexico. Requests for other countries will return `ZERO_RESULTS` status
 
 **Error Responses:**
 
