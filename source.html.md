@@ -4617,6 +4617,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 ## v1.9
 
+*Released on January 16, 2026*
+
+* Secondary address lines (unit, apartment, suite numbers) are now used to determine [unit-level coordinates](#geocoding-with-unit-numbers) when available. A new `sub_accuracy_type` field with value `"unit"` indicates when unit-level precision is returned. This works for both forward and reverse geocoding.
+
 *Released on January 6, 2026*
 
 * Added new [Distance](#distance) endpoints for calculating distances and travel times between locations
