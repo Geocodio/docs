@@ -670,6 +670,7 @@ ENTERPRISE-->
       },
       "accuracy": 1,
       "accuracy_type": "rooftop",
+      "sub_accuracy_type": "unit",
       "source": "Arlington"
     }
   ]
@@ -683,6 +684,14 @@ If you include an Apartment or Suite number along as a suffix to the street name
 E.g. if the unit number is inputted as `#R500`, the outputted value will be `Ste R500`.
 
 In order to verify that the unit number is valid per USPS, you can request the [`zip4`](#usps-zip-4) field append and check the `exact_match` value. If it is set to `true`, it means that the unit number is recognized by USPS.
+
+#### Unit-level coordinates
+
+When unit-level data is available, Geocodio will return coordinates specific to that unit rather than the building centroid. This is indicated by a `sub_accuracy_type` of `"unit"` in the response.
+
+Not all addresses have unit-level coordinate data. When unit data is not available, the `sub_accuracy_type` will be `null` and the coordinates will represent the building's rooftop location.
+
+For reverse geocoding, if the input coordinates are within 50 meters of a known unit location, the response will include the unit information (`secondaryunit` and `secondarynumber`) and set `sub_accuracy_type` to `"unit"`.
 
 ### The `input` Object
 
@@ -4168,8 +4177,8 @@ prefix             | Abbreviated street prefix, particularly common in the case 
 street             | Name of the street without number, prefix or suffix, e.g. "Main"
 suffix             | Abbreviated street suffix, e.g. St., Ave. Rd.
 postdirectional    | Directional that comes after the street name, 1-2 characters, e.g. N or NE
-secondaryunit      | Name of the secondary unit, e.g. "Apt" or "Unit". For "input" address components only
-secondarynumber    | Secondary unit number. For "input" address components only
+secondaryunit      | Name of the secondary unit, e.g. "Apt" or "Unit"
+secondarynumber    | Secondary unit number
 city               |
 county             |
 state              |
@@ -4214,6 +4223,17 @@ rooftop             | We found the exact point with rooftop level accuracy
 nearest_street      | Nearest match for a specific street with estimated street number
 nearest_place       | Closest city/town/place
 
+### Sub-accuracy type
+
+In addition to the main accuracy type, results may include a `sub_accuracy_type` field that indicates enhanced precision within the primary accuracy level.
+
+Value  | Description
+------ | -----------
+unit   | The coordinates represent a specific unit (apartment, suite, etc.) within a building rather than the building centroid
+null   | No sub-accuracy enhancement (default)
+
+The `sub_accuracy_type` field is only populated for results with `accuracy_type` of `rooftop`. When unit-level data is available and the geocoded address includes a secondary address line (unit, apartment, suite number), the returned coordinates will be specific to that unit.
+
 # Address formats
 Geocodio supports geocoding the following address components:
 
@@ -4224,7 +4244,7 @@ Geocodio supports geocoding the following address components:
 * Counties
 * States
 * PO Boxes (coordinates will be returned as a centroid of the zip code)
-* Second address lines such as unit and apartment numbers (not used for determining the exact coordinates at this time)
+* Second address lines such as unit and apartment numbers (used to determine unit-level coordinates when available, see [Geocoding with Unit Numbers](#geocoding-with-unit-numbers))
 
 If a city is provided without a state, Geocodio will automatically guess and add the state based on what it is most likely to be. Geocodio also understands shorthands for both streets and cities, for example *NYC*, *SF*, etc., are acceptable city names.
 
@@ -4596,6 +4616,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.9
+
+*Released on January 16, 2026*
+
+* Secondary address lines (unit, apartment, suite numbers) are now used to determine [unit-level coordinates](#geocoding-with-unit-numbers) when available. A new `sub_accuracy_type` field with value `"unit"` indicates when unit-level precision is returned. This works for both forward and reverse geocoding.
 
 *Released on January 6, 2026*
 
