@@ -720,8 +720,7 @@ response = geocodio.geocode(
 ```
 
 ```python
-from geocodio import Geocodio
-from geocodio.constants import DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
+from geocodio import Geocodio, DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
 
 client = Geocodio("YOUR_API_KEY")
 
@@ -3202,8 +3201,7 @@ response = geocodio.distance(
 ```
 
 ```python
-from geocodio import Geocodio
-from geocodio.constants import DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
+from geocodio import Geocodio, DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
 
 client = Geocodio("YOUR_API_KEY")
 
@@ -3374,8 +3372,7 @@ response = geocodio.distanceMatrix(
 ```
 
 ```python
-from geocodio import Geocodio
-from geocodio.constants import DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
+from geocodio import Geocodio, DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
 
 client = Geocodio("YOUR_API_KEY")
 
@@ -3615,11 +3612,7 @@ puts job.identifier
 ```
 
 ```python
-from geocodio import Geocodio
-from geocodio.constants import (
-    DISTANCE_MODE_DRIVING,
-    DISTANCE_ORDER_BY_DISTANCE
-)
+from geocodio import Geocodio, DISTANCE_MODE_DRIVING, DISTANCE_ORDER_BY_DISTANCE
 
 client = Geocodio("YOUR_API_KEY")
 
