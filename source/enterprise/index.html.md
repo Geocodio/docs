@@ -25,7 +25,7 @@ Geocodio's RESTful [geocoding API](#geocoding) endpoints allows you to perform f
 
 Data appends (`fields`) include Census geographies and data, electoral districts, timezones, school districts, and more.
 
-The base API url is `https://api.enterprise.geocod.io/v1.9/`.
+The base API url is `https://api.enterprise.geocod.io/v1.10/`.
 
 Geocodio's [distance API](#distance) endpoints allow you to calculate driving time, driving distance, and straight line (as the crow flies/haversine) distance between addresses or coordinates. One-to-one, one-to-many, and many-to-many matrices are supported, and you can limit results to a specified radius.
 
@@ -54,10 +54,10 @@ Note the versioning prefix in the base url, which is required for all requests.
 ### Explicit `country` Parameter
 ```shell
 # US address (explicit)
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St,+Arlington+VA&country=USA&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St,+Arlington+VA&country=USA&api_key=YOUR_API_KEY"
 
 # Canadian address (explicit)
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=525+University+Ave,+Toronto+ON&country=Canada&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=525+University+Ave,+Toronto+ON&country=Canada&api_key=YOUR_API_KEY"
 ```
 
 **Supported Country Values:** USA or Canada
@@ -232,10 +232,10 @@ $ yarn add geocodio-library-node
 
 ```shell
 # With curl, you can pass the query parameter with each request
-curl "https://api.enterprise.geocod.io/v1.9/api_endpoint_here?api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/api_endpoint_here?api_key=YOUR_API_KEY"
 
 # or use the Authorization header
-curl "https://api.enterprise.geocod.io/v1.9/api_endpoint_here" \
+curl "https://api.enterprise.geocod.io/v1.10/api_endpoint_here" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
@@ -380,7 +380,7 @@ Whenever possible, batch requests via the batch or lists endpoints is encouraged
 
 ## Single address
 
-Geocodio can geocode a single address by making a `GET` request to the *geocode* endpoint. You can <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a> after creating an API key or via our <a href="https://www.geocod.io/geocode-an-address">demo tool</a>.
+Geocodio can geocode a single address by making a `GET` request to the *geocode* endpoint. You can <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a> after creating an API key or via our <a href="https://www.geocod.io/geocode-an-address">demo tool</a>.
 
 <aside class="success">
 The <code>results</code> are always ordered with the most accurate locations first. It is therefore always safe to pick the first result in the list.
@@ -390,10 +390,10 @@ The <code>results</code> are always ordered with the most accurate locations fir
 
 ```shell
 # Using q parameter
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
 
 # Using individual address components
-curl "https://api.enterprise.geocod.io/v1.9/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -480,7 +480,8 @@ geocoder.geocode('1109 N Highland St, Arlington VA')
       },
       "accuracy": 1,
       "accuracy_type": "rooftop",
-      "source": "Virginia GIS Clearinghouse"
+      "source": "Virginia GIS Clearinghouse",
+      "stable_address_key": "gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3"
     }
   ]
 }
@@ -488,7 +489,7 @@ geocoder.geocode('1109 N Highland St, Arlington VA')
 
 ### HTTP Request
 
-`GET https://api.enterprise.geocod.io/v1.9/geocode`
+`GET https://api.enterprise.geocod.io/v1.10/geocode`
 
 ### URL Parameters
 
@@ -621,7 +622,7 @@ Accuracy breakdown descriptions and scores are subject to change and should not 
 > To geocode an address with a Unit Number
 
 ```shell
-  curl "https://api.enterprise.geocod.io/v1.9/geocode?q=2800+Clarendon+Blvd+Suite+R500+Arlington+VA+22201&api_key=YOUR_API_KEY"
+  curl "https://api.enterprise.geocod.io/v1.10/geocode?q=2800+Clarendon+Blvd+Suite+R500+Arlington+VA+22201&api_key=YOUR_API_KEY"
 ```
 
 > Example response with Unit Number
@@ -695,7 +696,7 @@ As such, if we aren't able to identify the exact address location in `results`, 
 > Geocode an address and calculate distances to multiple destinations:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&destinations[]=38.8977,-77.0365,WhiteHouse&destinations[]=38.8895,-77.0353,WashingtonMonument&distance_mode=driving&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2c+Arlington+VA&destinations[]=38.8977,-77.0365,WhiteHouse&destinations[]=38.8895,-77.0353,WashingtonMonument&distance_mode=driving&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -720,8 +721,7 @@ response = geocodio.geocode(
 ```
 
 ```python
-from geocodio import Geocodio
-from geocodio.constants import DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
+from geocodio import Geocodio, DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
 
 client = Geocodio("YOUR_API_KEY")
 
@@ -860,7 +860,7 @@ See the <a href="#distance">Distance</a> section for more details on distance ca
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["1109 N Highland St, Arlington VA", "525 University Ave, Toronto, ON, Canada", "4410 S Highway 17 92, Casselberry FL", "15000 NE 24th Street, Redmond WA", "17015 Walnut Grove Drive, Morgan Hill CA"]' \
-  https://api.enterprise.geocod.io/v1.9/geocode?api_key=YOUR_API_KEY
+  https://api.enterprise.geocod.io/v1.10/geocode?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -1089,7 +1089,7 @@ Plan your batch requests carefully when using field appends. If you need to proc
 
 ### HTTP Request
 
-`POST https://api.enterprise.geocod.io/v1.9/geocode`
+`POST https://api.enterprise.geocod.io/v1.10/geocode`
 
 ### URL Parameters
 
@@ -1258,7 +1258,7 @@ A geographic coordinate consists of latitude followed by longitude separated by 
 > To reverse geocode a single coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1366,11 +1366,11 @@ geocoder.reverse('38.9002898,-76.9990361')
 }
 ```
 
-A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api.enterprise.geocod.io/v1.9/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api.enterprise.geocod.io/v1.10/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 ### HTTP Request
 
-`GET https://api.enterprise.geocod.io/v1.9/reverse`
+`GET https://api.enterprise.geocod.io/v1.10/reverse`
 
 ### URL Parameters
 
@@ -1449,7 +1449,7 @@ The `fields` parameter is still supported when the `simple` output format is sel
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["35.9746000,-77.9658000","32.8793700,-96.6303900","33.8337100,-117.8362320","35.4171240,-80.6784760"]' \
-  https://api.enterprise.geocod.io/v1.9/reverse?api_key=YOUR_API_KEY
+  https://api.enterprise.geocod.io/v1.10/reverse?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -1608,7 +1608,7 @@ You can batch reverse geocode up to 10,000 coordinates at a time. Field appends 
 
 ### HTTP Request
 
-`POST https://api.enterprise.geocod.io/v1.9/reverse`
+`POST https://api.enterprise.geocod.io/v1.10/reverse`
 
 ### URL Parameters
 
@@ -1654,7 +1654,7 @@ Authorization: Bearer YOUR_API_KEY
 
 <!--DEFAULT
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/lists?api_key=YOUR_API_KEY" \
+curl "https://api.enterprise.geocod.io/v1.10/lists?api_key=YOUR_API_KEY" \
   -F "file"="@sample_list.csv" \
   -F "direction"="forward" \
   -F "format"="{{A}} {{B}} {{C}} {{D}}" \
@@ -1663,7 +1663,7 @@ curl "https://api.enterprise.geocod.io/v1.9/lists?api_key=YOUR_API_KEY" \
 DEFAULT-->
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/lists \
+curl "https://api.enterprise.geocod.io/v1.10/lists \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -F "file"="@sample_list.csv" \
   -F "direction"="forward" \
@@ -1725,7 +1725,7 @@ $response = $geocoder->uploadList(
 
 <!--DEFAULT
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/lists?api_key=YOUR_API_KEY" \
+curl "https://api.enterprise.geocod.io/v1.10/lists?api_key=YOUR_API_KEY" \
   -F "file"=$'Zip\n20003\n20001' \
   -F "filename"="file.csv" \
   -F "direction"="forward" \
@@ -1735,7 +1735,7 @@ curl "https://api.enterprise.geocod.io/v1.9/lists?api_key=YOUR_API_KEY" \
 DEFAULT-->
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/lists" \
+curl "https://api.enterprise.geocod.io/v1.10/lists" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -F "file"=$'Zip\n20003\n20001' \
   -F "filename"="file.csv" \
@@ -1807,7 +1807,7 @@ Creates a new spreadsheet list job and starts processing the list in the backgro
 
 ### HTTP Request
 
-`POST https://api.enterprise.geocod.io/v1.9/lists`
+`POST https://api.enterprise.geocod.io/v1.10/lists`
 
 ### URL Parameters
 
@@ -1858,7 +1858,7 @@ The `format` parameter uses a simple templating syntax that is used to construct
         "geocoded_rows_count": 39809,
         "filename": "sample_list.csv"
     },
-    "download_url": "https://api.enterprise.geocod.io/v1.9/lists/49/download"
+    "download_url": "https://api.enterprise.geocod.io/v1.10/lists/49/download"
 }
 ```
 
@@ -1873,12 +1873,12 @@ A total of 3 attempts are made to delivery the webhook.
 
 <!--DEFAULT
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/lists/42?api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/lists/42?api_key=YOUR_API_KEY"
 ```
 DEFAULT-->
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/lists/42" \
+curl "https://api.enterprise.geocod.io/v1.10/lists/42" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
@@ -1980,7 +1980,7 @@ $response = $geocoder->listStatus(42);
         "time_left_description": null,
         "time_left_seconds": null
     },
-    "download_url": "https://api.enterprise.geocod.io/v1.9/lists/42/download",
+    "download_url": "https://api.enterprise.geocod.io/v1.10/lists/42/download",
     "expires_at": "2021-09-23T18:23:29.000000Z"
 }
 ```
@@ -1989,7 +1989,7 @@ View the metadata and status for a single uploaded list.
 
 ### HTTP Request
 
-`GET https://api.enterprise.geocod.io/v1.9/lists/LIST_ID`
+`GET https://api.enterprise.geocod.io/v1.10/lists/LIST_ID`
 
 ### URL Parameters
 
@@ -2011,12 +2011,12 @@ Parameter | Description
 
 <!--DEFAULT
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/lists?api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/lists?api_key=YOUR_API_KEY"
 ```
 DEFAULT-->
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/lists" \
+curl "https://api.enterprise.geocod.io/v1.10/lists" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
@@ -2078,15 +2078,15 @@ $response = $geocoder->lists();
                 "time_left_description": null,
                 "time_left_seconds": null
             },
-            "download_url": "https://api.enterprise.geocod.io/v1.9/lists/48/download",
+            "download_url": "https://api.enterprise.geocod.io/v1.10/lists/48/download",
             "expires_at": "2021-09-23T12:09:09.000000Z"
         },
         ...
     ],
-    "first_page_url": "https://api.enterprise.geocod.io/v1.9/lists?page=1",
+    "first_page_url": "https://api.enterprise.geocod.io/v1.10/lists?page=1",
     "from": 1,
-    "next_page_url": "https://api.enterprise.geocod.io/v1.9/lists?page=2",
-    "path": "https://api.enterprise.geocod.io/v1.9/lists",
+    "next_page_url": "https://api.enterprise.geocod.io/v1.10/lists?page=2",
+    "path": "https://api.enterprise.geocod.io/v1.10/lists",
     "per_page": 15,
     "prev_page_url": null,
     "to": 15
@@ -2097,7 +2097,7 @@ Show all lists that have been created. The endpoint is paginated, showing 15 lis
 
 ### HTTP Request
 
-`GET https://api.enterprise.geocod.io/v1.9/lists`
+`GET https://api.enterprise.geocod.io/v1.10/lists`
 
 ### URL Parameters
 
@@ -2111,12 +2111,12 @@ DEFAULT-->
 
 <!--DEFAULT
 ```shell
-curl -L "https://api.enterprise.geocod.io/v1.9/lists/LIST_ID/download?api_key=YOUR_API_KEY"
+curl -L "https://api.enterprise.geocod.io/v1.10/lists/LIST_ID/download?api_key=YOUR_API_KEY"
 ```
 DEFAULT-->
 
 ```shell
-curl -L "https://api.enterprise.geocod.io/v1.9/lists/LIST_ID/download" \
+curl -L "https://api.enterprise.geocod.io/v1.10/lists/LIST_ID/download" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
@@ -2204,7 +2204,7 @@ See our [spreadsheet output guide](/guides/data-matching-overview/) for a refere
 
 ### HTTP Request
 
-`GET https://api.enterprise.geocod.io/v1.9/lists/LIST_ID/download`
+`GET https://api.enterprise.geocod.io/v1.10/lists/LIST_ID/download`
 
 ### URL Parameters
 
@@ -2218,12 +2218,12 @@ DEFAULT-->
 
 <!--DEFAULT
 ```shell
-curl -X DELETE "https://api.enterprise.geocod.io/v1.9/lists/LIST_ID?api_key=YOUR_API_KEY"
+curl -X DELETE "https://api.enterprise.geocod.io/v1.10/lists/LIST_ID?api_key=YOUR_API_KEY"
 ```
 DEFAULT-->
 
 ```shell
-curl -X DELETE "https://api.enterprise.geocod.io/v1.9/lists/LIST_ID" \
+curl -X DELETE "https://api.enterprise.geocod.io/v1.10/lists/LIST_ID" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
@@ -2277,7 +2277,7 @@ The spreadsheet data will always be deleted automatically after 72 hours if it i
 
 ### HTTP Request
 
-`DELETE https://api.enterprise.geocod.io/v1.9/lists/LIST_ID`
+`DELETE https://api.enterprise.geocod.io/v1.10/lists/LIST_ID`
 
 ### URL Parameters
 
@@ -2292,8 +2292,8 @@ DEFAULT-->
 > To get `cd` and `stateleg` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=cd,stateleg&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=cd,stateleg&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=cd,stateleg&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -2500,7 +2500,7 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
                 "photo_url": "https://memdata.virginiageneralassembly.gov/images/display_image/H0375"
               },
               "contact": {
-                "url": "https://virginiageneralassembly.gov/house/members/members.php?id=H0375",
+                "url": "https://house.vga.virginia.gov/members/H0375",
                 "address": "Room 1102, General Assembly Building 201 N. 9th St., Richmond, VA 23219",
                 "phone": "804-698-1002",
                 "email": "delamcclure@house.virginia.gov",
@@ -2514,9 +2514,9 @@ geocoder.reverse('38.886672,-77.094735', ['cd', 'stateleg'])
                 "youtube_id": null
               },
               "references": {
-                "votesmart_id": null,
+                "votesmart_id": "212037",
                 "ballotpedia_id": "Adele_McClure",
-                "wikipedia_id": null,
+                "wikipedia_id": "Adele_McClure",
                 "openstates_id": "ocd-person/d0de7acb-ce8d-4bb2-b6e5-99cefe5e76a6"
               },
               "source": "Legislator data collected by Open States (https://github.com/openstates/)"
@@ -2580,7 +2580,7 @@ Geocodio allows you to request additional data with forward and reverse geocodin
 
 To request additional data, just add a `fields` parameter to your query string and set the value according to the table below. You can request multiple data fields at the same time by separating them with a comma. If the `fields` parameter has been specified, a new `fields` key is exposed with each geocoding result containing all necessary data for each field.
 
-Go ahead, <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+Go ahead, <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 Some fields are specific to the US and cannot be queried for other countries.
 
@@ -2612,8 +2612,8 @@ This feature is available for both single and batch geocoding requests as well a
 > To get `cd` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=cd&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=cd&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=cd&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=cd&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -2842,8 +2842,8 @@ Districts are always sorted by the `proportion` value in descending order (large
 > To get `stateleg` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=stateleg&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=stateleg&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=stateleg&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=stateleg&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -2918,7 +2918,7 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg'])
                 "photo_url": "https://memdata.virginiageneralassembly.gov/images/display_image/H0375"
               },
               "contact": {
-                "url": "https://virginiageneralassembly.gov/house/members/members.php?id=H0375",
+                "url": "https://house.vga.virginia.gov/members/H0375",
                 "address": "Room 1102, General Assembly Building 201 N. 9th St., Richmond, VA 23219",
                 "phone": "804-698-1002",
                 "email": "delamcclure@house.virginia.gov",
@@ -2932,9 +2932,9 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg'])
                 "youtube_id": null
               },
               "references": {
-                "votesmart_id": null,
+                "votesmart_id": "212037",
                 "ballotpedia_id": "Adele_McClure",
-                "wikipedia_id": null,
+                "wikipedia_id": "Adele_McClure",
                 "openstates_id": "ocd-person/d0de7acb-ce8d-4bb2-b6e5-99cefe5e76a6"
               },
               "source": "Legislator data collected by Open States (https://github.com/openstates/)"
@@ -3013,8 +3013,8 @@ If new boundaries are not available, the current boundaries are used instead (ef
 > To get `stateleg-next` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=stateleg-next&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=stateleg-next&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=stateleg-next&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=stateleg-next&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -3089,7 +3089,7 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg-next'])
                 "photo_url": "https://memdata.virginiageneralassembly.gov/images/display_image/H0375"
               },
               "contact": {
-                "url": "https://virginiageneralassembly.gov/house/members/members.php?id=H0375",
+                "url": "https://house.vga.virginia.gov/members/H0375",
                 "address": "Room 1102, General Assembly Building 201 N. 9th St., Richmond, VA 23219",
                 "phone": "804-698-1002",
                 "email": "delamcclure@house.virginia.gov",
@@ -3103,9 +3103,9 @@ geocoder.reverse('38.886672,-77.094735', ['stateleg-next'])
                 "youtube_id": null
               },
               "references": {
-                "votesmart_id": null,
+                "votesmart_id": "212037",
                 "ballotpedia_id": "Adele_McClure",
-                "wikipedia_id": null,
+                "wikipedia_id": "Adele_McClure",
                 "openstates_id": "ocd-person/d0de7acb-ce8d-4bb2-b6e5-99cefe5e76a6"
               },
               "source": "Legislator data collected by Open States (https://github.com/openstates/)"
@@ -3226,8 +3226,8 @@ Districts are always sorted by the `proportion` in descending order (largest fir
 > To get `school` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=school&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=school&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=school&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=school&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -3330,8 +3330,8 @@ The field will return either a *unified* school district or separate *elementary
 > To get `census2010` and `census` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=census2010,census&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=census2010,census&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=census2010,census&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=census2010,census&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -3562,8 +3562,8 @@ When planning your project, each category counts as an additional lookup for bil
 > To get `acs-demographics-county` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-demographics-county&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=acs-demographics-county&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-demographics-county&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=acs-demographics-county&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -3619,8 +3619,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-county'])
 ...
   "fields": {
     "census": {
-      "2023": {
-        "census_year": 2023,
+      "2024": {
+        "census_year": 2024,
         "state_fips": "51",
         "county_fips": "51013",
         "tract_code": "101801",
@@ -3658,7 +3658,7 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-county'])
     "acs": {
       "meta": {
         "source": "American Community Survey from the US Census Bureau",
-        "survey_years": "2019-2023",
+        "survey_years": "2020-2024",
         "survey_duration_years": "5"
       },
       "demographics": {
@@ -3669,11 +3669,11 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-county'])
           },
           "Total": {
             "value": 35.5,
-            "margin_of_error": 0.1
+            "margin_of_error": 0.2
           },
           "Male": {
             "value": 35.3,
-            "margin_of_error": 0.2
+            "margin_of_error": 0.1
           },
           "Female": {
             "value": 35.8,
@@ -3686,248 +3686,248 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-county'])
             "universe": "Total population"
           },
           "Total": {
-            "value": 235463,
+            "value": 236254,
             "margin_of_error": 0
           },
           "Male": {
-            "value": 118459,
-            "margin_of_error": 39,
+            "value": 118902,
+            "margin_of_error": 46,
             "percentage": 0.503
           },
           "Male: Under 5 years": {
-            "value": 6228,
-            "margin_of_error": 34,
-            "percentage": 0.053
+            "value": 6000,
+            "margin_of_error": 11,
+            "percentage": 0.05
           },
           "Male: 5 to 9 years": {
-            "value": 6233,
-            "margin_of_error": 361,
-            "percentage": 0.053
+            "value": 6145,
+            "margin_of_error": 416,
+            "percentage": 0.052
           },
           "Male: 10 to 14 years": {
-            "value": 6042,
-            "margin_of_error": 366,
-            "percentage": 0.051
+            "value": 6242,
+            "margin_of_error": 426,
+            "percentage": 0.052
           },
           "Male: 15 to 17 years": {
-            "value": 3408,
-            "margin_of_error": 4,
-            "percentage": 0.029
+            "value": 3545,
+            "margin_of_error": 3,
+            "percentage": 0.03
           },
           "Male: 18 and 19 years": {
-            "value": 1749,
-            "margin_of_error": 79,
+            "value": 1788,
+            "margin_of_error": 92,
             "percentage": 0.015
           },
           "Male: 20 years": {
-            "value": 818,
-            "margin_of_error": 187,
-            "percentage": 0.007
+            "value": 769,
+            "margin_of_error": 201,
+            "percentage": 0.006
           },
           "Male: 21 years": {
-            "value": 513,
-            "margin_of_error": 168,
-            "percentage": 0.004
+            "value": 664,
+            "margin_of_error": 175,
+            "percentage": 0.006
           },
           "Male: 22 to 24 years": {
-            "value": 6638,
-            "margin_of_error": 257,
-            "percentage": 0.056
+            "value": 6577,
+            "margin_of_error": 268,
+            "percentage": 0.055
           },
           "Male: 25 to 29 years": {
-            "value": 14761,
-            "margin_of_error": 54,
-            "percentage": 0.125
+            "value": 15043,
+            "margin_of_error": 20,
+            "percentage": 0.127
           },
           "Male: 30 to 34 years": {
-            "value": 12284,
-            "margin_of_error": 53,
-            "percentage": 0.104
+            "value": 12116,
+            "margin_of_error": 59,
+            "percentage": 0.102
           },
           "Male: 35 to 39 years": {
-            "value": 10246,
+            "value": 9639,
             "margin_of_error": 593,
-            "percentage": 0.086
+            "percentage": 0.081
           },
           "Male: 40 to 44 years": {
-            "value": 9177,
-            "margin_of_error": 593,
-            "percentage": 0.077
+            "value": 9604,
+            "margin_of_error": 585,
+            "percentage": 0.081
           },
           "Male: 45 to 49 years": {
-            "value": 8044,
-            "margin_of_error": 43,
-            "percentage": 0.068
+            "value": 7952,
+            "margin_of_error": 63,
+            "percentage": 0.067
           },
           "Male: 50 to 54 years": {
-            "value": 7479,
-            "margin_of_error": 40,
+            "value": 7526,
+            "margin_of_error": 48,
             "percentage": 0.063
           },
           "Male: 55 to 59 years": {
-            "value": 6684,
-            "margin_of_error": 433,
-            "percentage": 0.056
+            "value": 6488,
+            "margin_of_error": 467,
+            "percentage": 0.055
           },
           "Male: 60 and 61 years": {
-            "value": 2407,
-            "margin_of_error": 413,
-            "percentage": 0.02
+            "value": 2460,
+            "margin_of_error": 324,
+            "percentage": 0.021
           },
           "Male: 62 to 64 years": {
-            "value": 3139,
-            "margin_of_error": 368,
-            "percentage": 0.026
+            "value": 3353,
+            "margin_of_error": 428,
+            "percentage": 0.028
           },
           "Male: 65 and 66 years": {
-            "value": 2204,
-            "margin_of_error": 290,
-            "percentage": 0.019
+            "value": 2133,
+            "margin_of_error": 319,
+            "percentage": 0.018
           },
           "Male: 67 to 69 years": {
-            "value": 2539,
-            "margin_of_error": 302,
+            "value": 2535,
+            "margin_of_error": 295,
             "percentage": 0.021
           },
           "Male: 70 to 74 years": {
-            "value": 3202,
-            "margin_of_error": 323,
-            "percentage": 0.027
+            "value": 3376,
+            "margin_of_error": 246,
+            "percentage": 0.028
           },
           "Male: 75 to 79 years": {
-            "value": 2280,
-            "margin_of_error": 296,
-            "percentage": 0.019
+            "value": 2474,
+            "margin_of_error": 295,
+            "percentage": 0.021
           },
           "Male: 80 to 84 years": {
-            "value": 1209,
-            "margin_of_error": 213,
+            "value": 1225,
+            "margin_of_error": 170,
             "percentage": 0.01
           },
           "Male: 85 years and over": {
-            "value": 1175,
-            "margin_of_error": 290,
+            "value": 1248,
+            "margin_of_error": 274,
             "percentage": 0.01
           },
           "Female": {
-            "value": 117004,
-            "margin_of_error": 39,
+            "value": 117352,
+            "margin_of_error": 46,
             "percentage": 0.497
           },
           "Female: Under 5 years": {
-            "value": 6082,
-            "margin_of_error": 4,
-            "percentage": 0.052
+            "value": 5805,
+            "margin_of_error": 11,
+            "percentage": 0.049
           },
           "Female: 5 to 9 years": {
-            "value": 5582,
-            "margin_of_error": 472,
-            "percentage": 0.048
+            "value": 5731,
+            "margin_of_error": 430,
+            "percentage": 0.049
           },
           "Female: 10 to 14 years": {
-            "value": 5916,
-            "margin_of_error": 473,
-            "percentage": 0.051
+            "value": 5796,
+            "margin_of_error": 429,
+            "percentage": 0.049
           },
           "Female: 15 to 17 years": {
-            "value": 3263,
-            "margin_of_error": 35,
+            "value": 3337,
+            "margin_of_error": 22,
             "percentage": 0.028
           },
           "Female: 18 and 19 years": {
-            "value": 1631,
-            "margin_of_error": 106,
+            "value": 1602,
+            "margin_of_error": 118,
             "percentage": 0.014
           },
           "Female: 20 years": {
-            "value": 607,
-            "margin_of_error": 224,
+            "value": 547,
+            "margin_of_error": 216,
             "percentage": 0.005
           },
           "Female: 21 years": {
-            "value": 584,
-            "margin_of_error": 189,
+            "value": 600,
+            "margin_of_error": 201,
             "percentage": 0.005
           },
           "Female: 22 to 24 years": {
-            "value": 6942,
-            "margin_of_error": 284,
-            "percentage": 0.059
+            "value": 7166,
+            "margin_of_error": 313,
+            "percentage": 0.061
           },
           "Female: 25 to 29 years": {
-            "value": 14542,
-            "margin_of_error": 47,
-            "percentage": 0.124
+            "value": 14709,
+            "margin_of_error": 34,
+            "percentage": 0.125
           },
           "Female: 30 to 34 years": {
-            "value": 11856,
-            "margin_of_error": 52,
-            "percentage": 0.101
+            "value": 11615,
+            "margin_of_error": 58,
+            "percentage": 0.099
           },
           "Female: 35 to 39 years": {
-            "value": 10105,
-            "margin_of_error": 592,
-            "percentage": 0.086
+            "value": 10181,
+            "margin_of_error": 623,
+            "percentage": 0.087
           },
           "Female: 40 to 44 years": {
-            "value": 9004,
-            "margin_of_error": 602,
-            "percentage": 0.077
+            "value": 8735,
+            "margin_of_error": 630,
+            "percentage": 0.074
           },
           "Female: 45 to 49 years": {
-            "value": 7802,
-            "margin_of_error": 34,
+            "value": 7874,
+            "margin_of_error": 50,
             "percentage": 0.067
           },
           "Female: 50 to 54 years": {
-            "value": 6955,
-            "margin_of_error": 30,
-            "percentage": 0.059
+            "value": 7108,
+            "margin_of_error": 4,
+            "percentage": 0.061
           },
           "Female: 55 to 59 years": {
-            "value": 6191,
-            "margin_of_error": 403,
-            "percentage": 0.053
+            "value": 6130,
+            "margin_of_error": 421,
+            "percentage": 0.052
           },
           "Female: 60 and 61 years": {
-            "value": 2353,
-            "margin_of_error": 414,
-            "percentage": 0.02
+            "value": 2264,
+            "margin_of_error": 417,
+            "percentage": 0.019
           },
           "Female: 62 to 64 years": {
-            "value": 2877,
-            "margin_of_error": 378,
-            "percentage": 0.025
+            "value": 3020,
+            "margin_of_error": 385,
+            "percentage": 0.026
           },
           "Female: 65 and 66 years": {
-            "value": 1951,
-            "margin_of_error": 276,
+            "value": 1984,
+            "margin_of_error": 281,
             "percentage": 0.017
           },
           "Female: 67 to 69 years": {
-            "value": 2584,
-            "margin_of_error": 287,
-            "percentage": 0.022
+            "value": 2700,
+            "margin_of_error": 258,
+            "percentage": 0.023
           },
           "Female: 70 to 74 years": {
-            "value": 3986,
-            "margin_of_error": 336,
+            "value": 3944,
+            "margin_of_error": 298,
             "percentage": 0.034
           },
           "Female: 75 to 79 years": {
-            "value": 2936,
-            "margin_of_error": 323,
-            "percentage": 0.025
+            "value": 3186,
+            "margin_of_error": 304,
+            "percentage": 0.027
           },
           "Female: 80 to 84 years": {
-            "value": 1450,
-            "margin_of_error": 206,
+            "value": 1430,
+            "margin_of_error": 240,
             "percentage": 0.012
           },
           "Female: 85 years and over": {
-            "value": 1805,
-            "margin_of_error": 319,
-            "percentage": 0.015
+            "value": 1888,
+            "margin_of_error": 279,
+            "percentage": 0.016
           }
         },
         "Sex": {
@@ -3936,17 +3936,17 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-county'])
             "universe": "Total population"
           },
           "Total": {
-            "value": 235463,
+            "value": 236254,
             "margin_of_error": 0
           },
           "Male": {
-            "value": 118459,
-            "margin_of_error": 39,
+            "value": 118902,
+            "margin_of_error": 46,
             "percentage": 0.503
           },
           "Female": {
-            "value": 117004,
-            "margin_of_error": 39,
+            "value": 117352,
+            "margin_of_error": 46,
             "percentage": 0.497
           }
         },
@@ -3956,108 +3956,108 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-county'])
             "universe": "Total population"
           },
           "Total": {
-            "value": 235463,
+            "value": 236254,
             "margin_of_error": 0
           },
           "Not Hispanic or Latino": {
-            "value": 198409,
+            "value": 198682,
             "margin_of_error": 0,
-            "percentage": 0.843
+            "percentage": 0.841
           },
           "Not Hispanic or Latino: White alone": {
-            "value": 138514,
-            "margin_of_error": 893,
-            "percentage": 0.698
+            "value": 136939,
+            "margin_of_error": 814,
+            "percentage": 0.689
           },
           "Not Hispanic or Latino: Black or African American alone": {
-            "value": 21676,
-            "margin_of_error": 531,
-            "percentage": 0.109
+            "value": 21913,
+            "margin_of_error": 493,
+            "percentage": 0.11
           },
           "Not Hispanic or Latino: American Indian and Alaska Native alone": {
-            "value": 339,
-            "margin_of_error": 117,
-            "percentage": 0.002
+            "value": 268,
+            "margin_of_error": 101,
+            "percentage": 0.001
           },
           "Not Hispanic or Latino: Asian alone": {
-            "value": 24656,
-            "margin_of_error": 618,
-            "percentage": 0.124
+            "value": 24753,
+            "margin_of_error": 719,
+            "percentage": 0.125
           },
           "Not Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone": {
-            "value": 56,
-            "margin_of_error": 57,
+            "value": 82,
+            "margin_of_error": 68,
             "percentage": 0
           },
           "Not Hispanic or Latino: Some other race alone": {
-            "value": 1410,
-            "margin_of_error": 427,
-            "percentage": 0.007
+            "value": 1646,
+            "margin_of_error": 441,
+            "percentage": 0.008
           },
           "Not Hispanic or Latino: Two or more races": {
-            "value": 11758,
-            "margin_of_error": 1010,
-            "percentage": 0.059
+            "value": 13081,
+            "margin_of_error": 1095,
+            "percentage": 0.066
           },
           "Not Hispanic or Latino: Two or more races: Two races including Some other race": {
-            "value": 2741,
-            "margin_of_error": 764,
-            "percentage": 0.233
+            "value": 3208,
+            "margin_of_error": 709,
+            "percentage": 0.245
           },
           "Not Hispanic or Latino: Two or more races: Two races excluding Some other race, and three or more races": {
-            "value": 9017,
-            "margin_of_error": 856,
-            "percentage": 0.767
+            "value": 9873,
+            "margin_of_error": 922,
+            "percentage": 0.755
           },
           "Hispanic or Latino": {
-            "value": 37054,
+            "value": 37572,
             "margin_of_error": 0,
-            "percentage": 0.157
+            "percentage": 0.159
           },
           "Hispanic or Latino: White alone": {
-            "value": 8982,
-            "margin_of_error": 1179,
-            "percentage": 0.242
+            "value": 5701,
+            "margin_of_error": 728,
+            "percentage": 0.152
           },
           "Hispanic or Latino: Black or African American alone": {
-            "value": 538,
-            "margin_of_error": 214,
-            "percentage": 0.015
+            "value": 414,
+            "margin_of_error": 155,
+            "percentage": 0.011
           },
           "Hispanic or Latino: American Indian and Alaska Native alone": {
-            "value": 890,
-            "margin_of_error": 418,
-            "percentage": 0.024
+            "value": 1208,
+            "margin_of_error": 590,
+            "percentage": 0.032
           },
           "Hispanic or Latino: Asian alone": {
-            "value": 63,
-            "margin_of_error": 56,
-            "percentage": 0.002
+            "value": 170,
+            "margin_of_error": 97,
+            "percentage": 0.005
           },
           "Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone": {
-            "value": 32,
-            "margin_of_error": 41,
+            "value": 27,
+            "margin_of_error": 39,
             "percentage": 0.001
           },
           "Hispanic or Latino: Some other race alone": {
-            "value": 11583,
-            "margin_of_error": 1243,
-            "percentage": 0.313
+            "value": 11602,
+            "margin_of_error": 1276,
+            "percentage": 0.309
           },
           "Hispanic or Latino: Two or more races": {
-            "value": 14966,
-            "margin_of_error": 1370,
-            "percentage": 0.404
+            "value": 18450,
+            "margin_of_error": 1405,
+            "percentage": 0.491
           },
           "Hispanic or Latino: Two or more races: Two races including Some other race": {
-            "value": 13192,
-            "margin_of_error": 1415,
-            "percentage": 0.881
+            "value": 16516,
+            "margin_of_error": 1357,
+            "percentage": 0.895
           },
           "Hispanic or Latino: Two or more races: Two races excluding Some other race, and three or more races": {
-            "value": 1774,
-            "margin_of_error": 409,
-            "percentage": 0.119
+            "value": 1934,
+            "margin_of_error": 448,
+            "percentage": 0.105
           }
         },
         "meta": {
@@ -4072,8 +4072,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-county'])
 > To get `acs-demographics-tract` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-demographics-tract&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=acs-demographics-tract&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-demographics-tract&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=acs-demographics-tract&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -4129,8 +4129,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
 ...
   "fields": {
     "census": {
-      "2023": {
-        "census_year": 2023,
+      "2024": {
+        "census_year": 2024,
         "state_fips": "51",
         "county_fips": "51013",
         "tract_code": "101801",
@@ -4168,7 +4168,7 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
     "acs": {
       "meta": {
         "source": "American Community Survey from the US Census Bureau",
-        "survey_years": "2019-2023",
+        "survey_years": "2020-2024",
         "survey_duration_years": "5"
       },
       "demographics": {
@@ -4178,16 +4178,16 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
             "universe": "Total population"
           },
           "Total": {
-            "value": 32.1,
-            "margin_of_error": 2.5
+            "value": 33.3,
+            "margin_of_error": 1.2
           },
           "Male": {
-            "value": 31.8,
-            "margin_of_error": 3.5
+            "value": 33.9,
+            "margin_of_error": 2.7
           },
           "Female": {
-            "value": 32.4,
-            "margin_of_error": 2.6
+            "value": 33.2,
+            "margin_of_error": 1.2
           }
         },
         "Population by age range": {
@@ -4196,18 +4196,18 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
             "universe": "Total population"
           },
           "Total": {
-            "value": 2992,
-            "margin_of_error": 373
+            "value": 2937,
+            "margin_of_error": 336
           },
           "Male": {
-            "value": 1587,
+            "value": 1598,
             "margin_of_error": 220,
-            "percentage": 0.53
+            "percentage": 0.544
           },
           "Male: Under 5 years": {
-            "value": 46,
-            "margin_of_error": 34,
-            "percentage": 0.029
+            "value": 71,
+            "margin_of_error": 41,
+            "percentage": 0.044
           },
           "Male: 5 to 9 years": {
             "value": 3,
@@ -4215,9 +4215,9 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
             "percentage": 0.002
           },
           "Male: 10 to 14 years": {
-            "value": 31,
-            "margin_of_error": 28,
-            "percentage": 0.02
+            "value": 10,
+            "margin_of_error": 14,
+            "percentage": 0.006
           },
           "Male: 15 to 17 years": {
             "value": 0,
@@ -4240,74 +4240,74 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
             "percentage": 0
           },
           "Male: 22 to 24 years": {
-            "value": 250,
-            "margin_of_error": 117,
-            "percentage": 0.158
+            "value": 207,
+            "margin_of_error": 115,
+            "percentage": 0.13
           },
           "Male: 25 to 29 years": {
-            "value": 384,
-            "margin_of_error": 130,
-            "percentage": 0.242
+            "value": 408,
+            "margin_of_error": 125,
+            "percentage": 0.255
           },
           "Male: 30 to 34 years": {
-            "value": 212,
-            "margin_of_error": 76,
-            "percentage": 0.134
+            "value": 162,
+            "margin_of_error": 68,
+            "percentage": 0.101
           },
           "Male: 35 to 39 years": {
-            "value": 156,
-            "margin_of_error": 66,
-            "percentage": 0.098
+            "value": 191,
+            "margin_of_error": 65,
+            "percentage": 0.12
           },
           "Male: 40 to 44 years": {
-            "value": 94,
-            "margin_of_error": 54,
-            "percentage": 0.059
+            "value": 66,
+            "margin_of_error": 37,
+            "percentage": 0.041
           },
           "Male: 45 to 49 years": {
-            "value": 96,
-            "margin_of_error": 71,
-            "percentage": 0.06
+            "value": 124,
+            "margin_of_error": 96,
+            "percentage": 0.078
           },
           "Male: 50 to 54 years": {
-            "value": 104,
-            "margin_of_error": 59,
-            "percentage": 0.066
+            "value": 163,
+            "margin_of_error": 92,
+            "percentage": 0.102
           },
           "Male: 55 to 59 years": {
-            "value": 94,
-            "margin_of_error": 84,
-            "percentage": 0.059
+            "value": 71,
+            "margin_of_error": 70,
+            "percentage": 0.044
           },
           "Male: 60 and 61 years": {
-            "value": 16,
-            "margin_of_error": 20,
-            "percentage": 0.01
+            "value": 21,
+            "margin_of_error": 26,
+            "percentage": 0.013
           },
           "Male: 62 to 64 years": {
-            "value": 20,
-            "margin_of_error": 23,
-            "percentage": 0.013
+            "value": 8,
+            "margin_of_error": 13,
+            "percentage": 0.005
           },
           "Male: 65 and 66 years": {
             "value": 28,
-            "margin_of_error": 27,
+            "margin_of_error": 25,
             "percentage": 0.018
           },
           "Male: 67 to 69 years": {
-            "value": 8,
-            "margin_of_error": 12,
-            "percentage": 0.005
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "Male: 70 to 74 years": {
-            "value": 35,
-            "margin_of_error": 27,
-            "percentage": 0.022
+            "value": 46,
+            "margin_of_error": 32,
+            "percentage": 0.029
           },
           "Male: 75 to 79 years": {
-            "value": 10,
-            "margin_of_error": 16,
-            "percentage": 0.006
+            "value": 19,
+            "margin_of_error": 21,
+            "percentage": 0.012
           },
           "Male: 80 to 84 years": {
             "value": 0,
@@ -4320,29 +4320,29 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
             "percentage": 0
           },
           "Female": {
-            "value": 1405,
-            "margin_of_error": 219,
-            "percentage": 0.47
+            "value": 1339,
+            "margin_of_error": 195,
+            "percentage": 0.456
           },
           "Female: Under 5 years": {
-            "value": 10,
-            "margin_of_error": 18,
-            "percentage": 0.007
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "Female: 5 to 9 years": {
-            "value": 45,
-            "margin_of_error": 50,
-            "percentage": 0.032
+            "value": 69,
+            "margin_of_error": 56,
+            "percentage": 0.052
           },
           "Female: 10 to 14 years": {
-            "value": 72,
+            "value": 63,
             "margin_of_error": 60,
-            "percentage": 0.051
+            "percentage": 0.047
           },
           "Female: 15 to 17 years": {
-            "value": 19,
-            "margin_of_error": 34,
-            "percentage": 0.014
+            "value": 17,
+            "margin_of_error": 28,
+            "percentage": 0.013
           },
           "Female: 18 and 19 years": {
             "value": 0,
@@ -4360,44 +4360,44 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
             "percentage": 0
           },
           "Female: 22 to 24 years": {
-            "value": 175,
-            "margin_of_error": 120,
-            "percentage": 0.125
+            "value": 119,
+            "margin_of_error": 107,
+            "percentage": 0.089
           },
           "Female: 25 to 29 years": {
-            "value": 309,
-            "margin_of_error": 76,
-            "percentage": 0.22
-          },
-          "Female: 30 to 34 years": {
-            "value": 252,
-            "margin_of_error": 86,
+            "value": 240,
+            "margin_of_error": 80,
             "percentage": 0.179
           },
+          "Female: 30 to 34 years": {
+            "value": 291,
+            "margin_of_error": 100,
+            "percentage": 0.217
+          },
           "Female: 35 to 39 years": {
-            "value": 160,
-            "margin_of_error": 71,
-            "percentage": 0.114
+            "value": 144,
+            "margin_of_error": 66,
+            "percentage": 0.108
           },
           "Female: 40 to 44 years": {
-            "value": 16,
-            "margin_of_error": 15,
-            "percentage": 0.011
+            "value": 19,
+            "margin_of_error": 22,
+            "percentage": 0.014
           },
           "Female: 45 to 49 years": {
-            "value": 159,
-            "margin_of_error": 59,
-            "percentage": 0.113
+            "value": 207,
+            "margin_of_error": 75,
+            "percentage": 0.155
           },
           "Female: 50 to 54 years": {
-            "value": 87,
-            "margin_of_error": 64,
-            "percentage": 0.062
+            "value": 78,
+            "margin_of_error": 55,
+            "percentage": 0.058
           },
           "Female: 55 to 59 years": {
-            "value": 32,
-            "margin_of_error": 29,
-            "percentage": 0.023
+            "value": 13,
+            "margin_of_error": 21,
+            "percentage": 0.01
           },
           "Female: 60 and 61 years": {
             "value": 0,
@@ -4405,14 +4405,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
             "percentage": 0
           },
           "Female: 62 to 64 years": {
-            "value": 9,
+            "value": 8,
             "margin_of_error": 13,
             "percentage": 0.006
           },
           "Female: 65 and 66 years": {
-            "value": 14,
-            "margin_of_error": 19,
-            "percentage": 0.01
+            "value": 15,
+            "margin_of_error": 20,
+            "percentage": 0.011
           },
           "Female: 67 to 69 years": {
             "value": 0,
@@ -4420,14 +4420,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
             "percentage": 0
           },
           "Female: 70 to 74 years": {
-            "value": 31,
-            "margin_of_error": 27,
-            "percentage": 0.022
+            "value": 40,
+            "margin_of_error": 31,
+            "percentage": 0.03
           },
           "Female: 75 to 79 years": {
-            "value": 15,
-            "margin_of_error": 21,
-            "percentage": 0.011
+            "value": 16,
+            "margin_of_error": 18,
+            "percentage": 0.012
           },
           "Female: 80 to 84 years": {
             "value": 0,
@@ -4446,18 +4446,18 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
             "universe": "Total population"
           },
           "Total": {
-            "value": 2992,
-            "margin_of_error": 373
+            "value": 2937,
+            "margin_of_error": 336
           },
           "Male": {
-            "value": 1587,
+            "value": 1598,
             "margin_of_error": 220,
-            "percentage": 0.53
+            "percentage": 0.544
           },
           "Female": {
-            "value": 1405,
-            "margin_of_error": 219,
-            "percentage": 0.47
+            "value": 1339,
+            "margin_of_error": 195,
+            "percentage": 0.456
           }
         },
         "Race and ethnicity": {
@@ -4466,33 +4466,33 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
             "universe": "Total population"
           },
           "Total": {
-            "value": 2992,
-            "margin_of_error": 373
+            "value": 2937,
+            "margin_of_error": 336
           },
           "Not Hispanic or Latino": {
-            "value": 2849,
-            "margin_of_error": 383,
-            "percentage": 0.952
+            "value": 2804,
+            "margin_of_error": 343,
+            "percentage": 0.955
           },
           "Not Hispanic or Latino: White alone": {
-            "value": 2226,
-            "margin_of_error": 287,
-            "percentage": 0.781
+            "value": 2093,
+            "margin_of_error": 274,
+            "percentage": 0.746
           },
           "Not Hispanic or Latino: Black or African American alone": {
-            "value": 55,
-            "margin_of_error": 52,
-            "percentage": 0.019
+            "value": 104,
+            "margin_of_error": 85,
+            "percentage": 0.037
           },
           "Not Hispanic or Latino: American Indian and Alaska Native alone": {
-            "value": 9,
+            "value": 0,
             "margin_of_error": 13,
-            "percentage": 0.003
+            "percentage": 0
           },
           "Not Hispanic or Latino: Asian alone": {
-            "value": 367,
-            "margin_of_error": 176,
-            "percentage": 0.129
+            "value": 369,
+            "margin_of_error": 152,
+            "percentage": 0.132
           },
           "Not Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone": {
             "value": 0,
@@ -4500,34 +4500,34 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
             "percentage": 0
           },
           "Not Hispanic or Latino: Some other race alone": {
-            "value": 38,
-            "margin_of_error": 34,
-            "percentage": 0.013
+            "value": 31,
+            "margin_of_error": 30,
+            "percentage": 0.011
           },
           "Not Hispanic or Latino: Two or more races": {
-            "value": 154,
-            "margin_of_error": 80,
-            "percentage": 0.054
+            "value": 207,
+            "margin_of_error": 74,
+            "percentage": 0.074
           },
           "Not Hispanic or Latino: Two or more races: Two races including Some other race": {
-            "value": 17,
-            "margin_of_error": 16,
-            "percentage": 0.11
+            "value": 5,
+            "margin_of_error": 9,
+            "percentage": 0.024
           },
           "Not Hispanic or Latino: Two or more races: Two races excluding Some other race, and three or more races": {
-            "value": 137,
-            "margin_of_error": 77,
-            "percentage": 0.89
+            "value": 202,
+            "margin_of_error": 75,
+            "percentage": 0.976
           },
           "Hispanic or Latino": {
-            "value": 143,
-            "margin_of_error": 69,
-            "percentage": 0.048
+            "value": 133,
+            "margin_of_error": 60,
+            "percentage": 0.045
           },
           "Hispanic or Latino: White alone": {
-            "value": 45,
-            "margin_of_error": 29,
-            "percentage": 0.315
+            "value": 21,
+            "margin_of_error": 23,
+            "percentage": 0.158
           },
           "Hispanic or Latino: Black or African American alone": {
             "value": 0,
@@ -4535,14 +4535,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
             "percentage": 0
           },
           "Hispanic or Latino: American Indian and Alaska Native alone": {
-            "value": 7,
-            "margin_of_error": 12,
-            "percentage": 0.049
+            "value": 6,
+            "margin_of_error": 11,
+            "percentage": 0.045
           },
           "Hispanic or Latino: Asian alone": {
-            "value": 0,
-            "margin_of_error": 13,
-            "percentage": 0
+            "value": 22,
+            "margin_of_error": 30,
+            "percentage": 0.165
           },
           "Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone": {
             "value": 0,
@@ -4550,18 +4550,18 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics-tract'])
             "percentage": 0
           },
           "Hispanic or Latino: Some other race alone": {
-            "value": 38,
-            "margin_of_error": 29,
-            "percentage": 0.266
+            "value": 36,
+            "margin_of_error": 27,
+            "percentage": 0.271
           },
           "Hispanic or Latino: Two or more races": {
-            "value": 53,
-            "margin_of_error": 40,
-            "percentage": 0.371
+            "value": 48,
+            "margin_of_error": 45,
+            "percentage": 0.361
           },
           "Hispanic or Latino: Two or more races: Two races including Some other race": {
-            "value": 53,
-            "margin_of_error": 40,
+            "value": 48,
+            "margin_of_error": 45,
             "percentage": 1
           },
           "Hispanic or Latino: Two or more races: Two races excluding Some other race, and three or more races": {
@@ -4662,8 +4662,8 @@ The universe can be values such as `Households`, `Population 15 Years and Older`
 > To get `acs-demographics` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-demographics&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=acs-demographics&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-demographics&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=acs-demographics&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -4719,8 +4719,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
 ...
   "fields": {
     "census": {
-      "2023": {
-        "census_year": 2023,
+      "2024": {
+        "census_year": 2024,
         "state_fips": "51",
         "county_fips": "51013",
         "tract_code": "101801",
@@ -4758,7 +4758,7 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
     "acs": {
       "meta": {
         "source": "American Community Survey from the US Census Bureau",
-        "survey_years": "2019-2023",
+        "survey_years": "2020-2024",
         "survey_duration_years": "5"
       },
       "demographics": {
@@ -4768,16 +4768,16 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
             "universe": "Total population"
           },
           "Total": {
-            "value": 32.3,
-            "margin_of_error": 3.7
+            "value": 34,
+            "margin_of_error": 2.6
           },
           "Male": {
-            "value": 31.2,
-            "margin_of_error": 5.3
+            "value": 36.2,
+            "margin_of_error": 4.3
           },
           "Female": {
-            "value": 32.7,
-            "margin_of_error": 2.5
+            "value": 33.3,
+            "margin_of_error": 1.3
           }
         },
         "Population by age range": {
@@ -4786,28 +4786,28 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
             "universe": "Total population"
           },
           "Total": {
-            "value": 1739,
-            "margin_of_error": 350
+            "value": 1554,
+            "margin_of_error": 291
           },
           "Male": {
-            "value": 860,
-            "margin_of_error": 211,
-            "percentage": 0.495
+            "value": 775,
+            "margin_of_error": 170,
+            "percentage": 0.499
           },
           "Male: Under 5 years": {
-            "value": 19,
-            "margin_of_error": 19,
-            "percentage": 0.022
+            "value": 35,
+            "margin_of_error": 31,
+            "percentage": 0.045
           },
           "Male: 5 to 9 years": {
             "value": 3,
             "margin_of_error": 6,
-            "percentage": 0.003
+            "percentage": 0.004
           },
           "Male: 10 to 14 years": {
-            "value": 15,
-            "margin_of_error": 19,
-            "percentage": 0.017
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "Male: 15 to 17 years": {
             "value": 0,
@@ -4830,54 +4830,54 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
             "percentage": 0
           },
           "Male: 22 to 24 years": {
-            "value": 94,
-            "margin_of_error": 73,
-            "percentage": 0.109
+            "value": 62,
+            "margin_of_error": 72,
+            "percentage": 0.08
           },
           "Male: 25 to 29 years": {
-            "value": 260,
-            "margin_of_error": 131,
-            "percentage": 0.302
+            "value": 168,
+            "margin_of_error": 86,
+            "percentage": 0.217
           },
           "Male: 30 to 34 years": {
-            "value": 133,
-            "margin_of_error": 71,
-            "percentage": 0.155
+            "value": 106,
+            "margin_of_error": 61,
+            "percentage": 0.137
           },
           "Male: 35 to 39 years": {
-            "value": 67,
-            "margin_of_error": 42,
-            "percentage": 0.078
+            "value": 127,
+            "margin_of_error": 59,
+            "percentage": 0.164
           },
           "Male: 40 to 44 years": {
-            "value": 37,
-            "margin_of_error": 36,
-            "percentage": 0.043
+            "value": 23,
+            "margin_of_error": 22,
+            "percentage": 0.03
           },
           "Male: 45 to 49 years": {
-            "value": 67,
-            "margin_of_error": 63,
-            "percentage": 0.078
+            "value": 87,
+            "margin_of_error": 83,
+            "percentage": 0.112
           },
           "Male: 50 to 54 years": {
-            "value": 74,
-            "margin_of_error": 58,
-            "percentage": 0.086
+            "value": 94,
+            "margin_of_error": 73,
+            "percentage": 0.121
           },
           "Male: 55 to 59 years": {
-            "value": 41,
-            "margin_of_error": 37,
-            "percentage": 0.048
+            "value": 14,
+            "margin_of_error": 23,
+            "percentage": 0.018
           },
           "Male: 60 and 61 years": {
-            "value": 8,
-            "margin_of_error": 14,
-            "percentage": 0.009
+            "value": 13,
+            "margin_of_error": 23,
+            "percentage": 0.017
           },
           "Male: 62 to 64 years": {
             "value": 8,
             "margin_of_error": 13,
-            "percentage": 0.009
+            "percentage": 0.01
           },
           "Male: 65 and 66 years": {
             "value": 0,
@@ -4885,19 +4885,19 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
             "percentage": 0
           },
           "Male: 67 to 69 years": {
-            "value": 8,
-            "margin_of_error": 12,
-            "percentage": 0.009
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "Male: 70 to 74 years": {
             "value": 16,
-            "margin_of_error": 21,
-            "percentage": 0.019
+            "margin_of_error": 22,
+            "percentage": 0.021
           },
           "Male: 75 to 79 years": {
-            "value": 10,
-            "margin_of_error": 16,
-            "percentage": 0.012
+            "value": 19,
+            "margin_of_error": 21,
+            "percentage": 0.025
           },
           "Male: 80 to 84 years": {
             "value": 0,
@@ -4910,24 +4910,24 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
             "percentage": 0
           },
           "Female": {
-            "value": 879,
-            "margin_of_error": 181,
-            "percentage": 0.505
+            "value": 779,
+            "margin_of_error": 161,
+            "percentage": 0.501
           },
           "Female: Under 5 years": {
-            "value": 10,
-            "margin_of_error": 18,
-            "percentage": 0.011
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "Female: 5 to 9 years": {
-            "value": 13,
-            "margin_of_error": 23,
-            "percentage": 0.015
+            "value": 7,
+            "margin_of_error": 12,
+            "percentage": 0.009
           },
           "Female: 10 to 14 years": {
-            "value": 60,
+            "value": 47,
             "margin_of_error": 59,
-            "percentage": 0.068
+            "percentage": 0.06
           },
           "Female: 15 to 17 years": {
             "value": 0,
@@ -4950,44 +4950,44 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
             "percentage": 0
           },
           "Female: 22 to 24 years": {
-            "value": 125,
-            "margin_of_error": 118,
-            "percentage": 0.142
+            "value": 85,
+            "margin_of_error": 100,
+            "percentage": 0.109
           },
           "Female: 25 to 29 years": {
-            "value": 175,
-            "margin_of_error": 67,
-            "percentage": 0.199
+            "value": 120,
+            "margin_of_error": 49,
+            "percentage": 0.154
           },
           "Female: 30 to 34 years": {
-            "value": 161,
-            "margin_of_error": 65,
-            "percentage": 0.183
+            "value": 205,
+            "margin_of_error": 82,
+            "percentage": 0.263
           },
           "Female: 35 to 39 years": {
-            "value": 85,
-            "margin_of_error": 57,
-            "percentage": 0.097
+            "value": 72,
+            "margin_of_error": 54,
+            "percentage": 0.092
           },
           "Female: 40 to 44 years": {
-            "value": 16,
-            "margin_of_error": 15,
-            "percentage": 0.018
+            "value": 19,
+            "margin_of_error": 22,
+            "percentage": 0.024
           },
           "Female: 45 to 49 years": {
-            "value": 102,
-            "margin_of_error": 59,
-            "percentage": 0.116
+            "value": 107,
+            "margin_of_error": 70,
+            "percentage": 0.137
           },
           "Female: 50 to 54 years": {
-            "value": 72,
-            "margin_of_error": 61,
-            "percentage": 0.082
+            "value": 47,
+            "margin_of_error": 52,
+            "percentage": 0.06
           },
           "Female: 55 to 59 years": {
-            "value": 12,
-            "margin_of_error": 18,
-            "percentage": 0.014
+            "value": 13,
+            "margin_of_error": 21,
+            "percentage": 0.017
           },
           "Female: 60 and 61 years": {
             "value": 0,
@@ -4995,7 +4995,7 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
             "percentage": 0
           },
           "Female: 62 to 64 years": {
-            "value": 9,
+            "value": 8,
             "margin_of_error": 13,
             "percentage": 0.01
           },
@@ -5010,14 +5010,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
             "percentage": 0
           },
           "Female: 70 to 74 years": {
-            "value": 24,
-            "margin_of_error": 26,
-            "percentage": 0.027
+            "value": 33,
+            "margin_of_error": 29,
+            "percentage": 0.042
           },
           "Female: 75 to 79 years": {
-            "value": 15,
-            "margin_of_error": 21,
-            "percentage": 0.017
+            "value": 16,
+            "margin_of_error": 18,
+            "percentage": 0.021
           },
           "Female: 80 to 84 years": {
             "value": 0,
@@ -5036,18 +5036,18 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
             "universe": "Total population"
           },
           "Total": {
-            "value": 1739,
-            "margin_of_error": 350
+            "value": 1554,
+            "margin_of_error": 291
           },
           "Male": {
-            "value": 860,
-            "margin_of_error": 211,
-            "percentage": 0.495
+            "value": 775,
+            "margin_of_error": 170,
+            "percentage": 0.499
           },
           "Female": {
-            "value": 879,
-            "margin_of_error": 181,
-            "percentage": 0.505
+            "value": 779,
+            "margin_of_error": 161,
+            "percentage": 0.501
           }
         },
         "Race and ethnicity": {
@@ -5056,23 +5056,23 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
             "universe": "Total population"
           },
           "Total": {
-            "value": 1739,
-            "margin_of_error": 350
+            "value": 1554,
+            "margin_of_error": 291
           },
           "Not Hispanic or Latino": {
-            "value": 1668,
-            "margin_of_error": 350,
-            "percentage": 0.959
+            "value": 1478,
+            "margin_of_error": 295,
+            "percentage": 0.951
           },
           "Not Hispanic or Latino: White alone": {
-            "value": 1334,
-            "margin_of_error": 280,
-            "percentage": 0.8
+            "value": 1116,
+            "margin_of_error": 225,
+            "percentage": 0.755
           },
           "Not Hispanic or Latino: Black or African American alone": {
-            "value": 55,
-            "margin_of_error": 52,
-            "percentage": 0.033
+            "value": 44,
+            "margin_of_error": 54,
+            "percentage": 0.03
           },
           "Not Hispanic or Latino: American Indian and Alaska Native alone": {
             "value": 0,
@@ -5080,9 +5080,9 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
             "percentage": 0
           },
           "Not Hispanic or Latino: Asian alone": {
-            "value": 135,
-            "margin_of_error": 82,
-            "percentage": 0.081
+            "value": 130,
+            "margin_of_error": 95,
+            "percentage": 0.088
           },
           "Not Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone": {
             "value": 0,
@@ -5090,34 +5090,34 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
             "percentage": 0
           },
           "Not Hispanic or Latino: Some other race alone": {
-            "value": 20,
-            "margin_of_error": 24,
-            "percentage": 0.012
+            "value": 22,
+            "margin_of_error": 26,
+            "percentage": 0.015
           },
           "Not Hispanic or Latino: Two or more races": {
-            "value": 124,
-            "margin_of_error": 76,
-            "percentage": 0.074
+            "value": 166,
+            "margin_of_error": 74,
+            "percentage": 0.112
           },
           "Not Hispanic or Latino: Two or more races: Two races including Some other race": {
-            "value": 17,
-            "margin_of_error": 16,
-            "percentage": 0.137
+            "value": 5,
+            "margin_of_error": 9,
+            "percentage": 0.03
           },
           "Not Hispanic or Latino: Two or more races: Two races excluding Some other race, and three or more races": {
-            "value": 107,
-            "margin_of_error": 72,
-            "percentage": 0.863
+            "value": 161,
+            "margin_of_error": 74,
+            "percentage": 0.97
           },
           "Hispanic or Latino": {
-            "value": 71,
-            "margin_of_error": 42,
-            "percentage": 0.041
+            "value": 76,
+            "margin_of_error": 45,
+            "percentage": 0.049
           },
           "Hispanic or Latino: White alone": {
-            "value": 24,
-            "margin_of_error": 22,
-            "percentage": 0.338
+            "value": 21,
+            "margin_of_error": 23,
+            "percentage": 0.276
           },
           "Hispanic or Latino: Black or African American alone": {
             "value": 0,
@@ -5130,9 +5130,9 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
             "percentage": 0
           },
           "Hispanic or Latino: Asian alone": {
-            "value": 0,
-            "margin_of_error": 13,
-            "percentage": 0
+            "value": 22,
+            "margin_of_error": 30,
+            "percentage": 0.289
           },
           "Hispanic or Latino: Native Hawaiian and Other Pacific Islander alone": {
             "value": 0,
@@ -5141,17 +5141,17 @@ geocoder.reverse('38.886672,-77.094735', ['acs-demographics'])
           },
           "Hispanic or Latino: Some other race alone": {
             "value": 9,
-            "margin_of_error": 14,
-            "percentage": 0.127
+            "margin_of_error": 13,
+            "percentage": 0.118
           },
           "Hispanic or Latino: Two or more races": {
-            "value": 38,
-            "margin_of_error": 30,
-            "percentage": 0.535
+            "value": 24,
+            "margin_of_error": 23,
+            "percentage": 0.316
           },
           "Hispanic or Latino: Two or more races: Two races including Some other race": {
-            "value": 38,
-            "margin_of_error": 30,
+            "value": 24,
+            "margin_of_error": 23,
             "percentage": 1
           },
           "Hispanic or Latino: Two or more races: Two races excluding Some other race, and three or more races": {
@@ -5194,8 +5194,8 @@ We recognize that age, sex, gender, race and ethnicity are sensitive subjects. A
 > To get `acs-economics` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-economics&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=acs-economics&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-economics&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=acs-economics&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -5251,8 +5251,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-economics'])
 ...
   "fields": {
     "census": {
-      "2023": {
-        "census_year": 2023,
+      "2024": {
+        "census_year": 2024,
         "state_fips": "51",
         "county_fips": "51013",
         "tract_code": "101801",
@@ -5290,7 +5290,7 @@ geocoder.reverse('38.886672,-77.094735', ['acs-economics'])
     "acs": {
       "meta": {
         "source": "American Community Survey from the US Census Bureau",
-        "survey_years": "2019-2023",
+        "survey_years": "2020-2024",
         "survey_duration_years": "5"
       },
       "economics": {
@@ -5300,8 +5300,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-economics'])
             "universe": "Households"
           },
           "Total": {
-            "value": 904,
-            "margin_of_error": 136
+            "value": 887,
+            "margin_of_error": 124
           }
         },
         "Median household income": {
@@ -5310,8 +5310,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-economics'])
             "universe": "Households"
           },
           "Total": {
-            "value": 204063,
-            "margin_of_error": 32217
+            "value": 202344,
+            "margin_of_error": 29891
           }
         },
         "Household income": {
@@ -5335,19 +5335,19 @@ geocoder.reverse('38.886672,-77.094735', ['acs-economics'])
             "percentage": 0
           },
           "$20,000 to $24,999": {
-            "value": 0,
-            "margin_of_error": 13,
-            "percentage": 0
+            "value": 7,
+            "margin_of_error": 11,
+            "percentage": 0.008
           },
           "$25,000 to $29,999": {
-            "value": 32,
-            "margin_of_error": 48,
-            "percentage": 0.035
-          },
-          "$30,000 to $34,999": {
             "value": 0,
             "margin_of_error": 13,
             "percentage": 0
+          },
+          "$30,000 to $34,999": {
+            "value": 31,
+            "margin_of_error": 51,
+            "percentage": 0.035
           },
           "$35,000 to $39,999": {
             "value": 0,
@@ -5355,9 +5355,9 @@ geocoder.reverse('38.886672,-77.094735', ['acs-economics'])
             "percentage": 0
           },
           "$40,000 to $44,999": {
-            "value": 0,
+            "value": 8,
             "margin_of_error": 13,
-            "percentage": 0
+            "percentage": 0.009
           },
           "$45,000 to $49,999": {
             "value": 0,
@@ -5365,39 +5365,39 @@ geocoder.reverse('38.886672,-77.094735', ['acs-economics'])
             "percentage": 0
           },
           "$50,000 to $59,999": {
-            "value": 8,
+            "value": 0,
             "margin_of_error": 13,
-            "percentage": 0.009
+            "percentage": 0
           },
           "$60,000 to $74,999": {
             "value": 12,
             "margin_of_error": 16,
-            "percentage": 0.013
+            "percentage": 0.014
           },
           "$75,000 to $99,999": {
-            "value": 71,
-            "margin_of_error": 46,
-            "percentage": 0.079
+            "value": 59,
+            "margin_of_error": 57,
+            "percentage": 0.067
           },
           "$100,000 to $124,999": {
-            "value": 81,
-            "margin_of_error": 44,
-            "percentage": 0.09
+            "value": 117,
+            "margin_of_error": 63,
+            "percentage": 0.132
           },
           "$125,000 to $149,999": {
-            "value": 78,
-            "margin_of_error": 61,
-            "percentage": 0.086
+            "value": 56,
+            "margin_of_error": 55,
+            "percentage": 0.063
           },
           "$150,000 to $199,999": {
-            "value": 165,
-            "margin_of_error": 89,
-            "percentage": 0.183
+            "value": 146,
+            "margin_of_error": 83,
+            "percentage": 0.165
           },
           "$200,000 or more": {
-            "value": 457,
-            "margin_of_error": 119,
-            "percentage": 0.506
+            "value": 451,
+            "margin_of_error": 98,
+            "percentage": 0.508
           }
         },
         "Per capita income": {
@@ -5406,8 +5406,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-economics'])
             "universe": "Total population"
           },
           "Total": {
-            "value": 122016,
-            "margin_of_error": 14991
+            "value": 153059,
+            "margin_of_error": 34075
           }
         },
         "meta": {
@@ -5435,8 +5435,8 @@ The data returned includes the following data points. For each data point, the d
 > To get `acs-families` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-families&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=acs-families&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-families&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=acs-families&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -5492,8 +5492,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
 ...
   "fields": {
     "census": {
-      "2023": {
-        "census_year": 2023,
+      "2024": {
+        "census_year": 2024,
         "state_fips": "51",
         "county_fips": "51013",
         "tract_code": "101801",
@@ -5531,7 +5531,7 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
     "acs": {
       "meta": {
         "source": "American Community Survey from the US Census Bureau",
-        "survey_years": "2019-2023",
+        "survey_years": "2020-2024",
         "survey_duration_years": "5"
       },
       "families": {
@@ -5541,48 +5541,48 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "universe": "Households"
           },
           "Total": {
-            "value": 904,
-            "margin_of_error": 136
+            "value": 887,
+            "margin_of_error": 124
           },
           "Family households": {
-            "value": 414,
-            "margin_of_error": 107,
-            "percentage": 0.458
+            "value": 345,
+            "margin_of_error": 100,
+            "percentage": 0.389
           },
           "Family households: Married-couple family": {
-            "value": 389,
-            "margin_of_error": 108,
-            "percentage": 0.94
+            "value": 338,
+            "margin_of_error": 101,
+            "percentage": 0.98
           },
           "Family households: Other family": {
-            "value": 25,
-            "margin_of_error": 24,
-            "percentage": 0.06
+            "value": 7,
+            "margin_of_error": 13,
+            "percentage": 0.02
           },
           "Family households: Other family: Male householder, no spouse present": {
-            "value": 13,
-            "margin_of_error": 20,
-            "percentage": 0.52
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "Family households: Other family: Female householder, no spouse present": {
-            "value": 12,
-            "margin_of_error": 16,
-            "percentage": 0.48
+            "value": 7,
+            "margin_of_error": 13,
+            "percentage": 1
           },
           "Nonfamily households": {
-            "value": 490,
-            "margin_of_error": 118,
-            "percentage": 0.542
+            "value": 542,
+            "margin_of_error": 127,
+            "percentage": 0.611
           },
           "Nonfamily households: Householder living alone": {
-            "value": 269,
-            "margin_of_error": 78,
-            "percentage": 0.549
+            "value": 349,
+            "margin_of_error": 84,
+            "percentage": 0.644
           },
           "Nonfamily households: Householder not living alone": {
-            "value": 221,
-            "margin_of_error": 114,
-            "percentage": 0.451
+            "value": 193,
+            "margin_of_error": 96,
+            "percentage": 0.356
           }
         },
         "Household type by population": {
@@ -5591,22 +5591,22 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "universe": "Population in Households"
           },
           "Total": {
-            "value": 1739,
-            "margin_of_error": 350
+            "value": 1554,
+            "margin_of_error": 291
           },
           "In family households": {
-            "value": 949,
-            "margin_of_error": 231,
-            "percentage": 0.546
+            "value": 762,
+            "margin_of_error": 220,
+            "percentage": 0.49
           },
           "In family households: In married-couple family": {
-            "value": 861,
-            "margin_of_error": 232,
-            "percentage": 0.907
+            "value": 746,
+            "margin_of_error": 221,
+            "percentage": 0.979
           },
           "In family households: In married-couple family: Relatives": {
-            "value": 861,
-            "margin_of_error": 232,
+            "value": 746,
+            "margin_of_error": 221,
             "percentage": 1
           },
           "In family households: In married-couple family: Nonrelatives": {
@@ -5615,39 +5615,39 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "percentage": 0
           },
           "In family households: In male householder, no spouse present, family": {
-            "value": 38,
-            "margin_of_error": 57,
-            "percentage": 0.04
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "In family households: In male householder, no spouse present, family: Relatives": {
-            "value": 26,
-            "margin_of_error": 40,
-            "percentage": 0.684
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "In family households: In male householder, no spouse present, family: Nonrelatives": {
-            "value": 12,
-            "margin_of_error": 17,
-            "percentage": 0.316
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "In family households: In female householder, no spouse present, family": {
-            "value": 50,
-            "margin_of_error": 64,
-            "percentage": 0.053
+            "value": 16,
+            "margin_of_error": 27,
+            "percentage": 0.021
           },
           "In family households: In female householder, no spouse present, family: Relatives": {
-            "value": 40,
-            "margin_of_error": 51,
-            "percentage": 0.8
+            "value": 16,
+            "margin_of_error": 27,
+            "percentage": 1
           },
           "In family households: In female householder, no spouse present, family: Nonrelatives": {
-            "value": 10,
-            "margin_of_error": 14,
-            "percentage": 0.2
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "In nonfamily households": {
-            "value": 790,
-            "margin_of_error": 294,
-            "percentage": 0.454
+            "value": 792,
+            "margin_of_error": 270,
+            "percentage": 0.51
           }
         },
         "Marital status": {
@@ -5656,29 +5656,29 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "universe": "Population 15 Years And Older"
           },
           "Male": {
-            "value": 823,
-            "margin_of_error": 209,
-            "percentage": 0.508
+            "value": 737,
+            "margin_of_error": 165,
+            "percentage": 0.504
           },
           "Male: Never married": {
-            "value": 404,
-            "margin_of_error": 182,
-            "percentage": 0.491
+            "value": 354,
+            "margin_of_error": 160,
+            "percentage": 0.48
           },
           "Male: Now married": {
-            "value": 413,
-            "margin_of_error": 113,
-            "percentage": 0.502
+            "value": 375,
+            "margin_of_error": 108,
+            "percentage": 0.509
           },
           "Male: Now married: Married, spouse present": {
-            "value": 397,
-            "margin_of_error": 110,
-            "percentage": 0.961
+            "value": 340,
+            "margin_of_error": 101,
+            "percentage": 0.907
           },
           "Male: Now married: Married, spouse absent": {
-            "value": 16,
-            "margin_of_error": 18,
-            "percentage": 0.039
+            "value": 35,
+            "margin_of_error": 44,
+            "percentage": 0.093
           },
           "Male: Now married: Married, spouse absent: Separated": {
             "value": 0,
@@ -5686,8 +5686,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "percentage": 0
           },
           "Male: Now married: Married, spouse absent: Other": {
-            "value": 16,
-            "margin_of_error": 18,
+            "value": 35,
+            "margin_of_error": 44,
             "percentage": 1
           },
           "Male: Widowed": {
@@ -5696,34 +5696,34 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "percentage": 0
           },
           "Male: Divorced": {
-            "value": 6,
-            "margin_of_error": 10,
-            "percentage": 0.007
+            "value": 8,
+            "margin_of_error": 9,
+            "percentage": 0.011
           },
           "Female": {
-            "value": 796,
-            "margin_of_error": 156,
-            "percentage": 0.492
+            "value": 725,
+            "margin_of_error": 143,
+            "percentage": 0.496
           },
           "Female: Never married": {
-            "value": 357,
+            "value": 359,
             "margin_of_error": 134,
-            "percentage": 0.448
+            "percentage": 0.495
           },
           "Female: Now married": {
-            "value": 375,
-            "margin_of_error": 98,
-            "percentage": 0.471
+            "value": 317,
+            "margin_of_error": 89,
+            "percentage": 0.437
           },
           "Female: Now married: Married, spouse present": {
-            "value": 372,
-            "margin_of_error": 98,
-            "percentage": 0.992
+            "value": 314,
+            "margin_of_error": 89,
+            "percentage": 0.991
           },
           "Female: Now married: Married, spouse absent": {
             "value": 3,
             "margin_of_error": 5,
-            "percentage": 0.008
+            "percentage": 0.009
           },
           "Female: Now married: Married, spouse absent: Separated": {
             "value": 0,
@@ -5736,14 +5736,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "percentage": 1
           },
           "Female: Widowed": {
-            "value": 9,
+            "value": 8,
             "margin_of_error": 13,
             "percentage": 0.011
           },
           "Female: Divorced": {
-            "value": 55,
-            "margin_of_error": 36,
-            "percentage": 0.069
+            "value": 41,
+            "margin_of_error": 31,
+            "percentage": 0.057
           }
         },
         "Family Type by Presence and Age of Own Children Under 18 Years": {
@@ -5752,23 +5752,23 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "universe": "Families"
           },
           "Total": {
-            "value": 414,
-            "margin_of_error": 107
+            "value": 345,
+            "margin_of_error": 100
           },
           "Married-couple family": {
-            "value": 389,
-            "margin_of_error": 108,
-            "percentage": 0.94
+            "value": 338,
+            "margin_of_error": 101,
+            "percentage": 0.98
           },
           "Married-couple family: With own children of the householder under 18 years": {
-            "value": 93,
-            "margin_of_error": 65,
-            "percentage": 0.239
+            "value": 90,
+            "margin_of_error": 60,
+            "percentage": 0.266
           },
           "Married-couple family: With own children of the householder under 18 years: Under 6 years only": {
-            "value": 44,
-            "margin_of_error": 35,
-            "percentage": 0.473
+            "value": 45,
+            "margin_of_error": 31,
+            "percentage": 0.5
           },
           "Married-couple family: With own children of the householder under 18 years: Under 6 years and 6 to 17 years": {
             "value": 0,
@@ -5776,24 +5776,24 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "percentage": 0
           },
           "Married-couple family: With own children of the householder under 18 years: 6 to 17 years only": {
-            "value": 49,
-            "margin_of_error": 55,
-            "percentage": 0.527
+            "value": 45,
+            "margin_of_error": 54,
+            "percentage": 0.5
           },
           "Married-couple family: No own children of the householder under 18 years": {
-            "value": 296,
-            "margin_of_error": 114,
-            "percentage": 0.761
+            "value": 248,
+            "margin_of_error": 93,
+            "percentage": 0.734
           },
           "Other family": {
-            "value": 25,
-            "margin_of_error": 24,
-            "percentage": 0.06
+            "value": 7,
+            "margin_of_error": 13,
+            "percentage": 0.02
           },
           "Other family: Male householder, no spouse present": {
-            "value": 13,
-            "margin_of_error": 20,
-            "percentage": 0.52
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "Other family: Male householder, no spouse present: With own children of the householder under 18 years": {
             "value": 0,
@@ -5816,19 +5816,19 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "percentage": 0
           },
           "Other family: Male householder, no spouse present: No own children of the householder under 18 years": {
-            "value": 13,
-            "margin_of_error": 20,
-            "percentage": 1
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "Other family: Female householder, no spouse present": {
-            "value": 12,
-            "margin_of_error": 16,
-            "percentage": 0.48
+            "value": 7,
+            "margin_of_error": 13,
+            "percentage": 1
           },
           "Other family: Female householder, no spouse present: With own children of the householder under 18 years": {
-            "value": 12,
-            "margin_of_error": 16,
-            "percentage": 1
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "Other family: Female householder, no spouse present: With own children of the householder under 18 years: Under 6 years only": {
             "value": 0,
@@ -5841,14 +5841,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "percentage": 0
           },
           "Other family: Female householder, no spouse present: With own children of the householder under 18 years: 6 to 17 years only": {
-            "value": 12,
-            "margin_of_error": 16,
-            "percentage": 1
-          },
-          "Other family: Female householder, no spouse present: No own children of the householder under 18 years": {
             "value": 0,
             "margin_of_error": 13,
             "percentage": 0
+          },
+          "Other family: Female householder, no spouse present: No own children of the householder under 18 years": {
+            "value": 7,
+            "margin_of_error": 13,
+            "percentage": 1
           }
         },
         "Average Household Size of Occupied Housing Units by Tenure": {
@@ -5857,15 +5857,15 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "universe": "Occupied housing units"
           },
           "Total": {
-            "value": 1.92,
-            "margin_of_error": 0.18
+            "value": 1.75,
+            "margin_of_error": 0.17
           },
           "Owner occupied": {
-            "value": 1.89,
-            "margin_of_error": 0.25
+            "value": 1.81,
+            "margin_of_error": 0.24
           },
           "Renter occupied": {
-            "value": 1.94,
+            "value": 1.73,
             "margin_of_error": 0.22
           }
         },
@@ -5875,18 +5875,18 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "universe": "Own children under 18 years"
           },
           "Total": {
-            "value": 120,
-            "margin_of_error": 76
+            "value": 92,
+            "margin_of_error": 64
           },
           "In married-couple families": {
             "value": 92,
-            "margin_of_error": 70,
-            "percentage": 0.767
+            "margin_of_error": 64,
+            "percentage": 1
           },
           "In married-couple families: Under 3 years": {
-            "value": 29,
-            "margin_of_error": 26,
-            "percentage": 0.315
+            "value": 35,
+            "margin_of_error": 31,
+            "percentage": 0.38
           },
           "In married-couple families: 3 and 4 years": {
             "value": 0,
@@ -5894,9 +5894,9 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "percentage": 0
           },
           "In married-couple families: 5 years": {
-            "value": 16,
-            "margin_of_error": 24,
-            "percentage": 0.174
+            "value": 10,
+            "margin_of_error": 14,
+            "percentage": 0.109
           },
           "In married-couple families: 6 to 11 years": {
             "value": 0,
@@ -5909,9 +5909,9 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "percentage": 0.511
           },
           "In other families": {
-            "value": 28,
-            "margin_of_error": 36,
-            "percentage": 0.233
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "In other families: Male householder, no spouse present": {
             "value": 0,
@@ -5944,9 +5944,9 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "percentage": 0
           },
           "In other families: Female householder, no spouse present": {
-            "value": 28,
-            "margin_of_error": 36,
-            "percentage": 1
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "In other families: Female householder, no spouse present: Under 3 years": {
             "value": 0,
@@ -5964,14 +5964,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-families'])
             "percentage": 0
           },
           "In other families: Female householder, no spouse present: 6 to 11 years": {
-            "value": 13,
-            "margin_of_error": 17,
-            "percentage": 0.464
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
           "In other families: Female householder, no spouse present: 12 to 17 years": {
-            "value": 15,
-            "margin_of_error": 19,
-            "percentage": 0.536
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           }
         },
         "meta": {
@@ -6011,8 +6011,8 @@ We recognize that household composition is a sensitive subject. Accordingly, we 
 > To get `acs-housing` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-housing&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=acs-housing&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-housing&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=acs-housing&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -6068,8 +6068,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-housing'])
 ...
   "fields": {
     "census": {
-      "2023": {
-        "census_year": 2023,
+      "2024": {
+        "census_year": 2024,
         "state_fips": "51",
         "county_fips": "51013",
         "tract_code": "101801",
@@ -6107,7 +6107,7 @@ geocoder.reverse('38.886672,-77.094735', ['acs-housing'])
     "acs": {
       "meta": {
         "source": "American Community Survey from the US Census Bureau",
-        "survey_years": "2019-2023",
+        "survey_years": "2020-2024",
         "survey_duration_years": "5"
       },
       "housing": {
@@ -6117,8 +6117,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-housing'])
             "universe": "Housing Units"
           },
           "Total": {
-            "value": 1026,
-            "margin_of_error": 147
+            "value": 1000,
+            "margin_of_error": 135
           }
         },
         "Occupancy status": {
@@ -6127,14 +6127,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-housing'])
             "universe": "Housing Units"
           },
           "Occupied": {
-            "value": 904,
-            "margin_of_error": 136,
-            "percentage": 0.881
+            "value": 887,
+            "margin_of_error": 124,
+            "percentage": 0.887
           },
           "Vacant": {
-            "value": 122,
-            "margin_of_error": 96,
-            "percentage": 0.119
+            "value": 113,
+            "margin_of_error": 74,
+            "percentage": 0.113
           }
         },
         "Ownership of occupied units": {
@@ -6143,14 +6143,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-housing'])
             "universe": "Occupied Housing Units"
           },
           "Owner occupied": {
-            "value": 226,
-            "margin_of_error": 86,
-            "percentage": 0.25
+            "value": 235,
+            "margin_of_error": 79,
+            "percentage": 0.265
           },
           "Renter occupied": {
-            "value": 678,
-            "margin_of_error": 131,
-            "percentage": 0.75
+            "value": 652,
+            "margin_of_error": 117,
+            "percentage": 0.735
           }
         },
         "Units in structure": {
@@ -6164,9 +6164,9 @@ geocoder.reverse('38.886672,-77.094735', ['acs-housing'])
             "percentage": 0
           },
           "1, attached unit": {
-            "value": 122,
-            "margin_of_error": 54,
-            "percentage": 0.119
+            "value": 142,
+            "margin_of_error": 59,
+            "percentage": 0.142
           },
           "2 units": {
             "value": 0,
@@ -6189,14 +6189,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-housing'])
             "percentage": 0
           },
           "20 to 49 units": {
-            "value": 17,
-            "margin_of_error": 19,
-            "percentage": 0.017
+            "value": 10,
+            "margin_of_error": 16,
+            "percentage": 0.01
           },
           "50 or more units": {
-            "value": 887,
-            "margin_of_error": 143,
-            "percentage": 0.865
+            "value": 848,
+            "margin_of_error": 139,
+            "percentage": 0.848
           },
           "Mobile home units": {
             "value": 0,
@@ -6215,8 +6215,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-housing'])
             "universe": "Owner-Occupied Housing Units"
           },
           "Total": {
-            "value": 795500,
-            "margin_of_error": 161647
+            "value": 803600,
+            "margin_of_error": 173895
           }
         },
         "Value of owner-occupied housing units": {
@@ -6325,29 +6325,29 @@ geocoder.reverse('38.886672,-77.094735', ['acs-housing'])
             "percentage": 0
           },
           "$400,000 to $499,999": {
-            "value": 8,
+            "value": 0,
             "margin_of_error": 13,
-            "percentage": 0.035
+            "percentage": 0
           },
           "$500,000 to $749,999": {
-            "value": 97,
-            "margin_of_error": 53,
-            "percentage": 0.429
+            "value": 107,
+            "margin_of_error": 59,
+            "percentage": 0.455
           },
           "$750,000 to $999,999": {
-            "value": 44,
-            "margin_of_error": 44,
-            "percentage": 0.195
+            "value": 49,
+            "margin_of_error": 49,
+            "percentage": 0.209
           },
           "$1,000,000 to $1,499,999": {
-            "value": 75,
-            "margin_of_error": 36,
-            "percentage": 0.332
+            "value": 76,
+            "margin_of_error": 43,
+            "percentage": 0.323
           },
           "$1,500,000 to $1,999,999": {
-            "value": 2,
+            "value": 3,
             "margin_of_error": 5,
-            "percentage": 0.009
+            "percentage": 0.013
           },
           "$2,000,000 or more": {
             "value": 0,
@@ -6388,8 +6388,8 @@ Data points returned are:
 > To get `acs-social` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-social&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=acs-social&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=acs-social&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=acs-social&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -6445,8 +6445,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
 ...
   "fields": {
     "census": {
-      "2023": {
-        "census_year": 2023,
+      "2024": {
+        "census_year": 2024,
         "state_fips": "51",
         "county_fips": "51013",
         "tract_code": "101801",
@@ -6484,7 +6484,7 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
     "acs": {
       "meta": {
         "source": "American Community Survey from the US Census Bureau",
-        "survey_years": "2019-2023",
+        "survey_years": "2020-2024",
         "survey_duration_years": "5"
       },
       "social": {
@@ -6494,13 +6494,13 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
             "universe": "Population 25 Years And Over"
           },
           "Total": {
-            "value": 1400,
-            "margin_of_error": 243
+            "value": 1315,
+            "margin_of_error": 178
           },
           "Male": {
-            "value": 729,
-            "margin_of_error": 179,
-            "percentage": 0.521
+            "value": 675,
+            "margin_of_error": 125,
+            "percentage": 0.513
           },
           "Male: No schooling completed": {
             "value": 0,
@@ -6540,11 +6540,11 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
           "Male: 12th grade, no diploma": {
             "value": 6,
             "margin_of_error": 10,
-            "percentage": 0.008
+            "percentage": 0.009
           },
           "Male: High school graduate (includes equivalency)": {
-            "value": 9,
-            "margin_of_error": 14,
+            "value": 8,
+            "margin_of_error": 15,
             "percentage": 0.012
           },
           "Male: Some college, less than 1 year": {
@@ -6554,8 +6554,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
           },
           "Male: Some college, 1 or more years, no degree": {
             "value": 24,
-            "margin_of_error": 29,
-            "percentage": 0.033
+            "margin_of_error": 28,
+            "percentage": 0.036
           },
           "Male: Associate's degree": {
             "value": 0,
@@ -6563,29 +6563,29 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
             "percentage": 0
           },
           "Male: Bachelor's degree": {
-            "value": 312,
-            "margin_of_error": 118,
-            "percentage": 0.428
+            "value": 277,
+            "margin_of_error": 87,
+            "percentage": 0.41
           },
           "Male: Master's degree": {
             "value": 254,
-            "margin_of_error": 104,
-            "percentage": 0.348
+            "margin_of_error": 101,
+            "percentage": 0.376
           },
           "Male: Professional school degree": {
-            "value": 78,
-            "margin_of_error": 46,
-            "percentage": 0.107
+            "value": 69,
+            "margin_of_error": 55,
+            "percentage": 0.102
           },
           "Male: Doctorate degree": {
-            "value": 46,
-            "margin_of_error": 45,
-            "percentage": 0.063
+            "value": 37,
+            "margin_of_error": 46,
+            "percentage": 0.055
           },
           "Female": {
-            "value": 671,
-            "margin_of_error": 118,
-            "percentage": 0.479
+            "value": 640,
+            "margin_of_error": 102,
+            "percentage": 0.487
           },
           "Female: No schooling completed": {
             "value": 0,
@@ -6633,39 +6633,39 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
             "percentage": 0
           },
           "Female: Some college, less than 1 year": {
-            "value": 8,
-            "margin_of_error": 12,
-            "percentage": 0.012
+            "value": 9,
+            "margin_of_error": 14,
+            "percentage": 0.014
           },
           "Female: Some college, 1 or more years, no degree": {
-            "value": 16,
+            "value": 17,
             "margin_of_error": 26,
-            "percentage": 0.024
+            "percentage": 0.027
           },
           "Female: Associate's degree": {
-            "value": 24,
-            "margin_of_error": 28,
-            "percentage": 0.036
+            "value": 8,
+            "margin_of_error": 12,
+            "percentage": 0.013
           },
           "Female: Bachelor's degree": {
-            "value": 226,
-            "margin_of_error": 78,
-            "percentage": 0.337
+            "value": 230,
+            "margin_of_error": 83,
+            "percentage": 0.359
           },
           "Female: Master's degree": {
-            "value": 303,
-            "margin_of_error": 100,
-            "percentage": 0.452
+            "value": 298,
+            "margin_of_error": 97,
+            "percentage": 0.466
           },
           "Female: Professional school degree": {
-            "value": 63,
-            "margin_of_error": 46,
-            "percentage": 0.094
+            "value": 59,
+            "margin_of_error": 45,
+            "percentage": 0.092
           },
           "Female: Doctorate degree": {
-            "value": 31,
-            "margin_of_error": 42,
-            "percentage": 0.046
+            "value": 19,
+            "margin_of_error": 19,
+            "percentage": 0.03
           }
         },
         "Population with veteran status": {
@@ -6674,83 +6674,83 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
             "universe": "Civilian Population 18 Years And Over"
           },
           "Total": {
-            "value": 1552,
-            "margin_of_error": 336
+            "value": 1400,
+            "margin_of_error": 288
           },
           "Veteran": {
-            "value": 94,
+            "value": 74,
             "margin_of_error": 50,
-            "percentage": 0.061
+            "percentage": 0.053
           },
           "Nonveteran": {
-            "value": 1458,
-            "margin_of_error": 327,
-            "percentage": 0.939
+            "value": 1326,
+            "margin_of_error": 291,
+            "percentage": 0.947
           },
           "Male": {
-            "value": 795,
-            "margin_of_error": 204,
-            "percentage": 0.512
+            "value": 682,
+            "margin_of_error": 175,
+            "percentage": 0.487
           },
           "Male: Veteran": {
-            "value": 94,
+            "value": 74,
             "margin_of_error": 50,
-            "percentage": 0.118
+            "percentage": 0.109
           },
           "Male: Nonveteran": {
-            "value": 701,
-            "margin_of_error": 194,
-            "percentage": 0.882
+            "value": 608,
+            "margin_of_error": 179,
+            "percentage": 0.891
           },
           "Male: 18 to 34 years": {
-            "value": 459,
-            "margin_of_error": 178,
-            "percentage": 0.577
+            "value": 303,
+            "margin_of_error": 154,
+            "percentage": 0.444
           },
           "Male: 18 to 34 years: Veteran": {
-            "value": 10,
-            "margin_of_error": 17,
-            "percentage": 0.022
+            "value": 26,
+            "margin_of_error": 30,
+            "percentage": 0.086
           },
           "Male: 18 to 34 years: Nonveteran": {
-            "value": 449,
-            "margin_of_error": 178,
-            "percentage": 0.978
+            "value": 277,
+            "margin_of_error": 157,
+            "percentage": 0.914
           },
           "Male: 35 to 54 years": {
-            "value": 245,
-            "margin_of_error": 98,
-            "percentage": 0.308
+            "value": 309,
+            "margin_of_error": 109,
+            "percentage": 0.453
           },
           "Male: 35 to 54 years: Veteran": {
-            "value": 55,
-            "margin_of_error": 41,
-            "percentage": 0.224
+            "value": 34,
+            "margin_of_error": 32,
+            "percentage": 0.11
           },
           "Male: 35 to 54 years: Nonveteran": {
-            "value": 190,
-            "margin_of_error": 91,
-            "percentage": 0.776
+            "value": 275,
+            "margin_of_error": 104,
+            "percentage": 0.89
           },
           "Male: 55 to 64 years": {
-            "value": 57,
-            "margin_of_error": 42,
-            "percentage": 0.072
+            "value": 35,
+            "margin_of_error": 36,
+            "percentage": 0.051
           },
           "Male: 55 to 64 years: Veteran": {
-            "value": 29,
-            "margin_of_error": 30,
-            "percentage": 0.509
+            "value": 14,
+            "margin_of_error": 23,
+            "percentage": 0.4
           },
           "Male: 55 to 64 years: Nonveteran": {
-            "value": 28,
-            "margin_of_error": 27,
-            "percentage": 0.491
+            "value": 21,
+            "margin_of_error": 26,
+            "percentage": 0.6
           },
           "Male: 65 to 74 years": {
-            "value": 24,
-            "margin_of_error": 25,
-            "percentage": 0.03
+            "value": 16,
+            "margin_of_error": 22,
+            "percentage": 0.023
           },
           "Male: 65 to 74 years: Veteran": {
             "value": 0,
@@ -6758,14 +6758,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
             "percentage": 0
           },
           "Male: 65 to 74 years: Nonveteran": {
-            "value": 24,
-            "margin_of_error": 25,
+            "value": 16,
+            "margin_of_error": 22,
             "percentage": 1
           },
           "Male: 75 years and over": {
-            "value": 10,
-            "margin_of_error": 16,
-            "percentage": 0.013
+            "value": 19,
+            "margin_of_error": 21,
+            "percentage": 0.028
           },
           "Male: 75 years and over: Veteran": {
             "value": 0,
@@ -6773,14 +6773,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
             "percentage": 0
           },
           "Male: 75 years and over: Nonveteran": {
-            "value": 10,
-            "margin_of_error": 16,
+            "value": 19,
+            "margin_of_error": 21,
             "percentage": 1
           },
           "Female": {
-            "value": 757,
-            "margin_of_error": 160,
-            "percentage": 0.488
+            "value": 718,
+            "margin_of_error": 143,
+            "percentage": 0.513
           },
           "Female: Veteran": {
             "value": 0,
@@ -6788,14 +6788,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
             "percentage": 0
           },
           "Female: Nonveteran": {
-            "value": 757,
-            "margin_of_error": 160,
+            "value": 718,
+            "margin_of_error": 143,
             "percentage": 1
           },
           "Female: 18 to 34 years": {
-            "value": 441,
-            "margin_of_error": 138,
-            "percentage": 0.583
+            "value": 403,
+            "margin_of_error": 137,
+            "percentage": 0.561
           },
           "Female: 18 to 34 years: Veteran": {
             "value": 0,
@@ -6803,14 +6803,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
             "percentage": 0
           },
           "Female: 18 to 34 years: Nonveteran": {
-            "value": 441,
-            "margin_of_error": 138,
+            "value": 403,
+            "margin_of_error": 137,
             "percentage": 1
           },
           "Female: 35 to 54 years": {
-            "value": 256,
-            "margin_of_error": 100,
-            "percentage": 0.338
+            "value": 245,
+            "margin_of_error": 90,
+            "percentage": 0.341
           },
           "Female: 35 to 54 years: Veteran": {
             "value": 0,
@@ -6818,14 +6818,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
             "percentage": 0
           },
           "Female: 35 to 54 years: Nonveteran": {
-            "value": 256,
-            "margin_of_error": 100,
+            "value": 245,
+            "margin_of_error": 90,
             "percentage": 1
           },
           "Female: 55 to 64 years": {
             "value": 21,
-            "margin_of_error": 23,
-            "percentage": 0.028
+            "margin_of_error": 25,
+            "percentage": 0.029
           },
           "Female: 55 to 64 years: Veteran": {
             "value": 0,
@@ -6834,13 +6834,13 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
           },
           "Female: 55 to 64 years: Nonveteran": {
             "value": 21,
-            "margin_of_error": 23,
+            "margin_of_error": 25,
             "percentage": 1
           },
           "Female: 65 to 74 years": {
-            "value": 24,
-            "margin_of_error": 26,
-            "percentage": 0.032
+            "value": 33,
+            "margin_of_error": 29,
+            "percentage": 0.046
           },
           "Female: 65 to 74 years: Veteran": {
             "value": 0,
@@ -6848,14 +6848,14 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
             "percentage": 0
           },
           "Female: 65 to 74 years: Nonveteran": {
-            "value": 24,
-            "margin_of_error": 26,
+            "value": 33,
+            "margin_of_error": 29,
             "percentage": 1
           },
           "Female: 75 years and over": {
-            "value": 15,
-            "margin_of_error": 21,
-            "percentage": 0.02
+            "value": 16,
+            "margin_of_error": 18,
+            "percentage": 0.022
           },
           "Female: 75 years and over: Veteran": {
             "value": 0,
@@ -6863,8 +6863,8 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
             "percentage": 0
           },
           "Female: 75 years and over: Nonveteran": {
-            "value": 15,
-            "margin_of_error": 21,
+            "value": 16,
+            "margin_of_error": 18,
             "percentage": 1
           }
         },
@@ -6874,70 +6874,70 @@ geocoder.reverse('38.886672,-77.094735', ['acs-social'])
             "universe": "Civilian Veterans 18 Years And Over"
           },
           "Total": {
-            "value": 94,
+            "value": 74,
             "margin_of_error": 50
           },
-          "Gulf War (9/2001 or later), no Gulf War (8/1990 to 8/2001), no Vietnam Era": {
-            "value": 53,
-            "margin_of_error": 39,
-            "percentage": 0.564
+          "Gulf War (9/2001 or later), no Gulf War (8/1990 to 8/2001), no Vietnam War": {
+            "value": 57,
+            "margin_of_error": 45,
+            "percentage": 0.77
           },
-          "Gulf War (9/2001 or later) and Gulf War (8/1990 to 8/2001), no Vietnam Era": {
-            "value": 24,
-            "margin_of_error": 26,
-            "percentage": 0.255
+          "Gulf War (9/2001 or later) and Gulf War (8/1990 to 8/2001), no Vietnam War": {
+            "value": 14,
+            "margin_of_error": 23,
+            "percentage": 0.189
           },
-          "Gulf War (9/2001 or later), and Gulf War (8/1990 to 8/2001), and Vietnam Era": {
+          "Gulf War (9/2001 or later), and Gulf War (8/1990 to 8/2001), and Vietnam War": {
             "value": 0,
             "margin_of_error": 13,
             "percentage": 0
           },
-          "Gulf War (8/1990 to 8/2001), no Vietnam Era": {
-            "value": 2,
+          "Gulf War (8/1990 to 8/2001), no Vietnam War": {
+            "value": 3,
             "margin_of_error": 5,
-            "percentage": 0.021
+            "percentage": 0.041
           },
-          "Gulf War (8/1990 to 8/2001) and Vietnam Era": {
+          "Gulf War (8/1990 to 8/2001) and Vietnam War": {
             "value": 0,
             "margin_of_error": 13,
             "percentage": 0
           },
-          "Vietnam Era, no Korean War, no World War II": {
+          "Vietnam War, no Korean War, no World War II": {
             "value": 0,
             "margin_of_error": 13,
             "percentage": 0
           },
-          "Vietnam Era and Korean War, no World War II": {
+          "Vietnam War and Korean War, no World War II": {
             "value": 0,
             "margin_of_error": 13,
             "percentage": 0
           },
-          "Vietnam Era and Korean War and World War II": {
+          "Vietnam War and Korean War and World War II": {
             "value": 0,
             "margin_of_error": 13,
             "percentage": 0
           },
-          "Korean War, no Vietnam Era, no World War II": {
+          "Korean War, no Vietnam War, no World War II": {
             "value": 0,
             "margin_of_error": 13,
             "percentage": 0
           },
-          "Korean War and World War II, no Vietnam Era": {
+          "Korean War and World War II, no Vietnam War": {
             "value": 0,
             "margin_of_error": 13,
             "percentage": 0
           },
-          "World War II, no Korean War, no Vietnam Era": {
+          "World War II, no Korean War, no Vietnam War": {
             "value": 0,
             "margin_of_error": 13,
             "percentage": 0
           },
-          "Between Gulf War and Vietnam Era only": {
-            "value": 15,
-            "margin_of_error": 25,
-            "percentage": 0.16
+          "Between Gulf War and Vietnam War only": {
+            "value": 0,
+            "margin_of_error": 13,
+            "percentage": 0
           },
-          "Between Vietnam Era and Korean War only": {
+          "Between Vietnam War and Korean War only": {
             "value": 0,
             "margin_of_error": 13,
             "percentage": 0
@@ -6974,17 +6974,17 @@ The data returned includes the following data points. For each data point, the d
   * Results broken out by all genders, female, and male as well as age groups
 * Period of military service for veterans (Table #B21002)
   * Wars
-    * Gulf War (9/2001 or later), no Gulf War (8/1990 to 8/2001), no Vietnam Era
-    * Gulf War (9/2001 or later), Gulf War (8/1990 to 8/2001), no Vietnam Era
-    * Gulf War (8/1990 to 8/2001), no Vietnam Era
-    * Gulf War (8/1990 to 8/2001) and Vietnam Era
-    * Vietnam Era, no Korean War, no World War II
-    * Vietnam Era and Korean War, no World War II
-    * Vietnam Era and Korean War and World War II
-    * Korean War, no Vietnam Era, no World War II
-    * Korean War and World War II, no Vietnam Era
-    * World War II, no Korean War, no Vietnam Era
-    * Between Gulf War and Vietnam Era only
+    * Gulf War (9/2001 or later), no Gulf War (8/1990 to 8/2001), no Vietnam War
+    * Gulf War (9/2001 or later), Gulf War (8/1990 to 8/2001), no Vietnam War
+    * Gulf War (8/1990 to 8/2001), no Vietnam War
+    * Gulf War (8/1990 to 8/2001) and Vietnam War
+    * Vietnam War, no Korean War, no World War II
+    * Vietnam War and Korean War, no World War II
+    * Vietnam War and Korean War and World War II
+    * Korean War, no Vietnam War, no World War II
+    * Korean War and World War II, no Vietnam War
+    * World War II, no Korean War, no Vietnam War
+    * Between Gulf War and Vietnam War only
     * Between Korean War and World War II only
     * Pre-World War II only
 
@@ -6994,8 +6994,8 @@ The data returned includes the following data points. For each data point, the d
 > To get `zip4` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=zip4&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=zip4&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=zip4&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=zip4&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -7236,8 +7236,8 @@ If no ZIP+4 data is available for the given query, the `zip4` field is omitted f
 > To get `ffiec` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=ffiec&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=ffiec&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=ffiec&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=ffiec&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -7343,8 +7343,8 @@ You can read more about the individual values in the [FFIEC Documentation](https
 > To get `riding` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=riding&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=46.225866,-79.36316&fields=riding&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=riding&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=46.225866,-79.36316&fields=riding&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -7423,8 +7423,8 @@ In some cases, the French and English names will be the same.
 > To get `provriding` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=provriding&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=46.225866,-79.36316&fields=provriding&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=provriding&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=46.225866,-79.36316&fields=provriding&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -7503,8 +7503,8 @@ In some cases, the French and English names will be the same.
 > To get `provriding-next` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=203+Laycoe+Crescent%2C+Saskatoon%2C+SK%2C+Canada&fields=provriding-next&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=52.155106,-106.589896&fields=provriding-next&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=203+Laycoe+Crescent%2C+Saskatoon%2C+SK%2C+Canada&fields=provriding-next&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=52.155106,-106.589896&fields=provriding-next&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -7576,8 +7576,8 @@ geocoder.reverse('52.155106,-106.589896', ['provriding-next'])
 > To get `statcan` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=statcan&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=46.225866,-79.36316&fields=statcan&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=300+King+St%2C+Sturgeon+Falls%2C+ON+P2B+3A1%2C+Canada&fields=statcan&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=46.225866,-79.36316&fields=statcan&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -7801,8 +7801,8 @@ The dissemination area is geographically one step lower than census tracts. Diss
 > To get `timezone` field appends for an address or a coordinate:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=timezone&api_key=YOUR_API_KEY"
-curl "https://api.enterprise.geocod.io/v1.9/reverse?q=38.886672,-77.094735&fields=timezone&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2C+Arlington+VA&fields=timezone&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/reverse?q=38.886672,-77.094735&fields=timezone&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -7933,7 +7933,7 @@ The <code>driving</code> distance mode uses 2x the lookup credits of <code>strai
 > Calculate distances from a single origin to one or multiple destinations:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/distance?origin=38.8977,-77.0365,WhiteHouse&destinations[]=38.8895,-77.0353,WashingtonMonument&destinations[]=38.9072,-77.0369,DupontCircle&mode=driving&api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/distance?origin=38.8977,-77.0365,WhiteHouse&destinations[]=38.8895,-77.0353,WashingtonMonument&destinations[]=38.9072,-77.0369,DupontCircle&mode=driving&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -7956,8 +7956,7 @@ response = geocodio.distance(
 ```
 
 ```python
-from geocodio import Geocodio
-from geocodio.constants import DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
+from geocodio import Geocodio, DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
 
 client = Geocodio("YOUR_API_KEY")
 
@@ -8057,7 +8056,7 @@ Calculate driving and straight line distances and travel times from a single ori
 
 ### HTTP Request
 
-`GET https://api.enterprise.geocod.io/v1.9/distance`
+`GET https://api.enterprise.geocod.io/v1.10/distance`
 
 ### URL Parameters
 
@@ -8101,7 +8100,7 @@ curl -X POST \
     ],
     "mode": "driving"
   }' \
-  "https://api.enterprise.geocod.io/v1.9/distance-matrix?api_key=YOUR_API_KEY"
+  "https://api.enterprise.geocod.io/v1.10/distance-matrix?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -8128,8 +8127,7 @@ response = geocodio.distanceMatrix(
 ```
 
 ```python
-from geocodio import Geocodio
-from geocodio.constants import DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
+from geocodio import Geocodio, DISTANCE_MODE_DRIVING, DISTANCE_UNITS_MILES
 
 client = Geocodio("YOUR_API_KEY")
 
@@ -8276,7 +8274,7 @@ The matrix size (origins × destinations) is limited to 10,000 calculations per 
 
 ### HTTP Request
 
-`POST https://api.enterprise.geocod.io/v1.9/distance-matrix`
+`POST https://api.enterprise.geocod.io/v1.10/distance-matrix`
 
 ### Request Body Parameters
 
@@ -8337,7 +8335,7 @@ curl -X POST \
     "max_results": 2,
     "order_by": "distance"
   }' \
-  "https://api.enterprise.geocod.io/v1.9/distance-jobs?api_key=YOUR_API_KEY"
+  "https://api.enterprise.geocod.io/v1.10/distance-jobs?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -8369,11 +8367,7 @@ puts job.identifier
 ```
 
 ```python
-from geocodio import Geocodio
-from geocodio.constants import (
-    DISTANCE_MODE_DRIVING,
-    DISTANCE_ORDER_BY_DISTANCE
-)
+from geocodio import Geocodio, DISTANCE_MODE_DRIVING, DISTANCE_ORDER_BY_DISTANCE
 
 client = Geocodio("YOUR_API_KEY")
 
@@ -8488,7 +8482,7 @@ Creates a new distance matrix job and starts processing in the background. The r
 
 ### HTTP Request
 
-`POST https://api.enterprise.geocod.io/v1.9/distance-jobs`
+`POST https://api.enterprise.geocod.io/v1.10/distance-jobs`
 
 ### Request Body Parameters
 
@@ -8528,7 +8522,7 @@ curl -X POST \
     "destinations": 456,
     "distance_mode": "driving"
   }' \
-  "https://api.enterprise.geocod.io/v1.9/distance-jobs?api_key=YOUR_API_KEY"
+  "https://api.enterprise.geocod.io/v1.10/distance-jobs?api_key=YOUR_API_KEY"
 ```
 
 ### See distance job status
@@ -8536,7 +8530,7 @@ curl -X POST \
 > Get the status of a distance job:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/distance-jobs/abc123xyz?api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/distance-jobs/abc123xyz?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -8622,14 +8616,14 @@ geocoder.distanceMatrixJobStatus('abc123xyz')
   "total_calculations": 6,
   "calculations_completed": 6,
   "progress": 100,
-  "download_url": "https://api.enterprise.geocod.io/v1.9/distance-jobs/abc123xyz/download",
+  "download_url": "https://api.enterprise.geocod.io/v1.10/distance-jobs/abc123xyz/download",
   "is_expired": false
 }
 ```
 
 ### HTTP Request
 
-`GET https://api.enterprise.geocod.io/v1.9/distance-jobs/{identifier}`
+`GET https://api.enterprise.geocod.io/v1.10/distance-jobs/{identifier}`
 
 ### URL Parameters
 
@@ -8652,7 +8646,7 @@ Status | Description
 > List all distance jobs:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/distance-jobs?api_key=YOUR_API_KEY"
+curl "https://api.enterprise.geocod.io/v1.10/distance-jobs?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -8723,8 +8717,8 @@ geocoder.distanceMatrixJobs()
     }
   ],
   "links": {
-    "first": "https://api.enterprise.geocod.io/v1.9/distance-jobs?page=1",
-    "last": "https://api.enterprise.geocod.io/v1.9/distance-jobs?page=1",
+    "first": "https://api.enterprise.geocod.io/v1.10/distance-jobs?page=1",
+    "last": "https://api.enterprise.geocod.io/v1.10/distance-jobs?page=1",
     "prev": null,
     "next": null
   },
@@ -8741,7 +8735,7 @@ Returns a paginated list of all distance matrix jobs.
 
 ### HTTP Request
 
-`GET https://api.enterprise.geocod.io/v1.9/distance-jobs`
+`GET https://api.enterprise.geocod.io/v1.10/distance-jobs`
 
 ### URL Parameters
 
@@ -8755,7 +8749,7 @@ Parameter | Description
 > Download results for a completed job:
 
 ```shell
-curl "https://api.enterprise.geocod.io/v1.9/distance-jobs/abc123xyz/download?api_key=YOUR_API_KEY" \
+curl "https://api.enterprise.geocod.io/v1.10/distance-jobs/abc123xyz/download?api_key=YOUR_API_KEY" \
   -o results.json
 ```
 
@@ -8835,7 +8829,7 @@ Results are only available when the job status is <code>COMPLETED</code>. Result
 
 ### HTTP Request
 
-`GET https://api.enterprise.geocod.io/v1.9/distance-jobs/{identifier}/download`
+`GET https://api.enterprise.geocod.io/v1.10/distance-jobs/{identifier}/download`
 
 ### URL Parameters
 
@@ -8849,7 +8843,7 @@ Parameter | Description
 > Delete a distance job:
 
 ```shell
-curl -X DELETE "https://api.enterprise.geocod.io/v1.9/distance-jobs/abc123xyz?api_key=YOUR_API_KEY"
+curl -X DELETE "https://api.enterprise.geocod.io/v1.10/distance-jobs/abc123xyz?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -8899,7 +8893,7 @@ Deletes a distance matrix job and its results.
 
 ### HTTP Request
 
-`DELETE https://api.enterprise.geocod.io/v1.9/distance-jobs/{identifier}`
+`DELETE https://api.enterprise.geocod.io/v1.10/distance-jobs/{identifier}`
 
 ### URL Parameters
 
@@ -8968,6 +8962,109 @@ rooftop             | We found the exact point with rooftop level accuracy
 nearest_street      | Nearest match for a specific street with estimated street number
 nearest_place       | Closest city/town/place
 
+# Stable Address Keys
+
+> Example `stable_address_key` in a geocoding result:
+
+```json
+{
+  "results": [
+    {
+      "address_components": { ... },
+      "formatted_address": "1109 N Highland St, Arlington, VA 22201",
+      "location": {
+        "lat": 38.886665,
+        "lng": -77.094733
+      },
+      "accuracy": 1,
+      "accuracy_type": "rooftop",
+      "source": "Virginia GIS Clearinghouse",
+      "stable_address_key": "gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3"
+    }
+  ]
+}
+```
+
+Every geocoding result includes a `stable_address_key`, a deterministic identifier that uniquely represents the geocoded address.
+
+For `rooftop`, `range_interpolation`, and other house number-level results, the key is unique to a specific house number on a street. For `street_center` results, the key is unique to a specific street. Secondary address lines (e.g. apartment or unit numbers) do not affect the stable address key.
+
+We recommend always storing the stable address key alongside your geocoded results. Stable address keys are useful for:
+
+* **Deduplication:** Two addresses that resolve to the same location will share the same stable address key, making it easy to identify and deduplicate addresses in your database
+* **Updated results:** Store the stable address key and use it to retrieve the latest geocoding data for an address in the future. For example, an address that currently returns a `range_interpolation` result may be upgraded to a `rooftop` result as our coverage improves
+* **Data enrichment:** Request additional [field appends](#fields) for previously geocoded addresses without paying for geocoding again (see [billing](#stable-address-key-billing) below)
+
+### Guarantees
+
+* **Persistent:** A stable address key, once issued, will always remain valid and can be used to look up the same address in the future
+* **Deterministic:** The same address will always produce the same stable address key, regardless of minor formatting differences (e.g. "Street" vs "St", "North" vs "N")
+* **Cross-version:** Stable address keys work across all API versions
+
+### What to expect
+
+* **Results may improve over time:** The coordinates or accuracy type returned for a stable address key may change as our data coverage improves. This is by design, and you will always get the best available result
+* **New keys may be issued:** As coverage expands, an address that previously returned a `street_center`-level key may return a more specific house number-level key in the future
+
+<aside class="notice">
+Treat the stable address key as an opaque string. Do not parse or rely on the internal format of the key, as it may change for newly issued keys. The length of the string is not guaranteed to be fixed. Existing keys will always remain valid.
+</aside>
+
+### Using stable address keys as input
+
+> Using a stable address key as input for geocoding:
+
+```shell
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3'])
+```
+
+```python
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+response = client.geocode("gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3")
+```
+
+```php
+<?php
+$response = $geocoder->geocode('gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3');
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3')
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+> Using a stable address key with field appends (does not count as a geocoding lookup):
+
+```shell
+curl "https://api.enterprise.geocod.io/v1.10/geocode?q=gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3&fields=census,cd&api_key=YOUR_API_KEY"
+```
+
+Stable address keys can be used anywhere an address is accepted as input. This includes [single geocoding](#geocoding), [batch geocoding](#batch-geocoding), [distance](#distance) endpoints, and [list geocoding](#geocoding-lists). Simply pass the stable address key as the `q` parameter or as an item in a batch request.
+
+### Billing
+
+When you look up a stable address key, it counts as a regular geocoding lookup. However, if you request [field appends](#fields) using a stable address key, the geocoding portion is free and you only pay for the field appends. This means you can enrich already-geocoded addresses with additional data without paying for geocoding again.
+
 # Address formats
 Geocodio supports geocoding the following address components:
 
@@ -8984,39 +9081,39 @@ If a city is provided without a state, Geocodio will automatically guess and add
 
 Geocoding queries can be formatted in various ways:
 
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=PO+Box+4735,+Tulsa+OK&api_key=YOUR_API_KEY" target="_blank">PO Box 4735, Tulsa OK</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">Santa Clara County</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">Santa Clara County, CA</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, CA</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20Cupertino%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, Cupertino CA</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=PO+Box+4735,+Tulsa+OK&api_key=YOUR_API_KEY" target="_blank">PO Box 4735, Tulsa OK</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">Santa Clara County</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">Santa Clara County, CA</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, CA</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20Cupertino%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, Cupertino CA</a>
 
 If a country is not specified in the query, the Geocodio engine will assume the country to be USA.
 
 Examples of Canadian lookups:
 
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
 
 ## Intersections
 
 You can also geocode intersections. Just specify the two streets that you want to geocode in your query. We support various formats:
 
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
-* <a href="https://api.enterprise.geocod.io/v1.9/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
+* <a href="https://api.enterprise.geocod.io/v1.10/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
 
 An extra `address_components_secondary` property will be exposed for intersection results, but otherwise, the schema format is the same.
 
@@ -9140,7 +9237,7 @@ If no warnings have been triggered, the `_warnings` key will not be part of the 
 <script>
 const address = '1109 N Highland St, Arlington VA';
 const apiKey = 'YOUR_API_KEY';
-const url = `https://api.enterprise.geocod.io/v1.9/geocode?q=${encodeURIComponent(address)}&api_key=${encodeURIComponent(apiKey)}`;
+const url = `https://api.enterprise.geocod.io/v1.10/geocode?q=${encodeURIComponent(address)}&api_key=${encodeURIComponent(apiKey)}`;
 
 fetch(url)
   .then(response => response.json())
@@ -9348,6 +9445,16 @@ Major changes, that are not breaking are also documented here.
 <aside class="notice">
 Breaking changes are defined as changes that remove or rename properties in the JSON output of any API endpoint. Your API client should be able to gracefully support addition of new JSON properties, as this is not considered a breaking change.
 </aside>
+
+## v1.10
+
+*Released on February 24, 2026*
+
+* **Breaking:** ACS 2024 data is now returned for all [Census ACS appends](/#census-acs-american-community-survey). ACS 2024 uses 2023 Census boundaries (the `census2023` data append). Changes include:
+  * The [`acs-social`](#social-education-veteran-status-census) field append has renamed row labels in Table #B21002 (Period of military service for veterans): "Vietnam Era" has been changed to "Vietnam War"
+  * No other ACS field appends have breaking table changes
+* [`cd120`](#congressional-districts): Updated with redistricted boundaries for California, Missouri, North Carolina, Ohio, and Utah
+* All geocoding results now include a [stable address key](#stable-address-keys) (`stable_address_key`) that uniquely identifies an address. Stable address keys can be used as input in any API endpoint and enable free field appends on already-geocoded addresses
 
 ## v1.9
 

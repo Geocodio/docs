@@ -14,6 +14,7 @@
     },
     "results": [
         {
+            "stable_address_key": "gcod_canjlzcj5wb7t7g6y8vx7wnksmuye",
             "address_components": {
                 "number": "300",
                 "street": "King",
@@ -31,8 +32,8 @@
             ],
             "formatted_address": "300 King St, Sturgeon Falls, ON P2B",
             "location": {
-                "lat": 46.36185,
-                "lng": -79.92963
+                "lat": 46.361822,
+                "lng": -79.929778
             },
             "accuracy": 1,
             "accuracy_type": "range_interpolation",

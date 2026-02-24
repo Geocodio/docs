@@ -14,6 +14,7 @@
     },
     "results": [
         {
+            "stable_address_key": "gcod_usndjrg9xn28uz888u3fkm6yusrdg",
             "address_components": {
                 "number": "1109",
                 "predirectional": "N",
@@ -41,8 +42,8 @@
             "source": "Arlington",
             "fields": {
                 "census": {
-                    "2023": {
-                        "census_year": 2023,
+                    "2024": {
+                        "census_year": 2024,
                         "state_fips": "51",
                         "county_fips": "51013",
                         "tract_code": "101801",
@@ -80,7 +81,7 @@
                 "acs": {
                     "meta": {
                         "source": "American Community Survey from the US Census Bureau",
-                        "survey_years": "2019-2023",
+                        "survey_years": "2020-2024",
                         "survey_duration_years": "5"
                     },
                     "economics": {
@@ -90,8 +91,8 @@
                                 "universe": "Households"
                             },
                             "Total": {
-                                "value": 904,
-                                "margin_of_error": 136
+                                "value": 887,
+                                "margin_of_error": 124
                             }
                         },
                         "Median household income": {
@@ -100,8 +101,8 @@
                                 "universe": "Households"
                             },
                             "Total": {
-                                "value": 204063,
-                                "margin_of_error": 32217
+                                "value": 202344,
+                                "margin_of_error": 29891
                             }
                         },
                         "Household income": {
@@ -125,19 +126,19 @@
                                 "percentage": 0
                             },
                             "$20,000 to $24,999": {
-                                "value": 0,
-                                "margin_of_error": 13,
-                                "percentage": 0
+                                "value": 7,
+                                "margin_of_error": 11,
+                                "percentage": 0.008
                             },
                             "$25,000 to $29,999": {
-                                "value": 32,
-                                "margin_of_error": 48,
-                                "percentage": 0.035
-                            },
-                            "$30,000 to $34,999": {
                                 "value": 0,
                                 "margin_of_error": 13,
                                 "percentage": 0
+                            },
+                            "$30,000 to $34,999": {
+                                "value": 31,
+                                "margin_of_error": 51,
+                                "percentage": 0.035
                             },
                             "$35,000 to $39,999": {
                                 "value": 0,
@@ -145,9 +146,9 @@
                                 "percentage": 0
                             },
                             "$40,000 to $44,999": {
-                                "value": 0,
+                                "value": 8,
                                 "margin_of_error": 13,
-                                "percentage": 0
+                                "percentage": 0.009
                             },
                             "$45,000 to $49,999": {
                                 "value": 0,
@@ -155,39 +156,39 @@
                                 "percentage": 0
                             },
                             "$50,000 to $59,999": {
-                                "value": 8,
+                                "value": 0,
                                 "margin_of_error": 13,
-                                "percentage": 0.009
+                                "percentage": 0
                             },
                             "$60,000 to $74,999": {
                                 "value": 12,
                                 "margin_of_error": 16,
-                                "percentage": 0.013
+                                "percentage": 0.014
                             },
                             "$75,000 to $99,999": {
-                                "value": 71,
-                                "margin_of_error": 46,
-                                "percentage": 0.079
+                                "value": 59,
+                                "margin_of_error": 57,
+                                "percentage": 0.067
                             },
                             "$100,000 to $124,999": {
-                                "value": 81,
-                                "margin_of_error": 44,
-                                "percentage": 0.09
+                                "value": 117,
+                                "margin_of_error": 63,
+                                "percentage": 0.132
                             },
                             "$125,000 to $149,999": {
-                                "value": 78,
-                                "margin_of_error": 61,
-                                "percentage": 0.086
+                                "value": 56,
+                                "margin_of_error": 55,
+                                "percentage": 0.063
                             },
                             "$150,000 to $199,999": {
-                                "value": 165,
-                                "margin_of_error": 89,
-                                "percentage": 0.183
+                                "value": 146,
+                                "margin_of_error": 83,
+                                "percentage": 0.165
                             },
                             "$200,000 or more": {
-                                "value": 457,
-                                "margin_of_error": 119,
-                                "percentage": 0.506
+                                "value": 451,
+                                "margin_of_error": 98,
+                                "percentage": 0.508
                             }
                         },
                         "Per capita income": {
@@ -196,8 +197,8 @@
                                 "universe": "Total population"
                             },
                             "Total": {
-                                "value": 122016,
-                                "margin_of_error": 14991
+                                "value": 153059,
+                                "margin_of_error": 34075
                             }
                         },
                         "meta": {

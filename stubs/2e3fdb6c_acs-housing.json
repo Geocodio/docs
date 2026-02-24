@@ -14,6 +14,7 @@
     },
     "results": [
         {
+            "stable_address_key": "gcod_usndjrg9xn28uz888u3fkm6yusrdg",
             "address_components": {
                 "number": "1109",
                 "predirectional": "N",
@@ -41,8 +42,8 @@
             "source": "Arlington",
             "fields": {
                 "census": {
-                    "2023": {
-                        "census_year": 2023,
+                    "2024": {
+                        "census_year": 2024,
                         "state_fips": "51",
                         "county_fips": "51013",
                         "tract_code": "101801",
@@ -80,7 +81,7 @@
                 "acs": {
                     "meta": {
                         "source": "American Community Survey from the US Census Bureau",
-                        "survey_years": "2019-2023",
+                        "survey_years": "2020-2024",
                         "survey_duration_years": "5"
                     },
                     "housing": {
@@ -90,8 +91,8 @@
                                 "universe": "Housing Units"
                             },
                             "Total": {
-                                "value": 1026,
-                                "margin_of_error": 147
+                                "value": 1000,
+                                "margin_of_error": 135
                             }
                         },
                         "Occupancy status": {
@@ -100,14 +101,14 @@
                                 "universe": "Housing Units"
                             },
                             "Occupied": {
-                                "value": 904,
-                                "margin_of_error": 136,
-                                "percentage": 0.881
+                                "value": 887,
+                                "margin_of_error": 124,
+                                "percentage": 0.887
                             },
                             "Vacant": {
-                                "value": 122,
-                                "margin_of_error": 96,
-                                "percentage": 0.119
+                                "value": 113,
+                                "margin_of_error": 74,
+                                "percentage": 0.113
                             }
                         },
                         "Ownership of occupied units": {
@@ -116,14 +117,14 @@
                                 "universe": "Occupied Housing Units"
                             },
                             "Owner occupied": {
-                                "value": 226,
-                                "margin_of_error": 86,
-                                "percentage": 0.25
+                                "value": 235,
+                                "margin_of_error": 79,
+                                "percentage": 0.265
                             },
                             "Renter occupied": {
-                                "value": 678,
-                                "margin_of_error": 131,
-                                "percentage": 0.75
+                                "value": 652,
+                                "margin_of_error": 117,
+                                "percentage": 0.735
                             }
                         },
                         "Units in structure": {
@@ -137,9 +138,9 @@
                                 "percentage": 0
                             },
                             "1, attached unit": {
-                                "value": 122,
-                                "margin_of_error": 54,
-                                "percentage": 0.119
+                                "value": 142,
+                                "margin_of_error": 59,
+                                "percentage": 0.142
                             },
                             "2 units": {
                                 "value": 0,
@@ -162,14 +163,14 @@
                                 "percentage": 0
                             },
                             "20 to 49 units": {
-                                "value": 17,
-                                "margin_of_error": 19,
-                                "percentage": 0.017
+                                "value": 10,
+                                "margin_of_error": 16,
+                                "percentage": 0.01
                             },
                             "50 or more units": {
-                                "value": 887,
-                                "margin_of_error": 143,
-                                "percentage": 0.865
+                                "value": 848,
+                                "margin_of_error": 139,
+                                "percentage": 0.848
                             },
                             "Mobile home units": {
                                 "value": 0,
@@ -188,8 +189,8 @@
                                 "universe": "Owner-Occupied Housing Units"
                             },
                             "Total": {
-                                "value": 795500,
-                                "margin_of_error": 161647
+                                "value": 803600,
+                                "margin_of_error": 173895
                             }
                         },
                         "Value of owner-occupied housing units": {
@@ -298,29 +299,29 @@
                                 "percentage": 0
                             },
                             "$400,000 to $499,999": {
-                                "value": 8,
+                                "value": 0,
                                 "margin_of_error": 13,
-                                "percentage": 0.035
+                                "percentage": 0
                             },
                             "$500,000 to $749,999": {
-                                "value": 97,
-                                "margin_of_error": 53,
-                                "percentage": 0.429
+                                "value": 107,
+                                "margin_of_error": 59,
+                                "percentage": 0.455
                             },
                             "$750,000 to $999,999": {
-                                "value": 44,
-                                "margin_of_error": 44,
-                                "percentage": 0.195
+                                "value": 49,
+                                "margin_of_error": 49,
+                                "percentage": 0.209
                             },
                             "$1,000,000 to $1,499,999": {
-                                "value": 75,
-                                "margin_of_error": 36,
-                                "percentage": 0.332
+                                "value": 76,
+                                "margin_of_error": 43,
+                                "percentage": 0.323
                             },
                             "$1,500,000 to $1,999,999": {
-                                "value": 2,
+                                "value": 3,
                                 "margin_of_error": 5,
-                                "percentage": 0.009
+                                "percentage": 0.013
                             },
                             "$2,000,000 or more": {
                                 "value": 0,
