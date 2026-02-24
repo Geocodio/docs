@@ -14,6 +14,7 @@
     },
     "results": [
         {
+            "stable_address_key": "gcod_usndjrg9xn28uz888u3fkm6yusrdg",
             "address_components": {
                 "number": "1109",
                 "predirectional": "N",
@@ -41,8 +42,8 @@
             "source": "Arlington",
             "fields": {
                 "census": {
-                    "2023": {
-                        "census_year": 2023,
+                    "2024": {
+                        "census_year": 2024,
                         "state_fips": "51",
                         "county_fips": "51013",
                         "tract_code": "101801",
@@ -80,7 +81,7 @@
                 "acs": {
                     "meta": {
                         "source": "American Community Survey from the US Census Bureau",
-                        "survey_years": "2019-2023",
+                        "survey_years": "2020-2024",
                         "survey_duration_years": "5"
                     },
                     "social": {
@@ -90,13 +91,13 @@
                                 "universe": "Population 25 Years And Over"
                             },
                             "Total": {
-                                "value": 1400,
-                                "margin_of_error": 243
+                                "value": 1315,
+                                "margin_of_error": 178
                             },
                             "Male": {
-                                "value": 729,
-                                "margin_of_error": 179,
-                                "percentage": 0.521
+                                "value": 675,
+                                "margin_of_error": 125,
+                                "percentage": 0.513
                             },
                             "Male: No schooling completed": {
                                 "value": 0,
@@ -136,11 +137,11 @@
                             "Male: 12th grade, no diploma": {
                                 "value": 6,
                                 "margin_of_error": 10,
-                                "percentage": 0.008
+                                "percentage": 0.009
                             },
                             "Male: High school graduate (includes equivalency)": {
-                                "value": 9,
-                                "margin_of_error": 14,
+                                "value": 8,
+                                "margin_of_error": 15,
                                 "percentage": 0.012
                             },
                             "Male: Some college, less than 1 year": {
@@ -150,8 +151,8 @@
                             },
                             "Male: Some college, 1 or more years, no degree": {
                                 "value": 24,
-                                "margin_of_error": 29,
-                                "percentage": 0.033
+                                "margin_of_error": 28,
+                                "percentage": 0.036
                             },
                             "Male: Associate's degree": {
                                 "value": 0,
@@ -159,29 +160,29 @@
                                 "percentage": 0
                             },
                             "Male: Bachelor's degree": {
-                                "value": 312,
-                                "margin_of_error": 118,
-                                "percentage": 0.428
+                                "value": 277,
+                                "margin_of_error": 87,
+                                "percentage": 0.41
                             },
                             "Male: Master's degree": {
                                 "value": 254,
-                                "margin_of_error": 104,
-                                "percentage": 0.348
+                                "margin_of_error": 101,
+                                "percentage": 0.376
                             },
                             "Male: Professional school degree": {
-                                "value": 78,
-                                "margin_of_error": 46,
-                                "percentage": 0.107
+                                "value": 69,
+                                "margin_of_error": 55,
+                                "percentage": 0.102
                             },
                             "Male: Doctorate degree": {
-                                "value": 46,
-                                "margin_of_error": 45,
-                                "percentage": 0.063
+                                "value": 37,
+                                "margin_of_error": 46,
+                                "percentage": 0.055
                             },
                             "Female": {
-                                "value": 671,
-                                "margin_of_error": 118,
-                                "percentage": 0.479
+                                "value": 640,
+                                "margin_of_error": 102,
+                                "percentage": 0.487
                             },
                             "Female: No schooling completed": {
                                 "value": 0,
@@ -229,39 +230,39 @@
                                 "percentage": 0
                             },
                             "Female: Some college, less than 1 year": {
-                                "value": 8,
-                                "margin_of_error": 12,
-                                "percentage": 0.012
+                                "value": 9,
+                                "margin_of_error": 14,
+                                "percentage": 0.014
                             },
                             "Female: Some college, 1 or more years, no degree": {
-                                "value": 16,
+                                "value": 17,
                                 "margin_of_error": 26,
-                                "percentage": 0.024
+                                "percentage": 0.027
                             },
                             "Female: Associate's degree": {
-                                "value": 24,
-                                "margin_of_error": 28,
-                                "percentage": 0.036
+                                "value": 8,
+                                "margin_of_error": 12,
+                                "percentage": 0.013
                             },
                             "Female: Bachelor's degree": {
-                                "value": 226,
-                                "margin_of_error": 78,
-                                "percentage": 0.337
+                                "value": 230,
+                                "margin_of_error": 83,
+                                "percentage": 0.359
                             },
                             "Female: Master's degree": {
-                                "value": 303,
-                                "margin_of_error": 100,
-                                "percentage": 0.452
+                                "value": 298,
+                                "margin_of_error": 97,
+                                "percentage": 0.466
                             },
                             "Female: Professional school degree": {
-                                "value": 63,
-                                "margin_of_error": 46,
-                                "percentage": 0.094
+                                "value": 59,
+                                "margin_of_error": 45,
+                                "percentage": 0.092
                             },
                             "Female: Doctorate degree": {
-                                "value": 31,
-                                "margin_of_error": 42,
-                                "percentage": 0.046
+                                "value": 19,
+                                "margin_of_error": 19,
+                                "percentage": 0.03
                             }
                         },
                         "Population with veteran status": {
@@ -270,83 +271,83 @@
                                 "universe": "Civilian Population 18 Years And Over"
                             },
                             "Total": {
-                                "value": 1552,
-                                "margin_of_error": 336
+                                "value": 1400,
+                                "margin_of_error": 288
                             },
                             "Veteran": {
-                                "value": 94,
+                                "value": 74,
                                 "margin_of_error": 50,
-                                "percentage": 0.061
+                                "percentage": 0.053
                             },
                             "Nonveteran": {
-                                "value": 1458,
-                                "margin_of_error": 327,
-                                "percentage": 0.939
+                                "value": 1326,
+                                "margin_of_error": 291,
+                                "percentage": 0.947
                             },
                             "Male": {
-                                "value": 795,
-                                "margin_of_error": 204,
-                                "percentage": 0.512
+                                "value": 682,
+                                "margin_of_error": 175,
+                                "percentage": 0.487
                             },
                             "Male: Veteran": {
-                                "value": 94,
+                                "value": 74,
                                 "margin_of_error": 50,
-                                "percentage": 0.118
+                                "percentage": 0.109
                             },
                             "Male: Nonveteran": {
-                                "value": 701,
-                                "margin_of_error": 194,
-                                "percentage": 0.882
+                                "value": 608,
+                                "margin_of_error": 179,
+                                "percentage": 0.891
                             },
                             "Male: 18 to 34 years": {
-                                "value": 459,
-                                "margin_of_error": 178,
-                                "percentage": 0.577
+                                "value": 303,
+                                "margin_of_error": 154,
+                                "percentage": 0.444
                             },
                             "Male: 18 to 34 years: Veteran": {
-                                "value": 10,
-                                "margin_of_error": 17,
-                                "percentage": 0.022
+                                "value": 26,
+                                "margin_of_error": 30,
+                                "percentage": 0.086
                             },
                             "Male: 18 to 34 years: Nonveteran": {
-                                "value": 449,
-                                "margin_of_error": 178,
-                                "percentage": 0.978
+                                "value": 277,
+                                "margin_of_error": 157,
+                                "percentage": 0.914
                             },
                             "Male: 35 to 54 years": {
-                                "value": 245,
-                                "margin_of_error": 98,
-                                "percentage": 0.308
+                                "value": 309,
+                                "margin_of_error": 109,
+                                "percentage": 0.453
                             },
                             "Male: 35 to 54 years: Veteran": {
-                                "value": 55,
-                                "margin_of_error": 41,
-                                "percentage": 0.224
+                                "value": 34,
+                                "margin_of_error": 32,
+                                "percentage": 0.11
                             },
                             "Male: 35 to 54 years: Nonveteran": {
-                                "value": 190,
-                                "margin_of_error": 91,
-                                "percentage": 0.776
+                                "value": 275,
+                                "margin_of_error": 104,
+                                "percentage": 0.89
                             },
                             "Male: 55 to 64 years": {
-                                "value": 57,
-                                "margin_of_error": 42,
-                                "percentage": 0.072
+                                "value": 35,
+                                "margin_of_error": 36,
+                                "percentage": 0.051
                             },
                             "Male: 55 to 64 years: Veteran": {
-                                "value": 29,
-                                "margin_of_error": 30,
-                                "percentage": 0.509
+                                "value": 14,
+                                "margin_of_error": 23,
+                                "percentage": 0.4
                             },
                             "Male: 55 to 64 years: Nonveteran": {
-                                "value": 28,
-                                "margin_of_error": 27,
-                                "percentage": 0.491
+                                "value": 21,
+                                "margin_of_error": 26,
+                                "percentage": 0.6
                             },
                             "Male: 65 to 74 years": {
-                                "value": 24,
-                                "margin_of_error": 25,
-                                "percentage": 0.03
+                                "value": 16,
+                                "margin_of_error": 22,
+                                "percentage": 0.023
                             },
                             "Male: 65 to 74 years: Veteran": {
                                 "value": 0,
@@ -354,14 +355,14 @@
                                 "percentage": 0
                             },
                             "Male: 65 to 74 years: Nonveteran": {
-                                "value": 24,
-                                "margin_of_error": 25,
+                                "value": 16,
+                                "margin_of_error": 22,
                                 "percentage": 1
                             },
                             "Male: 75 years and over": {
-                                "value": 10,
-                                "margin_of_error": 16,
-                                "percentage": 0.013
+                                "value": 19,
+                                "margin_of_error": 21,
+                                "percentage": 0.028
                             },
                             "Male: 75 years and over: Veteran": {
                                 "value": 0,
@@ -369,14 +370,14 @@
                                 "percentage": 0
                             },
                             "Male: 75 years and over: Nonveteran": {
-                                "value": 10,
-                                "margin_of_error": 16,
+                                "value": 19,
+                                "margin_of_error": 21,
                                 "percentage": 1
                             },
                             "Female": {
-                                "value": 757,
-                                "margin_of_error": 160,
-                                "percentage": 0.488
+                                "value": 718,
+                                "margin_of_error": 143,
+                                "percentage": 0.513
                             },
                             "Female: Veteran": {
                                 "value": 0,
@@ -384,14 +385,14 @@
                                 "percentage": 0
                             },
                             "Female: Nonveteran": {
-                                "value": 757,
-                                "margin_of_error": 160,
+                                "value": 718,
+                                "margin_of_error": 143,
                                 "percentage": 1
                             },
                             "Female: 18 to 34 years": {
-                                "value": 441,
-                                "margin_of_error": 138,
-                                "percentage": 0.583
+                                "value": 403,
+                                "margin_of_error": 137,
+                                "percentage": 0.561
                             },
                             "Female: 18 to 34 years: Veteran": {
                                 "value": 0,
@@ -399,14 +400,14 @@
                                 "percentage": 0
                             },
                             "Female: 18 to 34 years: Nonveteran": {
-                                "value": 441,
-                                "margin_of_error": 138,
+                                "value": 403,
+                                "margin_of_error": 137,
                                 "percentage": 1
                             },
                             "Female: 35 to 54 years": {
-                                "value": 256,
-                                "margin_of_error": 100,
-                                "percentage": 0.338
+                                "value": 245,
+                                "margin_of_error": 90,
+                                "percentage": 0.341
                             },
                             "Female: 35 to 54 years: Veteran": {
                                 "value": 0,
@@ -414,14 +415,14 @@
                                 "percentage": 0
                             },
                             "Female: 35 to 54 years: Nonveteran": {
-                                "value": 256,
-                                "margin_of_error": 100,
+                                "value": 245,
+                                "margin_of_error": 90,
                                 "percentage": 1
                             },
                             "Female: 55 to 64 years": {
                                 "value": 21,
-                                "margin_of_error": 23,
-                                "percentage": 0.028
+                                "margin_of_error": 25,
+                                "percentage": 0.029
                             },
                             "Female: 55 to 64 years: Veteran": {
                                 "value": 0,
@@ -430,13 +431,13 @@
                             },
                             "Female: 55 to 64 years: Nonveteran": {
                                 "value": 21,
-                                "margin_of_error": 23,
+                                "margin_of_error": 25,
                                 "percentage": 1
                             },
                             "Female: 65 to 74 years": {
-                                "value": 24,
-                                "margin_of_error": 26,
-                                "percentage": 0.032
+                                "value": 33,
+                                "margin_of_error": 29,
+                                "percentage": 0.046
                             },
                             "Female: 65 to 74 years: Veteran": {
                                 "value": 0,
@@ -444,14 +445,14 @@
                                 "percentage": 0
                             },
                             "Female: 65 to 74 years: Nonveteran": {
-                                "value": 24,
-                                "margin_of_error": 26,
+                                "value": 33,
+                                "margin_of_error": 29,
                                 "percentage": 1
                             },
                             "Female: 75 years and over": {
-                                "value": 15,
-                                "margin_of_error": 21,
-                                "percentage": 0.02
+                                "value": 16,
+                                "margin_of_error": 18,
+                                "percentage": 0.022
                             },
                             "Female: 75 years and over: Veteran": {
                                 "value": 0,
@@ -459,8 +460,8 @@
                                 "percentage": 0
                             },
                             "Female: 75 years and over: Nonveteran": {
-                                "value": 15,
-                                "margin_of_error": 21,
+                                "value": 16,
+                                "margin_of_error": 18,
                                 "percentage": 1
                             }
                         },
@@ -470,70 +471,70 @@
                                 "universe": "Civilian Veterans 18 Years And Over"
                             },
                             "Total": {
-                                "value": 94,
+                                "value": 74,
                                 "margin_of_error": 50
                             },
-                            "Gulf War (9/2001 or later), no Gulf War (8/1990 to 8/2001), no Vietnam Era": {
-                                "value": 53,
-                                "margin_of_error": 39,
-                                "percentage": 0.564
+                            "Gulf War (9/2001 or later), no Gulf War (8/1990 to 8/2001), no Vietnam War": {
+                                "value": 57,
+                                "margin_of_error": 45,
+                                "percentage": 0.77
                             },
-                            "Gulf War (9/2001 or later) and Gulf War (8/1990 to 8/2001), no Vietnam Era": {
-                                "value": 24,
-                                "margin_of_error": 26,
-                                "percentage": 0.255
+                            "Gulf War (9/2001 or later) and Gulf War (8/1990 to 8/2001), no Vietnam War": {
+                                "value": 14,
+                                "margin_of_error": 23,
+                                "percentage": 0.189
                             },
-                            "Gulf War (9/2001 or later), and Gulf War (8/1990 to 8/2001), and Vietnam Era": {
+                            "Gulf War (9/2001 or later), and Gulf War (8/1990 to 8/2001), and Vietnam War": {
                                 "value": 0,
                                 "margin_of_error": 13,
                                 "percentage": 0
                             },
-                            "Gulf War (8/1990 to 8/2001), no Vietnam Era": {
-                                "value": 2,
+                            "Gulf War (8/1990 to 8/2001), no Vietnam War": {
+                                "value": 3,
                                 "margin_of_error": 5,
-                                "percentage": 0.021
+                                "percentage": 0.041
                             },
-                            "Gulf War (8/1990 to 8/2001) and Vietnam Era": {
+                            "Gulf War (8/1990 to 8/2001) and Vietnam War": {
                                 "value": 0,
                                 "margin_of_error": 13,
                                 "percentage": 0
                             },
-                            "Vietnam Era, no Korean War, no World War II": {
+                            "Vietnam War, no Korean War, no World War II": {
                                 "value": 0,
                                 "margin_of_error": 13,
                                 "percentage": 0
                             },
-                            "Vietnam Era and Korean War, no World War II": {
+                            "Vietnam War and Korean War, no World War II": {
                                 "value": 0,
                                 "margin_of_error": 13,
                                 "percentage": 0
                             },
-                            "Vietnam Era and Korean War and World War II": {
+                            "Vietnam War and Korean War and World War II": {
                                 "value": 0,
                                 "margin_of_error": 13,
                                 "percentage": 0
                             },
-                            "Korean War, no Vietnam Era, no World War II": {
+                            "Korean War, no Vietnam War, no World War II": {
                                 "value": 0,
                                 "margin_of_error": 13,
                                 "percentage": 0
                             },
-                            "Korean War and World War II, no Vietnam Era": {
+                            "Korean War and World War II, no Vietnam War": {
                                 "value": 0,
                                 "margin_of_error": 13,
                                 "percentage": 0
                             },
-                            "World War II, no Korean War, no Vietnam Era": {
+                            "World War II, no Korean War, no Vietnam War": {
                                 "value": 0,
                                 "margin_of_error": 13,
                                 "percentage": 0
                             },
-                            "Between Gulf War and Vietnam Era only": {
-                                "value": 15,
-                                "margin_of_error": 25,
-                                "percentage": 0.16
+                            "Between Gulf War and Vietnam War only": {
+                                "value": 0,
+                                "margin_of_error": 13,
+                                "percentage": 0
                             },
-                            "Between Vietnam Era and Korean War only": {
+                            "Between Vietnam War and Korean War only": {
                                 "value": 0,
                                 "margin_of_error": 13,
                                 "percentage": 0

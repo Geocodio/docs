@@ -13,6 +13,7 @@
     },
     "results": [
         {
+            "stable_address_key": "gcod_can2xg4mh3qjhwydydbf46euhca4h",
             "address_components": {
                 "number": "203",
                 "street": "Laycoe",
@@ -30,12 +31,12 @@
             ],
             "formatted_address": "203 Laycoe Cres, Saskatoon, SK S7S",
             "location": {
-                "lat": 52.155106,
-                "lng": -106.589896
+                "lat": 52.155023,
+                "lng": -106.590315
             },
             "accuracy": 1,
-            "accuracy_type": "rooftop",
-            "source": "Saskatoon",
+            "accuracy_type": "range_interpolation",
+            "source": "Address Ranges",
             "fields": {
                 "provincial_riding": {
                     "ocd_id": "ocd-division/country:ca/province:sk/ed:49-2022",

@@ -25,7 +25,7 @@ Geocodio's RESTful [geocoding API](#geocoding) endpoints allows you to perform f
 
 Data appends (`fields`) include Census geographies and data, electoral districts, timezones, school districts, and more.
 
-The base API url is `https://api.geocod.io/v1.9/`.
+The base API url is `https://api.geocod.io/v1.10/`.
 
 Geocodio's [distance API](#distance) endpoints allow you to calculate driving time, driving distance, and straight line (as the crow flies/haversine) distance between addresses or coordinates. One-to-one, one-to-many, and many-to-many matrices are supported, and you can limit results to a specified radius.
 
@@ -54,10 +54,10 @@ Note the versioning prefix in the base url, which is required for all requests.
 ### Explicit `country` Parameter
 ```shell
 # US address (explicit)
-curl "https://api.geocod.io/v1.9/geocode?q=1109+N+Highland+St,+Arlington+VA&country=USA&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.10/geocode?q=1109+N+Highland+St,+Arlington+VA&country=USA&api_key=YOUR_API_KEY"
 
 # Canadian address (explicit)
-curl "https://api.geocod.io/v1.9/geocode?q=525+University+Ave,+Toronto+ON&country=Canada&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.10/geocode?q=525+University+Ave,+Toronto+ON&country=Canada&api_key=YOUR_API_KEY"
 ```
 
 **Supported Country Values:** USA or Canada
@@ -232,10 +232,10 @@ $ yarn add geocodio-library-node
 
 ```shell
 # With curl, you can pass the query parameter with each request
-curl "https://api.geocod.io/v1.9/api_endpoint_here?api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.10/api_endpoint_here?api_key=YOUR_API_KEY"
 
 # or use the Authorization header
-curl "https://api.geocod.io/v1.9/api_endpoint_here" \
+curl "https://api.geocod.io/v1.10/api_endpoint_here" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 
@@ -380,7 +380,7 @@ Whenever possible, batch requests via the batch or lists endpoints is encouraged
 
 ## Single address
 
-Geocodio can geocode a single address by making a `GET` request to the *geocode* endpoint. You can <a href="https://api.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a> after creating an API key or via our <a href="https://www.geocod.io/geocode-an-address">demo tool</a>.
+Geocodio can geocode a single address by making a `GET` request to the *geocode* endpoint. You can <a href="https://api.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a> after creating an API key or via our <a href="https://www.geocod.io/geocode-an-address">demo tool</a>.
 
 <aside class="success">
 The <code>results</code> are always ordered with the most accurate locations first. It is therefore always safe to pick the first result in the list.
@@ -390,10 +390,10 @@ The <code>results</code> are always ordered with the most accurate locations fir
 
 ```shell
 # Using q parameter
-curl "https://api.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY"
 
 # Using individual address components
-curl "https://api.geocod.io/v1.9/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.10/geocode?street=1109+N+Highland+St&city=Arlington&state=VA&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -480,7 +480,8 @@ geocoder.geocode('1109 N Highland St, Arlington VA')
       },
       "accuracy": 1,
       "accuracy_type": "rooftop",
-      "source": "Virginia GIS Clearinghouse"
+      "source": "Virginia GIS Clearinghouse",
+      "stable_address_key": "gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3"
     }
   ]
 }
@@ -488,7 +489,7 @@ geocoder.geocode('1109 N Highland St, Arlington VA')
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.9/geocode`
+`GET https://api.geocod.io/v1.10/geocode`
 
 ### URL Parameters
 
@@ -621,7 +622,7 @@ ENTERPRISE-->
 > To geocode an address with a Unit Number
 
 ```shell
-  curl "https://api.geocod.io/v1.9/geocode?q=2800+Clarendon+Blvd+Suite+R500+Arlington+VA+22201&api_key=YOUR_API_KEY"
+  curl "https://api.geocod.io/v1.10/geocode?q=2800+Clarendon+Blvd+Suite+R500+Arlington+VA+22201&api_key=YOUR_API_KEY"
 ```
 
 > Example response with Unit Number
@@ -695,7 +696,7 @@ As such, if we aren't able to identify the exact address location in `results`, 
 > Geocode an address and calculate distances to multiple destinations:
 
 ```shell
-curl "https://api.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&destinations[]=38.8977,-77.0365,WhiteHouse&destinations[]=38.8895,-77.0353,WashingtonMonument&distance_mode=driving&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2c+Arlington+VA&destinations[]=38.8977,-77.0365,WhiteHouse&destinations[]=38.8895,-77.0353,WashingtonMonument&distance_mode=driving&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -859,7 +860,7 @@ See the <a href="#distance">Distance</a> section for more details on distance ca
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["1109 N Highland St, Arlington VA", "525 University Ave, Toronto, ON, Canada", "4410 S Highway 17 92, Casselberry FL", "15000 NE 24th Street, Redmond WA", "17015 Walnut Grove Drive, Morgan Hill CA"]' \
-  https://api.geocod.io/v1.9/geocode?api_key=YOUR_API_KEY
+  https://api.geocod.io/v1.10/geocode?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -1088,7 +1089,7 @@ Plan your batch requests carefully when using field appends. If you need to proc
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.9/geocode`
+`POST https://api.geocod.io/v1.10/geocode`
 
 ### URL Parameters
 
@@ -1257,7 +1258,7 @@ A geographic coordinate consists of latitude followed by longitude separated by 
 > To reverse geocode a single coordinate:
 
 ```shell
-curl "https://api.geocod.io/v1.9/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.10/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -1365,11 +1366,11 @@ geocoder.reverse('38.9002898,-76.9990361')
 }
 ```
 
-A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api.geocod.io/v1.9/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+A single coordinate can be reverse geocoded by making a simple `GET` request to the *reverse* endpoint, you can <a href="https://api.geocod.io/v1.10/reverse?q=38.9002898,-76.9990361&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.9/reverse`
+`GET https://api.geocod.io/v1.10/reverse`
 
 ### URL Parameters
 
@@ -1448,7 +1449,7 @@ The `fields` parameter is still supported when the `simple` output format is sel
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '["35.9746000,-77.9658000","32.8793700,-96.6303900","33.8337100,-117.8362320","35.4171240,-80.6784760"]' \
-  https://api.geocod.io/v1.9/reverse?api_key=YOUR_API_KEY
+  https://api.geocod.io/v1.10/reverse?api_key=YOUR_API_KEY
 ```
 
 ```ruby
@@ -1607,7 +1608,7 @@ You can batch reverse geocode up to 10,000 coordinates at a time. Field appends 
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.9/reverse`
+`POST https://api.geocod.io/v1.10/reverse`
 
 ### URL Parameters
 
@@ -1653,7 +1654,7 @@ ENTERPRISE-->
 
 <!--DEFAULT
 ```shell
-curl "https://api.geocod.io/v1.9/lists?api_key=YOUR_API_KEY" \
+curl "https://api.geocod.io/v1.10/lists?api_key=YOUR_API_KEY" \
   -F "file"="@sample_list.csv" \
   -F "direction"="forward" \
   -F "format"="{{A}} {{B}} {{C}} {{D}}" \
@@ -1662,7 +1663,7 @@ curl "https://api.geocod.io/v1.9/lists?api_key=YOUR_API_KEY" \
 DEFAULT-->
 <!--ENTERPRISE
 ```shell
-curl "https://api.geocod.io/v1.9/lists \
+curl "https://api.geocod.io/v1.10/lists \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -F "file"="@sample_list.csv" \
   -F "direction"="forward" \
@@ -1724,7 +1725,7 @@ $response = $geocoder->uploadList(
 
 <!--DEFAULT
 ```shell
-curl "https://api.geocod.io/v1.9/lists?api_key=YOUR_API_KEY" \
+curl "https://api.geocod.io/v1.10/lists?api_key=YOUR_API_KEY" \
   -F "file"=$'Zip\n20003\n20001' \
   -F "filename"="file.csv" \
   -F "direction"="forward" \
@@ -1734,7 +1735,7 @@ curl "https://api.geocod.io/v1.9/lists?api_key=YOUR_API_KEY" \
 DEFAULT-->
 <!--ENTERPRISE
 ```shell
-curl "https://api.geocod.io/v1.9/lists" \
+curl "https://api.geocod.io/v1.10/lists" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -F "file"=$'Zip\n20003\n20001' \
   -F "filename"="file.csv" \
@@ -1806,7 +1807,7 @@ Creates a new spreadsheet list job and starts processing the list in the backgro
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.9/lists`
+`POST https://api.geocod.io/v1.10/lists`
 
 ### URL Parameters
 
@@ -1857,7 +1858,7 @@ The `format` parameter uses a simple templating syntax that is used to construct
         "geocoded_rows_count": 39809,
         "filename": "sample_list.csv"
     },
-    "download_url": "https://api.geocod.io/v1.9/lists/49/download"
+    "download_url": "https://api.geocod.io/v1.10/lists/49/download"
 }
 ```
 
@@ -1872,12 +1873,12 @@ A total of 3 attempts are made to delivery the webhook.
 
 <!--DEFAULT
 ```shell
-curl "https://api.geocod.io/v1.9/lists/42?api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.10/lists/42?api_key=YOUR_API_KEY"
 ```
 DEFAULT-->
 <!--ENTERPRISE
 ```shell
-curl "https://api.geocod.io/v1.9/lists/42" \
+curl "https://api.geocod.io/v1.10/lists/42" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 ENTERPRISE-->
@@ -1979,7 +1980,7 @@ $response = $geocoder->listStatus(42);
         "time_left_description": null,
         "time_left_seconds": null
     },
-    "download_url": "https://api.geocod.io/v1.9/lists/42/download",
+    "download_url": "https://api.geocod.io/v1.10/lists/42/download",
     "expires_at": "2021-09-23T18:23:29.000000Z"
 }
 ```
@@ -1988,7 +1989,7 @@ View the metadata and status for a single uploaded list.
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.9/lists/LIST_ID`
+`GET https://api.geocod.io/v1.10/lists/LIST_ID`
 
 ### URL Parameters
 
@@ -2010,12 +2011,12 @@ ENTERPRISE-->
 
 <!--DEFAULT
 ```shell
-curl "https://api.geocod.io/v1.9/lists?api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.10/lists?api_key=YOUR_API_KEY"
 ```
 DEFAULT-->
 <!--ENTERPRISE
 ```shell
-curl "https://api.geocod.io/v1.9/lists" \
+curl "https://api.geocod.io/v1.10/lists" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 ENTERPRISE-->
@@ -2077,15 +2078,15 @@ $response = $geocoder->lists();
                 "time_left_description": null,
                 "time_left_seconds": null
             },
-            "download_url": "https://api.geocod.io/v1.9/lists/48/download",
+            "download_url": "https://api.geocod.io/v1.10/lists/48/download",
             "expires_at": "2021-09-23T12:09:09.000000Z"
         },
         ...
     ],
-    "first_page_url": "https://api.geocod.io/v1.9/lists?page=1",
+    "first_page_url": "https://api.geocod.io/v1.10/lists?page=1",
     "from": 1,
-    "next_page_url": "https://api.geocod.io/v1.9/lists?page=2",
-    "path": "https://api.geocod.io/v1.9/lists",
+    "next_page_url": "https://api.geocod.io/v1.10/lists?page=2",
+    "path": "https://api.geocod.io/v1.10/lists",
     "per_page": 15,
     "prev_page_url": null,
     "to": 15
@@ -2096,7 +2097,7 @@ Show all lists that have been created. The endpoint is paginated, showing 15 lis
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.9/lists`
+`GET https://api.geocod.io/v1.10/lists`
 
 ### URL Parameters
 
@@ -2110,12 +2111,12 @@ DEFAULT-->
 
 <!--DEFAULT
 ```shell
-curl -L "https://api.geocod.io/v1.9/lists/LIST_ID/download?api_key=YOUR_API_KEY"
+curl -L "https://api.geocod.io/v1.10/lists/LIST_ID/download?api_key=YOUR_API_KEY"
 ```
 DEFAULT-->
 <!--ENTERPRISE
 ```shell
-curl -L "https://api.geocod.io/v1.9/lists/LIST_ID/download" \
+curl -L "https://api.geocod.io/v1.10/lists/LIST_ID/download" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 ENTERPRISE-->
@@ -2203,7 +2204,7 @@ See our [spreadsheet output guide](/guides/data-matching-overview/) for a refere
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.9/lists/LIST_ID/download`
+`GET https://api.geocod.io/v1.10/lists/LIST_ID/download`
 
 ### URL Parameters
 
@@ -2217,12 +2218,12 @@ DEFAULT-->
 
 <!--DEFAULT
 ```shell
-curl -X DELETE "https://api.geocod.io/v1.9/lists/LIST_ID?api_key=YOUR_API_KEY"
+curl -X DELETE "https://api.geocod.io/v1.10/lists/LIST_ID?api_key=YOUR_API_KEY"
 ```
 DEFAULT-->
 <!--ENTERPRISE
 ```shell
-curl -X DELETE "https://api.geocod.io/v1.9/lists/LIST_ID" \
+curl -X DELETE "https://api.geocod.io/v1.10/lists/LIST_ID" \
   -H "Authorization: Bearer YOUR_API_KEY"
 ```
 ENTERPRISE-->
@@ -2276,7 +2277,7 @@ The spreadsheet data will always be deleted automatically after 72 hours if it i
 
 ### HTTP Request
 
-`DELETE https://api.geocod.io/v1.9/lists/LIST_ID`
+`DELETE https://api.geocod.io/v1.10/lists/LIST_ID`
 
 ### URL Parameters
 
@@ -2298,7 +2299,7 @@ Geocodio allows you to request additional data with forward and reverse geocodin
 
 To request additional data, just add a `fields` parameter to your query string and set the value according to the table below. You can request multiple data fields at the same time by separating them with a comma. If the `fields` parameter has been specified, a new `fields` key is exposed with each geocoding result containing all necessary data for each field.
 
-Go ahead, <a href="https://api.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
+Go ahead, <a href="https://api.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2c+Arlington+VA&fields=cd&api_key=YOUR_API_KEY" target="_blank">try this in your browser right now</a>.
 
 Some fields are specific to the US and cannot be queried for other countries.
 
@@ -2636,7 +2637,7 @@ If you request an ACS field without specifying a geography, Geocodio will select
   "acs": {
     "meta": {
       "source": "American Community Survey from the US Census Bureau",
-      "survey_years": "2019-2023",
+      "survey_years": "2020-2024",
       "survey_duration_years": "5"
     },
     ...
@@ -2786,17 +2787,17 @@ The data returned includes the following data points. For each data point, the d
   * Results broken out by all genders, female, and male as well as age groups
 * Period of military service for veterans (Table #B21002)
   * Wars
-    * Gulf War (9/2001 or later), no Gulf War (8/1990 to 8/2001), no Vietnam Era
-    * Gulf War (9/2001 or later), Gulf War (8/1990 to 8/2001), no Vietnam Era
-    * Gulf War (8/1990 to 8/2001), no Vietnam Era
-    * Gulf War (8/1990 to 8/2001) and Vietnam Era
-    * Vietnam Era, no Korean War, no World War II
-    * Vietnam Era and Korean War, no World War II
-    * Vietnam Era and Korean War and World War II
-    * Korean War, no Vietnam Era, no World War II
-    * Korean War and World War II, no Vietnam Era
-    * World War II, no Korean War, no Vietnam Era
-    * Between Gulf War and Vietnam Era only
+    * Gulf War (9/2001 or later), no Gulf War (8/1990 to 8/2001), no Vietnam War
+    * Gulf War (9/2001 or later), Gulf War (8/1990 to 8/2001), no Vietnam War
+    * Gulf War (8/1990 to 8/2001), no Vietnam War
+    * Gulf War (8/1990 to 8/2001) and Vietnam War
+    * Vietnam War, no Korean War, no World War II
+    * Vietnam War and Korean War, no World War II
+    * Vietnam War and Korean War and World War II
+    * Korean War, no Vietnam War, no World War II
+    * Korean War and World War II, no Vietnam War
+    * World War II, no Korean War, no Vietnam War
+    * Between Gulf War and Vietnam War only
     * Between Korean War and World War II only
     * Pre-World War II only
 
@@ -3178,7 +3179,7 @@ The <code>driving</code> distance mode uses 2x the lookup credits of <code>strai
 > Calculate distances from a single origin to one or multiple destinations:
 
 ```shell
-curl "https://api.geocod.io/v1.9/distance?origin=38.8977,-77.0365,WhiteHouse&destinations[]=38.8895,-77.0353,WashingtonMonument&destinations[]=38.9072,-77.0369,DupontCircle&mode=driving&api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.10/distance?origin=38.8977,-77.0365,WhiteHouse&destinations[]=38.8895,-77.0353,WashingtonMonument&destinations[]=38.9072,-77.0369,DupontCircle&mode=driving&api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -3301,7 +3302,7 @@ Calculate driving and straight line distances and travel times from a single ori
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.9/distance`
+`GET https://api.geocod.io/v1.10/distance`
 
 ### URL Parameters
 
@@ -3345,7 +3346,7 @@ curl -X POST \
     ],
     "mode": "driving"
   }' \
-  "https://api.geocod.io/v1.9/distance-matrix?api_key=YOUR_API_KEY"
+  "https://api.geocod.io/v1.10/distance-matrix?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -3519,7 +3520,7 @@ The matrix size (origins × destinations) is limited to 10,000 calculations per 
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.9/distance-matrix`
+`POST https://api.geocod.io/v1.10/distance-matrix`
 
 ### Request Body Parameters
 
@@ -3580,7 +3581,7 @@ curl -X POST \
     "max_results": 2,
     "order_by": "distance"
   }' \
-  "https://api.geocod.io/v1.9/distance-jobs?api_key=YOUR_API_KEY"
+  "https://api.geocod.io/v1.10/distance-jobs?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -3727,7 +3728,7 @@ Creates a new distance matrix job and starts processing in the background. The r
 
 ### HTTP Request
 
-`POST https://api.geocod.io/v1.9/distance-jobs`
+`POST https://api.geocod.io/v1.10/distance-jobs`
 
 ### Request Body Parameters
 
@@ -3767,7 +3768,7 @@ curl -X POST \
     "destinations": 456,
     "distance_mode": "driving"
   }' \
-  "https://api.geocod.io/v1.9/distance-jobs?api_key=YOUR_API_KEY"
+  "https://api.geocod.io/v1.10/distance-jobs?api_key=YOUR_API_KEY"
 ```
 
 ### See distance job status
@@ -3775,7 +3776,7 @@ curl -X POST \
 > Get the status of a distance job:
 
 ```shell
-curl "https://api.geocod.io/v1.9/distance-jobs/abc123xyz?api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.10/distance-jobs/abc123xyz?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -3861,14 +3862,14 @@ geocoder.distanceMatrixJobStatus('abc123xyz')
   "total_calculations": 6,
   "calculations_completed": 6,
   "progress": 100,
-  "download_url": "https://api.geocod.io/v1.9/distance-jobs/abc123xyz/download",
+  "download_url": "https://api.geocod.io/v1.10/distance-jobs/abc123xyz/download",
   "is_expired": false
 }
 ```
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.9/distance-jobs/{identifier}`
+`GET https://api.geocod.io/v1.10/distance-jobs/{identifier}`
 
 ### URL Parameters
 
@@ -3891,7 +3892,7 @@ Status | Description
 > List all distance jobs:
 
 ```shell
-curl "https://api.geocod.io/v1.9/distance-jobs?api_key=YOUR_API_KEY"
+curl "https://api.geocod.io/v1.10/distance-jobs?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -3962,8 +3963,8 @@ geocoder.distanceMatrixJobs()
     }
   ],
   "links": {
-    "first": "https://api.geocod.io/v1.9/distance-jobs?page=1",
-    "last": "https://api.geocod.io/v1.9/distance-jobs?page=1",
+    "first": "https://api.geocod.io/v1.10/distance-jobs?page=1",
+    "last": "https://api.geocod.io/v1.10/distance-jobs?page=1",
     "prev": null,
     "next": null
   },
@@ -3980,7 +3981,7 @@ Returns a paginated list of all distance matrix jobs.
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.9/distance-jobs`
+`GET https://api.geocod.io/v1.10/distance-jobs`
 
 ### URL Parameters
 
@@ -3994,7 +3995,7 @@ Parameter | Description
 > Download results for a completed job:
 
 ```shell
-curl "https://api.geocod.io/v1.9/distance-jobs/abc123xyz/download?api_key=YOUR_API_KEY" \
+curl "https://api.geocod.io/v1.10/distance-jobs/abc123xyz/download?api_key=YOUR_API_KEY" \
   -o results.json
 ```
 
@@ -4074,7 +4075,7 @@ Results are only available when the job status is <code>COMPLETED</code>. Result
 
 ### HTTP Request
 
-`GET https://api.geocod.io/v1.9/distance-jobs/{identifier}/download`
+`GET https://api.geocod.io/v1.10/distance-jobs/{identifier}/download`
 
 ### URL Parameters
 
@@ -4088,7 +4089,7 @@ Parameter | Description
 > Delete a distance job:
 
 ```shell
-curl -X DELETE "https://api.geocod.io/v1.9/distance-jobs/abc123xyz?api_key=YOUR_API_KEY"
+curl -X DELETE "https://api.geocod.io/v1.10/distance-jobs/abc123xyz?api_key=YOUR_API_KEY"
 ```
 
 ```ruby
@@ -4138,7 +4139,7 @@ Deletes a distance matrix job and its results.
 
 ### HTTP Request
 
-`DELETE https://api.geocod.io/v1.9/distance-jobs/{identifier}`
+`DELETE https://api.geocod.io/v1.10/distance-jobs/{identifier}`
 
 ### URL Parameters
 
@@ -4207,6 +4208,109 @@ rooftop             | We found the exact point with rooftop level accuracy
 nearest_street      | Nearest match for a specific street with estimated street number
 nearest_place       | Closest city/town/place
 
+# Stable Address Keys
+
+> Example `stable_address_key` in a geocoding result:
+
+```json
+{
+  "results": [
+    {
+      "address_components": { ... },
+      "formatted_address": "1109 N Highland St, Arlington, VA 22201",
+      "location": {
+        "lat": 38.886665,
+        "lng": -77.094733
+      },
+      "accuracy": 1,
+      "accuracy_type": "rooftop",
+      "source": "Virginia GIS Clearinghouse",
+      "stable_address_key": "gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3"
+    }
+  ]
+}
+```
+
+Every geocoding result includes a `stable_address_key`, a deterministic identifier that uniquely represents the geocoded address.
+
+For `rooftop`, `range_interpolation`, and other house number-level results, the key is unique to a specific house number on a street. For `street_center` results, the key is unique to a specific street. Secondary address lines (e.g. apartment or unit numbers) do not affect the stable address key.
+
+We recommend always storing the stable address key alongside your geocoded results. Stable address keys are useful for:
+
+* **Deduplication:** Two addresses that resolve to the same location will share the same stable address key, making it easy to identify and deduplicate addresses in your database
+* **Updated results:** Store the stable address key and use it to retrieve the latest geocoding data for an address in the future. For example, an address that currently returns a `range_interpolation` result may be upgraded to a `rooftop` result as our coverage improves
+* **Data enrichment:** Request additional [field appends](#fields) for previously geocoded addresses without paying for geocoding again (see [billing](#stable-address-key-billing) below)
+
+### Guarantees
+
+* **Persistent:** A stable address key, once issued, will always remain valid and can be used to look up the same address in the future
+* **Deterministic:** The same address will always produce the same stable address key, regardless of minor formatting differences (e.g. "Street" vs "St", "North" vs "N")
+* **Cross-version:** Stable address keys work across all API versions
+
+### What to expect
+
+* **Results may improve over time:** The coordinates or accuracy type returned for a stable address key may change as our data coverage improves. This is by design, and you will always get the best available result
+* **New keys may be issued:** As coverage expands, an address that previously returned a `street_center`-level key may return a more specific house number-level key in the future
+
+<aside class="notice">
+Treat the stable address key as an opaque string. Do not parse or rely on the internal format of the key, as it may change for newly issued keys. The length of the string is not guaranteed to be fixed. Existing keys will always remain valid.
+</aside>
+
+### Using stable address keys as input
+
+> Using a stable address key as input for geocoding:
+
+```shell
+curl "https://api.geocod.io/v1.10/geocode?q=gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3&api_key=YOUR_API_KEY"
+```
+
+```ruby
+require 'geocodio/gem'
+
+geocodio = Geocodio::Gem.new('YOUR_API_KEY')
+
+location = geocodio.geocode(['gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3'])
+```
+
+```python
+from geocodio import Geocodio
+
+client = Geocodio("YOUR_API_KEY")
+
+response = client.geocode("gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3")
+```
+
+```php
+<?php
+$response = $geocoder->geocode('gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3');
+```
+
+```javascript
+const Geocodio = require('geocodio-library-node');
+const geocoder = new Geocodio('YOUR_API_KEY');
+
+geocoder.geocode('gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3')
+  .then(response => {
+    console.log(response);
+  })
+  .catch(err => {
+    console.error(err);
+  }
+);
+```
+
+> Using a stable address key with field appends (does not count as a geocoding lookup):
+
+```shell
+curl "https://api.geocod.io/v1.10/geocode?q=gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3&fields=census,cd&api_key=YOUR_API_KEY"
+```
+
+Stable address keys can be used anywhere an address is accepted as input. This includes [single geocoding](#geocoding), [batch geocoding](#batch-geocoding), [distance](#distance) endpoints, and [list geocoding](#geocoding-lists). Simply pass the stable address key as the `q` parameter or as an item in a batch request.
+
+### Billing
+
+When you look up a stable address key, it counts as a regular geocoding lookup. However, if you request [field appends](#fields) using a stable address key, the geocoding portion is free and you only pay for the field appends. This means you can enrich already-geocoded addresses with additional data without paying for geocoding again.
+
 # Address formats
 Geocodio supports geocoding the following address components:
 
@@ -4223,39 +4327,39 @@ If a city is provided without a state, Geocodio will automatically guess and add
 
 Geocoding queries can be formatted in various ways:
 
-* <a href="https://api.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=PO+Box+4735,+Tulsa+OK&api_key=YOUR_API_KEY" target="_blank">PO Box 4735, Tulsa OK</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">Santa Clara County</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">Santa Clara County, CA</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, CA</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20Cupertino%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, Cupertino CA</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=1109+N+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland Street, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=1109+North+Highland+Street%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 North Highland Street, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=1109+N+Highland+St%2c+Arlington+VA&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, Arlington VA</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=1109+N+Highland+St,+22201&api_key=YOUR_API_KEY" target="_blank">1109 N Highland St, 22201</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=Arlington%2c+VA&api_key=YOUR_API_KEY" target="_blank">Arlington, VA</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=Arlington&api_key=YOUR_API_KEY" target="_blank">Arlington</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=VA&api_key=YOUR_API_KEY" target="_blank">VA</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=22201&api_key=YOUR_API_KEY" target="_blank">22201</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=PO+Box+4735,+Tulsa+OK&api_key=YOUR_API_KEY" target="_blank">PO Box 4735, Tulsa OK</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">Santa Clara County</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">Santa Clara County, CA</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, CA</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=1%20Infinite%20Loop%2C%20Santa%20Clara%20County%2C%20Cupertino%20CA&api_key=YOUR_API_KEY" target="_blank">1 Infinite Loop, Santa Clara County, Cupertino CA</a>
 
 If a country is not specified in the query, the Geocodio engine will assume the country to be USA.
 
 Examples of Canadian lookups:
 
-* <a href="https://api.geocod.io/v1.9/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=525+University+Ave%2C+Toronto%2C+ON%2C+Canada&api_key=YOUR_API_KEY" target="_blank">525 University Ave, Toronto, ON, Canada</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=7515+118+Ave+NW%2C+Edmonton%2C+AB+T5B+0X2%2C+Canada&api_key=YOUR_API_KEY" target="_blank">7515 118 Ave NW, Edmonton, AB T5B 0X2, Canada</a>
 
 ## Intersections
 
 You can also geocode intersections. Just specify the two streets that you want to geocode in your query. We support various formats:
 
-* <a href="https://api.geocod.io/v1.9/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
-* <a href="https://api.geocod.io/v1.9/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=E+58th+St+and+Madison+Ave%2C+New+York%2C+NY&api_key=YOUR_API_KEY" target="_blank">E 58th St and Madison Ave, New York, NY</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=Market+and+4th%2C+San+Francisco&api_key=YOUR_API_KEY" target="_blank">Market and 4th, San Francisco</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=Commonwealth+Ave+at+Washington+Street%2C+Boston%2C+MA&api_key=YOUR_API_KEY" target="_blank">Commonwealth Ave at Washington Street, Boston, MA</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=Florencia+%26+Perlita%2C+Austin+TX&api_key=YOUR_API_KEY" target="_blank">Florencia & Perlita, Austin TX</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=Quail+Trail+%40+Dinkle+Rd%2C+Edgewood%2C+NM&api_key=YOUR_API_KEY" target="_blank">Quail Trail @ Dinkle Rd, Edgewood, NM</a>
+* <a href="https://api.geocod.io/v1.10/geocode?q=8th+St+SE%2FI+St+SE%2C+20003&api_key=YOUR_API_KEY" target="_blank">8th St SE/I St SE, 20003</a>
 
 An extra `address_components_secondary` property will be exposed for intersection results, but otherwise, the schema format is the same.
 
@@ -4379,7 +4483,7 @@ If no warnings have been triggered, the `_warnings` key will not be part of the 
 <script>
 const address = '1109 N Highland St, Arlington VA';
 const apiKey = 'YOUR_API_KEY';
-const url = `https://api.geocod.io/v1.9/geocode?q=${encodeURIComponent(address)}&api_key=${encodeURIComponent(apiKey)}`;
+const url = `https://api.geocod.io/v1.10/geocode?q=${encodeURIComponent(address)}&api_key=${encodeURIComponent(apiKey)}`;
 
 fetch(url)
   .then(response => response.json())
@@ -4587,6 +4691,16 @@ Major changes, that are not breaking are also documented here.
 <aside class="notice">
 Breaking changes are defined as changes that remove or rename properties in the JSON output of any API endpoint. Your API client should be able to gracefully support addition of new JSON properties, as this is not considered a breaking change.
 </aside>
+
+## v1.10
+
+*Released on February 24, 2026*
+
+* **Breaking:** ACS 2024 data is now returned for all [Census ACS appends](/#census-acs-american-community-survey). ACS 2024 uses 2023 Census boundaries (the `census2023` data append). Changes include:
+  * The [`acs-social`](#social-education-veteran-status-census) field append has renamed row labels in Table #B21002 (Period of military service for veterans): "Vietnam Era" has been changed to "Vietnam War"
+  * No other ACS field appends have breaking table changes
+* [`cd120`](#congressional-districts): Updated with redistricted boundaries for California, Missouri, North Carolina, Ohio, and Utah
+* All geocoding results now include a [stable address key](#stable-address-keys) (`stable_address_key`) that uniquely identifies an address. Stable address keys can be used as input in any API endpoint and enable free field appends on already-geocoded addresses
 
 ## v1.9
 
