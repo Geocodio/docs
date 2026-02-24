@@ -4696,7 +4696,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 *Released on February 24, 2026*
 
-* **Breaking:** ACS 2024 data is now returned for all [Census ACS appends](/#census-acs-american-community-survey). ACS 2024 uses 2023 Census boundaries (the `census2023` data append). Changes include:
+* **Breaking:** ACS 2024 data is now returned for all [Census ACS appends](#census-acs-american-community-survey). ACS 2024 uses 2023 Census boundaries (the `census2023` data append). Changes include:
   * The [`acs-social`](#social-education-veteran-status-census) field append has renamed row labels in Table #B21002 (Period of military service for veterans): "Vietnam Era" has been changed to "Vietnam War"
   * No other ACS field appends have breaking table changes
 * [`cd120`](#congressional-districts): Updated with redistricted boundaries for California, Missouri, North Carolina, Ohio, and Utah
