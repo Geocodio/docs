@@ -4635,6 +4635,7 @@ The `components` parameter supports filtering results:
 * ✅ `geometry.viewport` - Bounding box for the result
 * ✅ `types` - Result type indicators
 * ✅ `status` - Response status (OK, ZERO_RESULTS, REQUEST_DENIED, etc.)
+* ✅ `place_id` - Geocodio [stable address key](#stable-address-key) for each result
 * ✅ `partial_match` - Added when accuracy < 1.0
 
 **Additional Features:**
@@ -4646,9 +4647,9 @@ The `components` parameter supports filtering results:
 
 ## What's Different
 
-**Not Included in Responses:**
+**Differences in Responses:**
 
-* ⚠️ `place_id` - Returned but always empty (Google-specific identifiers are not available)
+* ✅ `place_id` - Returns the Geocodio [stable address key](#stable-address-key) for each result (e.g., `gcod_usnbfvbm5l57cc8b8bnfnyrua9ym3`). Note: these are Geocodio identifiers, not Google Place IDs
 * ❌ `plus_code` - Google Plus Codes are not provided
 * ⚠️ `geometry.viewport` - Provided but approximated (not based on actual address boundaries)
 
