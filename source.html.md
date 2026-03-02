@@ -1391,6 +1391,7 @@ Parameter | Description
 `distance_min_duration` | Optional parameter. Minimum duration filter in seconds (driving mode only).
 `distance_order_by` | Optional parameter. Sort destinations by `distance` or `duration`. Default is `distance`.
 `distance_sort_order` | Optional parameter. Sort order: `asc` or `desc`. Default is `asc`.
+`skipGeocoding` | Optional parameter. When set to `true` (or empty value), skips the reverse geocoding step and applies [field appends](#fields) directly to the supplied coordinates. The `fields` parameter is required when using `skipGeocoding`. See [Skip Geocoding (extracting field data from coordinates)](#skip-geocoding-extracting-field-data-from-coordinates) for more details.
 
 ### The `format` parameter
 
@@ -1627,6 +1628,7 @@ Parameter | Description
 `distance_min_duration` | Optional parameter. Minimum duration filter in seconds (driving mode only).
 `distance_order_by` | Optional parameter. Sort destinations by `distance` or `duration`. Default is `distance`.
 `distance_sort_order` | Optional parameter. Sort order: `asc` or `desc`. Default is `asc`.
+`skipGeocoding` | Optional parameter. When set to `true` (or empty value), skips the reverse geocoding step and applies [field appends](#fields) directly to the supplied coordinates. The `fields` parameter is required when using `skipGeocoding`. See [Skip Geocoding (extracting field data from coordinates)](#skip-geocoding-extracting-field-data-from-coordinates) for more details.
 
 
 # Geocoding lists
@@ -3131,6 +3133,54 @@ HAST         | Hawaii-Aleutian Standard Time
 MST          | Mountain Standard Time
 PST          | Pacific Standard Time
 SST          | Samoa Standard Time
+
+# Skip Geocoding (extracting field data from coordinates)
+
+> Skip geocoding for a single coordinate with timezone field:
+
+```shell
+curl "https://api.geocod.io/v1.10/reverse?q=38.9002898,-76.9990361&skipGeocoding&fields=timezone&api_key=YOUR_API_KEY"
+```
+
+> Example response:
+
+```json
+{
+  "results": [
+    {
+      "location": {
+        "lat": 38.9002898,
+        "lng": -76.9990361
+      },
+      "accuracy_type": "coordinate",
+      "fields": {
+        "timezone": {
+          "name": "America/New_York",
+          "utc_offset": -5,
+          "observes_dst": true,
+          "abbreviation": "EST",
+          "source": "© IANA Time Zone Database"
+        }
+      }
+    }
+  ]
+}
+```
+
+The `skipGeocoding` parameter allows you to skip the reverse geocoding step entirely and apply [field appends](#fields) directly to the supplied coordinates. This is useful when:
+
+* You already have geocoded coordinates and only need field append data (e.g. timezone, census, congressional districts) without paying for the geocoding lookup again
+* You have coordinates that don't necessarily correspond to a street address (e.g. a point in a national park or body of water) and want to determine what geographic boundaries they fall within
+
+When `skipGeocoding` is set, no geocoding lookup is billed — only field appends are counted.
+
+<aside class="notice">
+The <code>fields</code> parameter is required when using <code>skipGeocoding</code>.
+</aside>
+
+The response when using `skipGeocoding` is simplified compared to a standard reverse geocoding response. It only contains the `location` (lat/lng), `accuracy_type` (always set to `coordinate`), and `fields`. No address components or address data is returned.
+
+`skipGeocoding` is supported for both [single](#reverse-geocoding-single-coordinate) and [batch](#batch-reverse-geocoding) reverse geocoding requests.
 
 # Distance
 
@@ -4694,6 +4744,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.10
+
+*Released on March 2, 2026*
+
+* Added [`skipGeocoding`](#skip-geocoding-extracting-field-data-from-coordinates) parameter for reverse geocoding endpoints. This allows applying field appends directly to coordinates without performing a geocoding lookup, so only field append lookups are billed
 
 *Released on February 24, 2026*
 
