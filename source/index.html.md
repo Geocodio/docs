@@ -9499,6 +9499,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 ## v1.10
 
+*Released on March 11, 2026*
+
+* Updated [`ffiec`](#ffiec-fair-lending) field append to 2025 FFIEC data release (using 2024 Census geographies)
+
 *Released on March 2, 2026*
 
 * Added [`skipGeocoding`](#skip-geocoding-extracting-field-data-from-coordinates) parameter for reverse geocoding endpoints. This allows applying field appends directly to coordinates without performing a geocoding lookup, so only field append lookups are billed

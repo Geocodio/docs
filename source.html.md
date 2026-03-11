@@ -4747,7 +4747,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 *Released on March 11, 2026*
 
-* Updated
+* Updated [`ffiec`](#ffiec-fair-lending) field append to 2025 FFIEC data release (using 2024 Census geographies)
 
 *Released on March 2, 2026*
 
