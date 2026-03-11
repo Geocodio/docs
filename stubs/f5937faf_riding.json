@@ -37,6 +37,7 @@
             },
             "accuracy": 1,
             "accuracy_type": "range_interpolation",
+            "match_type": null,
             "source": "Address Ranges",
             "fields": {
                 "riding": {

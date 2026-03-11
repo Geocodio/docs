@@ -39,6 +39,7 @@
             },
             "accuracy": 1,
             "accuracy_type": "rooftop",
+            "match_type": "building_centroid",
             "source": "Arlington",
             "fields": {
                 "census": {
