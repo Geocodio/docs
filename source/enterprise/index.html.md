@@ -7295,7 +7295,7 @@ geocoder.reverse('38.886672,-77.094735', ['ffiec'])
 ...
   "fields": {
     "ffiec": {
-      "collection_year": 2024,
+      "collection_year": 2025,
       "msa_md_code": "11694",
       "fips_state_code": "51",
       "fips_county_code": "013",
@@ -7320,7 +7320,7 @@ geocoder.reverse('38.886672,-77.094735', ['ffiec'])
       "msa_md_median_family_income": 135790,
       "msa_md_median_household_income": 115805,
       "tract_median_family_income_percentage": 133.95,
-      "ffiec_estimated_msa_md_median_family_income": 164200,
+      "ffiec_estimated_msa_md_median_family_income": 172700,
       "income_indicator": "Upper",
       "cra_poverty_criteria": false,
       "cra_unemployment_criteria": false,
@@ -7334,9 +7334,9 @@ geocoder.reverse('38.886672,-77.094735', ['ffiec'])
 ...
 ```
 
-Geocodio's FFIEC field append allows you to get key data points, commonly used by financial institutions, lenders, and organizations that need to comply with Fair Lending regulations like HMDA and CRA. The data returned is for the 2024 data release. (The 2025 data will not be available until later this year.)
+Geocodio's FFIEC field append allows you to get key data points, commonly used by financial institutions, lenders, and organizations that need to comply with Fair Lending regulations like HMDA and CRA. The data returned is for the 2025 data release.
 
-You can read more about the individual values in the [FFIEC Documentation](https://www.ffiec.gov/sites/default/files/data/census/cen2024_16JLUY24.pdf).
+You can read more about the individual values in the [FFIEC Documentation](https://www.ffiec.gov/sites/default/files/data/census/cen2025_10JULY25.pdf).
 
 
 ## Riding: Canadian Federal Electoral District

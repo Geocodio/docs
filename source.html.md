@@ -2963,9 +2963,9 @@ If no ZIP+4 data is available for the given query, the `zip4` field is omitted f
 
 <!--FIELD:us:ffiec-->
 
-Geocodio's FFIEC field append allows you to get key data points, commonly used by financial institutions, lenders, and organizations that need to comply with Fair Lending regulations like HMDA and CRA. The data returned is for the 2024 data release. (The 2025 data will not be available until later this year.)
+Geocodio's FFIEC field append allows you to get key data points, commonly used by financial institutions, lenders, and organizations that need to comply with Fair Lending regulations like HMDA and CRA. The data returned is for the 2025 data release.
 
-You can read more about the individual values in the [FFIEC Documentation](https://www.ffiec.gov/sites/default/files/data/census/cen2024_16JLUY24.pdf).
+You can read more about the individual values in the [FFIEC Documentation](https://www.ffiec.gov/sites/default/files/data/census/cen2025_10JULY25.pdf).
 
 
 ## Riding: Canadian Federal Electoral District
@@ -4744,6 +4744,10 @@ Breaking changes are defined as changes that remove or rename properties in the 
 </aside>
 
 ## v1.10
+
+*Released on March 11, 2026*
+
+* Updated
 
 *Released on March 2, 2026*
 
