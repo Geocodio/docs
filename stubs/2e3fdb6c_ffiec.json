@@ -42,7 +42,7 @@
             "source": "Arlington",
             "fields": {
                 "ffiec": {
-                    "collection_year": 2024,
+                    "collection_year": 2025,
                     "msa_md_code": "11694",
                     "fips_state_code": "51",
                     "fips_county_code": "013",
@@ -67,7 +67,7 @@
                     "msa_md_median_family_income": 135790,
                     "msa_md_median_household_income": 115805,
                     "tract_median_family_income_percentage": 133.95,
-                    "ffiec_estimated_msa_md_median_family_income": 164200,
+                    "ffiec_estimated_msa_md_median_family_income": 172700,
                     "income_indicator": "Upper",
                     "cra_poverty_criteria": false,
                     "cra_unemployment_criteria": false,
