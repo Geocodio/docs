@@ -21,7 +21,7 @@ code_clipboard: true
 
 # Introduction
 
-Geocodio's RESTful [geocoding API](#geocoding) endpoints allows you to perform forward and reverse geocoding lookups for the US and Canada as well as simultaneously enrich your address data. Geocodio's geocoding API supports individual, batch, and list (CSV) geocoding.
+Geocodio's RESTful [geocoding API](#geocoding) endpoints allows you to perform forward and reverse geocoding lookups for the US, Canada, and Mexico as well as simultaneously enrich your address data. Geocodio's geocoding API supports individual, batch, and list (CSV) geocoding.
 
 Data appends (`fields`) include Census geographies and data, electoral districts, timezones, school districts, and more.
 
@@ -39,11 +39,11 @@ Note the versioning prefix in the base url, which is required for all requests.
 
 # Supported Countries
 
-| | Forward geocoding | Reverse geocoding | Distance |
-|---|---|---|---|
+| | Forward geocoding | Reverse geocoding | Distance                    |
+|---|---|---|-----------------------------|
 | United States | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 | Canada | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
-| Mexico | | <i class="fa fa-check"></i> | |
+| Mexico | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 
 ## Specifying Country
 
@@ -58,9 +58,12 @@ curl "https://api.enterprise.geocod.io/v1.11/geocode?q=1109+N+Highland+St,+Arlin
 
 # Canadian address (explicit)
 curl "https://api.enterprise.geocod.io/v1.11/geocode?q=525+University+Ave,+Toronto+ON&country=Canada&api_key=YOUR_API_KEY"
+
+# Mexican address (explicit)
+curl "https://api.enterprise.geocod.io/v1.11/geocode?q=Paseo+de+la+Reforma+505,+Ciudad+de+Mexico&country=Mexico&api_key=YOUR_API_KEY"
 ```
 
-**Supported Country Values:** USA or Canada
+**Supported Country Values:** USA, Canada, or Mexico
 
 ## Address Format Differences
 
@@ -71,6 +74,10 @@ curl "https://api.enterprise.geocod.io/v1.11/geocode?q=525+University+Ave,+Toron
 ### Canada
 * Province: 2-letter abbreviation (e.g., `ON`, `BC`)
 * Postal Code FSA: 3 characters with space (e.g., `M5G`)
+
+### Mexico
+* State: Varies (e.g., `CDMX`, `Jal.`, `Jalisco`)
+* Postal Code: 5 digits (e.g., `06500`)
 
 # Libraries
 
@@ -534,7 +541,7 @@ Parameter     | Description
 `county`      | E.g. Arlington
 `state`       | E.g. DC
 `postal_code` | E.g. 20500
-`country`     | E.g. Canada (Default to USA)
+`country`     | E.g. Canada, Mexico (Default to USA)
 
 ### The `format` parameter
 
@@ -1346,7 +1353,7 @@ Parameter     | Description
 `county`      | E.g. Arlington
 `state`       | E.g. DC
 `postal_code` | E.g. 20500
-`country`     | E.g. Canada (Default to USA)
+`country`     | E.g. Canada, Mexico (Default to USA)
 
 # Reverse Geocoding
 
@@ -9558,7 +9565,7 @@ The endpoint transforms Geocodio's address components into Google Maps format wi
 
 The `components` parameter supports filtering results:
 
-* `country:XX` - Filter by country code (US, CA)
+* `country:XX` - Filter by country code (US, CA, MX)
 * `postal_code:XXXXX` - Filter by postal code
 * `locality:CityName` - Filter by city/locality
 * `administrative_area:State` - Filter by state/province
@@ -9569,6 +9576,7 @@ The `components` parameter supports filtering results:
 
 * 🇺🇸 United States (US)
 * 🇨🇦 Canada (CA) - with proper province expansion (e.g., ON → Ontario, QC → Quebec)
+* 🇲🇽 Mexico (MX)
 
 **Response Format:**
 
@@ -9605,7 +9613,7 @@ The `components` parameter supports filtering results:
 
 **Coverage:**
 
-* ⚠️ **US and Canada only** - Geocodio currently supports US and Canadian addresses, and reverse geocoding in US, Canada, and Mexico. Requests for other countries will return `ZERO_RESULTS` status
+* ⚠️ **US, Canada, and Mexico only** - Geocodio currently supports US, Canadian, and Mexican addresses. Requests for other countries will return `ZERO_RESULTS` status
 
 **Error Responses:**
 
@@ -9622,7 +9630,7 @@ For new integrations, we recommend using the <a href="#geocoding">native Geocodi
 </aside>
 
 <aside class="warning">
-This endpoint supports US and Canada addresses only. Requests for addresses in other countries will return a <code>ZERO_RESULTS</code> status.
+This endpoint supports US, Canada, and Mexico addresses only. Requests for addresses in other countries will return a <code>ZERO_RESULTS</code> status.
 </aside>
 
 # Changelog
@@ -9649,6 +9657,7 @@ Breaking changes are defined as changes that remove or rename properties in the 
 
 *Released on March 11, 2026*
 
+* Added forward geocoding support for Mexico
 * Updated [`ffiec`](#ffiec-fair-lending) field append to 2025 FFIEC data release (using 2024 Census geographies)
 
 *Released on March 2, 2026*
