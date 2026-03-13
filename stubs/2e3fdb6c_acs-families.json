@@ -39,6 +39,7 @@
             },
             "accuracy": 1,
             "accuracy_type": "rooftop",
+            "match_type": "building_centroid",
             "source": "Arlington",
             "fields": {
                 "census": {
@@ -531,5 +532,8 @@
                 }
             }
         }
+    ],
+    "_warnings": [
+        "There is a newer API version available, please consider upgrading to v1.11. See changelog here: https://www.geocod.io/docs/#changelog"
     ]
 }
