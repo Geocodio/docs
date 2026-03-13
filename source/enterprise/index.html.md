@@ -39,11 +39,11 @@ Note the versioning prefix in the base url, which is required for all requests.
 
 # Supported Countries
 
-| | Forward geocoding | Reverse geocoding | Distance |
-|---|---|---|---|
+| | Forward geocoding | Reverse geocoding | Distance                    |
+|---|---|---|-----------------------------|
 | United States | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 | Canada | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
-| Mexico | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | |
+| Mexico | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> | <i class="fa fa-check"></i> |
 
 ## Specifying Country
 
