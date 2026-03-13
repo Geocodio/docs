@@ -491,8 +491,5 @@
                 }
             }
         }
-    ],
-    "_warnings": [
-        "There is a newer API version available, please consider upgrading to v1.11. See changelog here: https://www.geocod.io/docs/#changelog"
     ]
 }
